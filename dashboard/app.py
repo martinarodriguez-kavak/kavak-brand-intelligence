@@ -1103,7 +1103,7 @@ def main():
                     f'<div style="flex:1;background:#fff;border:1px solid #E2E8F0;border-top:3px solid {f_color};'
                     f'border-radius:10px;padding:16px 18px;min-width:0;">'
                     f'<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#A0AEC0;margin-bottom:6px;">{f_label}</div>'
-                    f'<div style="font-size:28px;font-weight:800;color:{f_color};letter-spacing:-1px;line-height:1;">{f_val:.0f}%</div>'
+                    f'<div style="font-size:28px;font-weight:800;color:#1A202C;letter-spacing:-1px;line-height:1;">{f_val:.0f}%</div>'
                     f'{delta_str}'
                     f'</div>'
                 )
@@ -1158,10 +1158,10 @@ def main():
                 for i in range(0, min(len(insights), 4), 2):
                     pair = insights[i:i+2]
                     cells = "".join(
-                        f'<div style="flex:1;background:{bg};border:1px solid {border};border-left:4px solid {border};'
-                        f'border-radius:10px;padding:16px 18px;">'
-                        f'<div style="font-size:11px;font-weight:700;color:{border};margin-bottom:6px;">{title}</div>'
-                        f'<div style="font-size:12px;color:#4A5568;line-height:1.65;">{body}</div>'
+                        f'<div style="flex:1;background:#fff;border:1px solid #E2E8F0;border-left:3px solid #0467FC;'
+                        f'border-radius:10px;padding:16px 20px;">'
+                        f'<div style="font-size:11px;font-weight:700;color:#0467FC;margin-bottom:6px;letter-spacing:.01em;">{title}</div>'
+                        f'<div style="font-size:12px;color:#4A5568;line-height:1.7;">{body}</div>'
                         f'</div>'
                         for bg, border, title, body in pair
                     )
