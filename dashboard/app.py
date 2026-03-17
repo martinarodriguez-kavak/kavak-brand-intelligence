@@ -249,45 +249,48 @@ st.markdown("""
   .delta-down { color: var(--red);   font-size: 11px; font-weight: 700; }
   .delta-flat { color: var(--text-light); font-size: 11px; font-weight: 600; }
 
-  /* KPI card: no bottom border/radius — merges with button below */
+  /* KPI card visual */
   .kpi-block {
     flex: 0 0 auto;
     width: 100%;
     background: #F9FAFB;
     border: 1px solid var(--border);
-    border-bottom: none;
-    border-radius: 10px 10px 0 0;
-    padding: 12px 14px 10px;
-    cursor: default;
-    transition: background 0.15s, border-color 0.15s;
+    border-radius: 10px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
     position: relative;
   }
-  .kpi-block:hover {
-    background: #EBF2FF;
-    border-color: var(--kavak-blue);
+
+  /* Transparent click-target button rendered BEFORE the card HTML */
+  div[data-testid="stButton"] > button[kind="secondary"] {
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 10px !important;
+    height: 95px !important;
+    min-height: 0 !important;
+    width: 100% !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    color: transparent !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
   }
 
-  /* KPI dialog button — bottom cap of the card */
-  div[data-testid="stButton"] > button[kind="secondary"] {
-    background: #F2F5F9 !important;
-    border: 1px solid var(--border) !important;
-    border-top: none !important;
-    border-radius: 0 0 10px 10px !important;
-    color: #A0AEC0 !important;
-    font-size: 10px !important;
-    font-weight: 600 !important;
-    padding: 5px 14px !important;
-    margin-top: 0 !important;
-    box-shadow: none !important;
-    letter-spacing: .03em !important;
-    width: 100% !important;
-    transition: color .15s, background .15s, border-color .15s !important;
-    cursor: pointer !important;
+  /* Card markdown: overlaid on the button via negative margin, passes clicks through */
+  div[data-testid="stMarkdownContainer"]:has(.kpi-block) {
+    pointer-events: none !important;
+    margin-top: -95px !important;
+    position: relative !important;
+    z-index: 2 !important;
   }
-  div[data-testid="stButton"] > button[kind="secondary"]:hover {
-    color: var(--kavak-blue) !important;
+
+  /* Hover: button receives it, card visual updates via sibling selector */
+  div[data-testid="stButton"]:has(button:hover) ~ div[data-testid="stMarkdownContainer"] .kpi-block {
     background: #EBF2FF !important;
     border-color: var(--kavak-blue) !important;
+    box-shadow: 0 2px 8px rgba(4,103,252,0.08) !important;
   }
 
 
@@ -1133,6 +1136,10 @@ def main():
                         sub_html = ""
 
                     with cols[idx]:
+                        # Button FIRST — transparent click target
+                        if st.button(" ", key=f"kpi_dlg_{col_name}", use_container_width=True):
+                            kpi_dialog(col_name, label, color, val, suffix, prev_val, prev_label)
+                        # Card HTML SECOND — overlaid via CSS negative margin, pointer-events: none
                         st.markdown(
                             f'<div class="kpi-block" style="border-top:3px solid {color};">'
                             f'  <div class="kpi-label">{label.upper()}</div>'
@@ -1144,8 +1151,6 @@ def main():
                             f'</div>',
                             unsafe_allow_html=True
                         )
-                        if st.button("Ver detalle →", key=f"kpi_dlg_{col_name}", use_container_width=True):
-                            kpi_dialog(col_name, label, color, val, suffix, prev_val, prev_label)
 
             # ── Gráfico de evolución ──
             section_header("Evolución Brand Health — W0 a W12 (2020–2025)", dot_color="blue")
