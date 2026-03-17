@@ -605,7 +605,7 @@ def navbar(has_api_key: bool):
       <div class="navbar-brand">
         {get_logo_html()}
         <div class="navbar-divider"></div>
-        <span class="navbar-title">Brand Intelligence</span>
+        <span class="navbar-title">Consumer Perception Tracker</span>
       </div>
       <div class="navbar-meta">
         {api_badge}
