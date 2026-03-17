@@ -358,7 +358,8 @@ st.markdown("""
     background: linear-gradient(135deg, #0467FC 0%, #001D6C 100%);
     border-radius: 14px;
     padding: 24px 28px;
-    margin-bottom: 28px;
+    margin-top: 8px;
+    margin-bottom: 20px;
     position: relative;
     overflow: hidden;
   }
