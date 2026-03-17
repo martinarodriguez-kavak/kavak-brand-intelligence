@@ -1075,100 +1075,105 @@ def main():
             # ── LECTURA ESTRATÉGICA ──
             section_header("Lectura Estratégica", dot_color="blue")
 
-            # Funnel data
-            funnel_steps = [
-                ("Top of Mind",      "Top_of_Mind",           "#0467FC"),
-                ("Awareness Asistida","Awareness_Asistida",   "#3685FD"),
-                ("Consideración",    "Consideracion",         "#68A4FD"),
-                ("Intención Compra", "Intencion_Compra_Total","#C8ED02"),
-            ]
-            funnel_html = ""
-            for f_label, f_col, f_color in funnel_steps:
-                f_val = pv(f_col)
-                if f_val is None:
-                    continue
-                f_v0 = pv(f_col, first_label)
-                trend = ""
-                if f_v0 is not None:
-                    d = f_val - f_v0
-                    trend = f' <span style="color:#38A169;font-size:10px;font-weight:700">+{d:.0f}pp</span>' if d > 0 else ""
-                funnel_html += f"""
-                <div class="funnel-row">
-                  <div class="funnel-label">{f_label}{trend}</div>
-                  <div class="funnel-bar-wrap">
-                    <div class="funnel-bar-fill" style="width:{min(f_val,100):.1f}%;background:{f_color}"></div>
-                  </div>
-                  <div class="funnel-val">{f_val:.0f}%</div>
-                </div>"""
-
-            # Dynamic strategic callouts
             tom   = pv("Top_of_Mind")
             awa   = pv("Awareness_Asistida")
             cons  = pv("Consideracion")
             nps   = pv("NPS_Score")
             bei   = pv("Brand_Equity_Index")
             inten = pv("Intencion_Compra_Total")
+            tom0  = pv("Top_of_Mind", first_label)
 
-            insights = []
+            col_funnel, col_insights = st.columns(2, gap="medium")
 
-            # Awareness → Consideración gap
-            if awa and cons:
-                gap = awa - cons
-                if gap > 30:
-                    insights.append(("🎯", f"<strong>Brecha Awareness → Consideración: {gap:.0f}pp.</strong> "
-                        f"El {awa:.0f}% conoce Kavak pero solo el {cons:.0f}% lo consideraría. "
-                        "Oportunidad de comunicación para convertir conocimiento en intención."))
-                elif gap <= 20:
-                    insights.append(("✅", f"<strong>Conversión Awareness → Consideración saludable ({gap:.0f}pp de brecha).</strong> "
-                        "La marca convierte conocimiento en intención mejor que el promedio de categoría."))
+            with col_funnel:
+                st.markdown(
+                    '<div style="font-size:10px;font-weight:700;text-transform:uppercase;'
+                    f'letter-spacing:.7px;color:#718096;margin-bottom:12px;">'
+                    f'Funnel de marca · {latest_label}</div>',
+                    unsafe_allow_html=True
+                )
+                funnel_steps = [
+                    ("Top of Mind",       "Top_of_Mind",            "#0467FC"),
+                    ("Awareness Asistida","Awareness_Asistida",     "#3685FD"),
+                    ("Consideración",     "Consideracion",          "#68A4FD"),
+                    ("Intención Compra",  "Intencion_Compra_Total", "#95BFFE"),
+                ]
+                for f_label, f_col, f_color in funnel_steps:
+                    f_val = pv(f_col)
+                    if f_val is None:
+                        continue
+                    f_v0  = pv(f_col, first_label)
+                    growth_tag = ""
+                    if f_v0 is not None and f_val > f_v0:
+                        g = f_val - f_v0
+                        growth_tag = (
+                            f'<span style="color:#38A169;font-size:10px;font-weight:700;'
+                            f'margin-left:6px;">+{g:.0f}pp</span>'
+                        )
+                    pct = min(float(f_val), 100)
+                    st.markdown(f"""
+                    <div style="margin-bottom:10px;">
+                      <div style="display:flex;justify-content:space-between;
+                                  align-items:center;margin-bottom:4px;">
+                        <span style="font-size:11px;font-weight:600;color:#4A5568;">
+                          {f_label}{growth_tag}
+                        </span>
+                        <span style="font-size:12px;font-weight:800;color:#1A202C;">{f_val:.0f}%</span>
+                      </div>
+                      <div style="background:#EDF2F7;border-radius:4px;height:7px;overflow:hidden;">
+                        <div style="width:{pct:.1f}%;height:100%;background:{f_color};border-radius:4px;"></div>
+                      </div>
+                    </div>
+                    """, unsafe_allow_html=True)
 
-            # NPS reading
-            if nps is not None:
-                prom = pv("NPS_Promotores_pct")
-                det  = pv("NPS_Detractores_pct")
-                if nps >= 50:
-                    insights.append(("🏆", f"<strong>NPS {nps:.0f} pts — nivel excelente.</strong> "
-                        + (f"El {prom:.0f}% son promotores activos, solo el {det:.0f}% detractores. " if prom and det else "")
-                        + "Base de recomendación orgánica sólida para activar boca a boca."))
-                elif nps >= 30:
-                    insights.append(("📈", f"<strong>NPS {nps:.0f} pts — rango positivo.</strong> "
-                        "Hay margen para fortalecer el pool de promotores vía experiencia post-compra."))
+            with col_insights:
+                st.markdown(
+                    '<div style="font-size:10px;font-weight:700;text-transform:uppercase;'
+                    'letter-spacing:.7px;color:#718096;margin-bottom:12px;">Insights clave</div>',
+                    unsafe_allow_html=True
+                )
+                insights = []
 
-            # TOM leadership
-            if tom and tom >= 40:
-                insights.append(("🥇", f"<strong>Top of Mind {tom:.0f}% — liderazgo claro en seminuevos MX.</strong> "
-                    "Kavak es la primera marca que viene a la mente al pensar en comprar o vender un auto usado."))
+                if awa and cons:
+                    gap = awa - cons
+                    if gap > 30:
+                        insights.append(("🎯", f"**Brecha Awareness → Consideración: {gap:.0f}pp.** "
+                            f"El {awa:.0f}% conoce Kavak pero solo el {cons:.0f}% lo consideraría. "
+                            "Oportunidad clave para convertir conocimiento en intención."))
+                    else:
+                        insights.append(("✅", f"**Conversión Awareness → Consideración saludable ({gap:.0f}pp).** "
+                            "La marca convierte conocimiento en intención mejor que el promedio."))
 
-            # Brand Equity
-            if bei and bei >= 75:
-                insights.append(("💡", f"<strong>Brand Equity Index {bei:.0f}/100.</strong> "
-                    "Favorabilidad, diferenciación y cercanía emocional en zona alta. "
-                    "La marca tiene capital suficiente para soportar extensiones y nuevos productos."))
+                if nps is not None:
+                    prom_v = pv("NPS_Promotores_pct")
+                    det_v  = pv("NPS_Detractores_pct")
+                    if nps >= 50:
+                        extra = f" El {prom_v:.0f}% son promotores, solo el {det_v:.0f}% detractores." if (prom_v and det_v) else ""
+                        insights.append(("🏆", f"**NPS {nps:.0f} pts — nivel excelente.**{extra} Base de recomendación orgánica sólida."))
+                    elif nps >= 30:
+                        insights.append(("📈", f"**NPS {nps:.0f} pts — rango positivo.** Hay margen para fortalecer el pool de promotores."))
 
-            # W0 vs latest growth callout
-            tom0 = pv("Top_of_Mind", first_label)
-            if tom and tom0:
-                insights.append(("🚀", f"<strong>En 5 años, el TOM pasó de {tom0:.0f}% a {tom:.0f}%</strong> — "
-                    "un crecimiento de {:.0f}pp que posiciona a Kavak como uno de los casos de construcción de marca más rápidos en México.".format(tom - tom0)))
+                if tom and tom >= 40:
+                    insights.append(("🥇", f"**Top of Mind {tom:.0f}% — liderazgo claro en MX.** "
+                        "Primera marca en mente al pensar en seminuevos."))
 
-            insights_html = "".join(
-                f'<div class="insight-item"><span class="insight-icon">{ico}</span>'
-                f'<span class="insight-text">{txt}</span></div>'
-                for ico, txt in insights[:4]
-            )
+                if bei and bei >= 75:
+                    insights.append(("💡", f"**Brand Equity Index {bei:.0f}/100.** "
+                        "Favorabilidad, diferenciación y cercanía emocional en zona alta."))
 
-            st.markdown(f"""
-            <div class="reading-grid">
-              <div class="reading-card">
-                <div class="reading-card-title">Funnel de marca · {latest_label}</div>
-                {funnel_html}
-              </div>
-              <div class="reading-card">
-                <div class="reading-card-title">Insights clave</div>
-                <div class="insight-list">{insights_html}</div>
-              </div>
-            </div>
-            """, unsafe_allow_html=True)
+                if tom and tom0:
+                    growth_total = tom - tom0
+                    insights.append(("🚀", f"**TOM: {tom0:.0f}% → {tom:.0f}% en 5 años** (+{growth_total:.0f}pp). "
+                        "Uno de los crecimientos de brand equity más rápidos en México."))
+
+                for ico, txt in insights[:4]:
+                    st.markdown(
+                        f'<div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;">'
+                        f'<span style="font-size:15px;line-height:1.4;flex-shrink:0;">{ico}</span>'
+                        f'<span style="font-size:12px;color:#2D3748;line-height:1.6;">{txt}</span>'
+                        f'</div>',
+                        unsafe_allow_html=True
+                    )
 
             # ── Gráfico de evolución ──
             section_header("Evolución Brand Health — W0 a W12 (2020–2025)", dot_color="blue")
