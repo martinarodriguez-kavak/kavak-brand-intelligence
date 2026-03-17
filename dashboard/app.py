@@ -170,16 +170,18 @@ st.markdown("""
 
   /* ─── KPI BLOCKS (reference: Meta Ads dashboard) ─── */
   .kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 24px;
   }
   .kpi-block {
+    flex: 0 0 auto;
+    width: 190px;
     background: #F9FAFB;
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 14px 16px;
+    padding: 12px 14px;
     cursor: pointer;
     transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
     position: relative;
@@ -211,7 +213,7 @@ st.markdown("""
     margin-bottom: 5px;
   }
   .kpi-value {
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 800;
     color: var(--text);
     letter-spacing: -0.5px;
@@ -274,6 +276,76 @@ st.markdown("""
   .delta-up   { color: var(--green); font-size: 11px; font-weight: 700; }
   .delta-down { color: var(--red);   font-size: 11px; font-weight: 700; }
   .delta-flat { color: var(--text-light); font-size: 11px; font-weight: 600; }
+
+  /* ─── LECTURA ESTRATÉGICA ─── */
+  .reading-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .reading-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .reading-card-title {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  /* Funnel */
+  .funnel-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .funnel-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    width: 130px;
+    flex-shrink: 0;
+  }
+  .funnel-bar-wrap {
+    flex: 1;
+    background: #EDF2F7;
+    border-radius: 4px;
+    height: 8px;
+    overflow: hidden;
+  }
+  .funnel-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+  }
+  .funnel-val {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    width: 38px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  /* Insight callouts */
+  .insight-list { display: flex; flex-direction: column; gap: 10px; }
+  .insight-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .insight-icon {
+    font-size: 16px;
+    line-height: 1.3;
+    flex-shrink: 0;
+  }
+  .insight-text { font-size: 12px; color: var(--text); line-height: 1.55; }
+  .insight-text strong { color: var(--kavak-blue); font-weight: 700; }
 
   /* ─── INSIGHT / KPI CARDS (border-left) ─── */
   .kpi-card {
@@ -999,6 +1071,104 @@ def main():
 
             cards_html += '</div>'
             st.markdown(cards_html, unsafe_allow_html=True)
+
+            # ── LECTURA ESTRATÉGICA ──
+            section_header("Lectura Estratégica", dot_color="blue")
+
+            # Funnel data
+            funnel_steps = [
+                ("Top of Mind",      "Top_of_Mind",           "#0467FC"),
+                ("Awareness Asistida","Awareness_Asistida",   "#3685FD"),
+                ("Consideración",    "Consideracion",         "#68A4FD"),
+                ("Intención Compra", "Intencion_Compra_Total","#C8ED02"),
+            ]
+            funnel_html = ""
+            for f_label, f_col, f_color in funnel_steps:
+                f_val = pv(f_col)
+                if f_val is None:
+                    continue
+                f_v0 = pv(f_col, first_label)
+                trend = ""
+                if f_v0 is not None:
+                    d = f_val - f_v0
+                    trend = f' <span style="color:#38A169;font-size:10px;font-weight:700">+{d:.0f}pp</span>' if d > 0 else ""
+                funnel_html += f"""
+                <div class="funnel-row">
+                  <div class="funnel-label">{f_label}{trend}</div>
+                  <div class="funnel-bar-wrap">
+                    <div class="funnel-bar-fill" style="width:{min(f_val,100):.1f}%;background:{f_color}"></div>
+                  </div>
+                  <div class="funnel-val">{f_val:.0f}%</div>
+                </div>"""
+
+            # Dynamic strategic callouts
+            tom   = pv("Top_of_Mind")
+            awa   = pv("Awareness_Asistida")
+            cons  = pv("Consideracion")
+            nps   = pv("NPS_Score")
+            bei   = pv("Brand_Equity_Index")
+            inten = pv("Intencion_Compra_Total")
+
+            insights = []
+
+            # Awareness → Consideración gap
+            if awa and cons:
+                gap = awa - cons
+                if gap > 30:
+                    insights.append(("🎯", f"<strong>Brecha Awareness → Consideración: {gap:.0f}pp.</strong> "
+                        f"El {awa:.0f}% conoce Kavak pero solo el {cons:.0f}% lo consideraría. "
+                        "Oportunidad de comunicación para convertir conocimiento en intención."))
+                elif gap <= 20:
+                    insights.append(("✅", f"<strong>Conversión Awareness → Consideración saludable ({gap:.0f}pp de brecha).</strong> "
+                        "La marca convierte conocimiento en intención mejor que el promedio de categoría."))
+
+            # NPS reading
+            if nps is not None:
+                prom = pv("NPS_Promotores_pct")
+                det  = pv("NPS_Detractores_pct")
+                if nps >= 50:
+                    insights.append(("🏆", f"<strong>NPS {nps:.0f} pts — nivel excelente.</strong> "
+                        + (f"El {prom:.0f}% son promotores activos, solo el {det:.0f}% detractores. " if prom and det else "")
+                        + "Base de recomendación orgánica sólida para activar boca a boca."))
+                elif nps >= 30:
+                    insights.append(("📈", f"<strong>NPS {nps:.0f} pts — rango positivo.</strong> "
+                        "Hay margen para fortalecer el pool de promotores vía experiencia post-compra."))
+
+            # TOM leadership
+            if tom and tom >= 40:
+                insights.append(("🥇", f"<strong>Top of Mind {tom:.0f}% — liderazgo claro en seminuevos MX.</strong> "
+                    "Kavak es la primera marca que viene a la mente al pensar en comprar o vender un auto usado."))
+
+            # Brand Equity
+            if bei and bei >= 75:
+                insights.append(("💡", f"<strong>Brand Equity Index {bei:.0f}/100.</strong> "
+                    "Favorabilidad, diferenciación y cercanía emocional en zona alta. "
+                    "La marca tiene capital suficiente para soportar extensiones y nuevos productos."))
+
+            # W0 vs latest growth callout
+            tom0 = pv("Top_of_Mind", first_label)
+            if tom and tom0:
+                insights.append(("🚀", f"<strong>En 5 años, el TOM pasó de {tom0:.0f}% a {tom:.0f}%</strong> — "
+                    "un crecimiento de {:.0f}pp que posiciona a Kavak como uno de los casos de construcción de marca más rápidos en México.".format(tom - tom0)))
+
+            insights_html = "".join(
+                f'<div class="insight-item"><span class="insight-icon">{ico}</span>'
+                f'<span class="insight-text">{txt}</span></div>'
+                for ico, txt in insights[:4]
+            )
+
+            st.markdown(f"""
+            <div class="reading-grid">
+              <div class="reading-card">
+                <div class="reading-card-title">Funnel de marca · {latest_label}</div>
+                {funnel_html}
+              </div>
+              <div class="reading-card">
+                <div class="reading-card-title">Insights clave</div>
+                <div class="insight-list">{insights_html}</div>
+              </div>
+            </div>
+            """, unsafe_allow_html=True)
 
             # ── Gráfico de evolución ──
             section_header("Evolución Brand Health — W0 a W12 (2020–2025)", dot_color="blue")
