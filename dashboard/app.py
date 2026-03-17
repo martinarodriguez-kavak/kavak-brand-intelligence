@@ -485,11 +485,19 @@ def load_all_data(force_refresh: bool = False):
 # HELPER RENDERERS
 # ──────────────────────────────────────────────
 
+@st.cache_data(show_spinner=False)
 def get_logo_html() -> str:
-    """Returns <img> tag using Streamlit static file serving."""
-    static_path = Path(__file__).parent / "static" / "kavak_logo.png"
-    if static_path.exists():
-        return '<img src="/app/static/kavak_logo.png" style="height:30px;width:auto;display:block;" />'
+    import base64, io
+    from PIL import Image
+    logo_path = Path(__file__).parent / "static" / "kavak_logo.png"
+    if not logo_path.exists():
+        logo_path = Path(__file__).parent.parent.parent / "KAVAK_LOGO_MAIN_WHITE (3).png"
+    if logo_path.exists():
+        img = Image.open(logo_path).convert("RGBA")
+        buf = io.BytesIO()
+        img.save(buf, format="PNG")
+        b64 = base64.b64encode(buf.getvalue()).decode()
+        return f'<img src="data:image/png;base64,{b64}" style="height:30px;width:auto;display:block;" />'
     return '<span class="kavak-wordmark">KAVAK</span>'
 
 
