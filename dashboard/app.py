@@ -168,126 +168,112 @@ st.markdown("""
     margin-left: auto;
   }
 
-  /* ─── SUMMARY CARDS ─── */
-  .summary-grid {
+  /* ─── KPI BLOCKS (reference: Meta Ads dashboard) ─── */
+  .kpi-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
     margin-bottom: 24px;
   }
-  .summary-card {
-    background: var(--card);
+  .kpi-block {
+    background: #F9FAFB;
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px 20px;
-    transition: box-shadow 0.15s;
+    border-radius: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+    position: relative;
   }
-  .summary-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
-  .summary-card .s-label {
-    font-size: 11px;
-    color: var(--text-muted);
+  .kpi-block:hover {
+    background: #EBF2FF;
+    border-color: var(--kavak-blue);
+    box-shadow: 0 2px 8px rgba(4,103,252,0.08);
+  }
+  .kpi-block[open] {
+    background: #EBF2FF;
+    border-color: var(--kavak-blue);
+  }
+  .kpi-block > summary {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    outline: none;
+  }
+  .kpi-block > summary::-webkit-details-marker { display: none; }
+  .kpi-label {
+    font-size: 10px;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 600;
-    margin-bottom: 6px;
+    letter-spacing: 0.6px;
+    color: var(--text-muted);
+    margin-bottom: 5px;
   }
-  .summary-card .s-value {
-    font-size: 30px;
+  .kpi-value {
+    font-size: 26px;
     font-weight: 800;
     color: var(--text);
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
     line-height: 1;
     margin-bottom: 4px;
   }
-  .summary-card .s-sub {
-    font-size: 12px;
+  .kpi-sub {
+    font-size: 11px;
     color: var(--text-light);
-    font-weight: 400;
+    margin-top: 3px;
   }
-  .summary-card.highlight {
-    background: var(--kavak-blue);
-    border-color: var(--kavak-blue);
+  .kpi-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    flex-shrink: 0;
   }
-  .summary-card.highlight .s-label { color: rgba(255,255,255,0.65); }
-  .summary-card.highlight .s-value { color: white; }
-  .summary-card.highlight .s-sub { color: rgba(255,255,255,0.55); }
-  .delta-up { color: var(--green); font-size: 12px; font-weight: 600; }
-  .delta-down { color: var(--red); font-size: 12px; font-weight: 600; }
-  .delta-flat { color: var(--text-light); font-size: 12px; font-weight: 600; }
-
-  /* ── Metric tooltip ── */
-  .metric-tip {
-    display: inline-flex;
+  .kpi-arrow {
+    font-size: 9px;
+    color: var(--text-light);
+    transition: transform 0.2s ease;
+    margin-top: 2px;
+  }
+  .kpi-block[open] .kpi-arrow { transform: rotate(180deg); }
+  .kpi-detail {
+    margin-top: 10px;
+    border-top: 1px solid #E2E8F0;
+    padding-top: 10px;
+  }
+  .kpi-detail-def {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 8px;
+  }
+  .kpi-detail-row {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: transparent;
-    border: 1px solid #CBD5E0;
-    color: #A0AEC0;
+    padding: 3px 0;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .kpi-detail-label { flex: 1; }
+  .kpi-detail-val {
+    font-weight: 700;
+    color: var(--text);
+    text-align: right;
+    min-width: 40px;
+  }
+  .kpi-section-label {
     font-size: 9px;
     font-weight: 700;
-    font-family: 'Helvetica Neue', sans-serif;
-    margin-left: 6px;
-    cursor: default;
-    position: relative;
-    vertical-align: middle;
-    line-height: 1;
-    transition: border-color .15s, color .15s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #A0AEC0;
+    margin: 8px 0 3px;
   }
-  .metric-tip:hover {
-    border-color: #0467FC;
-    color: #0467FC;
-  }
-  .metric-tip::after {
-    content: attr(data-tip);
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: #1A202C;
-    color: #F7FAFC;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1.55;
-    padding: 10px 14px;
-    border-radius: 8px;
-    width: 220px;
-    white-space: normal;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity .18s ease, transform .18s ease;
-    transform: translateX(-50%) translateY(4px);
-    z-index: 9999;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-  }
-  .metric-tip::before {
-    content: '';
-    position: absolute;
-    bottom: calc(100% + 2px);
-    left: 50%;
-    transform: translateX(-50%);
-    border: 6px solid transparent;
-    border-top-color: #1A202C;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity .18s ease;
-    z-index: 9999;
-  }
-  .metric-tip:hover::after,
-  .metric-tip:hover::before {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-  .summary-card.highlight .metric-tip {
-    border-color: rgba(255,255,255,0.4);
-    color: rgba(255,255,255,0.55);
-  }
-  .summary-card.highlight .metric-tip:hover {
-    border-color: rgba(255,255,255,0.9);
-    color: #fff;
-  }
+  .delta-up   { color: var(--green); font-size: 11px; font-weight: 700; }
+  .delta-down { color: var(--red);   font-size: 11px; font-weight: 700; }
+  .delta-flat { color: var(--text-light); font-size: 11px; font-weight: 600; }
 
   /* ─── INSIGHT / KPI CARDS (border-left) ─── */
   .kpi-card {
@@ -895,46 +881,124 @@ def main():
                 ),
             }
 
+            # helper: safe get from pivot
+            def pv(col, label=latest_label):
+                try:
+                    v = pivot.loc[label, col]
+                    return None if pd.isna(v) else v
+                except Exception:
+                    return None
+
+            first_label = pivot.index[0]
+
+            def build_detail(col_name, val, suffix, definition_text):
+                rows = f'<div class="kpi-detail-def">{definition_text}</div>'
+
+                # Trend from first ola
+                v0 = pv(col_name, first_label)
+                if v0 is not None:
+                    rows += '<div class="kpi-section-label">Evolución</div>'
+                    growth = val - v0
+                    sign = "+" if growth >= 0 else ""
+                    rows += f'<div class="kpi-detail-row"><span class="kpi-detail-label">Desde {first_label}</span><span class="kpi-detail-val">{v0:.1f}{suffix}</span></div>'
+                    rows += f'<div class="kpi-detail-row"><span class="kpi-detail-label">Crecimiento total</span><span class="kpi-detail-val" style="color:#38A169">{sign}{growth:.1f}pp</span></div>'
+
+                # Metric-specific breakdowns
+                if col_name == "Top_of_Mind":
+                    esp = pv("Awareness_Espontanea")
+                    if esp is not None:
+                        rows += '<div class="kpi-section-label">Contexto</div>'
+                        rows += f'<div class="kpi-detail-row"><span class="kpi-detail-label">Awareness Espontáneo</span><span class="kpi-detail-val">{esp:.1f}%</span></div>'
+
+                elif col_name == "Awareness_Asistida":
+                    esp = pv("Awareness_Espontanea")
+                    if esp is not None:
+                        rows += '<div class="kpi-section-label">Comparativa</div>'
+                        rows += f'<div class="kpi-detail-row"><span class="kpi-detail-label">Espontáneo</span><span class="kpi-detail-val">{esp:.1f}%</span></div>'
+                        rows += f'<div class="kpi-detail-row"><span class="kpi-detail-label">Asistido</span><span class="kpi-detail-val">{val:.1f}%</span></div>'
+                        conv = (esp / val * 100) if val else 0
+                        rows += f'<div class="kpi-detail-row"><span class="kpi-detail-label">Ratio espontáneo/asistido</span><span class="kpi-detail-val">{conv:.0f}%</span></div>'
+
+                elif col_name == "NPS_Score":
+                    prom = pv("NPS_Promotores_pct")
+                    pas  = pv("NPS_Pasivos_pct")
+                    det  = pv("NPS_Detractores_pct")
+                    if any(x is not None for x in [prom, pas, det]):
+                        rows += '<div class="kpi-section-label">Desglose</div>'
+                        if prom is not None:
+                            rows += f'<div class="kpi-detail-row"><span class="kpi-detail-label">🟢 Promotores (9-10)</span><span class="kpi-detail-val" style="color:#38A169">{prom:.0f}%</span></div>'
+                        if pas is not None:
+                            rows += f'<div class="kpi-detail-row"><span class="kpi-detail-label">🟡 Pasivos (7-8)</span><span class="kpi-detail-val" style="color:#D69E2E">{pas:.0f}%</span></div>'
+                        if det is not None:
+                            rows += f'<div class="kpi-detail-row"><span class="kpi-detail-label">🔴 Detractores (0-6)</span><span class="kpi-detail-val" style="color:#E53E3E">{det:.0f}%</span></div>'
+
+                elif col_name == "Brand_Equity_Index":
+                    for sub_col, sub_label in [
+                        ("Brand_Overall_Rating_T3B",   "Valoración general (T3B)"),
+                        ("Brand_Favorability_T2B",      "Favorabilidad (T2B)"),
+                        ("Brand_Differentiation_T2B",   "Diferenciación (T2B)"),
+                        ("Brand_Closeness_T3B",         "Cercanía emocional (T3B)"),
+                    ]:
+                        sv = pv(sub_col)
+                        if sv is not None:
+                            rows += f'<div class="kpi-detail-row"><span class="kpi-detail-label">{sub_label}</span><span class="kpi-detail-val">{sv:.0f}%</span></div>'
+
+                elif col_name == "Intencion_Compra_Total":
+                    v1 = pv("Intencion_Compra_1a")
+                    if v1 is not None:
+                        rows += '<div class="kpi-section-label">Desglose</div>'
+                        rows += f'<div class="kpi-detail-row"><span class="kpi-detail-label">Primera mención</span><span class="kpi-detail-val">{v1:.1f}%</span></div>'
+                        rows += f'<div class="kpi-detail-row"><span class="kpi-detail-label">Total (1a + 2a)</span><span class="kpi-detail-val">{val:.1f}%</span></div>'
+
+                return rows
+
             section_header(f"Brand Health — Última Ola ({latest_label})", dot_color="blue")
-            cols = st.columns(4)
-            shown = 0
+
+            cards_html = '<div class="kpi-grid">'
             for (col_name, label, color, is_pct) in METRIC_CONFIG:
                 if col_name not in pivot.columns:
                     continue
-                val = pivot.loc[latest_label, col_name]
-                if pd.isna(val):
+                val = pv(col_name)
+                if val is None:
                     continue
-                prev_val = pivot.loc[prev_label, col_name] if prev_label and col_name in pivot.columns else None
+                prev_val = pv(col_name, prev_label) if prev_label else None
                 suffix = "%" if is_pct else ""
+                val_str = f"{val:.1f}{suffix}"
 
-                if prev_val is not None and not pd.isna(prev_val):
+                if prev_val is not None:
                     diff = val - prev_val
-                    delta_html = f'<span class="delta-up">▲ +{diff:.1f}pp</span>' if diff > 0 else \
-                                 f'<span class="delta-down">▼ {diff:.1f}pp</span>' if diff < 0 else \
-                                 '<span class="delta-flat">→ estable</span>'
-                    sub = f"vs {prev_label}: {prev_val:.1f}{suffix}"
+                    if diff > 0:
+                        delta_html = f'<span class="delta-up">▲ +{diff:.1f}pp</span>'
+                    elif diff < 0:
+                        delta_html = f'<span class="delta-down">▼ {diff:.1f}pp</span>'
+                    else:
+                        delta_html = '<span class="delta-flat">→</span>'
+                    sub_html = f'<div class="kpi-sub">vs {prev_label}: {prev_val:.1f}{suffix}</div>'
                 else:
                     delta_html = ""
-                    sub = prev_label or ""
+                    sub_html = ""
 
-                tip_html = ""
-                if col_name in METRIC_DEFINITIONS:
-                    _, tip_text = METRIC_DEFINITIONS[col_name]
-                    tip_text_safe = tip_text.replace('"', '&quot;').replace("'", "&#39;")
-                    tip_html = f'<span class="metric-tip" data-tip="{tip_text_safe}">?</span>'
+                _, def_text = METRIC_DEFINITIONS.get(col_name, ("", "Sin definición disponible."))
+                detail_html = build_detail(col_name, val, suffix, def_text)
 
-                with cols[shown % 4]:
-                    highlight = "highlight" if shown == 0 else ""
-                    val_str = f"{val:.1f}{suffix}"
-                    st.markdown(f"""
-                    <div class="summary-card {highlight}" style="{"border-top: 3px solid "+color if not highlight else ""}">
-                      <div class="s-label">{label}{tip_html}</div>
-                      <div class="s-value" style="{"color:"+color if not highlight else ""}">{val_str}</div>
-                      <div class="s-sub">{sub}</div>
-                      <div style="margin-top:4px">{delta_html}</div>
+                cards_html += f"""
+                <details class="kpi-block" style="border-top:3px solid {color}">
+                  <summary>
+                    <div>
+                      <div class="kpi-label">{label.upper()}</div>
+                      <div class="kpi-value" style="color:{color}">{val_str}</div>
+                      {sub_html}
                     </div>
-                    """, unsafe_allow_html=True)
-                shown += 1
+                    <div class="kpi-right">
+                      {delta_html}
+                      <span class="kpi-arrow">▼</span>
+                    </div>
+                  </summary>
+                  <div class="kpi-detail">{detail_html}</div>
+                </details>"""
+
+            cards_html += '</div>'
+            st.markdown(cards_html, unsafe_allow_html=True)
 
             # ── Gráfico de evolución ──
             section_header("Evolución Brand Health — W0 a W12 (2020–2025)", dot_color="blue")
