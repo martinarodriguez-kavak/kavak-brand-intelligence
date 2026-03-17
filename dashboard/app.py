@@ -1049,60 +1049,130 @@ def main():
 
                 def_title, def_text = METRIC_DEFINITIONS.get(col_name, (label, "Sin definición disponible."))
                 diff = (val - prev_val) if prev_val is not None else None
+                diff_color = "#38A169" if (diff and diff > 0) else ("#E53E3E" if (diff and diff < 0) else "#A0AEC0")
+                diff_str = (f'{"+" if diff >= 0 else ""}{diff:.1f}pp vs {prev_label_d}') if diff is not None else ""
 
-                # Header
-                if diff is not None:
-                    sign = "+" if diff >= 0 else ""
-                    delta_color = "#38A169" if diff > 0 else ("#E53E3E" if diff < 0 else "#A0AEC0")
-                    delta_str = f'<span style="font-size:13px;font-weight:700;color:{delta_color};">{sign}{diff:.1f}pp vs {prev_label_d}</span>'
-                else:
-                    delta_str = ""
-
+                # ── Title block ──
                 st.markdown(
-                    f'<div style="margin-bottom:4px;">'
-                    f'<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#A0AEC0;">{label}</div>'
-                    f'<div style="display:flex;align-items:baseline;gap:12px;margin:4px 0 2px;">'
-                    f'<span style="font-size:40px;font-weight:800;color:{color};letter-spacing:-2px;line-height:1;">{val:.1f}{suffix}</span>'
-                    f'{delta_str}</div>'
-                    f'<div style="font-size:12px;color:#718096;margin-top:6px;line-height:1.6;">{def_text}</div>'
+                    f'<div style="margin-bottom:2px;">'
+                    f'<h2 style="font-size:24px;font-weight:800;color:#1A202C;margin:0 0 4px 0;letter-spacing:-0.5px;">{def_title}</h2>'
+                    f'<div style="font-size:13px;color:#A0AEC0;">BHT México · {latest_label}</div>'
                     f'</div>',
                     unsafe_allow_html=True
                 )
 
-                st.divider()
+                st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
 
-                # Mini evolution chart
+                # ── Big centered stat ──
+                delta_line = (
+                    f'<div style="font-size:13px;font-weight:700;color:{diff_color};margin-top:4px;">{diff_str}</div>'
+                    if diff_str else ""
+                )
+                st.markdown(
+                    f'<div style="text-align:center;padding:8px 0 4px;">'
+                    f'<div style="font-size:64px;font-weight:800;color:#1A202C;letter-spacing:-3px;line-height:1;">{val:.1f}{suffix}</div>'
+                    f'<div style="font-size:13px;color:#A0AEC0;margin-top:6px;">{label}</div>'
+                    f'{delta_line}'
+                    f'</div>',
+                    unsafe_allow_html=True
+                )
+
+                # ── Definition ──
+                st.markdown(
+                    f'<div style="font-size:13px;color:#4A5568;line-height:1.7;'
+                    f'margin:20px 0 0;padding:16px 0;border-top:1px solid #F0F4F8;">'
+                    f'{def_text}</div>',
+                    unsafe_allow_html=True
+                )
+
+                # ── Contextual breakdown rows ──
+                def section(title):
+                    st.markdown(
+                        f'<div style="font-size:11px;font-weight:700;text-transform:uppercase;'
+                        f'letter-spacing:.8px;color:#0467FC;margin:20px 0 4px;">{title}</div>',
+                        unsafe_allow_html=True
+                    )
+
+                def row(lbl, v, v_color="#1A202C"):
+                    st.markdown(
+                        f'<div style="display:flex;justify-content:space-between;align-items:center;'
+                        f'padding:10px 0;border-bottom:1px solid #F7FAFC;">'
+                        f'<span style="font-size:14px;color:#2D3748;">{lbl}</span>'
+                        f'<span style="font-size:14px;font-weight:700;color:{v_color};">{v}</span>'
+                        f'</div>',
+                        unsafe_allow_html=True
+                    )
+
+                v0 = pv(col_name, first_label)
+                if v0 is not None:
+                    section("Evolución")
+                    row(f"Valor inicial ({first_label})", f"{v0:.1f}{suffix}")
+                    row(f"Valor actual ({latest_label})", f"{val:.1f}{suffix}", color)
+                    growth = val - v0
+                    row("Crecimiento total", f'{"+" if growth >= 0 else ""}{growth:.1f}pp',
+                        "#38A169" if growth > 0 else "#E53E3E")
+
+                if col_name == "NPS_Score":
+                    prom = pv("NPS_Promotores_pct")
+                    pas  = pv("NPS_Pasivos_pct")
+                    det  = pv("NPS_Detractores_pct")
+                    if any(x is not None for x in [prom, pas, det]):
+                        section("Desglose NPS")
+                        if prom is not None: row("Promotores (9–10)", f"{prom:.0f}%", "#38A169")
+                        if pas  is not None: row("Pasivos (7–8)",     f"{pas:.0f}%",  "#D69E2E")
+                        if det  is not None: row("Detractores (0–6)", f"{det:.0f}%",  "#E53E3E")
+
+                elif col_name == "Brand_Equity_Index":
+                    sub_items = [
+                        ("Brand_Overall_Rating_T3B", "Valoración general (T3B)"),
+                        ("Brand_Favorability_T2B",   "Favorabilidad (T2B)"),
+                        ("Brand_Differentiation_T2B","Diferenciación (T2B)"),
+                        ("Brand_Closeness_T3B",      "Cercanía emocional (T3B)"),
+                    ]
+                    rows_data = [(lbl, pv(c)) for c, lbl in sub_items if pv(c) is not None]
+                    if rows_data:
+                        section("Submétricas")
+                        for lbl, sv in rows_data:
+                            row(lbl, f"{sv:.0f}%")
+
+                elif col_name == "Awareness_Asistida":
+                    esp = pv("Awareness_Espontanea")
+                    if esp is not None:
+                        section("Comparativa")
+                        row("Awareness Espontáneo", f"{esp:.1f}%")
+                        row("Awareness Asistido",   f"{val:.1f}%")
+                        row("Ratio espontáneo/asistido", f"{esp/val*100:.0f}%" if val else "—")
+
+                elif col_name == "Intencion_Compra_Total":
+                    v1 = pv("Intencion_Compra_1a")
+                    if v1 is not None:
+                        section("Desglose")
+                        row("Primera mención", f"{v1:.1f}%")
+                        row("Total (1ª + 2ª)", f"{val:.1f}%")
+
+                # ── Mini chart ──
                 if col_name in pivot.columns:
-                    y_vals = [v for v in pivot[col_name].tolist() if v is not None]
-                    x_vals = [x for x, v in zip(pivot.index.tolist(), pivot[col_name].tolist()) if v is not None]
-                    if len(x_vals) > 1:
+                    pairs = [(x, v) for x, v in zip(pivot.index.tolist(), pivot[col_name].tolist()) if v is not None and not pd.isna(v)]
+                    if len(pairs) > 1:
+                        xs, ys = zip(*pairs)
+                        section("Tendencia histórica")
                         fig = go.Figure()
+                        r, g, b = int(color[1:3],16), int(color[3:5],16), int(color[5:7],16)
                         fig.add_trace(go.Scatter(
-                            x=x_vals, y=y_vals,
-                            mode="lines+markers",
+                            x=list(xs), y=list(ys), mode="lines+markers",
                             line=dict(color=color, width=2.5),
                             marker=dict(size=6, color=color, line=dict(color="white", width=1.5)),
-                            fill="tozeroy",
-                            fillcolor=f"rgba({int(color[1:3],16)},{int(color[3:5],16)},{int(color[5:7],16)},0.07)",
+                            fill="tozeroy", fillcolor=f"rgba({r},{g},{b},0.07)",
                             hovertemplate="%{x}: <b>%{y:.1f}" + suffix + "</b><extra></extra>",
                         ))
                         fig.update_layout(
-                            height=200, margin=dict(l=0,r=0,t=10,b=0),
+                            height=180, margin=dict(l=0,r=0,t=4,b=0),
                             plot_bgcolor="white", paper_bgcolor="white",
                             xaxis=dict(showgrid=False, tickangle=-30, tickfont=dict(size=10)),
                             yaxis=dict(showgrid=True, gridcolor="#F0F4F8", zeroline=False, tickfont=dict(size=10)),
-                            showlegend=False, hovermode="x unified",
+                            showlegend=False,
                         )
                         st.plotly_chart(fig, use_container_width=True)
-
-                # Contextual breakdown
-                breakdown = build_detail(col_name, val, suffix, "")
-                if breakdown.strip():
-                    st.markdown(
-                        f'<div style="background:#F9FAFB;border-radius:8px;padding:12px 16px;font-size:12px;">'
-                        f'{breakdown}</div>',
-                        unsafe_allow_html=True
-                    )
 
             # ── Cards (plain, no expand — click opens dialog) ──
             section_header(f"Brand Health — Última Ola ({latest_label})", dot_color="blue")
