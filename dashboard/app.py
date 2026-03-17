@@ -277,6 +277,24 @@ st.markdown("""
   .delta-down { color: var(--red);   font-size: 11px; font-weight: 700; }
   .delta-flat { color: var(--text-light); font-size: 11px; font-weight: 600; }
 
+  /* "Ver detalle →" button below each KPI card */
+  div[data-testid="stButton"] > button[kind="secondary"] {
+    background: transparent !important;
+    border: none !important;
+    color: #A0AEC0 !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    padding: 2px 0 6px !important;
+    margin-top: -8px !important;
+    box-shadow: none !important;
+    letter-spacing: .03em;
+    transition: color .15s !important;
+  }
+  div[data-testid="stButton"] > button[kind="secondary"]:hover {
+    color: var(--kavak-blue) !important;
+    background: transparent !important;
+  }
+
   /* ─── LECTURA ESTRATÉGICA ─── */
   .reading-grid {
     display: grid;
@@ -1024,9 +1042,72 @@ def main():
 
                 return rows
 
+            # ── Dialog definition ──
+            @st.dialog(" ", width="large")
+            def kpi_dialog(col_name, label, color, val, suffix, prev_val, prev_label_d):
+                import plotly.graph_objects as go
+
+                def_title, def_text = METRIC_DEFINITIONS.get(col_name, (label, "Sin definición disponible."))
+                diff = (val - prev_val) if prev_val is not None else None
+
+                # Header
+                if diff is not None:
+                    sign = "+" if diff >= 0 else ""
+                    delta_color = "#38A169" if diff > 0 else ("#E53E3E" if diff < 0 else "#A0AEC0")
+                    delta_str = f'<span style="font-size:13px;font-weight:700;color:{delta_color};">{sign}{diff:.1f}pp vs {prev_label_d}</span>'
+                else:
+                    delta_str = ""
+
+                st.markdown(
+                    f'<div style="margin-bottom:4px;">'
+                    f'<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#A0AEC0;">{label}</div>'
+                    f'<div style="display:flex;align-items:baseline;gap:12px;margin:4px 0 2px;">'
+                    f'<span style="font-size:40px;font-weight:800;color:{color};letter-spacing:-2px;line-height:1;">{val:.1f}{suffix}</span>'
+                    f'{delta_str}</div>'
+                    f'<div style="font-size:12px;color:#718096;margin-top:6px;line-height:1.6;">{def_text}</div>'
+                    f'</div>',
+                    unsafe_allow_html=True
+                )
+
+                st.divider()
+
+                # Mini evolution chart
+                if col_name in pivot.columns:
+                    y_vals = [v for v in pivot[col_name].tolist() if v is not None]
+                    x_vals = [x for x, v in zip(pivot.index.tolist(), pivot[col_name].tolist()) if v is not None]
+                    if len(x_vals) > 1:
+                        fig = go.Figure()
+                        fig.add_trace(go.Scatter(
+                            x=x_vals, y=y_vals,
+                            mode="lines+markers",
+                            line=dict(color=color, width=2.5),
+                            marker=dict(size=6, color=color, line=dict(color="white", width=1.5)),
+                            fill="tozeroy",
+                            fillcolor=f"rgba({int(color[1:3],16)},{int(color[3:5],16)},{int(color[5:7],16)},0.07)",
+                            hovertemplate="%{x}: <b>%{y:.1f}" + suffix + "</b><extra></extra>",
+                        ))
+                        fig.update_layout(
+                            height=200, margin=dict(l=0,r=0,t=10,b=0),
+                            plot_bgcolor="white", paper_bgcolor="white",
+                            xaxis=dict(showgrid=False, tickangle=-30, tickfont=dict(size=10)),
+                            yaxis=dict(showgrid=True, gridcolor="#F0F4F8", zeroline=False, tickfont=dict(size=10)),
+                            showlegend=False, hovermode="x unified",
+                        )
+                        st.plotly_chart(fig, use_container_width=True)
+
+                # Contextual breakdown
+                breakdown = build_detail(col_name, val, suffix, "")
+                if breakdown.strip():
+                    st.markdown(
+                        f'<div style="background:#F9FAFB;border-radius:8px;padding:12px 16px;font-size:12px;">'
+                        f'{breakdown}</div>',
+                        unsafe_allow_html=True
+                    )
+
+            # ── Cards (plain, no expand — click opens dialog) ──
             section_header(f"Brand Health — Última Ola ({latest_label})", dot_color="blue")
 
-            cards_html = '<div class="kpi-grid">'
+            visible_cards = []
             for (col_name, label, color, is_pct) in METRIC_CONFIG:
                 if col_name not in pivot.columns:
                     continue
@@ -1034,43 +1115,41 @@ def main():
                 if val is None:
                     continue
                 prev_val = pv(col_name, prev_label) if prev_label else None
-                suffix = "%" if is_pct else ""
-                val_str = f"{val:.1f}{suffix}"
+                visible_cards.append((col_name, label, color, is_pct, val, prev_val))
 
-                if prev_val is not None:
-                    diff = val - prev_val
-                    if diff > 0:
-                        delta_html = f'<span class="delta-up">▲ +{diff:.1f}pp</span>'
-                    elif diff < 0:
-                        delta_html = f'<span class="delta-down">▼ {diff:.1f}pp</span>'
+            for row_start in range(0, len(visible_cards), 4):
+                row = visible_cards[row_start:row_start + 4]
+                cols = st.columns(len(row))
+                for idx, (col_name, label, color, is_pct, val, prev_val) in enumerate(row):
+                    suffix = "%" if is_pct else ""
+                    val_str = f"{val:.1f}{suffix}"
+                    if prev_val is not None:
+                        diff = val - prev_val
+                        if diff > 0:
+                            delta_html = f'<span class="delta-up">▲ +{diff:.1f}pp</span>'
+                        elif diff < 0:
+                            delta_html = f'<span class="delta-down">▼ {diff:.1f}pp</span>'
+                        else:
+                            delta_html = '<span class="delta-flat">→</span>'
+                        sub_html = f'<div class="kpi-sub">vs {prev_label}: {prev_val:.1f}{suffix}</div>'
                     else:
-                        delta_html = '<span class="delta-flat">→</span>'
-                    sub_html = f'<div class="kpi-sub">vs {prev_label}: {prev_val:.1f}{suffix}</div>'
-                else:
-                    delta_html = ""
-                    sub_html = ""
+                        delta_html = ""
+                        sub_html = ""
 
-                _, def_text = METRIC_DEFINITIONS.get(col_name, ("", "Sin definición disponible."))
-                detail_html = build_detail(col_name, val, suffix, def_text)
-
-                cards_html += f"""
-                <details class="kpi-block" style="border-top:3px solid {color}">
-                  <summary>
-                    <div>
-                      <div class="kpi-label">{label.upper()}</div>
-                      <div class="kpi-value" style="color:{color}">{val_str}</div>
-                      {sub_html}
-                    </div>
-                    <div class="kpi-right">
-                      {delta_html}
-                      <span class="kpi-arrow">▼</span>
-                    </div>
-                  </summary>
-                  <div class="kpi-detail">{detail_html}</div>
-                </details>"""
-
-            cards_html += '</div>'
-            st.markdown(cards_html, unsafe_allow_html=True)
+                    with cols[idx]:
+                        st.markdown(
+                            f'<div class="kpi-block" style="border-top:3px solid {color};cursor:default;">'
+                            f'  <div class="kpi-label">{label.upper()}</div>'
+                            f'  <div style="display:flex;justify-content:space-between;align-items:center;">'
+                            f'    <div class="kpi-value" style="color:{color}">{val_str}</div>'
+                            f'    <div>{delta_html}</div>'
+                            f'  </div>'
+                            f'  {sub_html}'
+                            f'</div>',
+                            unsafe_allow_html=True
+                        )
+                        if st.button("Ver detalle →", key=f"kpi_dlg_{col_name}", use_container_width=True):
+                            kpi_dialog(col_name, label, color, val, suffix, prev_val, prev_label)
 
             # ── LECTURA ESTRATÉGICA ──
             section_header("Lectura Estratégica", dot_color="blue")
