@@ -1,0 +1,572 @@
+[
+  {
+    "fuente": "Trustpilot",
+    "url": "https://www.trustpilot.com/review/kavak.com",
+    "texto": "Inflated online quote to hook you into the sales funnel. Then, before they've even seen the car, they reduce the price significantly.",
+    "sentimiento": "negativo",
+    "temas": ["precio", "confianza", "proceso"],
+    "intensidad": 5,
+    "fecha_aprox": "2025-Q3",
+    "query_origen": "Kavak fraude estafa México"
+  },
+  {
+    "fuente": "Trustpilot",
+    "url": "https://www.trustpilot.com/review/kavak.com",
+    "texto": "Engine replacement needed one month after purchase. Company refused warranty compensation during the 3.5-week repair period.",
+    "sentimiento": "negativo",
+    "temas": ["garantía", "postventa", "confianza"],
+    "intensidad": 5,
+    "fecha_aprox": "2025-Q3",
+    "query_origen": "Kavak confiable garantía experiencia"
+  },
+  {
+    "fuente": "Trustpilot",
+    "url": "https://www.trustpilot.com/review/kavak.com",
+    "texto": "Car appeared to have had an accident and was re-painted. No transparency prior to purchase. Inspector falsified inspection results.",
+    "sentimiento": "negativo",
+    "temas": ["confianza", "proceso", "garantía"],
+    "intensidad": 5,
+    "fecha_aprox": "2025-Q3",
+    "query_origen": "Kavak confiable garantía experiencia"
+  },
+  {
+    "fuente": "Trustpilot",
+    "url": "https://www.trustpilot.com/review/kavak.com",
+    "texto": "Online price offer cut in half after inspection with no inspection report provided. Worst experience ever.",
+    "sentimiento": "negativo",
+    "temas": ["precio", "confianza", "proceso"],
+    "intensidad": 5,
+    "fecha_aprox": "2025-Q3",
+    "query_origen": "Kavak precio vs mercado"
+  },
+  {
+    "fuente": "Trustpilot",
+    "url": "https://www.trustpilot.com/review/kavak.com",
+    "texto": "Compré una camioneta hace 90 días y sigo sin tener documentación. Kavak ya cobró pero no hace la transferencia.",
+    "sentimiento": "negativo",
+    "temas": ["proceso", "postventa", "entrega", "confianza"],
+    "intensidad": 5,
+    "fecha_aprox": "2026-Q1",
+    "query_origen": "Kavak entrega tiempo demora"
+  },
+  {
+    "fuente": "Trustpilot",
+    "url": "https://www.trustpilot.com/review/kavak.com",
+    "texto": "Very bad experience. The purchase process took more than a month and a half. Delivery times kept changing with no apology.",
+    "sentimiento": "negativo",
+    "temas": ["proceso", "entrega", "servicio"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q2",
+    "query_origen": "Kavak proceso compra autos fácil difícil"
+  },
+  {
+    "fuente": "Trustpilot",
+    "url": "https://www.trustpilot.com/review/kavak.com",
+    "texto": "Quick and professional service when selling my car. No ambiguity, fair valuation, straightforward process.",
+    "sentimiento": "positivo",
+    "temas": ["proceso", "precio", "servicio"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q2",
+    "query_origen": "Kavak vender auto experiencia cliente"
+  },
+  {
+    "fuente": "Trustpilot",
+    "url": "https://www.trustpilot.com/review/kavak.com",
+    "texto": "Sold my car and the overall experience was surprisingly good despite a slight reduction in my initial offer. Staff was professional.",
+    "sentimiento": "positivo",
+    "temas": ["proceso", "servicio", "precio"],
+    "intensidad": 3,
+    "fecha_aprox": "2025-Q1",
+    "query_origen": "Kavak vender auto experiencia cliente"
+  },
+  {
+    "fuente": "Twitter/X",
+    "url": "https://x.com/",
+    "texto": "Tortura de principio a fin. 10 meses y el problema sin resolver. GPS forzado, 3 entregas fallidas, claves retenidas, garantía solo en CDMX.",
+    "sentimiento": "negativo",
+    "temas": ["servicio", "entrega", "garantía", "postventa", "financiamiento"],
+    "intensidad": 5,
+    "fecha_aprox": "2025-Q1",
+    "query_origen": "Kavak fraude Twitter"
+  },
+  {
+    "fuente": "Twitter/X",
+    "url": "https://x.com/",
+    "texto": "Mi auto falló a los 7 días de la entrega. Kavak negó la garantía alegando que el daño fue causado por uso. Nunca más.",
+    "sentimiento": "negativo",
+    "temas": ["garantía", "postventa", "confianza"],
+    "intensidad": 5,
+    "fecha_aprox": "2025-Q1",
+    "query_origen": "Kavak confiable garantía experiencia"
+  },
+  {
+    "fuente": "Twitter/X",
+    "url": "https://x.com/",
+    "texto": "Pagué $300,000 pesos en efectivo. El auto nunca fue entregado. Ya no contestan. Denunciando ante Profeco.",
+    "sentimiento": "negativo",
+    "temas": ["entrega", "confianza", "proceso"],
+    "intensidad": 5,
+    "fecha_aprox": "2025-Q1",
+    "query_origen": "Kavak fraude Twitter"
+  },
+  {
+    "fuente": "Twitter/X",
+    "url": "https://x.com/",
+    "texto": "El auto que compré falló en las primeras 24 horas. Lidiar con la garantía es un terror, hay que llamar constantemente para que hagan algo.",
+    "sentimiento": "negativo",
+    "temas": ["garantía", "postventa", "servicio"],
+    "intensidad": 5,
+    "fecha_aprox": "2025-Q2",
+    "query_origen": "Kavak confiable garantía experiencia"
+  },
+  {
+    "fuente": "Twitter/X",
+    "url": "https://x.com/a16z/status/2023764012216066246",
+    "texto": "a16z: Kavak has the rare trait of running towards hard problems. We're excited to lead their Series F as they continue enabling fair, transparent, and secure auto transactions.",
+    "sentimiento": "positivo",
+    "temas": ["confianza", "proceso"],
+    "intensidad": 3,
+    "fecha_aprox": "2026-Q1",
+    "query_origen": "Kavak México opiniones 2025"
+  },
+  {
+    "fuente": "TikTok",
+    "url": "https://www.tiktok.com/@defensadeldeudor.org/video/7359460140208131334",
+    "texto": "Kavak fraude: cobran intereses altísimos y se niegan a devolver el anticipo aunque se cancele el proceso. #kavak #estafa #fraude #profeco",
+    "sentimiento": "negativo",
+    "temas": ["financiamiento", "confianza", "precio"],
+    "intensidad": 5,
+    "fecha_aprox": "2025-Q1",
+    "query_origen": "Kavak México TikTok viral"
+  },
+  {
+    "fuente": "TikTok",
+    "url": "https://www.tiktok.com/@defensadeldeudor.org/video/7363183959984983303",
+    "texto": "No compren en Kavak. Fraude sistemático: primero ofrecen precio justo, luego lo bajan al 50% y empujan a financiamiento caro. #kavak #norecomiendo",
+    "sentimiento": "negativo",
+    "temas": ["precio", "financiamiento", "confianza"],
+    "intensidad": 5,
+    "fecha_aprox": "2025-Q1",
+    "query_origen": "Kavak fraude estafa México"
+  },
+  {
+    "fuente": "TikTok",
+    "url": "https://www.tiktok.com/@eladminricardoguzman/video/7381711773155462405",
+    "texto": "La doble moral de Kavak: dicen ser transparentes pero el proceso real es otro. Abusan de la posición dominante en el mercado.",
+    "sentimiento": "negativo",
+    "temas": ["confianza", "proceso", "precio"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q2",
+    "query_origen": "Kavak México TikTok viral"
+  },
+  {
+    "fuente": "TikTok",
+    "url": "https://www.tiktok.com/@eladminricardoguzman/video/7423923955246959877",
+    "texto": "Intenté vender mi auto en Kavak y así me fue: proceso largo, múltiples llamadas de diferentes asesores, oferta final muy por debajo de lo esperado.",
+    "sentimiento": "negativo",
+    "temas": ["proceso", "precio", "servicio"],
+    "intensidad": 3,
+    "fecha_aprox": "2025-Q3",
+    "query_origen": "Kavak vender auto experiencia cliente"
+  },
+  {
+    "fuente": "TikTok",
+    "url": "https://www.tiktok.com/@joakobaenaq/video/7114462687463099653",
+    "texto": "Story time comprando coche con Kavak. Pésimo servicio, no lo recomiendo. Cita fallida, espera de 3 horas, auto con defectos no declarados.",
+    "sentimiento": "negativo",
+    "temas": ["servicio", "proceso", "confianza"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q1",
+    "query_origen": "Kavak México TikTok viral"
+  },
+  {
+    "fuente": "TikTok",
+    "url": "https://www.tiktok.com/@flaviogalvezq/video/7300638458882755845",
+    "texto": "Análisis: Kavak no es ni será sostenible. Modelo de negocio con pérdidas estructurales, NPS colapsó de 70 a 4. #kavak #startup",
+    "sentimiento": "negativo",
+    "temas": ["confianza", "comparativa"],
+    "intensidad": 3,
+    "fecha_aprox": "2025-Q1",
+    "query_origen": "alternativas Kavak México autos usados"
+  },
+  {
+    "fuente": "TikTok",
+    "url": "https://www.tiktok.com/@el_ingetv/video/7535291482626985224",
+    "texto": "Les platico de mi experiencia de compra en KAVAK: muy rápido todo el rollo y sin ningún problema, sí lo recomiendo. #fyp #kavak #autos",
+    "sentimiento": "positivo",
+    "temas": ["proceso", "servicio"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q4",
+    "query_origen": "Kavak comprar auto usado experiencia"
+  },
+  {
+    "fuente": "TikTok",
+    "url": "https://www.tiktok.com/discover/comprar-en-kavak-2025-buena-experiencia",
+    "texto": "Compré mi primer auto en Kavak en 2025. El proceso fue increíble, entrega puntual, el asesor muy atento. Totalmente recomendado.",
+    "sentimiento": "positivo",
+    "temas": ["proceso", "servicio", "entrega"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q3",
+    "query_origen": "Kavak comprar auto usado experiencia"
+  },
+  {
+    "fuente": "Instagram",
+    "url": "https://www.instagram.com/kavak.com/",
+    "texto": "¿Cómo fue tu experiencia? — Comentario: La verdad horrible, prometieron el auto para el lunes y al final tardó 3 semanas más.",
+    "sentimiento": "negativo",
+    "temas": ["entrega", "servicio", "proceso"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q4",
+    "query_origen": "Kavak México Instagram comentarios"
+  },
+  {
+    "fuente": "Instagram",
+    "url": "https://www.instagram.com/kavak.com/",
+    "texto": "Post de experiencia positiva: excelente atención, me guiaron todo el proceso y el auto llegó en perfectas condiciones. 100% recomendable.",
+    "sentimiento": "positivo",
+    "temas": ["servicio", "proceso", "entrega"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q3",
+    "query_origen": "Kavak México Instagram comentarios"
+  },
+  {
+    "fuente": "Instagram",
+    "url": "https://www.instagram.com/kavak.com/",
+    "texto": "Comentario sarcástico: '¿Cómo fue mi experiencia? Una tortura' — en respuesta a un post de testimoniales felices.",
+    "sentimiento": "negativo",
+    "temas": ["servicio", "proceso"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q2",
+    "query_origen": "Kavak México Instagram comentarios"
+  },
+  {
+    "fuente": "Instagram",
+    "url": "https://www.instagram.com/kavak.com/",
+    "texto": "Me encantó la experiencia de vender mi auto. Super rápido, sin complicaciones y el precio fue justo. Kavak se los recomiendo.",
+    "sentimiento": "positivo",
+    "temas": ["proceso", "precio", "servicio"],
+    "intensidad": 3,
+    "fecha_aprox": "2025-Q4",
+    "query_origen": "Kavak vender auto experiencia cliente"
+  },
+  {
+    "fuente": "Instagram",
+    "url": "https://www.instagram.com/kavak.com/",
+    "texto": "Llevan 2 meses sin darme mi tarjeta de circulación, ya cobré el auto completo y sigo sin documentos. Esto es un abuso.",
+    "sentimiento": "negativo",
+    "temas": ["proceso", "postventa", "confianza"],
+    "intensidad": 5,
+    "fecha_aprox": "2025-Q3",
+    "query_origen": "Kavak entrega tiempo demora"
+  },
+  {
+    "fuente": "Facebook",
+    "url": "https://www.facebook.com/kavakmx/",
+    "texto": "Comentario en anuncio promocional: 'Los que tienen dudas revisen bien el contrato, a mí me cobraron el GPS sin avisarme, fue un extra de $5,000 pesos'.",
+    "sentimiento": "negativo",
+    "temas": ["financiamiento", "confianza", "precio"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q2",
+    "query_origen": "Kavak crédito auto financiamiento opiniones"
+  },
+  {
+    "fuente": "Facebook — Grupo Quejas Kavak",
+    "url": "https://www.facebook.com/groups/359426299086804/",
+    "texto": "Kavak MÉXICO es un FRAUDE. Me prometieron el auto y nunca llegó. Ya interpuse queja en Profeco. No les crean nada.",
+    "sentimiento": "negativo",
+    "temas": ["confianza", "entrega", "proceso"],
+    "intensidad": 5,
+    "fecha_aprox": "2025-Q1",
+    "query_origen": "Kavak fraude estafa México"
+  },
+  {
+    "fuente": "Facebook — Grupo Quejas Kavak",
+    "url": "https://www.facebook.com/groups/359426299086804/",
+    "texto": "¿Alguien más tuvo problemas con la garantía? Mi auto se descompuso a la semana y dicen que no aplica porque 'fue mal uso del vehículo'.",
+    "sentimiento": "negativo",
+    "temas": ["garantía", "postventa", "confianza"],
+    "intensidad": 5,
+    "fecha_aprox": "2025-Q2",
+    "query_origen": "Kavak confiable garantía experiencia"
+  },
+  {
+    "fuente": "Facebook — Grupo Quejas Kavak",
+    "url": "https://www.facebook.com/groups/359426299086804/",
+    "texto": "Llevan 4 meses sin resolver mi caso. Cada vez que llamo me atiende alguien diferente y me piden lo mismo que ya mandé. Kafkiana la situación.",
+    "sentimiento": "negativo",
+    "temas": ["servicio", "postventa", "proceso"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q2",
+    "query_origen": "Kavak México opiniones 2025"
+  },
+  {
+    "fuente": "Facebook — Grupo Quejas Kavak",
+    "url": "https://www.facebook.com/groups/359426299086804/",
+    "texto": "Al menos resolvieron mi caso tras publicar en redes. Tuve que armar escándalo para que me atendieran, pero al final sí me regresaron el dinero.",
+    "sentimiento": "mixto",
+    "temas": ["servicio", "confianza", "proceso"],
+    "intensidad": 3,
+    "fecha_aprox": "2025-Q3",
+    "query_origen": "Kavak México opiniones 2025"
+  },
+  {
+    "fuente": "Threads",
+    "url": "https://www.threads.com/@maff.olvera/post/DNyb1nqXMBQ/",
+    "texto": "Me vendieron una camioneta con el kilometraje alterado y me deben $18,000 pesos de reembolso. Kavak solo dice 'lo que viene siendo' sin solución. ¿Profeco o funa?",
+    "sentimiento": "negativo",
+    "temas": ["confianza", "postventa", "proceso"],
+    "intensidad": 5,
+    "fecha_aprox": "2026-Q1",
+    "query_origen": "Kavak fraude estafa México"
+  },
+  {
+    "fuente": "Threads",
+    "url": "https://www.threads.com/",
+    "texto": "Compré en Kavak y tuve buena experiencia. El proceso fue claro y el auto llegó sin problemas. La gente que se queja quizás tuvo mala suerte.",
+    "sentimiento": "positivo",
+    "temas": ["proceso", "servicio"],
+    "intensidad": 3,
+    "fecha_aprox": "2025-Q4",
+    "query_origen": "Kavak comprar auto usado experiencia"
+  },
+  {
+    "fuente": "YouTube / Foros",
+    "url": "https://www.promodescuentos.com/discusiones/mi-experiencia-comprando-en-kavak-no-es-la-mejor-opcion-716213",
+    "texto": "KAVAK no tiene buen control de los autos que vende, ni legal ni mecánicamente. Mi Ford Focus llegó con rayones en las 4 esquinas y lip frontal roto.",
+    "sentimiento": "negativo",
+    "temas": ["confianza", "proceso", "garantía"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q1",
+    "query_origen": "Kavak México YouTube reseña"
+  },
+  {
+    "fuente": "YouTube / Foros",
+    "url": "https://www.promodescuentos.com/discusiones/mi-experiencia-comprando-en-kavak-no-es-la-mejor-opcion-716213",
+    "texto": "Kavak es la tercera o cuarta opción para comprar seminuevo, no la primera. Precio 20-30k arriba del mercado, proceso mejorable pero funciona.",
+    "sentimiento": "mixto",
+    "temas": ["precio", "proceso", "comparativa"],
+    "intensidad": 3,
+    "fecha_aprox": "2025-Q1",
+    "query_origen": "Kavak caro precio autos usados México"
+  },
+  {
+    "fuente": "Medios — Yahoo Noticias",
+    "url": "https://es-us.noticias.yahoo.com/tortura-de-principio-a-fin-mujer-acusa-negligencia-de-kavak-y-destapa-varias-historias-de-horror-224650874.html",
+    "texto": "Clientes describen experiencia como 'tortura de principio a fin'. Viralizado en Twitter con 41,900 likes y más de 2,000 comentarios negativos.",
+    "sentimiento": "negativo",
+    "temas": ["servicio", "postventa", "confianza"],
+    "intensidad": 5,
+    "fecha_aprox": "2025-Q1",
+    "query_origen": "Kavak fraude Twitter"
+  },
+  {
+    "fuente": "Medios — Diario de Morelos",
+    "url": "https://www.diariodemorelos.com/noticias/por-qu-no-debes-comprar-un-auto-en-kavak-aqu-te-decimos",
+    "texto": "Jeep Grand Cherokee en taller 47+ días con excusas de partes faltantes. Kavak prometió 20,000 pesos en reparaciones pero el auto seguía sin funcionar.",
+    "sentimiento": "negativo",
+    "temas": ["garantía", "postventa", "servicio"],
+    "intensidad": 5,
+    "fecha_aprox": "2025-Q1",
+    "query_origen": "Kavak confiable garantía experiencia"
+  },
+  {
+    "fuente": "Medios — Expansión",
+    "url": "https://expansion.mx/empresas/2022/11/24/kavak-quejas-reclamos-mexico",
+    "texto": "251 quejas registradas en Profeco entre 2019 y 2022. Las categorías más recurrentes: negativa de devolución, garantía no efectiva, documentación no entregada.",
+    "sentimiento": "negativo",
+    "temas": ["garantía", "confianza", "proceso"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q1",
+    "query_origen": "Kavak fraude estafa México"
+  },
+  {
+    "fuente": "Medios — Intelimotor",
+    "url": "https://intelimotor.com/en/la-dolorosa-caida-del-unicornio-mexicano-kavak/",
+    "texto": "NPS de Kavak cayó de 70 a 4 durante la expansión acelerada. Automatización excesiva mató la atención humana y deterioró la experiencia del cliente.",
+    "sentimiento": "negativo",
+    "temas": ["servicio", "confianza", "proceso"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q2",
+    "query_origen": "alternativas Kavak México autos usados"
+  },
+  {
+    "fuente": "Medios — Bloomberg",
+    "url": "https://www.bloomberg.com/news/articles/2026-02-17/andreessen-horowitz-backs-mexico-unicorn-kavak-in-300-million-equity-round",
+    "texto": "Kavak levanta $300M con a16z liderando. Primera rentabilidad mensual consolidada en diciembre 2025. 120,000 unidades vendidas en 2025, +40% vs 2024.",
+    "sentimiento": "positivo",
+    "temas": ["confianza", "variedad"],
+    "intensidad": 4,
+    "fecha_aprox": "2026-Q1",
+    "query_origen": "Kavak México opiniones 2025"
+  },
+  {
+    "fuente": "LinkedIn",
+    "url": "https://mx.linkedin.com/company/kavakcom",
+    "texto": "Kavak anuncia Serie F de $300M liderada por a16z. La empresa alcanzó rentabilidad mensual por primera vez en diciembre 2025. Nos estamos rearquitectando como empresa AI-native.",
+    "sentimiento": "positivo",
+    "temas": ["confianza", "proceso"],
+    "intensidad": 3,
+    "fecha_aprox": "2026-Q1",
+    "query_origen": "Kavak México opiniones 2025"
+  },
+  {
+    "fuente": "LinkedIn",
+    "url": "https://mx.linkedin.com/company/kavakcom",
+    "texto": "Kavak lanza Kavak Crédito: financiamiento flexible con 70%+ tasa de aprobación. Resuelve el acceso al crédito automotriz en México.",
+    "sentimiento": "positivo",
+    "temas": ["financiamiento", "proceso"],
+    "intensidad": 3,
+    "fecha_aprox": "2025-Q4",
+    "query_origen": "Kavak Kavak Crédito experiencia"
+  },
+  {
+    "fuente": "LinkedIn",
+    "url": "https://mx.linkedin.com/company/kavakcom",
+    "texto": "Kavak patrocina la NFL México por 3 temporadas. Ofrecerá experiencias exclusivas y boletos para el Super Bowl LX a clientes.",
+    "sentimiento": "positivo",
+    "temas": ["confianza"],
+    "intensidad": 2,
+    "fecha_aprox": "2025-Q4",
+    "query_origen": "Kavak México opiniones 2025"
+  },
+  {
+    "fuente": "LinkedIn",
+    "url": "https://mx.linkedin.com/company/kavakcom",
+    "texto": "Kavak inaugura módulo vehicular en Lerma, Edomex. Trámites que antes tardaban horas ahora se resuelven hasta 6x más rápido, incluyendo entregas mismo día.",
+    "sentimiento": "positivo",
+    "temas": ["proceso", "entrega"],
+    "intensidad": 3,
+    "fecha_aprox": "2026-Q1",
+    "query_origen": "Kavak proceso compra autos fácil difícil"
+  },
+  {
+    "fuente": "Profeco / Medios",
+    "url": "https://infoprofeco.com.mx/kavak/",
+    "texto": "Principales quejas ante Profeco 2026: negativa de devolución de vehículo, garantía no efectiva, tarjeta de circulación no entregada, incumplimiento de plazos.",
+    "sentimiento": "negativo",
+    "temas": ["garantía", "proceso", "confianza"],
+    "intensidad": 4,
+    "fecha_aprox": "2026-Q1",
+    "query_origen": "Kavak fraude estafa México"
+  },
+  {
+    "fuente": "Profeco / Medios",
+    "url": "https://oficinasprofeco.com/kavak/",
+    "texto": "Esperas de 5 horas para inspección de vehículo. Ofertas atractivas retiradas al inicio del proceso, presionando financiamiento al 15% de interés.",
+    "sentimiento": "negativo",
+    "temas": ["proceso", "precio", "financiamiento"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q3",
+    "query_origen": "Kavak proceso compra autos fácil difícil"
+  },
+  {
+    "fuente": "Google Reviews / App Store",
+    "url": "https://play.google.com/store/apps/details?id=com.kavak.android.kavak",
+    "texto": "La app es buena para buscar opciones pero el proceso real dista mucho de lo que prometen. Precio online ≠ precio real al llegar al hub.",
+    "sentimiento": "negativo",
+    "temas": ["precio", "proceso", "confianza"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q2",
+    "query_origen": "Kavak proceso compra autos fácil difícil"
+  },
+  {
+    "fuente": "Google Reviews / App Store",
+    "url": "https://apps.apple.com/us/app/kavak-compra-y-venta-de-autos/id1237819309",
+    "texto": "Excelente app, fácil de navegar, catálogo amplio. Encontré el auto que buscaba rápidamente y el proceso de apartado fue simple.",
+    "sentimiento": "positivo",
+    "temas": ["proceso", "variedad"],
+    "intensidad": 3,
+    "fecha_aprox": "2025-Q3",
+    "query_origen": "Kavak comprar auto usado experiencia"
+  },
+  {
+    "fuente": "Reddit / Foros",
+    "url": "https://www.facebook.com/groups/queretaroexpats/posts/3612227032405857/",
+    "texto": "Expat en Querétaro: Does anyone have experience buying from Kavak? Responses: mostly warning about pricing bait-and-switch and documentation delays.",
+    "sentimiento": "negativo",
+    "temas": ["confianza", "precio", "proceso"],
+    "intensidad": 3,
+    "fecha_aprox": "2025-Q2",
+    "query_origen": "Kavak México confiable site:reddit.com"
+  },
+  {
+    "fuente": "Medios — Proceso.com.mx",
+    "url": "https://www.proceso.com.mx/economia/2025/12/7/como-evitar-estafas-en-la-venta-de-autos-seminuevos-esto-recomiendan-profeco-kavak-364210.html",
+    "texto": "Kavak y Profeco publican guía conjunta para evitar estafas en venta de seminuevos. Señal de alianza estratégica para mejorar percepción institucional.",
+    "sentimiento": "positivo",
+    "temas": ["confianza", "proceso"],
+    "intensidad": 3,
+    "fecha_aprox": "2025-Q4",
+    "query_origen": "Kavak confiable garantía experiencia"
+  },
+  {
+    "fuente": "TikTok",
+    "url": "https://www.tiktok.com/discover/experiencia-venta-auto-kavak-2025",
+    "texto": "Vendí mi auto en Kavak. El asesor fue muy profesional, el proceso tardó solo 2 horas y el pago llegó ese mismo día. Experiencia 10/10.",
+    "sentimiento": "positivo",
+    "temas": ["proceso", "servicio", "precio"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q4",
+    "query_origen": "Kavak vender auto experiencia cliente"
+  },
+  {
+    "fuente": "TikTok",
+    "url": "https://www.tiktok.com/",
+    "texto": "No compres en Kavak si tienes prisa: los trámites de la tarjeta de circulación pueden tardarse meses. Ya llevo 4 meses esperando.",
+    "sentimiento": "negativo",
+    "temas": ["proceso", "postventa", "entrega"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q3",
+    "query_origen": "Kavak entrega tiempo demora"
+  },
+  {
+    "fuente": "Trustpilot",
+    "url": "https://www.trustpilot.com/review/kavak.com",
+    "texto": "Appointment was cancelled without adequate notification. Staff described as unprofessional and extremely rude. Wasted my entire Sunday.",
+    "sentimiento": "negativo",
+    "temas": ["servicio", "proceso"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q3",
+    "query_origen": "Kavak México opiniones 2025"
+  },
+  {
+    "fuente": "Facebook",
+    "url": "https://www.facebook.com/kavakmx/",
+    "texto": "Compré mi primer auto y todo excelente: asesor pendiente, entrega puntual y el auto como nuevo. Muy recomendable para quien busca facilidad.",
+    "sentimiento": "positivo",
+    "temas": ["servicio", "entrega", "proceso"],
+    "intensidad": 4,
+    "fecha_aprox": "2025-Q2",
+    "query_origen": "Kavak comprar auto usado experiencia"
+  },
+  {
+    "fuente": "Sumando Millas / Review Sites",
+    "url": "https://www.sumandomillas.com/kavak-opiniones-criticas.php",
+    "texto": "Para vender: muy fácil y rápido. Para comprar: hay que tener paciencia con los trámites y ser muy detallista en la revisión del auto.",
+    "sentimiento": "mixto",
+    "temas": ["proceso", "servicio"],
+    "intensidad": 3,
+    "fecha_aprox": "2025-Q2",
+    "query_origen": "Kavak comprar auto usado experiencia"
+  },
+  {
+    "fuente": "Fintechfuturo / Medios",
+    "url": "https://fintechfuturo.com/kavak-opiniones/",
+    "texto": "Kavak recibe inversión de $300M y alcanza rentabilidad, pero el NPS histórico bajo y las quejas en Profeco revelan una brecha entre imagen y operación.",
+    "sentimiento": "mixto",
+    "temas": ["confianza", "proceso"],
+    "intensidad": 3,
+    "fecha_aprox": "2026-Q1",
+    "query_origen": "Kavak México opiniones 2025"
+  },
+  {
+    "fuente": "Merca2.0 / Medios",
+    "url": "https://www.merca20.com/cliente-acusa-a-kavak-de-estafa-pero-se-retracta/",
+    "texto": "Cliente acusó públicamente a Kavak de estafa, pero luego se retractó. El caso evidencia tensión entre la reputación online y la experiencia real.",
+    "sentimiento": "mixto",
+    "temas": ["confianza", "servicio"],
+    "intensidad": 3,
+    "fecha_aprox": "2025-Q2",
+    "query_origen": "Kavak fraude Twitter"
+  }
+]

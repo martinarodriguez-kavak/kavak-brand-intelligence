@@ -1,4 +1,5 @@
-outputs/
+outputs/*
+!outputs/social_listening_cache.json
 __pycache__/
 *.pyc
 .env
