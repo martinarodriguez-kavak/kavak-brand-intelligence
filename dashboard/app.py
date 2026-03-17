@@ -512,7 +512,9 @@ def load_bht_real() -> "pd.DataFrame | None":
     if not csv_path.exists():
         return None
     df = pd.read_csv(csv_path)
-    return df[df["es_kavak"] == True].copy()
+    # Handle both string "True" and boolean True
+    mask = df["es_kavak"].astype(str).str.strip().str.lower() == "true"
+    return df[mask].copy()
 
 
 def navbar(has_api_key: bool):
@@ -690,15 +692,15 @@ def main():
 
     # ── EXEC SUMMARY BANNER ──
     exec_text = analysis.get("executive_summary") or (
-        "Kavak México muestra un crecimiento sostenido de marca entre W0 (Jul 2020) y W9 (Jun 2024): "
-        "el Top of Mind pasó de <strong>3.3%</strong> a <strong>39%</strong>, la Awareness Asistida de <strong>26%</strong> a <strong>81%</strong> "
-        "y la Consideración de <strong>5%</strong> a <strong>32%</strong>. "
-        "El NPS promedio en olas con dato es de <strong>36 puntos</strong>, con picos en W3 (49) y W8 (46). "
-        "La marca se consolidó como el top-of-mind en seminuevos en México en solo 4 años."
+        "Kavak México muestra un crecimiento sostenido de marca entre W0 (Jul 2020) y W12 (Dic 2025): "
+        "el Top of Mind pasó de <strong>3.3%</strong> a <strong>53%</strong>, la Awareness Asistida de <strong>26%</strong> a <strong>84%</strong> "
+        "y la Consideración de <strong>5%</strong> a <strong>63%</strong>. "
+        "El NPS alcanzó <strong>53 puntos</strong> en W12, con un Brand Equity Index de <strong>84</strong>. "
+        "La marca se consolidó como líder indiscutida en seminuevos en México en solo 5 años."
     )
     st.markdown(f"""
     <div class="exec-banner">
-      <div class="e-eyebrow">Executive Summary · BHT México W0–W9 (2020–2024)</div>
+      <div class="e-eyebrow">Executive Summary · BHT México W0–W12 (2020–2025)</div>
       <div class="e-text">{exec_text}</div>
     </div>
     """, unsafe_allow_html=True)
@@ -726,6 +728,7 @@ def main():
                 "Ola 3": "W3 Jun'21", "Ola 4": "W4 Sep'21", "Ola 5": "W5 Mar'22",
                 "Ola 6": "W6 Nov'22", "Ola 7": "W7 Mar'23", "Ola 8": "W8 Nov'23",
                 "Ola 9 Ligth": "W9 Jun'24",
+                "W10": "W10 Dic'24", "W11": "W11 Jul'25", "W12": "W12 Dic'25",
             }
             OLA_ORDER = list(OLA_LABELS.keys())
 
@@ -743,13 +746,13 @@ def main():
                 ("Awareness_Asistida", "Awareness Asistida",  "#0352C9", True),
                 ("Consideracion",      "Consideración",       "#3685FD", True),
                 ("NPS_Score",          "NPS Score",           "#C8ED02", False),
+                ("Brand_Equity_Index", "Brand Equity Index",  "#38A169", False),
                 ("Intencion_Compra_Total", "Intención Compra", "#68A4FD", True),
-                ("Brand_Satisfaction_Top2box", "Satisfacción",  "#38A169", True),
-                ("Brand_Affinity_Top2box", "Afinidad de Marca", "#805AD5", True),
-                ("Experiencia_Compra_Pasada", "Experiencia Compra", "#D69E2E", True),
+                ("Brand_Favorability_T2B", "Favorabilidad",   "#805AD5", True),
+                ("Brand_Satisfaction_Top2box", "Satisfacción", "#D69E2E", True),
             ]
 
-            section_header("Brand Health — Última Ola (W9, Jun 2024)", dot_color="blue")
+            section_header(f"Brand Health — Última Ola ({latest_label})", dot_color="blue")
             cols = st.columns(4)
             shown = 0
             for (col_name, label, color, is_pct) in METRIC_CONFIG:
@@ -785,7 +788,7 @@ def main():
                 shown += 1
 
             # ── Gráfico de evolución ──
-            section_header("Evolución Brand Health — W0 a W9 (2020–2024)", dot_color="blue")
+            section_header("Evolución Brand Health — W0 a W12 (2020–2025)", dot_color="blue")
             try:
                 import plotly.graph_objects as go
 
@@ -793,8 +796,9 @@ def main():
                     "Top_of_Mind":            ("Top of Mind",        "#0467FC", "solid"),
                     "Awareness_Asistida":      ("Awareness Asistida", "#C8ED02", "solid"),
                     "Consideracion":           ("Consideración",      "#E53E3E", "dot"),
-                    "Intencion_Compra_Total":  ("Intención Compra",   "#D69E2E", "dot"),
                     "NPS_Score":               ("NPS Score",          "#805AD5", "dash"),
+                    "Brand_Equity_Index":      ("Brand Equity Index", "#38A169", "dash"),
+                    "Intencion_Compra_Total":  ("Intención Compra",   "#D69E2E", "dot"),
                 }
 
                 available = [k for k in EVOL_METRICS if k in pivot.columns]
