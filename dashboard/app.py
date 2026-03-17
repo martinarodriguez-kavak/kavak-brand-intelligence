@@ -994,13 +994,14 @@ def main():
 
                 # ── Big centered stat ──
                 delta_line = (
-                    f'<div style="font-size:13px;font-weight:700;color:{diff_color};margin-top:4px;">{diff_str}</div>'
+                    f'<div style="font-size:13px;font-weight:700;color:{diff_color};margin-top:6px;">{diff_str}</div>'
                     if diff_str else ""
                 )
                 st.markdown(
-                    f'<div style="text-align:center;padding:8px 0 4px;">'
+                    f'<div style="text-align:center;padding:16px 0 24px;">'
                     f'<div style="font-size:64px;font-weight:800;color:#1A202C;letter-spacing:-3px;line-height:1;">{val:.1f}{suffix}</div>'
-                    f'<div style="font-size:13px;color:#A0AEC0;margin-top:6px;">{label}</div>'
+                    f'<div style="font-size:12px;font-weight:600;color:#A0AEC0;margin-top:8px;letter-spacing:.3px;">'
+                    f'{label} &nbsp;·&nbsp; {latest_label}</div>'
                     f'{delta_line}'
                     f'</div>',
                     unsafe_allow_html=True
@@ -1009,7 +1010,7 @@ def main():
                 # ── Definition ──
                 st.markdown(
                     f'<div style="font-size:13px;color:#4A5568;line-height:1.7;'
-                    f'padding:16px 0;border-top:1px solid #F0F4F8;border-bottom:1px solid #F0F4F8;">'
+                    f'padding:16px 0;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">'
                     f'{def_text}</div>',
                     unsafe_allow_html=True
                 )
