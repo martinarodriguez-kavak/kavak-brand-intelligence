@@ -371,7 +371,7 @@ st.markdown("""
     border-radius: 50%;
   }
   .exec-banner .e-eyebrow {
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
