@@ -277,21 +277,37 @@ st.markdown("""
   .delta-down { color: var(--red);   font-size: 11px; font-weight: 700; }
   .delta-flat { color: var(--text-light); font-size: 11px; font-weight: 600; }
 
-  /* "Ver detalle →" button below each KPI card */
+  /* KPI footer hint inside card */
+  .kpi-footer-hint {
+    margin-top: 8px;
+    padding-top: 7px;
+    border-top: 1px solid #EDF2F7;
+    font-size: 10px;
+    font-weight: 600;
+    color: #C4CAD4;
+    text-align: right;
+    letter-spacing: .03em;
+  }
+  .kpi-block:hover .kpi-footer-hint { color: var(--kavak-blue); }
+
+  /* KPI dialog trigger button — invisible overlay, positioned over card bottom */
   div[data-testid="stButton"] > button[kind="secondary"] {
     background: transparent !important;
     border: none !important;
-    color: #A0AEC0 !important;
-    font-size: 10px !important;
-    font-weight: 600 !important;
-    padding: 2px 0 6px !important;
-    margin-top: -8px !important;
+    color: transparent !important;
+    font-size: 0 !important;
+    height: 36px !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin-top: -36px !important;
     box-shadow: none !important;
-    letter-spacing: .03em;
-    transition: color .15s !important;
+    cursor: pointer !important;
+    position: relative !important;
+    z-index: 5 !important;
+    width: 100% !important;
+    overflow: hidden !important;
   }
   div[data-testid="stButton"] > button[kind="secondary"]:hover {
-    color: var(--kavak-blue) !important;
     background: transparent !important;
   }
 
@@ -1189,7 +1205,7 @@ def main():
 
             for row_start in range(0, len(visible_cards), 4):
                 row = visible_cards[row_start:row_start + 4]
-                cols = st.columns(len(row))
+                cols = st.columns(4)
                 for idx, (col_name, label, color, is_pct, val, prev_val) in enumerate(row):
                     suffix = "%" if is_pct else ""
                     val_str = f"{val:.1f}{suffix}"
@@ -1208,17 +1224,18 @@ def main():
 
                     with cols[idx]:
                         st.markdown(
-                            f'<div class="kpi-block" style="border-top:3px solid {color};cursor:default;">'
+                            f'<div class="kpi-block" style="border-top:3px solid {color};">'
                             f'  <div class="kpi-label">{label.upper()}</div>'
                             f'  <div style="display:flex;justify-content:space-between;align-items:center;">'
                             f'    <div class="kpi-value" style="color:{color}">{val_str}</div>'
                             f'    <div>{delta_html}</div>'
                             f'  </div>'
                             f'  {sub_html}'
+                            f'  <div class="kpi-footer-hint">Ver detalle →</div>'
                             f'</div>',
                             unsafe_allow_html=True
                         )
-                        if st.button("Ver detalle →", key=f"kpi_dlg_{col_name}", use_container_width=True):
+                        if st.button(" ", key=f"kpi_dlg_{col_name}", use_container_width=True):
                             kpi_dialog(col_name, label, color, val, suffix, prev_val, prev_label)
 
             # ── LECTURA ESTRATÉGICA ──
