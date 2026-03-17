@@ -1,0 +1,2001 @@
+ola,fecha_aprox,marca,brand_id,metrica,valor,n_total,es_kavak
+Ola 0,2021-Q2,KAVAK,1,Top_of_Mind,3.33,600,True
+Ola 0,2021-Q2,KAVAK,1,Awareness_Espontanea,10.17,600,True
+Ola 0,2021-Q2,KAVAK,1,Awareness_Asistida,26.17,600,True
+Ola 0,2021-Q2,KAVAK,1,Consideracion,4.83,600,True
+Ola 0,2021-Q2,KAVAK,1,Intencion_Compra_1a,1.5,600,True
+Ola 0,2021-Q2,KAVAK,1,Intencion_Compra_Total,4.83,600,True
+Ola 0,2021-Q2,KAVAK,1,NPS_Score,31.85,157,True
+Ola 0,2021-Q2,KAVAK,1,NPS_Promotores_pct,13.33,600,True
+Ola 0,2021-Q2,KAVAK,1,NPS_Detractores_pct,5.0,600,True
+Ola 0,2021-Q2,KAVAK,1,NPS_Top2box_pct_recomendadores,50.96,157,True
+Ola 0,2021-Q2,KAVAK,1,Brand_Satisfaction_Media,8.16,157,True
+Ola 0,2021-Q2,KAVAK,1,Brand_Satisfaction_Top2box,46.5,157,True
+Ola 0,2021-Q2,KAVAK,1,Brand_Affinity_Media,7.78,157,True
+Ola 0,2021-Q2,KAVAK,1,Brand_Affinity_Top2box,42.04,157,True
+Ola 0,2021-Q2,KAVAK,1,Experiencia_Compra_Pasada,14.83,600,True
+Ola 0,2021-Q2,KAVAK,1,Experiencia_Venta_Pasada,11.0,600,True
+Ola 0,2021-Q2,Segunda Mano Autos Usados,2,Top_of_Mind,17.67,600,False
+Ola 0,2021-Q2,Segunda Mano Autos Usados,2,Awareness_Espontanea,38.33,600,False
+Ola 0,2021-Q2,Segunda Mano Autos Usados,2,Awareness_Asistida,73.5,600,False
+Ola 0,2021-Q2,Segunda Mano Autos Usados,2,Consideracion,26.5,600,False
+Ola 0,2021-Q2,Segunda Mano Autos Usados,2,Intencion_Compra_1a,4.83,600,False
+Ola 0,2021-Q2,Segunda Mano Autos Usados,2,Intencion_Compra_Total,9.67,600,False
+Ola 0,2021-Q2,Segunda Mano Autos Usados,2,Experiencia_Compra_Pasada,39.83,600,False
+Ola 0,2021-Q2,Segunda Mano Autos Usados,2,Experiencia_Venta_Pasada,25.5,600,False
+Ola 0,2021-Q2,Mercado Libre,3,Top_of_Mind,18.67,600,False
+Ola 0,2021-Q2,Mercado Libre,3,Awareness_Espontanea,49.17,600,False
+Ola 0,2021-Q2,Mercado Libre,3,Awareness_Asistida,86.5,600,False
+Ola 0,2021-Q2,Mercado Libre,3,Consideracion,31.17,600,False
+Ola 0,2021-Q2,Mercado Libre,3,Intencion_Compra_1a,6.0,600,False
+Ola 0,2021-Q2,Mercado Libre,3,Intencion_Compra_Total,13.17,600,False
+Ola 0,2021-Q2,Mercado Libre,3,Experiencia_Compra_Pasada,55.0,600,False
+Ola 0,2021-Q2,Mercado Libre,3,Experiencia_Venta_Pasada,37.67,600,False
+Ola 0,2021-Q2,CarShop,4,Top_of_Mind,0.17,600,False
+Ola 0,2021-Q2,CarShop,4,Awareness_Espontanea,0.83,600,False
+Ola 0,2021-Q2,CarShop,4,Awareness_Asistida,15.17,600,False
+Ola 0,2021-Q2,CarShop,4,Consideracion,2.5,600,False
+Ola 0,2021-Q2,CarShop,4,Intencion_Compra_1a,1.0,600,False
+Ola 0,2021-Q2,CarShop,4,Intencion_Compra_Total,2.5,600,False
+Ola 0,2021-Q2,CarShop,4,Experiencia_Compra_Pasada,5.83,600,False
+Ola 0,2021-Q2,CarShop,4,Experiencia_Venta_Pasada,3.83,600,False
+Ola 0,2021-Q2,Vivanuncios,5,Top_of_Mind,1.17,600,False
+Ola 0,2021-Q2,Vivanuncios,5,Awareness_Espontanea,9.33,600,False
+Ola 0,2021-Q2,Vivanuncios,5,Awareness_Asistida,59.83,600,False
+Ola 0,2021-Q2,Vivanuncios,5,Consideracion,12.67,600,False
+Ola 0,2021-Q2,Vivanuncios,5,Intencion_Compra_1a,2.0,600,False
+Ola 0,2021-Q2,Vivanuncios,5,Intencion_Compra_Total,6.17,600,False
+Ola 0,2021-Q2,Vivanuncios,5,Experiencia_Compra_Pasada,23.5,600,False
+Ola 0,2021-Q2,Vivanuncios,5,Experiencia_Venta_Pasada,14.0,600,False
+Ola 0,2021-Q2,Trovit,6,Top_of_Mind,0.0,600,False
+Ola 0,2021-Q2,Trovit,6,Awareness_Espontanea,1.0,600,False
+Ola 0,2021-Q2,Trovit,6,Awareness_Asistida,25.17,600,False
+Ola 0,2021-Q2,Trovit,6,Consideracion,2.83,600,False
+Ola 0,2021-Q2,Trovit,6,Intencion_Compra_1a,0.33,600,False
+Ola 0,2021-Q2,Trovit,6,Intencion_Compra_Total,2.33,600,False
+Ola 0,2021-Q2,Trovit,6,Experiencia_Compra_Pasada,8.67,600,False
+Ola 0,2021-Q2,Trovit,6,Experiencia_Venta_Pasada,4.83,600,False
+Ola 0,2021-Q2,VendeTuAuto.com,7,Top_of_Mind,2.0,600,False
+Ola 0,2021-Q2,VendeTuAuto.com,7,Awareness_Espontanea,7.67,600,False
+Ola 0,2021-Q2,VendeTuAuto.com,7,Awareness_Asistida,37.17,600,False
+Ola 0,2021-Q2,VendeTuAuto.com,7,Consideracion,7.0,600,False
+Ola 0,2021-Q2,VendeTuAuto.com,7,Intencion_Compra_1a,1.17,600,False
+Ola 0,2021-Q2,VendeTuAuto.com,7,Intencion_Compra_Total,4.33,600,False
+Ola 0,2021-Q2,VendeTuAuto.com,7,Experiencia_Compra_Pasada,16.0,600,False
+Ola 0,2021-Q2,VendeTuAuto.com,7,Experiencia_Venta_Pasada,10.17,600,False
+Ola 0,2021-Q2,Lotes de autos usados,8,Top_of_Mind,0.83,600,False
+Ola 0,2021-Q2,Lotes de autos usados,8,Awareness_Espontanea,7.0,600,False
+Ola 0,2021-Q2,Lotes de autos usados,8,Awareness_Asistida,46.33,600,False
+Ola 0,2021-Q2,Lotes de autos usados,8,Consideracion,14.33,600,False
+Ola 0,2021-Q2,Lotes de autos usados,8,Intencion_Compra_1a,1.5,600,False
+Ola 0,2021-Q2,Lotes de autos usados,8,Intencion_Compra_Total,5.0,600,False
+Ola 0,2021-Q2,Lotes de autos usados,8,Experiencia_Compra_Pasada,17.67,600,False
+Ola 0,2021-Q2,Lotes de autos usados,8,Experiencia_Venta_Pasada,9.83,600,False
+Ola 0,2021-Q2,Seminuevos (Agencias),9,Top_of_Mind,1.5,600,False
+Ola 0,2021-Q2,Seminuevos (Agencias),9,Awareness_Espontanea,2.83,600,False
+Ola 0,2021-Q2,Seminuevos (Agencias),9,Awareness_Asistida,69.33,600,False
+Ola 0,2021-Q2,Seminuevos (Agencias),9,Consideracion,34.33,600,False
+Ola 0,2021-Q2,Seminuevos (Agencias),9,Intencion_Compra_1a,6.33,600,False
+Ola 0,2021-Q2,Seminuevos (Agencias),9,Intencion_Compra_Total,12.83,600,False
+Ola 0,2021-Q2,Seminuevos (Agencias),9,Experiencia_Compra_Pasada,44.33,600,False
+Ola 0,2021-Q2,Seminuevos (Agencias),9,Experiencia_Venta_Pasada,37.5,600,False
+Ola 0,2021-Q2,Clasificados periódicos,10,Top_of_Mind,0.0,600,False
+Ola 0,2021-Q2,Clasificados periódicos,10,Awareness_Espontanea,3.5,600,False
+Ola 0,2021-Q2,Clasificados periódicos,10,Awareness_Asistida,42.83,600,False
+Ola 0,2021-Q2,Clasificados periódicos,10,Consideracion,11.33,600,False
+Ola 0,2021-Q2,Clasificados periódicos,10,Intencion_Compra_1a,0.67,600,False
+Ola 0,2021-Q2,Clasificados periódicos,10,Intencion_Compra_Total,2.5,600,False
+Ola 0,2021-Q2,Clasificados periódicos,10,Experiencia_Compra_Pasada,14.83,600,False
+Ola 0,2021-Q2,Clasificados periódicos,10,Experiencia_Venta_Pasada,7.5,600,False
+Ola 0,2021-Q2,Autocosmos.com,11,Top_of_Mind,1.0,600,False
+Ola 0,2021-Q2,Autocosmos.com,11,Awareness_Espontanea,5.0,600,False
+Ola 0,2021-Q2,Autocosmos.com,11,Awareness_Asistida,27.0,600,False
+Ola 0,2021-Q2,Autocosmos.com,11,Consideracion,5.67,600,False
+Ola 0,2021-Q2,Autocosmos.com,11,Intencion_Compra_1a,1.17,600,False
+Ola 0,2021-Q2,Autocosmos.com,11,Intencion_Compra_Total,3.83,600,False
+Ola 0,2021-Q2,Autocosmos.com,11,Experiencia_Compra_Pasada,11.83,600,False
+Ola 0,2021-Q2,Autocosmos.com,11,Experiencia_Venta_Pasada,7.17,600,False
+Ola 0,2021-Q2,Mercado/Tianguis,12,Top_of_Mind,1.83,600,False
+Ola 0,2021-Q2,Mercado/Tianguis,12,Awareness_Espontanea,8.0,600,False
+Ola 0,2021-Q2,Mercado/Tianguis,12,Awareness_Asistida,55.5,600,False
+Ola 0,2021-Q2,Mercado/Tianguis,12,Consideracion,21.5,600,False
+Ola 0,2021-Q2,Mercado/Tianguis,12,Intencion_Compra_1a,3.33,600,False
+Ola 0,2021-Q2,Mercado/Tianguis,12,Intencion_Compra_Total,7.0,600,False
+Ola 0,2021-Q2,Mercado/Tianguis,12,Experiencia_Compra_Pasada,19.33,600,False
+Ola 0,2021-Q2,Mercado/Tianguis,12,Experiencia_Venta_Pasada,10.83,600,False
+Ola 0,2021-Q2,Trato directo,13,Top_of_Mind,1.0,600,False
+Ola 0,2021-Q2,Trato directo,13,Awareness_Espontanea,4.5,600,False
+Ola 0,2021-Q2,Trato directo,13,Awareness_Asistida,39.67,600,False
+Ola 0,2021-Q2,Trato directo,13,Consideracion,22.17,600,False
+Ola 0,2021-Q2,Trato directo,13,Intencion_Compra_1a,3.67,600,False
+Ola 0,2021-Q2,Trato directo,13,Intencion_Compra_Total,5.83,600,False
+Ola 0,2021-Q2,Trato directo,13,Experiencia_Compra_Pasada,15.17,600,False
+Ola 0,2021-Q2,Trato directo,13,Experiencia_Venta_Pasada,11.5,600,False
+Ola 0,2021-Q2,Cambiauto.mx,14,Top_of_Mind,0.0,600,False
+Ola 0,2021-Q2,Cambiauto.mx,14,Awareness_Espontanea,0.33,600,False
+Ola 0,2021-Q2,Cambiauto.mx,14,Awareness_Asistida,13.0,600,False
+Ola 0,2021-Q2,Cambiauto.mx,14,Consideracion,2.33,600,False
+Ola 0,2021-Q2,Cambiauto.mx,14,Intencion_Compra_1a,0.33,600,False
+Ola 0,2021-Q2,Cambiauto.mx,14,Intencion_Compra_Total,2.67,600,False
+Ola 0,2021-Q2,Cambiauto.mx,14,Experiencia_Compra_Pasada,5.5,600,False
+Ola 0,2021-Q2,Cambiauto.mx,14,Experiencia_Venta_Pasada,4.33,600,False
+Ola 0,2021-Q2,Tipi Top,15,Top_of_Mind,0.0,600,False
+Ola 0,2021-Q2,Tipi Top,15,Awareness_Espontanea,0.0,600,False
+Ola 0,2021-Q2,Tipi Top,15,Awareness_Asistida,5.33,600,False
+Ola 0,2021-Q2,Tipi Top,15,Consideracion,0.83,600,False
+Ola 0,2021-Q2,Tipi Top,15,Intencion_Compra_1a,0.33,600,False
+Ola 0,2021-Q2,Tipi Top,15,Intencion_Compra_Total,1.17,600,False
+Ola 0,2021-Q2,Tipi Top,15,Experiencia_Compra_Pasada,2.17,600,False
+Ola 0,2021-Q2,Tipi Top,15,Experiencia_Venta_Pasada,1.67,600,False
+Ola 0,2021-Q2,soloautos.mx,16,Top_of_Mind,1.0,600,False
+Ola 0,2021-Q2,soloautos.mx,16,Awareness_Espontanea,6.33,600,False
+Ola 0,2021-Q2,soloautos.mx,16,Awareness_Asistida,31.0,600,False
+Ola 0,2021-Q2,soloautos.mx,16,Consideracion,6.17,600,False
+Ola 0,2021-Q2,soloautos.mx,16,Intencion_Compra_1a,1.67,600,False
+Ola 0,2021-Q2,soloautos.mx,16,Intencion_Compra_Total,4.67,600,False
+Ola 0,2021-Q2,soloautos.mx,16,Experiencia_Compra_Pasada,13.67,600,False
+Ola 0,2021-Q2,soloautos.mx,16,Experiencia_Venta_Pasada,8.67,600,False
+Ola 0,2021-Q2,Car One,17,Top_of_Mind,0.0,600,False
+Ola 0,2021-Q2,Car One,17,Awareness_Espontanea,0.0,600,False
+Ola 0,2021-Q2,Car One,17,Awareness_Asistida,8.0,600,False
+Ola 0,2021-Q2,Car One,17,Consideracion,1.33,600,False
+Ola 0,2021-Q2,Car One,17,Intencion_Compra_1a,0.33,600,False
+Ola 0,2021-Q2,Car One,17,Intencion_Compra_Total,1.5,600,False
+Ola 0,2021-Q2,Car One,17,Experiencia_Compra_Pasada,2.17,600,False
+Ola 0,2021-Q2,Car One,17,Experiencia_Venta_Pasada,1.17,600,False
+Ola 0,2021-Q2,Facebook Marketplace,78,Top_of_Mind,0.83,600,False
+Ola 0,2021-Q2,Facebook Marketplace,78,Awareness_Espontanea,5.33,600,False
+Ola 0,2021-Q2,Facebook Marketplace,78,Awareness_Asistida,0.0,600,False
+Ola 0,2021-Q2,Facebook Marketplace,78,Consideracion,,600,False
+Ola 0,2021-Q2,Facebook Marketplace,78,Intencion_Compra_1a,,600,False
+Ola 0,2021-Q2,Facebook Marketplace,78,Intencion_Compra_Total,0.0,600,False
+Ola 0,2021-Q2,Facebook Marketplace,78,Experiencia_Compra_Pasada,,600,False
+Ola 0,2021-Q2,Facebook Marketplace,78,Experiencia_Venta_Pasada,,600,False
+Ola 0,2021-Q2,O|X Autos,102,Top_of_Mind,0.0,600,False
+Ola 0,2021-Q2,O|X Autos,102,Awareness_Espontanea,0.17,600,False
+Ola 0,2021-Q2,O|X Autos,102,Awareness_Asistida,0.0,600,False
+Ola 0,2021-Q2,O|X Autos,102,Consideracion,,600,False
+Ola 0,2021-Q2,O|X Autos,102,Intencion_Compra_1a,,600,False
+Ola 0,2021-Q2,O|X Autos,102,Intencion_Compra_Total,0.0,600,False
+Ola 0,2021-Q2,O|X Autos,102,Experiencia_Compra_Pasada,,600,False
+Ola 0,2021-Q2,O|X Autos,102,Experiencia_Venta_Pasada,,600,False
+Ola 0,2021-Q2,SemiNuevos.com,111,Top_of_Mind,2.17,600,False
+Ola 0,2021-Q2,SemiNuevos.com,111,Awareness_Espontanea,6.0,600,False
+Ola 0,2021-Q2,SemiNuevos.com,111,Awareness_Asistida,0.0,600,False
+Ola 0,2021-Q2,SemiNuevos.com,111,Consideracion,,600,False
+Ola 0,2021-Q2,SemiNuevos.com,111,Intencion_Compra_1a,,600,False
+Ola 0,2021-Q2,SemiNuevos.com,111,Intencion_Compra_Total,0.0,600,False
+Ola 0,2021-Q2,SemiNuevos.com,111,Experiencia_Compra_Pasada,,600,False
+Ola 0,2021-Q2,SemiNuevos.com,111,Experiencia_Venta_Pasada,,600,False
+Ola 0,2021-Q2,Odetta,384,Top_of_Mind,0.0,600,False
+Ola 0,2021-Q2,Odetta,384,Awareness_Espontanea,0.0,600,False
+Ola 0,2021-Q2,Odetta,384,Awareness_Asistida,0.0,600,False
+Ola 0,2021-Q2,Odetta,384,Consideracion,,600,False
+Ola 0,2021-Q2,Odetta,384,Intencion_Compra_1a,,600,False
+Ola 0,2021-Q2,Odetta,384,Intencion_Compra_Total,0.0,600,False
+Ola 0,2021-Q2,Odetta,384,Experiencia_Compra_Pasada,,600,False
+Ola 0,2021-Q2,Odetta,384,Experiencia_Venta_Pasada,,600,False
+Ola 0,2021-Q2,Creditas,457,Top_of_Mind,0.0,600,False
+Ola 0,2021-Q2,Creditas,457,Awareness_Espontanea,0.0,600,False
+Ola 0,2021-Q2,Creditas,457,Awareness_Asistida,0.0,600,False
+Ola 0,2021-Q2,Creditas,457,Consideracion,,600,False
+Ola 0,2021-Q2,Creditas,457,Intencion_Compra_1a,,600,False
+Ola 0,2021-Q2,Creditas,457,Intencion_Compra_Total,0.0,600,False
+Ola 0,2021-Q2,Creditas,457,Experiencia_Compra_Pasada,,600,False
+Ola 0,2021-Q2,Creditas,457,Experiencia_Venta_Pasada,,600,False
+Ola 0,2021-Q2,Caranty,595,Top_of_Mind,0.0,600,False
+Ola 0,2021-Q2,Caranty,595,Awareness_Espontanea,0.0,600,False
+Ola 0,2021-Q2,Caranty,595,Awareness_Asistida,0.0,600,False
+Ola 0,2021-Q2,Caranty,595,Consideracion,,600,False
+Ola 0,2021-Q2,Caranty,595,Intencion_Compra_1a,,600,False
+Ola 0,2021-Q2,Caranty,595,Intencion_Compra_Total,0.0,600,False
+Ola 0,2021-Q2,Caranty,595,Experiencia_Compra_Pasada,,600,False
+Ola 0,2021-Q2,Caranty,595,Experiencia_Venta_Pasada,,600,False
+Ola 0,2021-Q2,Wahu,820,Top_of_Mind,0.0,600,False
+Ola 0,2021-Q2,Wahu,820,Awareness_Espontanea,0.0,600,False
+Ola 0,2021-Q2,Wahu,820,Awareness_Asistida,0.0,600,False
+Ola 0,2021-Q2,Wahu,820,Consideracion,,600,False
+Ola 0,2021-Q2,Wahu,820,Intencion_Compra_1a,,600,False
+Ola 0,2021-Q2,Wahu,820,Intencion_Compra_Total,0.0,600,False
+Ola 0,2021-Q2,Wahu,820,Experiencia_Compra_Pasada,,600,False
+Ola 0,2021-Q2,Wahu,820,Experiencia_Venta_Pasada,,600,False
+Ola 1,2021-Q4,KAVAK,1,Top_of_Mind,5.0,600,True
+Ola 1,2021-Q4,KAVAK,1,Awareness_Espontanea,14.67,600,True
+Ola 1,2021-Q4,KAVAK,1,Awareness_Asistida,34.0,600,True
+Ola 1,2021-Q4,KAVAK,1,Consideracion,6.33,600,True
+Ola 1,2021-Q4,KAVAK,1,Intencion_Compra_1a,0.5,600,True
+Ola 1,2021-Q4,KAVAK,1,Intencion_Compra_Total,4.83,600,True
+Ola 1,2021-Q4,KAVAK,1,NPS_Score,35.78,204,True
+Ola 1,2021-Q4,KAVAK,1,NPS_Promotores_pct,17.67,600,True
+Ola 1,2021-Q4,KAVAK,1,NPS_Detractores_pct,5.5,600,True
+Ola 1,2021-Q4,KAVAK,1,NPS_Top2box_pct_recomendadores,51.96,204,True
+Ola 1,2021-Q4,KAVAK,1,Brand_Satisfaction_Media,8.41,204,True
+Ola 1,2021-Q4,KAVAK,1,Brand_Satisfaction_Top2box,56.86,204,True
+Ola 1,2021-Q4,KAVAK,1,Brand_Affinity_Media,7.71,204,True
+Ola 1,2021-Q4,KAVAK,1,Brand_Affinity_Top2box,43.63,204,True
+Ola 1,2021-Q4,KAVAK,1,Experiencia_Compra_Pasada,17.33,600,True
+Ola 1,2021-Q4,KAVAK,1,Experiencia_Venta_Pasada,13.67,600,True
+Ola 1,2021-Q4,Segunda Mano Autos Usados,2,Top_of_Mind,15.0,600,False
+Ola 1,2021-Q4,Segunda Mano Autos Usados,2,Awareness_Espontanea,38.33,600,False
+Ola 1,2021-Q4,Segunda Mano Autos Usados,2,Awareness_Asistida,77.33,600,False
+Ola 1,2021-Q4,Segunda Mano Autos Usados,2,Consideracion,25.0,600,False
+Ola 1,2021-Q4,Segunda Mano Autos Usados,2,Intencion_Compra_1a,5.5,600,False
+Ola 1,2021-Q4,Segunda Mano Autos Usados,2,Intencion_Compra_Total,11.0,600,False
+Ola 1,2021-Q4,Segunda Mano Autos Usados,2,Experiencia_Compra_Pasada,39.5,600,False
+Ola 1,2021-Q4,Segunda Mano Autos Usados,2,Experiencia_Venta_Pasada,25.83,600,False
+Ola 1,2021-Q4,Mercado Libre,3,Top_of_Mind,16.67,600,False
+Ola 1,2021-Q4,Mercado Libre,3,Awareness_Espontanea,45.33,600,False
+Ola 1,2021-Q4,Mercado Libre,3,Awareness_Asistida,82.33,600,False
+Ola 1,2021-Q4,Mercado Libre,3,Consideracion,23.0,600,False
+Ola 1,2021-Q4,Mercado Libre,3,Intencion_Compra_1a,4.5,600,False
+Ola 1,2021-Q4,Mercado Libre,3,Intencion_Compra_Total,10.67,600,False
+Ola 1,2021-Q4,Mercado Libre,3,Experiencia_Compra_Pasada,47.0,600,False
+Ola 1,2021-Q4,Mercado Libre,3,Experiencia_Venta_Pasada,32.83,600,False
+Ola 1,2021-Q4,CarShop,4,Top_of_Mind,0.0,600,False
+Ola 1,2021-Q4,CarShop,4,Awareness_Espontanea,0.17,600,False
+Ola 1,2021-Q4,CarShop,4,Awareness_Asistida,12.0,600,False
+Ola 1,2021-Q4,CarShop,4,Consideracion,1.83,600,False
+Ola 1,2021-Q4,CarShop,4,Intencion_Compra_1a,0.33,600,False
+Ola 1,2021-Q4,CarShop,4,Intencion_Compra_Total,1.0,600,False
+Ola 1,2021-Q4,CarShop,4,Experiencia_Compra_Pasada,3.5,600,False
+Ola 1,2021-Q4,CarShop,4,Experiencia_Venta_Pasada,2.17,600,False
+Ola 1,2021-Q4,Vivanuncios,5,Top_of_Mind,1.5,600,False
+Ola 1,2021-Q4,Vivanuncios,5,Awareness_Espontanea,9.5,600,False
+Ola 1,2021-Q4,Vivanuncios,5,Awareness_Asistida,58.83,600,False
+Ola 1,2021-Q4,Vivanuncios,5,Consideracion,10.0,600,False
+Ola 1,2021-Q4,Vivanuncios,5,Intencion_Compra_1a,1.5,600,False
+Ola 1,2021-Q4,Vivanuncios,5,Intencion_Compra_Total,5.17,600,False
+Ola 1,2021-Q4,Vivanuncios,5,Experiencia_Compra_Pasada,21.17,600,False
+Ola 1,2021-Q4,Vivanuncios,5,Experiencia_Venta_Pasada,12.33,600,False
+Ola 1,2021-Q4,Trovit,6,Top_of_Mind,0.17,600,False
+Ola 1,2021-Q4,Trovit,6,Awareness_Espontanea,0.5,600,False
+Ola 1,2021-Q4,Trovit,6,Awareness_Asistida,25.0,600,False
+Ola 1,2021-Q4,Trovit,6,Consideracion,2.5,600,False
+Ola 1,2021-Q4,Trovit,6,Intencion_Compra_1a,,600,False
+Ola 1,2021-Q4,Trovit,6,Intencion_Compra_Total,1.83,600,False
+Ola 1,2021-Q4,Trovit,6,Experiencia_Compra_Pasada,6.83,600,False
+Ola 1,2021-Q4,Trovit,6,Experiencia_Venta_Pasada,3.0,600,False
+Ola 1,2021-Q4,VendeTuAuto.com,7,Top_of_Mind,1.17,600,False
+Ola 1,2021-Q4,VendeTuAuto.com,7,Awareness_Espontanea,3.83,600,False
+Ola 1,2021-Q4,VendeTuAuto.com,7,Awareness_Asistida,33.5,600,False
+Ola 1,2021-Q4,VendeTuAuto.com,7,Consideracion,7.17,600,False
+Ola 1,2021-Q4,VendeTuAuto.com,7,Intencion_Compra_1a,1.67,600,False
+Ola 1,2021-Q4,VendeTuAuto.com,7,Intencion_Compra_Total,4.33,600,False
+Ola 1,2021-Q4,VendeTuAuto.com,7,Experiencia_Compra_Pasada,12.5,600,False
+Ola 1,2021-Q4,VendeTuAuto.com,7,Experiencia_Venta_Pasada,8.67,600,False
+Ola 1,2021-Q4,Lotes de autos usados,8,Top_of_Mind,0.33,600,False
+Ola 1,2021-Q4,Lotes de autos usados,8,Awareness_Espontanea,5.33,600,False
+Ola 1,2021-Q4,Lotes de autos usados,8,Awareness_Asistida,46.0,600,False
+Ola 1,2021-Q4,Lotes de autos usados,8,Consideracion,15.67,600,False
+Ola 1,2021-Q4,Lotes de autos usados,8,Intencion_Compra_1a,1.0,600,False
+Ola 1,2021-Q4,Lotes de autos usados,8,Intencion_Compra_Total,6.17,600,False
+Ola 1,2021-Q4,Lotes de autos usados,8,Experiencia_Compra_Pasada,16.33,600,False
+Ola 1,2021-Q4,Lotes de autos usados,8,Experiencia_Venta_Pasada,9.67,600,False
+Ola 1,2021-Q4,Seminuevos (Agencias),9,Top_of_Mind,0.83,600,False
+Ola 1,2021-Q4,Seminuevos (Agencias),9,Awareness_Espontanea,4.67,600,False
+Ola 1,2021-Q4,Seminuevos (Agencias),9,Awareness_Asistida,67.5,600,False
+Ola 1,2021-Q4,Seminuevos (Agencias),9,Consideracion,31.33,600,False
+Ola 1,2021-Q4,Seminuevos (Agencias),9,Intencion_Compra_1a,6.5,600,False
+Ola 1,2021-Q4,Seminuevos (Agencias),9,Intencion_Compra_Total,12.83,600,False
+Ola 1,2021-Q4,Seminuevos (Agencias),9,Experiencia_Compra_Pasada,39.67,600,False
+Ola 1,2021-Q4,Seminuevos (Agencias),9,Experiencia_Venta_Pasada,33.33,600,False
+Ola 1,2021-Q4,Clasificados periódicos,10,Top_of_Mind,0.33,600,False
+Ola 1,2021-Q4,Clasificados periódicos,10,Awareness_Espontanea,3.33,600,False
+Ola 1,2021-Q4,Clasificados periódicos,10,Awareness_Asistida,45.5,600,False
+Ola 1,2021-Q4,Clasificados periódicos,10,Consideracion,10.5,600,False
+Ola 1,2021-Q4,Clasificados periódicos,10,Intencion_Compra_1a,1.17,600,False
+Ola 1,2021-Q4,Clasificados periódicos,10,Intencion_Compra_Total,4.83,600,False
+Ola 1,2021-Q4,Clasificados periódicos,10,Experiencia_Compra_Pasada,19.33,600,False
+Ola 1,2021-Q4,Clasificados periódicos,10,Experiencia_Venta_Pasada,9.67,600,False
+Ola 1,2021-Q4,Autocosmos.com,11,Top_of_Mind,1.17,600,False
+Ola 1,2021-Q4,Autocosmos.com,11,Awareness_Espontanea,8.17,600,False
+Ola 1,2021-Q4,Autocosmos.com,11,Awareness_Asistida,27.67,600,False
+Ola 1,2021-Q4,Autocosmos.com,11,Consideracion,5.5,600,False
+Ola 1,2021-Q4,Autocosmos.com,11,Intencion_Compra_1a,0.5,600,False
+Ola 1,2021-Q4,Autocosmos.com,11,Intencion_Compra_Total,2.5,600,False
+Ola 1,2021-Q4,Autocosmos.com,11,Experiencia_Compra_Pasada,11.83,600,False
+Ola 1,2021-Q4,Autocosmos.com,11,Experiencia_Venta_Pasada,7.33,600,False
+Ola 1,2021-Q4,Mercado/Tianguis,12,Top_of_Mind,2.33,600,False
+Ola 1,2021-Q4,Mercado/Tianguis,12,Awareness_Espontanea,10.0,600,False
+Ola 1,2021-Q4,Mercado/Tianguis,12,Awareness_Asistida,51.5,600,False
+Ola 1,2021-Q4,Mercado/Tianguis,12,Consideracion,21.67,600,False
+Ola 1,2021-Q4,Mercado/Tianguis,12,Intencion_Compra_1a,2.0,600,False
+Ola 1,2021-Q4,Mercado/Tianguis,12,Intencion_Compra_Total,6.17,600,False
+Ola 1,2021-Q4,Mercado/Tianguis,12,Experiencia_Compra_Pasada,17.33,600,False
+Ola 1,2021-Q4,Mercado/Tianguis,12,Experiencia_Venta_Pasada,11.67,600,False
+Ola 1,2021-Q4,Trato directo,13,Top_of_Mind,0.83,600,False
+Ola 1,2021-Q4,Trato directo,13,Awareness_Espontanea,4.33,600,False
+Ola 1,2021-Q4,Trato directo,13,Awareness_Asistida,36.67,600,False
+Ola 1,2021-Q4,Trato directo,13,Consideracion,21.17,600,False
+Ola 1,2021-Q4,Trato directo,13,Intencion_Compra_1a,4.83,600,False
+Ola 1,2021-Q4,Trato directo,13,Intencion_Compra_Total,8.83,600,False
+Ola 1,2021-Q4,Trato directo,13,Experiencia_Compra_Pasada,12.5,600,False
+Ola 1,2021-Q4,Trato directo,13,Experiencia_Venta_Pasada,8.67,600,False
+Ola 1,2021-Q4,Cambiauto.mx,14,Top_of_Mind,0.0,600,False
+Ola 1,2021-Q4,Cambiauto.mx,14,Awareness_Espontanea,0.0,600,False
+Ola 1,2021-Q4,Cambiauto.mx,14,Awareness_Asistida,15.17,600,False
+Ola 1,2021-Q4,Cambiauto.mx,14,Consideracion,2.0,600,False
+Ola 1,2021-Q4,Cambiauto.mx,14,Intencion_Compra_1a,0.67,600,False
+Ola 1,2021-Q4,Cambiauto.mx,14,Intencion_Compra_Total,2.33,600,False
+Ola 1,2021-Q4,Cambiauto.mx,14,Experiencia_Compra_Pasada,7.0,600,False
+Ola 1,2021-Q4,Cambiauto.mx,14,Experiencia_Venta_Pasada,4.17,600,False
+Ola 1,2021-Q4,Tipi Top,15,Top_of_Mind,0.0,600,False
+Ola 1,2021-Q4,Tipi Top,15,Awareness_Espontanea,0.0,600,False
+Ola 1,2021-Q4,Tipi Top,15,Awareness_Asistida,5.5,600,False
+Ola 1,2021-Q4,Tipi Top,15,Consideracion,1.33,600,False
+Ola 1,2021-Q4,Tipi Top,15,Intencion_Compra_1a,0.17,600,False
+Ola 1,2021-Q4,Tipi Top,15,Intencion_Compra_Total,0.67,600,False
+Ola 1,2021-Q4,Tipi Top,15,Experiencia_Compra_Pasada,2.0,600,False
+Ola 1,2021-Q4,Tipi Top,15,Experiencia_Venta_Pasada,1.0,600,False
+Ola 1,2021-Q4,soloautos.mx,16,Top_of_Mind,6.33,600,False
+Ola 1,2021-Q4,soloautos.mx,16,Awareness_Espontanea,16.83,600,False
+Ola 1,2021-Q4,soloautos.mx,16,Awareness_Asistida,53.83,600,False
+Ola 1,2021-Q4,soloautos.mx,16,Consideracion,13.0,600,False
+Ola 1,2021-Q4,soloautos.mx,16,Intencion_Compra_1a,1.67,600,False
+Ola 1,2021-Q4,soloautos.mx,16,Intencion_Compra_Total,7.67,600,False
+Ola 1,2021-Q4,soloautos.mx,16,Experiencia_Compra_Pasada,22.5,600,False
+Ola 1,2021-Q4,soloautos.mx,16,Experiencia_Venta_Pasada,16.67,600,False
+Ola 1,2021-Q4,Car One,17,Top_of_Mind,0.0,600,False
+Ola 1,2021-Q4,Car One,17,Awareness_Espontanea,0.0,600,False
+Ola 1,2021-Q4,Car One,17,Awareness_Asistida,10.5,600,False
+Ola 1,2021-Q4,Car One,17,Consideracion,1.5,600,False
+Ola 1,2021-Q4,Car One,17,Intencion_Compra_1a,,600,False
+Ola 1,2021-Q4,Car One,17,Intencion_Compra_Total,1.0,600,False
+Ola 1,2021-Q4,Car One,17,Experiencia_Compra_Pasada,3.67,600,False
+Ola 1,2021-Q4,Car One,17,Experiencia_Venta_Pasada,2.33,600,False
+Ola 1,2021-Q4,Facebook Marketplace,78,Top_of_Mind,2.0,600,False
+Ola 1,2021-Q4,Facebook Marketplace,78,Awareness_Espontanea,7.17,600,False
+Ola 1,2021-Q4,Facebook Marketplace,78,Awareness_Asistida,0.0,600,False
+Ola 1,2021-Q4,Facebook Marketplace,78,Consideracion,,600,False
+Ola 1,2021-Q4,Facebook Marketplace,78,Intencion_Compra_1a,,600,False
+Ola 1,2021-Q4,Facebook Marketplace,78,Intencion_Compra_Total,0.0,600,False
+Ola 1,2021-Q4,Facebook Marketplace,78,Experiencia_Compra_Pasada,,600,False
+Ola 1,2021-Q4,Facebook Marketplace,78,Experiencia_Venta_Pasada,,600,False
+Ola 1,2021-Q4,O|X Autos,102,Top_of_Mind,0.17,600,False
+Ola 1,2021-Q4,O|X Autos,102,Awareness_Espontanea,1.0,600,False
+Ola 1,2021-Q4,O|X Autos,102,Awareness_Asistida,7.67,600,False
+Ola 1,2021-Q4,O|X Autos,102,Consideracion,1.33,600,False
+Ola 1,2021-Q4,O|X Autos,102,Intencion_Compra_1a,0.33,600,False
+Ola 1,2021-Q4,O|X Autos,102,Intencion_Compra_Total,0.83,600,False
+Ola 1,2021-Q4,O|X Autos,102,Experiencia_Compra_Pasada,2.0,600,False
+Ola 1,2021-Q4,O|X Autos,102,Experiencia_Venta_Pasada,1.5,600,False
+Ola 1,2021-Q4,SemiNuevos.com,111,Top_of_Mind,2.0,600,False
+Ola 1,2021-Q4,SemiNuevos.com,111,Awareness_Espontanea,6.33,600,False
+Ola 1,2021-Q4,SemiNuevos.com,111,Awareness_Asistida,0.0,600,False
+Ola 1,2021-Q4,SemiNuevos.com,111,Consideracion,,600,False
+Ola 1,2021-Q4,SemiNuevos.com,111,Intencion_Compra_1a,,600,False
+Ola 1,2021-Q4,SemiNuevos.com,111,Intencion_Compra_Total,0.0,600,False
+Ola 1,2021-Q4,SemiNuevos.com,111,Experiencia_Compra_Pasada,,600,False
+Ola 1,2021-Q4,SemiNuevos.com,111,Experiencia_Venta_Pasada,,600,False
+Ola 1,2021-Q4,Odetta,384,Top_of_Mind,0.0,600,False
+Ola 1,2021-Q4,Odetta,384,Awareness_Espontanea,0.0,600,False
+Ola 1,2021-Q4,Odetta,384,Awareness_Asistida,0.0,600,False
+Ola 1,2021-Q4,Odetta,384,Consideracion,,600,False
+Ola 1,2021-Q4,Odetta,384,Intencion_Compra_1a,,600,False
+Ola 1,2021-Q4,Odetta,384,Intencion_Compra_Total,0.0,600,False
+Ola 1,2021-Q4,Odetta,384,Experiencia_Compra_Pasada,,600,False
+Ola 1,2021-Q4,Odetta,384,Experiencia_Venta_Pasada,,600,False
+Ola 1,2021-Q4,Creditas,457,Top_of_Mind,0.0,600,False
+Ola 1,2021-Q4,Creditas,457,Awareness_Espontanea,0.0,600,False
+Ola 1,2021-Q4,Creditas,457,Awareness_Asistida,0.0,600,False
+Ola 1,2021-Q4,Creditas,457,Consideracion,,600,False
+Ola 1,2021-Q4,Creditas,457,Intencion_Compra_1a,,600,False
+Ola 1,2021-Q4,Creditas,457,Intencion_Compra_Total,0.0,600,False
+Ola 1,2021-Q4,Creditas,457,Experiencia_Compra_Pasada,,600,False
+Ola 1,2021-Q4,Creditas,457,Experiencia_Venta_Pasada,,600,False
+Ola 1,2021-Q4,Caranty,595,Top_of_Mind,0.0,600,False
+Ola 1,2021-Q4,Caranty,595,Awareness_Espontanea,0.0,600,False
+Ola 1,2021-Q4,Caranty,595,Awareness_Asistida,0.0,600,False
+Ola 1,2021-Q4,Caranty,595,Consideracion,,600,False
+Ola 1,2021-Q4,Caranty,595,Intencion_Compra_1a,,600,False
+Ola 1,2021-Q4,Caranty,595,Intencion_Compra_Total,0.0,600,False
+Ola 1,2021-Q4,Caranty,595,Experiencia_Compra_Pasada,,600,False
+Ola 1,2021-Q4,Caranty,595,Experiencia_Venta_Pasada,,600,False
+Ola 1,2021-Q4,Wahu,820,Top_of_Mind,0.0,600,False
+Ola 1,2021-Q4,Wahu,820,Awareness_Espontanea,0.0,600,False
+Ola 1,2021-Q4,Wahu,820,Awareness_Asistida,0.0,600,False
+Ola 1,2021-Q4,Wahu,820,Consideracion,,600,False
+Ola 1,2021-Q4,Wahu,820,Intencion_Compra_1a,,600,False
+Ola 1,2021-Q4,Wahu,820,Intencion_Compra_Total,0.0,600,False
+Ola 1,2021-Q4,Wahu,820,Experiencia_Compra_Pasada,,600,False
+Ola 1,2021-Q4,Wahu,820,Experiencia_Venta_Pasada,,600,False
+Ola 2,2022-Q1,KAVAK,1,Top_of_Mind,10.22,900,True
+Ola 2,2022-Q1,KAVAK,1,Awareness_Espontanea,19.44,900,True
+Ola 2,2022-Q1,KAVAK,1,Awareness_Asistida,44.67,900,True
+Ola 2,2022-Q1,KAVAK,1,Consideracion,6.78,900,True
+Ola 2,2022-Q1,KAVAK,1,Intencion_Compra_1a,2.44,900,True
+Ola 2,2022-Q1,KAVAK,1,Intencion_Compra_Total,8.67,900,True
+Ola 2,2022-Q1,KAVAK,1,NPS_Score,25.12,402,True
+Ola 2,2022-Q1,KAVAK,1,NPS_Promotores_pct,19.56,900,True
+Ola 2,2022-Q1,KAVAK,1,NPS_Detractores_pct,8.33,900,True
+Ola 2,2022-Q1,KAVAK,1,NPS_Top2box_pct_recomendadores,43.78,402,True
+Ola 2,2022-Q1,KAVAK,1,Brand_Satisfaction_Media,8.25,402,True
+Ola 2,2022-Q1,KAVAK,1,Brand_Satisfaction_Top2box,51.0,402,True
+Ola 2,2022-Q1,KAVAK,1,Brand_Affinity_Media,7.39,402,True
+Ola 2,2022-Q1,KAVAK,1,Brand_Affinity_Top2box,35.32,402,True
+Ola 2,2022-Q1,KAVAK,1,Experiencia_Compra_Pasada,20.78,900,True
+Ola 2,2022-Q1,KAVAK,1,Experiencia_Venta_Pasada,16.11,900,True
+Ola 2,2022-Q1,Segunda Mano Autos Usados,2,Top_of_Mind,9.78,900,False
+Ola 2,2022-Q1,Segunda Mano Autos Usados,2,Awareness_Espontanea,27.11,900,False
+Ola 2,2022-Q1,Segunda Mano Autos Usados,2,Awareness_Asistida,65.67,900,False
+Ola 2,2022-Q1,Segunda Mano Autos Usados,2,Consideracion,19.89,900,False
+Ola 2,2022-Q1,Segunda Mano Autos Usados,2,Intencion_Compra_1a,4.89,900,False
+Ola 2,2022-Q1,Segunda Mano Autos Usados,2,Intencion_Compra_Total,10.0,900,False
+Ola 2,2022-Q1,Segunda Mano Autos Usados,2,Experiencia_Compra_Pasada,31.33,900,False
+Ola 2,2022-Q1,Segunda Mano Autos Usados,2,Experiencia_Venta_Pasada,19.0,900,False
+Ola 2,2022-Q1,Mercado Libre,3,Top_of_Mind,8.22,900,False
+Ola 2,2022-Q1,Mercado Libre,3,Awareness_Espontanea,33.22,900,False
+Ola 2,2022-Q1,Mercado Libre,3,Awareness_Asistida,75.33,900,False
+Ola 2,2022-Q1,Mercado Libre,3,Consideracion,18.67,900,False
+Ola 2,2022-Q1,Mercado Libre,3,Intencion_Compra_1a,4.67,900,False
+Ola 2,2022-Q1,Mercado Libre,3,Intencion_Compra_Total,11.11,900,False
+Ola 2,2022-Q1,Mercado Libre,3,Experiencia_Compra_Pasada,36.44,900,False
+Ola 2,2022-Q1,Mercado Libre,3,Experiencia_Venta_Pasada,20.11,900,False
+Ola 2,2022-Q1,CarShop,4,Top_of_Mind,0.0,900,False
+Ola 2,2022-Q1,CarShop,4,Awareness_Espontanea,0.11,900,False
+Ola 2,2022-Q1,CarShop,4,Awareness_Asistida,8.33,900,False
+Ola 2,2022-Q1,CarShop,4,Consideracion,1.0,900,False
+Ola 2,2022-Q1,CarShop,4,Intencion_Compra_1a,0.22,900,False
+Ola 2,2022-Q1,CarShop,4,Intencion_Compra_Total,1.11,900,False
+Ola 2,2022-Q1,CarShop,4,Experiencia_Compra_Pasada,2.56,900,False
+Ola 2,2022-Q1,CarShop,4,Experiencia_Venta_Pasada,1.22,900,False
+Ola 2,2022-Q1,Vivanuncios,5,Top_of_Mind,0.89,900,False
+Ola 2,2022-Q1,Vivanuncios,5,Awareness_Espontanea,6.0,900,False
+Ola 2,2022-Q1,Vivanuncios,5,Awareness_Asistida,53.67,900,False
+Ola 2,2022-Q1,Vivanuncios,5,Consideracion,8.0,900,False
+Ola 2,2022-Q1,Vivanuncios,5,Intencion_Compra_1a,1.56,900,False
+Ola 2,2022-Q1,Vivanuncios,5,Intencion_Compra_Total,5.22,900,False
+Ola 2,2022-Q1,Vivanuncios,5,Experiencia_Compra_Pasada,16.67,900,False
+Ola 2,2022-Q1,Vivanuncios,5,Experiencia_Venta_Pasada,7.56,900,False
+Ola 2,2022-Q1,Trovit,6,Top_of_Mind,0.0,900,False
+Ola 2,2022-Q1,Trovit,6,Awareness_Espontanea,0.44,900,False
+Ola 2,2022-Q1,Trovit,6,Awareness_Asistida,18.56,900,False
+Ola 2,2022-Q1,Trovit,6,Consideracion,1.89,900,False
+Ola 2,2022-Q1,Trovit,6,Intencion_Compra_1a,0.22,900,False
+Ola 2,2022-Q1,Trovit,6,Intencion_Compra_Total,2.0,900,False
+Ola 2,2022-Q1,Trovit,6,Experiencia_Compra_Pasada,4.22,900,False
+Ola 2,2022-Q1,Trovit,6,Experiencia_Venta_Pasada,2.44,900,False
+Ola 2,2022-Q1,VendeTuAuto.com,7,Top_of_Mind,0.44,900,False
+Ola 2,2022-Q1,VendeTuAuto.com,7,Awareness_Espontanea,1.33,900,False
+Ola 2,2022-Q1,VendeTuAuto.com,7,Awareness_Asistida,22.56,900,False
+Ola 2,2022-Q1,VendeTuAuto.com,7,Consideracion,3.67,900,False
+Ola 2,2022-Q1,VendeTuAuto.com,7,Intencion_Compra_1a,0.67,900,False
+Ola 2,2022-Q1,VendeTuAuto.com,7,Intencion_Compra_Total,2.44,900,False
+Ola 2,2022-Q1,VendeTuAuto.com,7,Experiencia_Compra_Pasada,4.56,900,False
+Ola 2,2022-Q1,VendeTuAuto.com,7,Experiencia_Venta_Pasada,2.33,900,False
+Ola 2,2022-Q1,Lotes de autos usados,8,Top_of_Mind,1.33,900,False
+Ola 2,2022-Q1,Lotes de autos usados,8,Awareness_Espontanea,6.0,900,False
+Ola 2,2022-Q1,Lotes de autos usados,8,Awareness_Asistida,45.0,900,False
+Ola 2,2022-Q1,Lotes de autos usados,8,Consideracion,12.67,900,False
+Ola 2,2022-Q1,Lotes de autos usados,8,Intencion_Compra_1a,1.89,900,False
+Ola 2,2022-Q1,Lotes de autos usados,8,Intencion_Compra_Total,5.22,900,False
+Ola 2,2022-Q1,Lotes de autos usados,8,Experiencia_Compra_Pasada,15.78,900,False
+Ola 2,2022-Q1,Lotes de autos usados,8,Experiencia_Venta_Pasada,7.67,900,False
+Ola 2,2022-Q1,Seminuevos (Agencias),9,Top_of_Mind,2.89,900,False
+Ola 2,2022-Q1,Seminuevos (Agencias),9,Awareness_Espontanea,6.56,900,False
+Ola 2,2022-Q1,Seminuevos (Agencias),9,Awareness_Asistida,66.67,900,False
+Ola 2,2022-Q1,Seminuevos (Agencias),9,Consideracion,22.89,900,False
+Ola 2,2022-Q1,Seminuevos (Agencias),9,Intencion_Compra_1a,4.67,900,False
+Ola 2,2022-Q1,Seminuevos (Agencias),9,Intencion_Compra_Total,12.22,900,False
+Ola 2,2022-Q1,Seminuevos (Agencias),9,Experiencia_Compra_Pasada,34.44,900,False
+Ola 2,2022-Q1,Seminuevos (Agencias),9,Experiencia_Venta_Pasada,28.44,900,False
+Ola 2,2022-Q1,Clasificados periódicos,10,Top_of_Mind,0.44,900,False
+Ola 2,2022-Q1,Clasificados periódicos,10,Awareness_Espontanea,4.89,900,False
+Ola 2,2022-Q1,Clasificados periódicos,10,Awareness_Asistida,42.22,900,False
+Ola 2,2022-Q1,Clasificados periódicos,10,Consideracion,12.56,900,False
+Ola 2,2022-Q1,Clasificados periódicos,10,Intencion_Compra_1a,1.78,900,False
+Ola 2,2022-Q1,Clasificados periódicos,10,Intencion_Compra_Total,4.33,900,False
+Ola 2,2022-Q1,Clasificados periódicos,10,Experiencia_Compra_Pasada,14.56,900,False
+Ola 2,2022-Q1,Clasificados periódicos,10,Experiencia_Venta_Pasada,6.67,900,False
+Ola 2,2022-Q1,Autocosmos.com,11,Top_of_Mind,1.0,900,False
+Ola 2,2022-Q1,Autocosmos.com,11,Awareness_Espontanea,4.22,900,False
+Ola 2,2022-Q1,Autocosmos.com,11,Awareness_Asistida,13.78,900,False
+Ola 2,2022-Q1,Autocosmos.com,11,Consideracion,1.33,900,False
+Ola 2,2022-Q1,Autocosmos.com,11,Intencion_Compra_1a,0.11,900,False
+Ola 2,2022-Q1,Autocosmos.com,11,Intencion_Compra_Total,1.78,900,False
+Ola 2,2022-Q1,Autocosmos.com,11,Experiencia_Compra_Pasada,4.44,900,False
+Ola 2,2022-Q1,Autocosmos.com,11,Experiencia_Venta_Pasada,2.78,900,False
+Ola 2,2022-Q1,Mercado/Tianguis,12,Top_of_Mind,1.67,900,False
+Ola 2,2022-Q1,Mercado/Tianguis,12,Awareness_Espontanea,11.0,900,False
+Ola 2,2022-Q1,Mercado/Tianguis,12,Awareness_Asistida,51.22,900,False
+Ola 2,2022-Q1,Mercado/Tianguis,12,Consideracion,21.33,900,False
+Ola 2,2022-Q1,Mercado/Tianguis,12,Intencion_Compra_1a,4.11,900,False
+Ola 2,2022-Q1,Mercado/Tianguis,12,Intencion_Compra_Total,7.0,900,False
+Ola 2,2022-Q1,Mercado/Tianguis,12,Experiencia_Compra_Pasada,18.22,900,False
+Ola 2,2022-Q1,Mercado/Tianguis,12,Experiencia_Venta_Pasada,11.78,900,False
+Ola 2,2022-Q1,Trato directo,13,Top_of_Mind,1.0,900,False
+Ola 2,2022-Q1,Trato directo,13,Awareness_Espontanea,4.56,900,False
+Ola 2,2022-Q1,Trato directo,13,Awareness_Asistida,36.78,900,False
+Ola 2,2022-Q1,Trato directo,13,Consideracion,21.78,900,False
+Ola 2,2022-Q1,Trato directo,13,Intencion_Compra_1a,5.44,900,False
+Ola 2,2022-Q1,Trato directo,13,Intencion_Compra_Total,7.11,900,False
+Ola 2,2022-Q1,Trato directo,13,Experiencia_Compra_Pasada,11.67,900,False
+Ola 2,2022-Q1,Trato directo,13,Experiencia_Venta_Pasada,9.67,900,False
+Ola 2,2022-Q1,Cambiauto.mx,14,Top_of_Mind,0.0,900,False
+Ola 2,2022-Q1,Cambiauto.mx,14,Awareness_Espontanea,0.11,900,False
+Ola 2,2022-Q1,Cambiauto.mx,14,Awareness_Asistida,10.56,900,False
+Ola 2,2022-Q1,Cambiauto.mx,14,Consideracion,1.44,900,False
+Ola 2,2022-Q1,Cambiauto.mx,14,Intencion_Compra_1a,0.33,900,False
+Ola 2,2022-Q1,Cambiauto.mx,14,Intencion_Compra_Total,1.33,900,False
+Ola 2,2022-Q1,Cambiauto.mx,14,Experiencia_Compra_Pasada,2.11,900,False
+Ola 2,2022-Q1,Cambiauto.mx,14,Experiencia_Venta_Pasada,1.11,900,False
+Ola 2,2022-Q1,Tipi Top,15,Top_of_Mind,0.0,900,False
+Ola 2,2022-Q1,Tipi Top,15,Awareness_Espontanea,0.0,900,False
+Ola 2,2022-Q1,Tipi Top,15,Awareness_Asistida,3.89,900,False
+Ola 2,2022-Q1,Tipi Top,15,Consideracion,0.56,900,False
+Ola 2,2022-Q1,Tipi Top,15,Intencion_Compra_1a,0.11,900,False
+Ola 2,2022-Q1,Tipi Top,15,Intencion_Compra_Total,0.78,900,False
+Ola 2,2022-Q1,Tipi Top,15,Experiencia_Compra_Pasada,0.89,900,False
+Ola 2,2022-Q1,Tipi Top,15,Experiencia_Venta_Pasada,0.56,900,False
+Ola 2,2022-Q1,soloautos.mx,16,Top_of_Mind,4.33,900,False
+Ola 2,2022-Q1,soloautos.mx,16,Awareness_Espontanea,11.56,900,False
+Ola 2,2022-Q1,soloautos.mx,16,Awareness_Asistida,45.22,900,False
+Ola 2,2022-Q1,soloautos.mx,16,Consideracion,8.89,900,False
+Ola 2,2022-Q1,soloautos.mx,16,Intencion_Compra_1a,2.22,900,False
+Ola 2,2022-Q1,soloautos.mx,16,Intencion_Compra_Total,5.78,900,False
+Ola 2,2022-Q1,soloautos.mx,16,Experiencia_Compra_Pasada,19.0,900,False
+Ola 2,2022-Q1,soloautos.mx,16,Experiencia_Venta_Pasada,12.89,900,False
+Ola 2,2022-Q1,Car One,17,Top_of_Mind,3.0,900,False
+Ola 2,2022-Q1,Car One,17,Awareness_Espontanea,4.56,900,False
+Ola 2,2022-Q1,Car One,17,Awareness_Asistida,28.78,900,False
+Ola 2,2022-Q1,Car One,17,Consideracion,6.56,900,False
+Ola 2,2022-Q1,Car One,17,Intencion_Compra_1a,1.22,900,False
+Ola 2,2022-Q1,Car One,17,Intencion_Compra_Total,3.78,900,False
+Ola 2,2022-Q1,Car One,17,Experiencia_Compra_Pasada,8.56,900,False
+Ola 2,2022-Q1,Car One,17,Experiencia_Venta_Pasada,6.44,900,False
+Ola 2,2022-Q1,Facebook Marketplace,78,Top_of_Mind,1.89,900,False
+Ola 2,2022-Q1,Facebook Marketplace,78,Awareness_Espontanea,6.78,900,False
+Ola 2,2022-Q1,Facebook Marketplace,78,Awareness_Asistida,0.0,900,False
+Ola 2,2022-Q1,Facebook Marketplace,78,Consideracion,,900,False
+Ola 2,2022-Q1,Facebook Marketplace,78,Intencion_Compra_1a,,900,False
+Ola 2,2022-Q1,Facebook Marketplace,78,Intencion_Compra_Total,0.0,900,False
+Ola 2,2022-Q1,Facebook Marketplace,78,Experiencia_Compra_Pasada,,900,False
+Ola 2,2022-Q1,Facebook Marketplace,78,Experiencia_Venta_Pasada,,900,False
+Ola 2,2022-Q1,O|X Autos,102,Top_of_Mind,0.44,900,False
+Ola 2,2022-Q1,O|X Autos,102,Awareness_Espontanea,2.0,900,False
+Ola 2,2022-Q1,O|X Autos,102,Awareness_Asistida,8.44,900,False
+Ola 2,2022-Q1,O|X Autos,102,Consideracion,1.56,900,False
+Ola 2,2022-Q1,O|X Autos,102,Intencion_Compra_1a,0.22,900,False
+Ola 2,2022-Q1,O|X Autos,102,Intencion_Compra_Total,1.22,900,False
+Ola 2,2022-Q1,O|X Autos,102,Experiencia_Compra_Pasada,2.44,900,False
+Ola 2,2022-Q1,O|X Autos,102,Experiencia_Venta_Pasada,2.22,900,False
+Ola 2,2022-Q1,SemiNuevos.com,111,Top_of_Mind,0.56,900,False
+Ola 2,2022-Q1,SemiNuevos.com,111,Awareness_Espontanea,1.67,900,False
+Ola 2,2022-Q1,SemiNuevos.com,111,Awareness_Asistida,0.0,900,False
+Ola 2,2022-Q1,SemiNuevos.com,111,Consideracion,,900,False
+Ola 2,2022-Q1,SemiNuevos.com,111,Intencion_Compra_1a,,900,False
+Ola 2,2022-Q1,SemiNuevos.com,111,Intencion_Compra_Total,0.0,900,False
+Ola 2,2022-Q1,SemiNuevos.com,111,Experiencia_Compra_Pasada,,900,False
+Ola 2,2022-Q1,SemiNuevos.com,111,Experiencia_Venta_Pasada,,900,False
+Ola 2,2022-Q1,Odetta,384,Top_of_Mind,0.0,900,False
+Ola 2,2022-Q1,Odetta,384,Awareness_Espontanea,0.0,900,False
+Ola 2,2022-Q1,Odetta,384,Awareness_Asistida,0.0,900,False
+Ola 2,2022-Q1,Odetta,384,Consideracion,,900,False
+Ola 2,2022-Q1,Odetta,384,Intencion_Compra_1a,,900,False
+Ola 2,2022-Q1,Odetta,384,Intencion_Compra_Total,0.0,900,False
+Ola 2,2022-Q1,Odetta,384,Experiencia_Compra_Pasada,,900,False
+Ola 2,2022-Q1,Odetta,384,Experiencia_Venta_Pasada,,900,False
+Ola 2,2022-Q1,Creditas,457,Top_of_Mind,0.0,900,False
+Ola 2,2022-Q1,Creditas,457,Awareness_Espontanea,0.0,900,False
+Ola 2,2022-Q1,Creditas,457,Awareness_Asistida,0.0,900,False
+Ola 2,2022-Q1,Creditas,457,Consideracion,,900,False
+Ola 2,2022-Q1,Creditas,457,Intencion_Compra_1a,,900,False
+Ola 2,2022-Q1,Creditas,457,Intencion_Compra_Total,0.0,900,False
+Ola 2,2022-Q1,Creditas,457,Experiencia_Compra_Pasada,,900,False
+Ola 2,2022-Q1,Creditas,457,Experiencia_Venta_Pasada,,900,False
+Ola 2,2022-Q1,Caranty,595,Top_of_Mind,0.0,900,False
+Ola 2,2022-Q1,Caranty,595,Awareness_Espontanea,0.0,900,False
+Ola 2,2022-Q1,Caranty,595,Awareness_Asistida,0.0,900,False
+Ola 2,2022-Q1,Caranty,595,Consideracion,,900,False
+Ola 2,2022-Q1,Caranty,595,Intencion_Compra_1a,,900,False
+Ola 2,2022-Q1,Caranty,595,Intencion_Compra_Total,0.0,900,False
+Ola 2,2022-Q1,Caranty,595,Experiencia_Compra_Pasada,,900,False
+Ola 2,2022-Q1,Caranty,595,Experiencia_Venta_Pasada,,900,False
+Ola 2,2022-Q1,Wahu,820,Top_of_Mind,0.0,900,False
+Ola 2,2022-Q1,Wahu,820,Awareness_Espontanea,0.0,900,False
+Ola 2,2022-Q1,Wahu,820,Awareness_Asistida,0.0,900,False
+Ola 2,2022-Q1,Wahu,820,Consideracion,,900,False
+Ola 2,2022-Q1,Wahu,820,Intencion_Compra_1a,,900,False
+Ola 2,2022-Q1,Wahu,820,Intencion_Compra_Total,0.0,900,False
+Ola 2,2022-Q1,Wahu,820,Experiencia_Compra_Pasada,,900,False
+Ola 2,2022-Q1,Wahu,820,Experiencia_Venta_Pasada,,900,False
+Ola 3,2022-Q2,KAVAK,1,Top_of_Mind,15.78,900,True
+Ola 3,2022-Q2,KAVAK,1,Awareness_Espontanea,28.44,900,True
+Ola 3,2022-Q2,KAVAK,1,Awareness_Asistida,53.56,900,True
+Ola 3,2022-Q2,KAVAK,1,Consideracion,15.44,900,True
+Ola 3,2022-Q2,KAVAK,1,Intencion_Compra_1a,4.67,900,True
+Ola 3,2022-Q2,KAVAK,1,Intencion_Compra_Total,11.0,900,True
+Ola 3,2022-Q2,KAVAK,1,NPS_Score,48.96,482,True
+Ola 3,2022-Q2,KAVAK,1,NPS_Promotores_pct,32.56,900,True
+Ola 3,2022-Q2,KAVAK,1,NPS_Detractores_pct,6.33,900,True
+Ola 3,2022-Q2,KAVAK,1,NPS_Top2box_pct_recomendadores,60.79,482,True
+Ola 3,2022-Q2,KAVAK,1,Brand_Satisfaction_Media,8.61,482,True
+Ola 3,2022-Q2,KAVAK,1,Brand_Satisfaction_Top2box,63.49,482,True
+Ola 3,2022-Q2,KAVAK,1,Brand_Affinity_Media,8.1,482,True
+Ola 3,2022-Q2,KAVAK,1,Brand_Affinity_Top2box,52.9,482,True
+Ola 3,2022-Q2,KAVAK,1,Experiencia_Compra_Pasada,31.0,900,True
+Ola 3,2022-Q2,KAVAK,1,Experiencia_Venta_Pasada,26.78,900,True
+Ola 3,2022-Q2,Segunda Mano Autos Usados,2,Top_of_Mind,8.11,900,False
+Ola 3,2022-Q2,Segunda Mano Autos Usados,2,Awareness_Espontanea,29.0,900,False
+Ola 3,2022-Q2,Segunda Mano Autos Usados,2,Awareness_Asistida,69.44,900,False
+Ola 3,2022-Q2,Segunda Mano Autos Usados,2,Consideracion,21.0,900,False
+Ola 3,2022-Q2,Segunda Mano Autos Usados,2,Intencion_Compra_1a,3.67,900,False
+Ola 3,2022-Q2,Segunda Mano Autos Usados,2,Intencion_Compra_Total,8.89,900,False
+Ola 3,2022-Q2,Segunda Mano Autos Usados,2,Experiencia_Compra_Pasada,31.56,900,False
+Ola 3,2022-Q2,Segunda Mano Autos Usados,2,Experiencia_Venta_Pasada,20.33,900,False
+Ola 3,2022-Q2,Mercado Libre,3,Top_of_Mind,17.22,900,False
+Ola 3,2022-Q2,Mercado Libre,3,Awareness_Espontanea,41.0,900,False
+Ola 3,2022-Q2,Mercado Libre,3,Awareness_Asistida,79.0,900,False
+Ola 3,2022-Q2,Mercado Libre,3,Consideracion,27.33,900,False
+Ola 3,2022-Q2,Mercado Libre,3,Intencion_Compra_1a,5.89,900,False
+Ola 3,2022-Q2,Mercado Libre,3,Intencion_Compra_Total,12.22,900,False
+Ola 3,2022-Q2,Mercado Libre,3,Experiencia_Compra_Pasada,45.44,900,False
+Ola 3,2022-Q2,Mercado Libre,3,Experiencia_Venta_Pasada,30.67,900,False
+Ola 3,2022-Q2,CarShop,4,Top_of_Mind,0.11,900,False
+Ola 3,2022-Q2,CarShop,4,Awareness_Espontanea,0.78,900,False
+Ola 3,2022-Q2,CarShop,4,Awareness_Asistida,15.78,900,False
+Ola 3,2022-Q2,CarShop,4,Consideracion,2.89,900,False
+Ola 3,2022-Q2,CarShop,4,Intencion_Compra_1a,0.56,900,False
+Ola 3,2022-Q2,CarShop,4,Intencion_Compra_Total,2.67,900,False
+Ola 3,2022-Q2,CarShop,4,Experiencia_Compra_Pasada,5.22,900,False
+Ola 3,2022-Q2,CarShop,4,Experiencia_Venta_Pasada,3.22,900,False
+Ola 3,2022-Q2,Vivanuncios,5,Top_of_Mind,1.67,900,False
+Ola 3,2022-Q2,Vivanuncios,5,Awareness_Espontanea,9.89,900,False
+Ola 3,2022-Q2,Vivanuncios,5,Awareness_Asistida,62.0,900,False
+Ola 3,2022-Q2,Vivanuncios,5,Consideracion,13.89,900,False
+Ola 3,2022-Q2,Vivanuncios,5,Intencion_Compra_1a,2.67,900,False
+Ola 3,2022-Q2,Vivanuncios,5,Intencion_Compra_Total,8.0,900,False
+Ola 3,2022-Q2,Vivanuncios,5,Experiencia_Compra_Pasada,23.11,900,False
+Ola 3,2022-Q2,Vivanuncios,5,Experiencia_Venta_Pasada,13.11,900,False
+Ola 3,2022-Q2,Trovit,6,Top_of_Mind,0.11,900,False
+Ola 3,2022-Q2,Trovit,6,Awareness_Espontanea,2.11,900,False
+Ola 3,2022-Q2,Trovit,6,Awareness_Asistida,25.22,900,False
+Ola 3,2022-Q2,Trovit,6,Consideracion,3.78,900,False
+Ola 3,2022-Q2,Trovit,6,Intencion_Compra_1a,0.33,900,False
+Ola 3,2022-Q2,Trovit,6,Intencion_Compra_Total,3.0,900,False
+Ola 3,2022-Q2,Trovit,6,Experiencia_Compra_Pasada,8.11,900,False
+Ola 3,2022-Q2,Trovit,6,Experiencia_Venta_Pasada,4.11,900,False
+Ola 3,2022-Q2,VendeTuAuto.com,7,Top_of_Mind,0.44,900,False
+Ola 3,2022-Q2,VendeTuAuto.com,7,Awareness_Espontanea,2.78,900,False
+Ola 3,2022-Q2,VendeTuAuto.com,7,Awareness_Asistida,27.22,900,False
+Ola 3,2022-Q2,VendeTuAuto.com,7,Consideracion,6.33,900,False
+Ola 3,2022-Q2,VendeTuAuto.com,7,Intencion_Compra_1a,1.44,900,False
+Ola 3,2022-Q2,VendeTuAuto.com,7,Intencion_Compra_Total,5.56,900,False
+Ola 3,2022-Q2,VendeTuAuto.com,7,Experiencia_Compra_Pasada,10.11,900,False
+Ola 3,2022-Q2,VendeTuAuto.com,7,Experiencia_Venta_Pasada,5.89,900,False
+Ola 3,2022-Q2,Lotes de autos usados,8,Top_of_Mind,0.89,900,False
+Ola 3,2022-Q2,Lotes de autos usados,8,Awareness_Espontanea,3.33,900,False
+Ola 3,2022-Q2,Lotes de autos usados,8,Awareness_Asistida,41.22,900,False
+Ola 3,2022-Q2,Lotes de autos usados,8,Consideracion,13.78,900,False
+Ola 3,2022-Q2,Lotes de autos usados,8,Intencion_Compra_1a,1.22,900,False
+Ola 3,2022-Q2,Lotes de autos usados,8,Intencion_Compra_Total,4.89,900,False
+Ola 3,2022-Q2,Lotes de autos usados,8,Experiencia_Compra_Pasada,17.11,900,False
+Ola 3,2022-Q2,Lotes de autos usados,8,Experiencia_Venta_Pasada,9.78,900,False
+Ola 3,2022-Q2,Seminuevos (Agencias),9,Top_of_Mind,0.89,900,False
+Ola 3,2022-Q2,Seminuevos (Agencias),9,Awareness_Espontanea,3.89,900,False
+Ola 3,2022-Q2,Seminuevos (Agencias),9,Awareness_Asistida,59.56,900,False
+Ola 3,2022-Q2,Seminuevos (Agencias),9,Consideracion,25.44,900,False
+Ola 3,2022-Q2,Seminuevos (Agencias),9,Intencion_Compra_1a,2.78,900,False
+Ola 3,2022-Q2,Seminuevos (Agencias),9,Intencion_Compra_Total,9.22,900,False
+Ola 3,2022-Q2,Seminuevos (Agencias),9,Experiencia_Compra_Pasada,34.33,900,False
+Ola 3,2022-Q2,Seminuevos (Agencias),9,Experiencia_Venta_Pasada,28.22,900,False
+Ola 3,2022-Q2,Clasificados periódicos,10,Top_of_Mind,0.44,900,False
+Ola 3,2022-Q2,Clasificados periódicos,10,Awareness_Espontanea,2.67,900,False
+Ola 3,2022-Q2,Clasificados periódicos,10,Awareness_Asistida,38.22,900,False
+Ola 3,2022-Q2,Clasificados periódicos,10,Consideracion,9.22,900,False
+Ola 3,2022-Q2,Clasificados periódicos,10,Intencion_Compra_1a,1.0,900,False
+Ola 3,2022-Q2,Clasificados periódicos,10,Intencion_Compra_Total,3.44,900,False
+Ola 3,2022-Q2,Clasificados periódicos,10,Experiencia_Compra_Pasada,11.78,900,False
+Ola 3,2022-Q2,Clasificados periódicos,10,Experiencia_Venta_Pasada,6.11,900,False
+Ola 3,2022-Q2,Autocosmos.com,11,Top_of_Mind,1.0,900,False
+Ola 3,2022-Q2,Autocosmos.com,11,Awareness_Espontanea,7.78,900,False
+Ola 3,2022-Q2,Autocosmos.com,11,Awareness_Asistida,20.89,900,False
+Ola 3,2022-Q2,Autocosmos.com,11,Consideracion,3.56,900,False
+Ola 3,2022-Q2,Autocosmos.com,11,Intencion_Compra_1a,0.89,900,False
+Ola 3,2022-Q2,Autocosmos.com,11,Intencion_Compra_Total,3.22,900,False
+Ola 3,2022-Q2,Autocosmos.com,11,Experiencia_Compra_Pasada,8.56,900,False
+Ola 3,2022-Q2,Autocosmos.com,11,Experiencia_Venta_Pasada,6.11,900,False
+Ola 3,2022-Q2,Mercado/Tianguis,12,Top_of_Mind,1.56,900,False
+Ola 3,2022-Q2,Mercado/Tianguis,12,Awareness_Espontanea,7.33,900,False
+Ola 3,2022-Q2,Mercado/Tianguis,12,Awareness_Asistida,43.67,900,False
+Ola 3,2022-Q2,Mercado/Tianguis,12,Consideracion,19.33,900,False
+Ola 3,2022-Q2,Mercado/Tianguis,12,Intencion_Compra_1a,2.78,900,False
+Ola 3,2022-Q2,Mercado/Tianguis,12,Intencion_Compra_Total,5.89,900,False
+Ola 3,2022-Q2,Mercado/Tianguis,12,Experiencia_Compra_Pasada,14.67,900,False
+Ola 3,2022-Q2,Mercado/Tianguis,12,Experiencia_Venta_Pasada,9.56,900,False
+Ola 3,2022-Q2,Trato directo,13,Top_of_Mind,0.33,900,False
+Ola 3,2022-Q2,Trato directo,13,Awareness_Espontanea,2.0,900,False
+Ola 3,2022-Q2,Trato directo,13,Awareness_Asistida,34.67,900,False
+Ola 3,2022-Q2,Trato directo,13,Consideracion,19.44,900,False
+Ola 3,2022-Q2,Trato directo,13,Intencion_Compra_1a,3.22,900,False
+Ola 3,2022-Q2,Trato directo,13,Intencion_Compra_Total,6.67,900,False
+Ola 3,2022-Q2,Trato directo,13,Experiencia_Compra_Pasada,11.56,900,False
+Ola 3,2022-Q2,Trato directo,13,Experiencia_Venta_Pasada,9.0,900,False
+Ola 3,2022-Q2,Cambiauto.mx,14,Top_of_Mind,0.0,900,False
+Ola 3,2022-Q2,Cambiauto.mx,14,Awareness_Espontanea,0.22,900,False
+Ola 3,2022-Q2,Cambiauto.mx,14,Awareness_Asistida,14.89,900,False
+Ola 3,2022-Q2,Cambiauto.mx,14,Consideracion,2.44,900,False
+Ola 3,2022-Q2,Cambiauto.mx,14,Intencion_Compra_1a,0.56,900,False
+Ola 3,2022-Q2,Cambiauto.mx,14,Intencion_Compra_Total,1.56,900,False
+Ola 3,2022-Q2,Cambiauto.mx,14,Experiencia_Compra_Pasada,4.67,900,False
+Ola 3,2022-Q2,Cambiauto.mx,14,Experiencia_Venta_Pasada,3.44,900,False
+Ola 3,2022-Q2,Tipi Top,15,Top_of_Mind,0.0,900,False
+Ola 3,2022-Q2,Tipi Top,15,Awareness_Espontanea,0.0,900,False
+Ola 3,2022-Q2,Tipi Top,15,Awareness_Asistida,5.56,900,False
+Ola 3,2022-Q2,Tipi Top,15,Consideracion,1.0,900,False
+Ola 3,2022-Q2,Tipi Top,15,Intencion_Compra_1a,0.33,900,False
+Ola 3,2022-Q2,Tipi Top,15,Intencion_Compra_Total,1.0,900,False
+Ola 3,2022-Q2,Tipi Top,15,Experiencia_Compra_Pasada,2.33,900,False
+Ola 3,2022-Q2,Tipi Top,15,Experiencia_Venta_Pasada,1.22,900,False
+Ola 3,2022-Q2,soloautos.mx,16,Top_of_Mind,3.67,900,False
+Ola 3,2022-Q2,soloautos.mx,16,Awareness_Espontanea,13.0,900,False
+Ola 3,2022-Q2,soloautos.mx,16,Awareness_Asistida,49.78,900,False
+Ola 3,2022-Q2,soloautos.mx,16,Consideracion,12.56,900,False
+Ola 3,2022-Q2,soloautos.mx,16,Intencion_Compra_1a,2.0,900,False
+Ola 3,2022-Q2,soloautos.mx,16,Intencion_Compra_Total,6.89,900,False
+Ola 3,2022-Q2,soloautos.mx,16,Experiencia_Compra_Pasada,23.67,900,False
+Ola 3,2022-Q2,soloautos.mx,16,Experiencia_Venta_Pasada,16.44,900,False
+Ola 3,2022-Q2,Car One,17,Top_of_Mind,0.78,900,False
+Ola 3,2022-Q2,Car One,17,Awareness_Espontanea,2.33,900,False
+Ola 3,2022-Q2,Car One,17,Awareness_Asistida,24.33,900,False
+Ola 3,2022-Q2,Car One,17,Consideracion,5.0,900,False
+Ola 3,2022-Q2,Car One,17,Intencion_Compra_1a,0.67,900,False
+Ola 3,2022-Q2,Car One,17,Intencion_Compra_Total,3.0,900,False
+Ola 3,2022-Q2,Car One,17,Experiencia_Compra_Pasada,9.33,900,False
+Ola 3,2022-Q2,Car One,17,Experiencia_Venta_Pasada,6.0,900,False
+Ola 3,2022-Q2,Facebook Marketplace,78,Top_of_Mind,1.44,900,False
+Ola 3,2022-Q2,Facebook Marketplace,78,Awareness_Espontanea,5.22,900,False
+Ola 3,2022-Q2,Facebook Marketplace,78,Awareness_Asistida,0.0,900,False
+Ola 3,2022-Q2,Facebook Marketplace,78,Consideracion,,900,False
+Ola 3,2022-Q2,Facebook Marketplace,78,Intencion_Compra_1a,,900,False
+Ola 3,2022-Q2,Facebook Marketplace,78,Intencion_Compra_Total,0.0,900,False
+Ola 3,2022-Q2,Facebook Marketplace,78,Experiencia_Compra_Pasada,,900,False
+Ola 3,2022-Q2,Facebook Marketplace,78,Experiencia_Venta_Pasada,,900,False
+Ola 3,2022-Q2,O|X Autos,102,Top_of_Mind,1.44,900,False
+Ola 3,2022-Q2,O|X Autos,102,Awareness_Espontanea,4.0,900,False
+Ola 3,2022-Q2,O|X Autos,102,Awareness_Asistida,14.78,900,False
+Ola 3,2022-Q2,O|X Autos,102,Consideracion,3.78,900,False
+Ola 3,2022-Q2,O|X Autos,102,Intencion_Compra_1a,1.22,900,False
+Ola 3,2022-Q2,O|X Autos,102,Intencion_Compra_Total,3.44,900,False
+Ola 3,2022-Q2,O|X Autos,102,Experiencia_Compra_Pasada,5.89,900,False
+Ola 3,2022-Q2,O|X Autos,102,Experiencia_Venta_Pasada,4.33,900,False
+Ola 3,2022-Q2,SemiNuevos.com,111,Top_of_Mind,1.0,900,False
+Ola 3,2022-Q2,SemiNuevos.com,111,Awareness_Espontanea,3.89,900,False
+Ola 3,2022-Q2,SemiNuevos.com,111,Awareness_Asistida,0.0,900,False
+Ola 3,2022-Q2,SemiNuevos.com,111,Consideracion,,900,False
+Ola 3,2022-Q2,SemiNuevos.com,111,Intencion_Compra_1a,,900,False
+Ola 3,2022-Q2,SemiNuevos.com,111,Intencion_Compra_Total,0.0,900,False
+Ola 3,2022-Q2,SemiNuevos.com,111,Experiencia_Compra_Pasada,,900,False
+Ola 3,2022-Q2,SemiNuevos.com,111,Experiencia_Venta_Pasada,,900,False
+Ola 3,2022-Q2,Odetta,384,Top_of_Mind,0.0,900,False
+Ola 3,2022-Q2,Odetta,384,Awareness_Espontanea,0.22,900,False
+Ola 3,2022-Q2,Odetta,384,Awareness_Asistida,0.0,900,False
+Ola 3,2022-Q2,Odetta,384,Consideracion,,900,False
+Ola 3,2022-Q2,Odetta,384,Intencion_Compra_1a,,900,False
+Ola 3,2022-Q2,Odetta,384,Intencion_Compra_Total,0.0,900,False
+Ola 3,2022-Q2,Odetta,384,Experiencia_Compra_Pasada,,900,False
+Ola 3,2022-Q2,Odetta,384,Experiencia_Venta_Pasada,,900,False
+Ola 3,2022-Q2,Creditas,457,Top_of_Mind,0.0,900,False
+Ola 3,2022-Q2,Creditas,457,Awareness_Espontanea,0.0,900,False
+Ola 3,2022-Q2,Creditas,457,Awareness_Asistida,0.0,900,False
+Ola 3,2022-Q2,Creditas,457,Consideracion,,900,False
+Ola 3,2022-Q2,Creditas,457,Intencion_Compra_1a,,900,False
+Ola 3,2022-Q2,Creditas,457,Intencion_Compra_Total,0.0,900,False
+Ola 3,2022-Q2,Creditas,457,Experiencia_Compra_Pasada,,900,False
+Ola 3,2022-Q2,Creditas,457,Experiencia_Venta_Pasada,,900,False
+Ola 3,2022-Q2,Caranty,595,Top_of_Mind,0.0,900,False
+Ola 3,2022-Q2,Caranty,595,Awareness_Espontanea,0.0,900,False
+Ola 3,2022-Q2,Caranty,595,Awareness_Asistida,0.0,900,False
+Ola 3,2022-Q2,Caranty,595,Consideracion,,900,False
+Ola 3,2022-Q2,Caranty,595,Intencion_Compra_1a,,900,False
+Ola 3,2022-Q2,Caranty,595,Intencion_Compra_Total,0.0,900,False
+Ola 3,2022-Q2,Caranty,595,Experiencia_Compra_Pasada,,900,False
+Ola 3,2022-Q2,Caranty,595,Experiencia_Venta_Pasada,,900,False
+Ola 3,2022-Q2,Wahu,820,Top_of_Mind,0.0,900,False
+Ola 3,2022-Q2,Wahu,820,Awareness_Espontanea,0.0,900,False
+Ola 3,2022-Q2,Wahu,820,Awareness_Asistida,0.0,900,False
+Ola 3,2022-Q2,Wahu,820,Consideracion,,900,False
+Ola 3,2022-Q2,Wahu,820,Intencion_Compra_1a,,900,False
+Ola 3,2022-Q2,Wahu,820,Intencion_Compra_Total,0.0,900,False
+Ola 3,2022-Q2,Wahu,820,Experiencia_Compra_Pasada,,900,False
+Ola 3,2022-Q2,Wahu,820,Experiencia_Venta_Pasada,,900,False
+Ola 4,2022-Q3,KAVAK,1,Top_of_Mind,23.44,900,True
+Ola 4,2022-Q3,KAVAK,1,Awareness_Espontanea,36.89,900,True
+Ola 4,2022-Q3,KAVAK,1,Awareness_Asistida,59.33,900,True
+Ola 4,2022-Q3,KAVAK,1,Consideracion,11.56,900,True
+Ola 4,2022-Q3,KAVAK,1,Intencion_Compra_1a,3.22,900,True
+Ola 4,2022-Q3,KAVAK,1,Intencion_Compra_Total,11.22,900,True
+Ola 4,2022-Q3,KAVAK,1,NPS_Score,29.4,534,True
+Ola 4,2022-Q3,KAVAK,1,NPS_Promotores_pct,29.11,900,True
+Ola 4,2022-Q3,KAVAK,1,NPS_Detractores_pct,11.67,900,True
+Ola 4,2022-Q3,KAVAK,1,NPS_Top2box_pct_recomendadores,49.06,534,True
+Ola 4,2022-Q3,KAVAK,1,Brand_Satisfaction_Media,8.26,534,True
+Ola 4,2022-Q3,KAVAK,1,Brand_Satisfaction_Top2box,52.62,534,True
+Ola 4,2022-Q3,KAVAK,1,Brand_Affinity_Media,7.45,534,True
+Ola 4,2022-Q3,KAVAK,1,Brand_Affinity_Top2box,39.7,534,True
+Ola 4,2022-Q3,KAVAK,1,Experiencia_Compra_Pasada,32.89,900,True
+Ola 4,2022-Q3,KAVAK,1,Experiencia_Venta_Pasada,27.78,900,True
+Ola 4,2022-Q3,Segunda Mano Autos Usados,2,Top_of_Mind,6.0,900,False
+Ola 4,2022-Q3,Segunda Mano Autos Usados,2,Awareness_Espontanea,23.22,900,False
+Ola 4,2022-Q3,Segunda Mano Autos Usados,2,Awareness_Asistida,53.78,900,False
+Ola 4,2022-Q3,Segunda Mano Autos Usados,2,Consideracion,13.22,900,False
+Ola 4,2022-Q3,Segunda Mano Autos Usados,2,Intencion_Compra_1a,1.78,900,False
+Ola 4,2022-Q3,Segunda Mano Autos Usados,2,Intencion_Compra_Total,6.33,900,False
+Ola 4,2022-Q3,Segunda Mano Autos Usados,2,Experiencia_Compra_Pasada,18.89,900,False
+Ola 4,2022-Q3,Segunda Mano Autos Usados,2,Experiencia_Venta_Pasada,10.44,900,False
+Ola 4,2022-Q3,Mercado Libre,3,Top_of_Mind,13.56,900,False
+Ola 4,2022-Q3,Mercado Libre,3,Awareness_Espontanea,41.33,900,False
+Ola 4,2022-Q3,Mercado Libre,3,Awareness_Asistida,77.44,900,False
+Ola 4,2022-Q3,Mercado Libre,3,Consideracion,19.44,900,False
+Ola 4,2022-Q3,Mercado Libre,3,Intencion_Compra_1a,3.89,900,False
+Ola 4,2022-Q3,Mercado Libre,3,Intencion_Compra_Total,11.0,900,False
+Ola 4,2022-Q3,Mercado Libre,3,Experiencia_Compra_Pasada,43.22,900,False
+Ola 4,2022-Q3,Mercado Libre,3,Experiencia_Venta_Pasada,27.33,900,False
+Ola 4,2022-Q3,CarShop,4,Top_of_Mind,0.0,900,False
+Ola 4,2022-Q3,CarShop,4,Awareness_Espontanea,0.11,900,False
+Ola 4,2022-Q3,CarShop,4,Awareness_Asistida,8.78,900,False
+Ola 4,2022-Q3,CarShop,4,Consideracion,0.78,900,False
+Ola 4,2022-Q3,CarShop,4,Intencion_Compra_1a,0.33,900,False
+Ola 4,2022-Q3,CarShop,4,Intencion_Compra_Total,0.89,900,False
+Ola 4,2022-Q3,CarShop,4,Experiencia_Compra_Pasada,2.33,900,False
+Ola 4,2022-Q3,CarShop,4,Experiencia_Venta_Pasada,1.22,900,False
+Ola 4,2022-Q3,Vivanuncios,5,Top_of_Mind,1.22,900,False
+Ola 4,2022-Q3,Vivanuncios,5,Awareness_Espontanea,5.33,900,False
+Ola 4,2022-Q3,Vivanuncios,5,Awareness_Asistida,46.44,900,False
+Ola 4,2022-Q3,Vivanuncios,5,Consideracion,6.67,900,False
+Ola 4,2022-Q3,Vivanuncios,5,Intencion_Compra_1a,1.44,900,False
+Ola 4,2022-Q3,Vivanuncios,5,Intencion_Compra_Total,5.0,900,False
+Ola 4,2022-Q3,Vivanuncios,5,Experiencia_Compra_Pasada,14.22,900,False
+Ola 4,2022-Q3,Vivanuncios,5,Experiencia_Venta_Pasada,7.56,900,False
+Ola 4,2022-Q3,Trovit,6,Top_of_Mind,0.0,900,False
+Ola 4,2022-Q3,Trovit,6,Awareness_Espontanea,1.0,900,False
+Ola 4,2022-Q3,Trovit,6,Awareness_Asistida,20.22,900,False
+Ola 4,2022-Q3,Trovit,6,Consideracion,1.67,900,False
+Ola 4,2022-Q3,Trovit,6,Intencion_Compra_1a,0.56,900,False
+Ola 4,2022-Q3,Trovit,6,Intencion_Compra_Total,1.78,900,False
+Ola 4,2022-Q3,Trovit,6,Experiencia_Compra_Pasada,5.11,900,False
+Ola 4,2022-Q3,Trovit,6,Experiencia_Venta_Pasada,2.44,900,False
+Ola 4,2022-Q3,VendeTuAuto.com,7,Top_of_Mind,0.44,900,False
+Ola 4,2022-Q3,VendeTuAuto.com,7,Awareness_Espontanea,2.44,900,False
+Ola 4,2022-Q3,VendeTuAuto.com,7,Awareness_Asistida,20.78,900,False
+Ola 4,2022-Q3,VendeTuAuto.com,7,Consideracion,3.0,900,False
+Ola 4,2022-Q3,VendeTuAuto.com,7,Intencion_Compra_1a,0.67,900,False
+Ola 4,2022-Q3,VendeTuAuto.com,7,Intencion_Compra_Total,3.11,900,False
+Ola 4,2022-Q3,VendeTuAuto.com,7,Experiencia_Compra_Pasada,4.44,900,False
+Ola 4,2022-Q3,VendeTuAuto.com,7,Experiencia_Venta_Pasada,2.56,900,False
+Ola 4,2022-Q3,Lotes de autos usados,8,Top_of_Mind,1.44,900,False
+Ola 4,2022-Q3,Lotes de autos usados,8,Awareness_Espontanea,6.78,900,False
+Ola 4,2022-Q3,Lotes de autos usados,8,Awareness_Asistida,48.44,900,False
+Ola 4,2022-Q3,Lotes de autos usados,8,Consideracion,15.44,900,False
+Ola 4,2022-Q3,Lotes de autos usados,8,Intencion_Compra_1a,2.22,900,False
+Ola 4,2022-Q3,Lotes de autos usados,8,Intencion_Compra_Total,6.67,900,False
+Ola 4,2022-Q3,Lotes de autos usados,8,Experiencia_Compra_Pasada,17.89,900,False
+Ola 4,2022-Q3,Lotes de autos usados,8,Experiencia_Venta_Pasada,10.78,900,False
+Ola 4,2022-Q3,Seminuevos (Agencias),9,Top_of_Mind,2.22,900,False
+Ola 4,2022-Q3,Seminuevos (Agencias),9,Awareness_Espontanea,8.0,900,False
+Ola 4,2022-Q3,Seminuevos (Agencias),9,Awareness_Asistida,67.22,900,False
+Ola 4,2022-Q3,Seminuevos (Agencias),9,Consideracion,28.44,900,False
+Ola 4,2022-Q3,Seminuevos (Agencias),9,Intencion_Compra_1a,5.44,900,False
+Ola 4,2022-Q3,Seminuevos (Agencias),9,Intencion_Compra_Total,14.0,900,False
+Ola 4,2022-Q3,Seminuevos (Agencias),9,Experiencia_Compra_Pasada,37.0,900,False
+Ola 4,2022-Q3,Seminuevos (Agencias),9,Experiencia_Venta_Pasada,31.0,900,False
+Ola 4,2022-Q3,Clasificados periódicos,10,Top_of_Mind,0.22,900,False
+Ola 4,2022-Q3,Clasificados periódicos,10,Awareness_Espontanea,3.44,900,False
+Ola 4,2022-Q3,Clasificados periódicos,10,Awareness_Asistida,31.78,900,False
+Ola 4,2022-Q3,Clasificados periódicos,10,Consideracion,6.89,900,False
+Ola 4,2022-Q3,Clasificados periódicos,10,Intencion_Compra_1a,0.44,900,False
+Ola 4,2022-Q3,Clasificados periódicos,10,Intencion_Compra_Total,2.67,900,False
+Ola 4,2022-Q3,Clasificados periódicos,10,Experiencia_Compra_Pasada,9.78,900,False
+Ola 4,2022-Q3,Clasificados periódicos,10,Experiencia_Venta_Pasada,4.67,900,False
+Ola 4,2022-Q3,Autocosmos.com,11,Top_of_Mind,0.78,900,False
+Ola 4,2022-Q3,Autocosmos.com,11,Awareness_Espontanea,4.78,900,False
+Ola 4,2022-Q3,Autocosmos.com,11,Awareness_Asistida,17.78,900,False
+Ola 4,2022-Q3,Autocosmos.com,11,Consideracion,1.67,900,False
+Ola 4,2022-Q3,Autocosmos.com,11,Intencion_Compra_1a,0.44,900,False
+Ola 4,2022-Q3,Autocosmos.com,11,Intencion_Compra_Total,1.78,900,False
+Ola 4,2022-Q3,Autocosmos.com,11,Experiencia_Compra_Pasada,6.44,900,False
+Ola 4,2022-Q3,Autocosmos.com,11,Experiencia_Venta_Pasada,3.33,900,False
+Ola 4,2022-Q3,Mercado/Tianguis,12,Top_of_Mind,1.56,900,False
+Ola 4,2022-Q3,Mercado/Tianguis,12,Awareness_Espontanea,8.89,900,False
+Ola 4,2022-Q3,Mercado/Tianguis,12,Awareness_Asistida,53.0,900,False
+Ola 4,2022-Q3,Mercado/Tianguis,12,Consideracion,18.0,900,False
+Ola 4,2022-Q3,Mercado/Tianguis,12,Intencion_Compra_1a,3.56,900,False
+Ola 4,2022-Q3,Mercado/Tianguis,12,Intencion_Compra_Total,7.67,900,False
+Ola 4,2022-Q3,Mercado/Tianguis,12,Experiencia_Compra_Pasada,18.11,900,False
+Ola 4,2022-Q3,Mercado/Tianguis,12,Experiencia_Venta_Pasada,10.11,900,False
+Ola 4,2022-Q3,Trato directo,13,Top_of_Mind,0.44,900,False
+Ola 4,2022-Q3,Trato directo,13,Awareness_Espontanea,2.89,900,False
+Ola 4,2022-Q3,Trato directo,13,Awareness_Asistida,35.78,900,False
+Ola 4,2022-Q3,Trato directo,13,Consideracion,20.78,900,False
+Ola 4,2022-Q3,Trato directo,13,Intencion_Compra_1a,4.44,900,False
+Ola 4,2022-Q3,Trato directo,13,Intencion_Compra_Total,7.67,900,False
+Ola 4,2022-Q3,Trato directo,13,Experiencia_Compra_Pasada,11.44,900,False
+Ola 4,2022-Q3,Trato directo,13,Experiencia_Venta_Pasada,8.33,900,False
+Ola 4,2022-Q3,Cambiauto.mx,14,Top_of_Mind,0.0,900,False
+Ola 4,2022-Q3,Cambiauto.mx,14,Awareness_Espontanea,0.0,900,False
+Ola 4,2022-Q3,Cambiauto.mx,14,Awareness_Asistida,9.78,900,False
+Ola 4,2022-Q3,Cambiauto.mx,14,Consideracion,0.67,900,False
+Ola 4,2022-Q3,Cambiauto.mx,14,Intencion_Compra_1a,0.22,900,False
+Ola 4,2022-Q3,Cambiauto.mx,14,Intencion_Compra_Total,0.89,900,False
+Ola 4,2022-Q3,Cambiauto.mx,14,Experiencia_Compra_Pasada,2.44,900,False
+Ola 4,2022-Q3,Cambiauto.mx,14,Experiencia_Venta_Pasada,1.22,900,False
+Ola 4,2022-Q3,Tipi Top,15,Top_of_Mind,0.0,900,False
+Ola 4,2022-Q3,Tipi Top,15,Awareness_Espontanea,0.0,900,False
+Ola 4,2022-Q3,Tipi Top,15,Awareness_Asistida,2.44,900,False
+Ola 4,2022-Q3,Tipi Top,15,Consideracion,0.33,900,False
+Ola 4,2022-Q3,Tipi Top,15,Intencion_Compra_1a,0.22,900,False
+Ola 4,2022-Q3,Tipi Top,15,Intencion_Compra_Total,0.33,900,False
+Ola 4,2022-Q3,Tipi Top,15,Experiencia_Compra_Pasada,1.0,900,False
+Ola 4,2022-Q3,Tipi Top,15,Experiencia_Venta_Pasada,0.22,900,False
+Ola 4,2022-Q3,soloautos.mx,16,Top_of_Mind,0.78,900,False
+Ola 4,2022-Q3,soloautos.mx,16,Awareness_Espontanea,6.67,900,False
+Ola 4,2022-Q3,soloautos.mx,16,Awareness_Asistida,34.0,900,False
+Ola 4,2022-Q3,soloautos.mx,16,Consideracion,4.44,900,False
+Ola 4,2022-Q3,soloautos.mx,16,Intencion_Compra_1a,1.0,900,False
+Ola 4,2022-Q3,soloautos.mx,16,Intencion_Compra_Total,3.56,900,False
+Ola 4,2022-Q3,soloautos.mx,16,Experiencia_Compra_Pasada,11.56,900,False
+Ola 4,2022-Q3,soloautos.mx,16,Experiencia_Venta_Pasada,6.78,900,False
+Ola 4,2022-Q3,Car One,17,Top_of_Mind,0.0,900,False
+Ola 4,2022-Q3,Car One,17,Awareness_Espontanea,0.0,900,False
+Ola 4,2022-Q3,Car One,17,Awareness_Asistida,6.33,900,False
+Ola 4,2022-Q3,Car One,17,Consideracion,0.56,900,False
+Ola 4,2022-Q3,Car One,17,Intencion_Compra_1a,0.33,900,False
+Ola 4,2022-Q3,Car One,17,Intencion_Compra_Total,1.33,900,False
+Ola 4,2022-Q3,Car One,17,Experiencia_Compra_Pasada,1.0,900,False
+Ola 4,2022-Q3,Car One,17,Experiencia_Venta_Pasada,0.56,900,False
+Ola 4,2022-Q3,Facebook Marketplace,78,Top_of_Mind,0.89,900,False
+Ola 4,2022-Q3,Facebook Marketplace,78,Awareness_Espontanea,6.78,900,False
+Ola 4,2022-Q3,Facebook Marketplace,78,Awareness_Asistida,47.56,900,False
+Ola 4,2022-Q3,Facebook Marketplace,78,Consideracion,14.22,900,False
+Ola 4,2022-Q3,Facebook Marketplace,78,Intencion_Compra_1a,4.56,900,False
+Ola 4,2022-Q3,Facebook Marketplace,78,Intencion_Compra_Total,7.33,900,False
+Ola 4,2022-Q3,Facebook Marketplace,78,Experiencia_Compra_Pasada,24.0,900,False
+Ola 4,2022-Q3,Facebook Marketplace,78,Experiencia_Venta_Pasada,14.11,900,False
+Ola 4,2022-Q3,O|X Autos,102,Top_of_Mind,0.11,900,False
+Ola 4,2022-Q3,O|X Autos,102,Awareness_Espontanea,3.11,900,False
+Ola 4,2022-Q3,O|X Autos,102,Awareness_Asistida,10.22,900,False
+Ola 4,2022-Q3,O|X Autos,102,Consideracion,0.89,900,False
+Ola 4,2022-Q3,O|X Autos,102,Intencion_Compra_1a,0.33,900,False
+Ola 4,2022-Q3,O|X Autos,102,Intencion_Compra_Total,1.78,900,False
+Ola 4,2022-Q3,O|X Autos,102,Experiencia_Compra_Pasada,2.67,900,False
+Ola 4,2022-Q3,O|X Autos,102,Experiencia_Venta_Pasada,1.67,900,False
+Ola 4,2022-Q3,SemiNuevos.com,111,Top_of_Mind,0.0,900,False
+Ola 4,2022-Q3,SemiNuevos.com,111,Awareness_Espontanea,2.33,900,False
+Ola 4,2022-Q3,SemiNuevos.com,111,Awareness_Asistida,0.0,900,False
+Ola 4,2022-Q3,SemiNuevos.com,111,Consideracion,,900,False
+Ola 4,2022-Q3,SemiNuevos.com,111,Intencion_Compra_1a,,900,False
+Ola 4,2022-Q3,SemiNuevos.com,111,Intencion_Compra_Total,0.0,900,False
+Ola 4,2022-Q3,SemiNuevos.com,111,Experiencia_Compra_Pasada,,900,False
+Ola 4,2022-Q3,SemiNuevos.com,111,Experiencia_Venta_Pasada,,900,False
+Ola 4,2022-Q3,Odetta,384,Top_of_Mind,0.0,900,False
+Ola 4,2022-Q3,Odetta,384,Awareness_Espontanea,0.11,900,False
+Ola 4,2022-Q3,Odetta,384,Awareness_Asistida,0.0,900,False
+Ola 4,2022-Q3,Odetta,384,Consideracion,,900,False
+Ola 4,2022-Q3,Odetta,384,Intencion_Compra_1a,,900,False
+Ola 4,2022-Q3,Odetta,384,Intencion_Compra_Total,0.0,900,False
+Ola 4,2022-Q3,Odetta,384,Experiencia_Compra_Pasada,,900,False
+Ola 4,2022-Q3,Odetta,384,Experiencia_Venta_Pasada,,900,False
+Ola 4,2022-Q3,Creditas,457,Top_of_Mind,0.0,900,False
+Ola 4,2022-Q3,Creditas,457,Awareness_Espontanea,0.0,900,False
+Ola 4,2022-Q3,Creditas,457,Awareness_Asistida,2.67,900,False
+Ola 4,2022-Q3,Creditas,457,Consideracion,0.33,900,False
+Ola 4,2022-Q3,Creditas,457,Intencion_Compra_1a,0.22,900,False
+Ola 4,2022-Q3,Creditas,457,Intencion_Compra_Total,0.67,900,False
+Ola 4,2022-Q3,Creditas,457,Experiencia_Compra_Pasada,0.67,900,False
+Ola 4,2022-Q3,Creditas,457,Experiencia_Venta_Pasada,0.33,900,False
+Ola 4,2022-Q3,Caranty,595,Top_of_Mind,0.0,900,False
+Ola 4,2022-Q3,Caranty,595,Awareness_Espontanea,0.0,900,False
+Ola 4,2022-Q3,Caranty,595,Awareness_Asistida,0.0,900,False
+Ola 4,2022-Q3,Caranty,595,Consideracion,,900,False
+Ola 4,2022-Q3,Caranty,595,Intencion_Compra_1a,,900,False
+Ola 4,2022-Q3,Caranty,595,Intencion_Compra_Total,0.0,900,False
+Ola 4,2022-Q3,Caranty,595,Experiencia_Compra_Pasada,,900,False
+Ola 4,2022-Q3,Caranty,595,Experiencia_Venta_Pasada,,900,False
+Ola 4,2022-Q3,Wahu,820,Top_of_Mind,0.0,900,False
+Ola 4,2022-Q3,Wahu,820,Awareness_Espontanea,0.0,900,False
+Ola 4,2022-Q3,Wahu,820,Awareness_Asistida,0.0,900,False
+Ola 4,2022-Q3,Wahu,820,Consideracion,,900,False
+Ola 4,2022-Q3,Wahu,820,Intencion_Compra_1a,,900,False
+Ola 4,2022-Q3,Wahu,820,Intencion_Compra_Total,0.0,900,False
+Ola 4,2022-Q3,Wahu,820,Experiencia_Compra_Pasada,,900,False
+Ola 4,2022-Q3,Wahu,820,Experiencia_Venta_Pasada,,900,False
+Ola 5,2022-Q4,KAVAK,1,Top_of_Mind,35.33,900,True
+Ola 5,2022-Q4,KAVAK,1,Awareness_Espontanea,46.11,900,True
+Ola 5,2022-Q4,KAVAK,1,Awareness_Asistida,73.0,900,True
+Ola 5,2022-Q4,KAVAK,1,Consideracion,21.89,900,True
+Ola 5,2022-Q4,KAVAK,1,Intencion_Compra_1a,7.78,900,True
+Ola 5,2022-Q4,KAVAK,1,Intencion_Compra_Total,15.56,900,True
+Ola 5,2022-Q4,KAVAK,1,NPS_Score,45.21,657,True
+Ola 5,2022-Q4,KAVAK,1,NPS_Promotores_pct,42.89,900,True
+Ola 5,2022-Q4,KAVAK,1,NPS_Detractores_pct,9.89,900,True
+Ola 5,2022-Q4,KAVAK,1,NPS_Top2box_pct_recomendadores,58.75,657,True
+Ola 5,2022-Q4,KAVAK,1,Brand_Satisfaction_Media,8.64,657,True
+Ola 5,2022-Q4,KAVAK,1,Brand_Satisfaction_Top2box,61.49,657,True
+Ola 5,2022-Q4,KAVAK,1,Brand_Affinity_Media,7.94,657,True
+Ola 5,2022-Q4,KAVAK,1,Brand_Affinity_Top2box,47.95,657,True
+Ola 5,2022-Q4,KAVAK,1,Experiencia_Compra_Pasada,44.11,900,True
+Ola 5,2022-Q4,KAVAK,1,Experiencia_Venta_Pasada,38.22,900,True
+Ola 5,2022-Q4,Segunda Mano Autos Usados,2,Top_of_Mind,3.78,900,False
+Ola 5,2022-Q4,Segunda Mano Autos Usados,2,Awareness_Espontanea,16.22,900,False
+Ola 5,2022-Q4,Segunda Mano Autos Usados,2,Awareness_Asistida,61.78,900,False
+Ola 5,2022-Q4,Segunda Mano Autos Usados,2,Consideracion,14.22,900,False
+Ola 5,2022-Q4,Segunda Mano Autos Usados,2,Intencion_Compra_1a,2.56,900,False
+Ola 5,2022-Q4,Segunda Mano Autos Usados,2,Intencion_Compra_Total,7.0,900,False
+Ola 5,2022-Q4,Segunda Mano Autos Usados,2,Experiencia_Compra_Pasada,23.56,900,False
+Ola 5,2022-Q4,Segunda Mano Autos Usados,2,Experiencia_Venta_Pasada,13.22,900,False
+Ola 5,2022-Q4,Mercado Libre,3,Top_of_Mind,6.44,900,False
+Ola 5,2022-Q4,Mercado Libre,3,Awareness_Espontanea,27.67,900,False
+Ola 5,2022-Q4,Mercado Libre,3,Awareness_Asistida,74.78,900,False
+Ola 5,2022-Q4,Mercado Libre,3,Consideracion,17.33,900,False
+Ola 5,2022-Q4,Mercado Libre,3,Intencion_Compra_1a,3.89,900,False
+Ola 5,2022-Q4,Mercado Libre,3,Intencion_Compra_Total,10.22,900,False
+Ola 5,2022-Q4,Mercado Libre,3,Experiencia_Compra_Pasada,35.56,900,False
+Ola 5,2022-Q4,Mercado Libre,3,Experiencia_Venta_Pasada,21.11,900,False
+Ola 5,2022-Q4,CarShop,4,Top_of_Mind,0.11,900,False
+Ola 5,2022-Q4,CarShop,4,Awareness_Espontanea,0.33,900,False
+Ola 5,2022-Q4,CarShop,4,Awareness_Asistida,10.33,900,False
+Ola 5,2022-Q4,CarShop,4,Consideracion,1.22,900,False
+Ola 5,2022-Q4,CarShop,4,Intencion_Compra_1a,0.44,900,False
+Ola 5,2022-Q4,CarShop,4,Intencion_Compra_Total,1.33,900,False
+Ola 5,2022-Q4,CarShop,4,Experiencia_Compra_Pasada,2.89,900,False
+Ola 5,2022-Q4,CarShop,4,Experiencia_Venta_Pasada,1.11,900,False
+Ola 5,2022-Q4,Vivanuncios,5,Top_of_Mind,0.44,900,False
+Ola 5,2022-Q4,Vivanuncios,5,Awareness_Espontanea,3.56,900,False
+Ola 5,2022-Q4,Vivanuncios,5,Awareness_Asistida,45.56,900,False
+Ola 5,2022-Q4,Vivanuncios,5,Consideracion,5.89,900,False
+Ola 5,2022-Q4,Vivanuncios,5,Intencion_Compra_1a,1.11,900,False
+Ola 5,2022-Q4,Vivanuncios,5,Intencion_Compra_Total,3.56,900,False
+Ola 5,2022-Q4,Vivanuncios,5,Experiencia_Compra_Pasada,11.33,900,False
+Ola 5,2022-Q4,Vivanuncios,5,Experiencia_Venta_Pasada,5.0,900,False
+Ola 5,2022-Q4,Trovit,6,Top_of_Mind,0.0,900,False
+Ola 5,2022-Q4,Trovit,6,Awareness_Espontanea,0.22,900,False
+Ola 5,2022-Q4,Trovit,6,Awareness_Asistida,19.44,900,False
+Ola 5,2022-Q4,Trovit,6,Consideracion,2.44,900,False
+Ola 5,2022-Q4,Trovit,6,Intencion_Compra_1a,0.33,900,False
+Ola 5,2022-Q4,Trovit,6,Intencion_Compra_Total,2.0,900,False
+Ola 5,2022-Q4,Trovit,6,Experiencia_Compra_Pasada,5.11,900,False
+Ola 5,2022-Q4,Trovit,6,Experiencia_Venta_Pasada,3.0,900,False
+Ola 5,2022-Q4,VendeTuAuto.com,7,Top_of_Mind,0.11,900,False
+Ola 5,2022-Q4,VendeTuAuto.com,7,Awareness_Espontanea,1.0,900,False
+Ola 5,2022-Q4,VendeTuAuto.com,7,Awareness_Asistida,0.0,900,False
+Ola 5,2022-Q4,VendeTuAuto.com,7,Consideracion,,900,False
+Ola 5,2022-Q4,VendeTuAuto.com,7,Intencion_Compra_1a,,900,False
+Ola 5,2022-Q4,VendeTuAuto.com,7,Intencion_Compra_Total,0.0,900,False
+Ola 5,2022-Q4,VendeTuAuto.com,7,Experiencia_Compra_Pasada,,900,False
+Ola 5,2022-Q4,VendeTuAuto.com,7,Experiencia_Venta_Pasada,,900,False
+Ola 5,2022-Q4,Lotes de autos usados,8,Top_of_Mind,0.22,900,False
+Ola 5,2022-Q4,Lotes de autos usados,8,Awareness_Espontanea,1.33,900,False
+Ola 5,2022-Q4,Lotes de autos usados,8,Awareness_Asistida,45.22,900,False
+Ola 5,2022-Q4,Lotes de autos usados,8,Consideracion,15.0,900,False
+Ola 5,2022-Q4,Lotes de autos usados,8,Intencion_Compra_1a,2.67,900,False
+Ola 5,2022-Q4,Lotes de autos usados,8,Intencion_Compra_Total,6.0,900,False
+Ola 5,2022-Q4,Lotes de autos usados,8,Experiencia_Compra_Pasada,16.33,900,False
+Ola 5,2022-Q4,Lotes de autos usados,8,Experiencia_Venta_Pasada,9.33,900,False
+Ola 5,2022-Q4,Seminuevos (Agencias),9,Top_of_Mind,0.78,900,False
+Ola 5,2022-Q4,Seminuevos (Agencias),9,Awareness_Espontanea,1.0,900,False
+Ola 5,2022-Q4,Seminuevos (Agencias),9,Awareness_Asistida,65.44,900,False
+Ola 5,2022-Q4,Seminuevos (Agencias),9,Consideracion,24.33,900,False
+Ola 5,2022-Q4,Seminuevos (Agencias),9,Intencion_Compra_1a,4.22,900,False
+Ola 5,2022-Q4,Seminuevos (Agencias),9,Intencion_Compra_Total,12.22,900,False
+Ola 5,2022-Q4,Seminuevos (Agencias),9,Experiencia_Compra_Pasada,34.78,900,False
+Ola 5,2022-Q4,Seminuevos (Agencias),9,Experiencia_Venta_Pasada,27.11,900,False
+Ola 5,2022-Q4,Clasificados periódicos,10,Top_of_Mind,0.22,900,False
+Ola 5,2022-Q4,Clasificados periódicos,10,Awareness_Espontanea,1.22,900,False
+Ola 5,2022-Q4,Clasificados periódicos,10,Awareness_Asistida,30.44,900,False
+Ola 5,2022-Q4,Clasificados periódicos,10,Consideracion,6.44,900,False
+Ola 5,2022-Q4,Clasificados periódicos,10,Intencion_Compra_1a,0.56,900,False
+Ola 5,2022-Q4,Clasificados periódicos,10,Intencion_Compra_Total,1.78,900,False
+Ola 5,2022-Q4,Clasificados periódicos,10,Experiencia_Compra_Pasada,8.44,900,False
+Ola 5,2022-Q4,Clasificados periódicos,10,Experiencia_Venta_Pasada,4.56,900,False
+Ola 5,2022-Q4,Autocosmos.com,11,Top_of_Mind,0.44,900,False
+Ola 5,2022-Q4,Autocosmos.com,11,Awareness_Espontanea,4.78,900,False
+Ola 5,2022-Q4,Autocosmos.com,11,Awareness_Asistida,15.56,900,False
+Ola 5,2022-Q4,Autocosmos.com,11,Consideracion,2.67,900,False
+Ola 5,2022-Q4,Autocosmos.com,11,Intencion_Compra_1a,0.67,900,False
+Ola 5,2022-Q4,Autocosmos.com,11,Intencion_Compra_Total,2.0,900,False
+Ola 5,2022-Q4,Autocosmos.com,11,Experiencia_Compra_Pasada,4.33,900,False
+Ola 5,2022-Q4,Autocosmos.com,11,Experiencia_Venta_Pasada,2.78,900,False
+Ola 5,2022-Q4,Mercado/Tianguis,12,Top_of_Mind,0.56,900,False
+Ola 5,2022-Q4,Mercado/Tianguis,12,Awareness_Espontanea,3.89,900,False
+Ola 5,2022-Q4,Mercado/Tianguis,12,Awareness_Asistida,49.11,900,False
+Ola 5,2022-Q4,Mercado/Tianguis,12,Consideracion,19.0,900,False
+Ola 5,2022-Q4,Mercado/Tianguis,12,Intencion_Compra_1a,2.44,900,False
+Ola 5,2022-Q4,Mercado/Tianguis,12,Intencion_Compra_Total,5.22,900,False
+Ola 5,2022-Q4,Mercado/Tianguis,12,Experiencia_Compra_Pasada,15.78,900,False
+Ola 5,2022-Q4,Mercado/Tianguis,12,Experiencia_Venta_Pasada,8.89,900,False
+Ola 5,2022-Q4,Trato directo,13,Top_of_Mind,0.56,900,False
+Ola 5,2022-Q4,Trato directo,13,Awareness_Espontanea,1.56,900,False
+Ola 5,2022-Q4,Trato directo,13,Awareness_Asistida,34.78,900,False
+Ola 5,2022-Q4,Trato directo,13,Consideracion,19.56,900,False
+Ola 5,2022-Q4,Trato directo,13,Intencion_Compra_1a,2.78,900,False
+Ola 5,2022-Q4,Trato directo,13,Intencion_Compra_Total,6.11,900,False
+Ola 5,2022-Q4,Trato directo,13,Experiencia_Compra_Pasada,12.33,900,False
+Ola 5,2022-Q4,Trato directo,13,Experiencia_Venta_Pasada,9.22,900,False
+Ola 5,2022-Q4,Cambiauto.mx,14,Top_of_Mind,0.0,900,False
+Ola 5,2022-Q4,Cambiauto.mx,14,Awareness_Espontanea,0.0,900,False
+Ola 5,2022-Q4,Cambiauto.mx,14,Awareness_Asistida,9.78,900,False
+Ola 5,2022-Q4,Cambiauto.mx,14,Consideracion,1.67,900,False
+Ola 5,2022-Q4,Cambiauto.mx,14,Intencion_Compra_1a,0.44,900,False
+Ola 5,2022-Q4,Cambiauto.mx,14,Intencion_Compra_Total,1.0,900,False
+Ola 5,2022-Q4,Cambiauto.mx,14,Experiencia_Compra_Pasada,3.0,900,False
+Ola 5,2022-Q4,Cambiauto.mx,14,Experiencia_Venta_Pasada,1.78,900,False
+Ola 5,2022-Q4,Tipi Top,15,Top_of_Mind,0.0,900,False
+Ola 5,2022-Q4,Tipi Top,15,Awareness_Espontanea,0.0,900,False
+Ola 5,2022-Q4,Tipi Top,15,Awareness_Asistida,4.22,900,False
+Ola 5,2022-Q4,Tipi Top,15,Consideracion,0.78,900,False
+Ola 5,2022-Q4,Tipi Top,15,Intencion_Compra_1a,0.33,900,False
+Ola 5,2022-Q4,Tipi Top,15,Intencion_Compra_Total,0.56,900,False
+Ola 5,2022-Q4,Tipi Top,15,Experiencia_Compra_Pasada,1.0,900,False
+Ola 5,2022-Q4,Tipi Top,15,Experiencia_Venta_Pasada,0.33,900,False
+Ola 5,2022-Q4,soloautos.mx,16,Top_of_Mind,2.89,900,False
+Ola 5,2022-Q4,soloautos.mx,16,Awareness_Espontanea,9.78,900,False
+Ola 5,2022-Q4,soloautos.mx,16,Awareness_Asistida,46.33,900,False
+Ola 5,2022-Q4,soloautos.mx,16,Consideracion,9.44,900,False
+Ola 5,2022-Q4,soloautos.mx,16,Intencion_Compra_1a,2.11,900,False
+Ola 5,2022-Q4,soloautos.mx,16,Intencion_Compra_Total,6.89,900,False
+Ola 5,2022-Q4,soloautos.mx,16,Experiencia_Compra_Pasada,17.67,900,False
+Ola 5,2022-Q4,soloautos.mx,16,Experiencia_Venta_Pasada,11.56,900,False
+Ola 5,2022-Q4,Car One,17,Top_of_Mind,1.11,900,False
+Ola 5,2022-Q4,Car One,17,Awareness_Espontanea,3.11,900,False
+Ola 5,2022-Q4,Car One,17,Awareness_Asistida,27.33,900,False
+Ola 5,2022-Q4,Car One,17,Consideracion,6.0,900,False
+Ola 5,2022-Q4,Car One,17,Intencion_Compra_1a,1.33,900,False
+Ola 5,2022-Q4,Car One,17,Intencion_Compra_Total,3.78,900,False
+Ola 5,2022-Q4,Car One,17,Experiencia_Compra_Pasada,9.11,900,False
+Ola 5,2022-Q4,Car One,17,Experiencia_Venta_Pasada,7.0,900,False
+Ola 5,2022-Q4,Facebook Marketplace,78,Top_of_Mind,1.11,900,False
+Ola 5,2022-Q4,Facebook Marketplace,78,Awareness_Espontanea,4.11,900,False
+Ola 5,2022-Q4,Facebook Marketplace,78,Awareness_Asistida,48.78,900,False
+Ola 5,2022-Q4,Facebook Marketplace,78,Consideracion,15.0,900,False
+Ola 5,2022-Q4,Facebook Marketplace,78,Intencion_Compra_1a,4.67,900,False
+Ola 5,2022-Q4,Facebook Marketplace,78,Intencion_Compra_Total,7.22,900,False
+Ola 5,2022-Q4,Facebook Marketplace,78,Experiencia_Compra_Pasada,23.11,900,False
+Ola 5,2022-Q4,Facebook Marketplace,78,Experiencia_Venta_Pasada,14.44,900,False
+Ola 5,2022-Q4,O|X Autos,102,Top_of_Mind,0.89,900,False
+Ola 5,2022-Q4,O|X Autos,102,Awareness_Espontanea,6.0,900,False
+Ola 5,2022-Q4,O|X Autos,102,Awareness_Asistida,18.44,900,False
+Ola 5,2022-Q4,O|X Autos,102,Consideracion,3.44,900,False
+Ola 5,2022-Q4,O|X Autos,102,Intencion_Compra_1a,1.11,900,False
+Ola 5,2022-Q4,O|X Autos,102,Intencion_Compra_Total,3.11,900,False
+Ola 5,2022-Q4,O|X Autos,102,Experiencia_Compra_Pasada,6.56,900,False
+Ola 5,2022-Q4,O|X Autos,102,Experiencia_Venta_Pasada,3.89,900,False
+Ola 5,2022-Q4,SemiNuevos.com,111,Top_of_Mind,0.67,900,False
+Ola 5,2022-Q4,SemiNuevos.com,111,Awareness_Espontanea,3.44,900,False
+Ola 5,2022-Q4,SemiNuevos.com,111,Awareness_Asistida,0.0,900,False
+Ola 5,2022-Q4,SemiNuevos.com,111,Consideracion,,900,False
+Ola 5,2022-Q4,SemiNuevos.com,111,Intencion_Compra_1a,,900,False
+Ola 5,2022-Q4,SemiNuevos.com,111,Intencion_Compra_Total,0.0,900,False
+Ola 5,2022-Q4,SemiNuevos.com,111,Experiencia_Compra_Pasada,,900,False
+Ola 5,2022-Q4,SemiNuevos.com,111,Experiencia_Venta_Pasada,,900,False
+Ola 5,2022-Q4,Odetta,384,Top_of_Mind,0.22,900,False
+Ola 5,2022-Q4,Odetta,384,Awareness_Espontanea,2.33,900,False
+Ola 5,2022-Q4,Odetta,384,Awareness_Asistida,0.0,900,False
+Ola 5,2022-Q4,Odetta,384,Consideracion,,900,False
+Ola 5,2022-Q4,Odetta,384,Intencion_Compra_1a,,900,False
+Ola 5,2022-Q4,Odetta,384,Intencion_Compra_Total,0.0,900,False
+Ola 5,2022-Q4,Odetta,384,Experiencia_Compra_Pasada,,900,False
+Ola 5,2022-Q4,Odetta,384,Experiencia_Venta_Pasada,,900,False
+Ola 5,2022-Q4,Creditas,457,Top_of_Mind,0.0,900,False
+Ola 5,2022-Q4,Creditas,457,Awareness_Espontanea,0.11,900,False
+Ola 5,2022-Q4,Creditas,457,Awareness_Asistida,3.33,900,False
+Ola 5,2022-Q4,Creditas,457,Consideracion,0.78,900,False
+Ola 5,2022-Q4,Creditas,457,Intencion_Compra_1a,0.22,900,False
+Ola 5,2022-Q4,Creditas,457,Intencion_Compra_Total,0.67,900,False
+Ola 5,2022-Q4,Creditas,457,Experiencia_Compra_Pasada,1.22,900,False
+Ola 5,2022-Q4,Creditas,457,Experiencia_Venta_Pasada,0.78,900,False
+Ola 5,2022-Q4,Caranty,595,Top_of_Mind,0.0,900,False
+Ola 5,2022-Q4,Caranty,595,Awareness_Espontanea,0.11,900,False
+Ola 5,2022-Q4,Caranty,595,Awareness_Asistida,0.0,900,False
+Ola 5,2022-Q4,Caranty,595,Consideracion,,900,False
+Ola 5,2022-Q4,Caranty,595,Intencion_Compra_1a,,900,False
+Ola 5,2022-Q4,Caranty,595,Intencion_Compra_Total,0.0,900,False
+Ola 5,2022-Q4,Caranty,595,Experiencia_Compra_Pasada,,900,False
+Ola 5,2022-Q4,Caranty,595,Experiencia_Venta_Pasada,,900,False
+Ola 5,2022-Q4,Wahu,820,Top_of_Mind,0.0,900,False
+Ola 5,2022-Q4,Wahu,820,Awareness_Espontanea,0.0,900,False
+Ola 5,2022-Q4,Wahu,820,Awareness_Asistida,0.0,900,False
+Ola 5,2022-Q4,Wahu,820,Consideracion,,900,False
+Ola 5,2022-Q4,Wahu,820,Intencion_Compra_1a,,900,False
+Ola 5,2022-Q4,Wahu,820,Intencion_Compra_Total,0.0,900,False
+Ola 5,2022-Q4,Wahu,820,Experiencia_Compra_Pasada,,900,False
+Ola 5,2022-Q4,Wahu,820,Experiencia_Venta_Pasada,,900,False
+Ola 6,2023-Q1,KAVAK,1,Top_of_Mind,37.22,900,True
+Ola 6,2023-Q1,KAVAK,1,Awareness_Espontanea,52.56,900,True
+Ola 6,2023-Q1,KAVAK,1,Awareness_Asistida,80.0,900,True
+Ola 6,2023-Q1,KAVAK,1,Consideracion,25.0,900,True
+Ola 6,2023-Q1,KAVAK,1,Intencion_Compra_1a,7.22,900,True
+Ola 6,2023-Q1,KAVAK,1,Intencion_Compra_Total,16.22,900,True
+Ola 6,2023-Q1,KAVAK,1,NPS_Score,26.81,720,True
+Ola 6,2023-Q1,KAVAK,1,NPS_Promotores_pct,37.89,900,True
+Ola 6,2023-Q1,KAVAK,1,NPS_Detractores_pct,16.44,900,True
+Ola 6,2023-Q1,KAVAK,1,NPS_Top2box_pct_recomendadores,47.36,720,True
+Ola 6,2023-Q1,KAVAK,1,Brand_Satisfaction_Media,8.2,720,True
+Ola 6,2023-Q1,KAVAK,1,Brand_Satisfaction_Top2box,51.39,720,True
+Ola 6,2023-Q1,KAVAK,1,Brand_Affinity_Media,7.5,720,True
+Ola 6,2023-Q1,KAVAK,1,Brand_Affinity_Top2box,40.42,720,True
+Ola 6,2023-Q1,KAVAK,1,Experiencia_Compra_Pasada,,900,True
+Ola 6,2023-Q1,KAVAK,1,Experiencia_Venta_Pasada,43.11,900,True
+Ola 6,2023-Q1,Segunda Mano Autos Usados,2,Top_of_Mind,4.22,900,False
+Ola 6,2023-Q1,Segunda Mano Autos Usados,2,Awareness_Espontanea,17.33,900,False
+Ola 6,2023-Q1,Segunda Mano Autos Usados,2,Awareness_Asistida,58.44,900,False
+Ola 6,2023-Q1,Segunda Mano Autos Usados,2,Consideracion,13.44,900,False
+Ola 6,2023-Q1,Segunda Mano Autos Usados,2,Intencion_Compra_1a,3.44,900,False
+Ola 6,2023-Q1,Segunda Mano Autos Usados,2,Intencion_Compra_Total,6.67,900,False
+Ola 6,2023-Q1,Segunda Mano Autos Usados,2,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Segunda Mano Autos Usados,2,Experiencia_Venta_Pasada,14.22,900,False
+Ola 6,2023-Q1,Mercado Libre,3,Top_of_Mind,4.33,900,False
+Ola 6,2023-Q1,Mercado Libre,3,Awareness_Espontanea,26.22,900,False
+Ola 6,2023-Q1,Mercado Libre,3,Awareness_Asistida,71.33,900,False
+Ola 6,2023-Q1,Mercado Libre,3,Consideracion,15.11,900,False
+Ola 6,2023-Q1,Mercado Libre,3,Intencion_Compra_1a,4.56,900,False
+Ola 6,2023-Q1,Mercado Libre,3,Intencion_Compra_Total,10.11,900,False
+Ola 6,2023-Q1,Mercado Libre,3,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Mercado Libre,3,Experiencia_Venta_Pasada,22.44,900,False
+Ola 6,2023-Q1,CarShop,4,Top_of_Mind,0.0,900,False
+Ola 6,2023-Q1,CarShop,4,Awareness_Espontanea,0.0,900,False
+Ola 6,2023-Q1,CarShop,4,Awareness_Asistida,8.67,900,False
+Ola 6,2023-Q1,CarShop,4,Consideracion,1.67,900,False
+Ola 6,2023-Q1,CarShop,4,Intencion_Compra_1a,0.11,900,False
+Ola 6,2023-Q1,CarShop,4,Intencion_Compra_Total,0.67,900,False
+Ola 6,2023-Q1,CarShop,4,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,CarShop,4,Experiencia_Venta_Pasada,1.89,900,False
+Ola 6,2023-Q1,Vivanuncios,5,Top_of_Mind,1.0,900,False
+Ola 6,2023-Q1,Vivanuncios,5,Awareness_Espontanea,4.22,900,False
+Ola 6,2023-Q1,Vivanuncios,5,Awareness_Asistida,44.56,900,False
+Ola 6,2023-Q1,Vivanuncios,5,Consideracion,5.33,900,False
+Ola 6,2023-Q1,Vivanuncios,5,Intencion_Compra_1a,1.0,900,False
+Ola 6,2023-Q1,Vivanuncios,5,Intencion_Compra_Total,4.22,900,False
+Ola 6,2023-Q1,Vivanuncios,5,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Vivanuncios,5,Experiencia_Venta_Pasada,9.11,900,False
+Ola 6,2023-Q1,Trovit,6,Top_of_Mind,0.0,900,False
+Ola 6,2023-Q1,Trovit,6,Awareness_Espontanea,1.33,900,False
+Ola 6,2023-Q1,Trovit,6,Awareness_Asistida,20.33,900,False
+Ola 6,2023-Q1,Trovit,6,Consideracion,2.67,900,False
+Ola 6,2023-Q1,Trovit,6,Intencion_Compra_1a,0.56,900,False
+Ola 6,2023-Q1,Trovit,6,Intencion_Compra_Total,2.44,900,False
+Ola 6,2023-Q1,Trovit,6,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Trovit,6,Experiencia_Venta_Pasada,5.22,900,False
+Ola 6,2023-Q1,VendeTuAuto.com,7,Top_of_Mind,0.11,900,False
+Ola 6,2023-Q1,VendeTuAuto.com,7,Awareness_Espontanea,0.56,900,False
+Ola 6,2023-Q1,VendeTuAuto.com,7,Awareness_Asistida,0.0,900,False
+Ola 6,2023-Q1,VendeTuAuto.com,7,Consideracion,,900,False
+Ola 6,2023-Q1,VendeTuAuto.com,7,Intencion_Compra_1a,,900,False
+Ola 6,2023-Q1,VendeTuAuto.com,7,Intencion_Compra_Total,0.0,900,False
+Ola 6,2023-Q1,VendeTuAuto.com,7,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,VendeTuAuto.com,7,Experiencia_Venta_Pasada,,900,False
+Ola 6,2023-Q1,Lotes de autos usados,8,Top_of_Mind,0.11,900,False
+Ola 6,2023-Q1,Lotes de autos usados,8,Awareness_Espontanea,1.78,900,False
+Ola 6,2023-Q1,Lotes de autos usados,8,Awareness_Asistida,42.33,900,False
+Ola 6,2023-Q1,Lotes de autos usados,8,Consideracion,12.11,900,False
+Ola 6,2023-Q1,Lotes de autos usados,8,Intencion_Compra_1a,1.78,900,False
+Ola 6,2023-Q1,Lotes de autos usados,8,Intencion_Compra_Total,5.33,900,False
+Ola 6,2023-Q1,Lotes de autos usados,8,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Lotes de autos usados,8,Experiencia_Venta_Pasada,11.67,900,False
+Ola 6,2023-Q1,Seminuevos (Agencias),9,Top_of_Mind,0.33,900,False
+Ola 6,2023-Q1,Seminuevos (Agencias),9,Awareness_Espontanea,0.56,900,False
+Ola 6,2023-Q1,Seminuevos (Agencias),9,Awareness_Asistida,62.44,900,False
+Ola 6,2023-Q1,Seminuevos (Agencias),9,Consideracion,25.11,900,False
+Ola 6,2023-Q1,Seminuevos (Agencias),9,Intencion_Compra_1a,5.67,900,False
+Ola 6,2023-Q1,Seminuevos (Agencias),9,Intencion_Compra_Total,13.22,900,False
+Ola 6,2023-Q1,Seminuevos (Agencias),9,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Seminuevos (Agencias),9,Experiencia_Venta_Pasada,30.11,900,False
+Ola 6,2023-Q1,Clasificados periódicos,10,Top_of_Mind,0.0,900,False
+Ola 6,2023-Q1,Clasificados periódicos,10,Awareness_Espontanea,1.44,900,False
+Ola 6,2023-Q1,Clasificados periódicos,10,Awareness_Asistida,29.78,900,False
+Ola 6,2023-Q1,Clasificados periódicos,10,Consideracion,7.33,900,False
+Ola 6,2023-Q1,Clasificados periódicos,10,Intencion_Compra_1a,1.0,900,False
+Ola 6,2023-Q1,Clasificados periódicos,10,Intencion_Compra_Total,1.89,900,False
+Ola 6,2023-Q1,Clasificados periódicos,10,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Clasificados periódicos,10,Experiencia_Venta_Pasada,5.56,900,False
+Ola 6,2023-Q1,Autocosmos.com,11,Top_of_Mind,0.44,900,False
+Ola 6,2023-Q1,Autocosmos.com,11,Awareness_Espontanea,4.33,900,False
+Ola 6,2023-Q1,Autocosmos.com,11,Awareness_Asistida,16.33,900,False
+Ola 6,2023-Q1,Autocosmos.com,11,Consideracion,3.67,900,False
+Ola 6,2023-Q1,Autocosmos.com,11,Intencion_Compra_1a,0.56,900,False
+Ola 6,2023-Q1,Autocosmos.com,11,Intencion_Compra_Total,1.67,900,False
+Ola 6,2023-Q1,Autocosmos.com,11,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Autocosmos.com,11,Experiencia_Venta_Pasada,4.89,900,False
+Ola 6,2023-Q1,Mercado/Tianguis,12,Top_of_Mind,0.78,900,False
+Ola 6,2023-Q1,Mercado/Tianguis,12,Awareness_Espontanea,3.89,900,False
+Ola 6,2023-Q1,Mercado/Tianguis,12,Awareness_Asistida,45.22,900,False
+Ola 6,2023-Q1,Mercado/Tianguis,12,Consideracion,15.22,900,False
+Ola 6,2023-Q1,Mercado/Tianguis,12,Intencion_Compra_1a,3.0,900,False
+Ola 6,2023-Q1,Mercado/Tianguis,12,Intencion_Compra_Total,5.56,900,False
+Ola 6,2023-Q1,Mercado/Tianguis,12,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Mercado/Tianguis,12,Experiencia_Venta_Pasada,12.33,900,False
+Ola 6,2023-Q1,Trato directo,13,Top_of_Mind,0.33,900,False
+Ola 6,2023-Q1,Trato directo,13,Awareness_Espontanea,0.78,900,False
+Ola 6,2023-Q1,Trato directo,13,Awareness_Asistida,30.78,900,False
+Ola 6,2023-Q1,Trato directo,13,Consideracion,17.44,900,False
+Ola 6,2023-Q1,Trato directo,13,Intencion_Compra_1a,3.56,900,False
+Ola 6,2023-Q1,Trato directo,13,Intencion_Compra_Total,6.44,900,False
+Ola 6,2023-Q1,Trato directo,13,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Trato directo,13,Experiencia_Venta_Pasada,11.78,900,False
+Ola 6,2023-Q1,Cambiauto.mx,14,Top_of_Mind,0.0,900,False
+Ola 6,2023-Q1,Cambiauto.mx,14,Awareness_Espontanea,0.0,900,False
+Ola 6,2023-Q1,Cambiauto.mx,14,Awareness_Asistida,10.44,900,False
+Ola 6,2023-Q1,Cambiauto.mx,14,Consideracion,1.67,900,False
+Ola 6,2023-Q1,Cambiauto.mx,14,Intencion_Compra_1a,0.33,900,False
+Ola 6,2023-Q1,Cambiauto.mx,14,Intencion_Compra_Total,1.22,900,False
+Ola 6,2023-Q1,Cambiauto.mx,14,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Cambiauto.mx,14,Experiencia_Venta_Pasada,2.33,900,False
+Ola 6,2023-Q1,Tipi Top,15,Top_of_Mind,0.0,900,False
+Ola 6,2023-Q1,Tipi Top,15,Awareness_Espontanea,0.0,900,False
+Ola 6,2023-Q1,Tipi Top,15,Awareness_Asistida,0.0,900,False
+Ola 6,2023-Q1,Tipi Top,15,Consideracion,,900,False
+Ola 6,2023-Q1,Tipi Top,15,Intencion_Compra_1a,,900,False
+Ola 6,2023-Q1,Tipi Top,15,Intencion_Compra_Total,0.0,900,False
+Ola 6,2023-Q1,Tipi Top,15,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Tipi Top,15,Experiencia_Venta_Pasada,,900,False
+Ola 6,2023-Q1,soloautos.mx,16,Top_of_Mind,3.89,900,False
+Ola 6,2023-Q1,soloautos.mx,16,Awareness_Espontanea,12.89,900,False
+Ola 6,2023-Q1,soloautos.mx,16,Awareness_Asistida,46.89,900,False
+Ola 6,2023-Q1,soloautos.mx,16,Consideracion,10.33,900,False
+Ola 6,2023-Q1,soloautos.mx,16,Intencion_Compra_1a,2.33,900,False
+Ola 6,2023-Q1,soloautos.mx,16,Intencion_Compra_Total,7.22,900,False
+Ola 6,2023-Q1,soloautos.mx,16,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,soloautos.mx,16,Experiencia_Venta_Pasada,17.33,900,False
+Ola 6,2023-Q1,Car One,17,Top_of_Mind,0.78,900,False
+Ola 6,2023-Q1,Car One,17,Awareness_Espontanea,2.56,900,False
+Ola 6,2023-Q1,Car One,17,Awareness_Asistida,28.22,900,False
+Ola 6,2023-Q1,Car One,17,Consideracion,5.33,900,False
+Ola 6,2023-Q1,Car One,17,Intencion_Compra_1a,0.89,900,False
+Ola 6,2023-Q1,Car One,17,Intencion_Compra_Total,4.56,900,False
+Ola 6,2023-Q1,Car One,17,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Car One,17,Experiencia_Venta_Pasada,8.89,900,False
+Ola 6,2023-Q1,Facebook Marketplace,78,Top_of_Mind,1.11,900,False
+Ola 6,2023-Q1,Facebook Marketplace,78,Awareness_Espontanea,3.89,900,False
+Ola 6,2023-Q1,Facebook Marketplace,78,Awareness_Asistida,44.33,900,False
+Ola 6,2023-Q1,Facebook Marketplace,78,Consideracion,13.67,900,False
+Ola 6,2023-Q1,Facebook Marketplace,78,Intencion_Compra_1a,2.78,900,False
+Ola 6,2023-Q1,Facebook Marketplace,78,Intencion_Compra_Total,6.33,900,False
+Ola 6,2023-Q1,Facebook Marketplace,78,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Facebook Marketplace,78,Experiencia_Venta_Pasada,15.0,900,False
+Ola 6,2023-Q1,O|X Autos,102,Top_of_Mind,2.78,900,False
+Ola 6,2023-Q1,O|X Autos,102,Awareness_Espontanea,13.67,900,False
+Ola 6,2023-Q1,O|X Autos,102,Awareness_Asistida,34.67,900,False
+Ola 6,2023-Q1,O|X Autos,102,Consideracion,5.89,900,False
+Ola 6,2023-Q1,O|X Autos,102,Intencion_Compra_1a,1.0,900,False
+Ola 6,2023-Q1,O|X Autos,102,Intencion_Compra_Total,4.44,900,False
+Ola 6,2023-Q1,O|X Autos,102,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,O|X Autos,102,Experiencia_Venta_Pasada,12.44,900,False
+Ola 6,2023-Q1,SemiNuevos.com,111,Top_of_Mind,0.56,900,False
+Ola 6,2023-Q1,SemiNuevos.com,111,Awareness_Espontanea,2.0,900,False
+Ola 6,2023-Q1,SemiNuevos.com,111,Awareness_Asistida,33.67,900,False
+Ola 6,2023-Q1,SemiNuevos.com,111,Consideracion,5.33,900,False
+Ola 6,2023-Q1,SemiNuevos.com,111,Intencion_Compra_1a,1.22,900,False
+Ola 6,2023-Q1,SemiNuevos.com,111,Intencion_Compra_Total,3.67,900,False
+Ola 6,2023-Q1,SemiNuevos.com,111,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,SemiNuevos.com,111,Experiencia_Venta_Pasada,8.78,900,False
+Ola 6,2023-Q1,Odetta,384,Top_of_Mind,0.22,900,False
+Ola 6,2023-Q1,Odetta,384,Awareness_Espontanea,3.0,900,False
+Ola 6,2023-Q1,Odetta,384,Awareness_Asistida,8.11,900,False
+Ola 6,2023-Q1,Odetta,384,Consideracion,1.78,900,False
+Ola 6,2023-Q1,Odetta,384,Intencion_Compra_1a,0.56,900,False
+Ola 6,2023-Q1,Odetta,384,Intencion_Compra_Total,0.56,900,False
+Ola 6,2023-Q1,Odetta,384,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Odetta,384,Experiencia_Venta_Pasada,2.44,900,False
+Ola 6,2023-Q1,Creditas,457,Top_of_Mind,0.0,900,False
+Ola 6,2023-Q1,Creditas,457,Awareness_Espontanea,0.0,900,False
+Ola 6,2023-Q1,Creditas,457,Awareness_Asistida,3.44,900,False
+Ola 6,2023-Q1,Creditas,457,Consideracion,0.89,900,False
+Ola 6,2023-Q1,Creditas,457,Intencion_Compra_1a,0.11,900,False
+Ola 6,2023-Q1,Creditas,457,Intencion_Compra_Total,0.22,900,False
+Ola 6,2023-Q1,Creditas,457,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Creditas,457,Experiencia_Venta_Pasada,1.0,900,False
+Ola 6,2023-Q1,Caranty,595,Top_of_Mind,0.0,900,False
+Ola 6,2023-Q1,Caranty,595,Awareness_Espontanea,0.56,900,False
+Ola 6,2023-Q1,Caranty,595,Awareness_Asistida,4.67,900,False
+Ola 6,2023-Q1,Caranty,595,Consideracion,1.22,900,False
+Ola 6,2023-Q1,Caranty,595,Intencion_Compra_1a,0.22,900,False
+Ola 6,2023-Q1,Caranty,595,Intencion_Compra_Total,0.44,900,False
+Ola 6,2023-Q1,Caranty,595,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Caranty,595,Experiencia_Venta_Pasada,1.0,900,False
+Ola 6,2023-Q1,Wahu,820,Top_of_Mind,0.0,900,False
+Ola 6,2023-Q1,Wahu,820,Awareness_Espontanea,0.0,900,False
+Ola 6,2023-Q1,Wahu,820,Awareness_Asistida,0.0,900,False
+Ola 6,2023-Q1,Wahu,820,Consideracion,,900,False
+Ola 6,2023-Q1,Wahu,820,Intencion_Compra_1a,,900,False
+Ola 6,2023-Q1,Wahu,820,Intencion_Compra_Total,0.0,900,False
+Ola 6,2023-Q1,Wahu,820,Experiencia_Compra_Pasada,,900,False
+Ola 6,2023-Q1,Wahu,820,Experiencia_Venta_Pasada,,900,False
+Ola 7,2023-Q2,KAVAK,1,Top_of_Mind,35.78,900,True
+Ola 7,2023-Q2,KAVAK,1,Awareness_Espontanea,50.33,900,True
+Ola 7,2023-Q2,KAVAK,1,Awareness_Asistida,79.67,900,True
+Ola 7,2023-Q2,KAVAK,1,Consideracion,21.78,900,True
+Ola 7,2023-Q2,KAVAK,1,Intencion_Compra_1a,5.67,900,True
+Ola 7,2023-Q2,KAVAK,1,Intencion_Compra_Total,13.78,900,True
+Ola 7,2023-Q2,KAVAK,1,NPS_Score,32.91,717,True
+Ola 7,2023-Q2,KAVAK,1,NPS_Promotores_pct,41.22,900,True
+Ola 7,2023-Q2,KAVAK,1,NPS_Detractores_pct,15.0,900,True
+Ola 7,2023-Q2,KAVAK,1,NPS_Top2box_pct_recomendadores,51.74,717,True
+Ola 7,2023-Q2,KAVAK,1,Brand_Satisfaction_Media,8.3,717,True
+Ola 7,2023-Q2,KAVAK,1,Brand_Satisfaction_Top2box,57.32,717,True
+Ola 7,2023-Q2,KAVAK,1,Brand_Affinity_Media,7.64,717,True
+Ola 7,2023-Q2,KAVAK,1,Brand_Affinity_Top2box,45.89,717,True
+Ola 7,2023-Q2,KAVAK,1,Experiencia_Compra_Pasada,,900,True
+Ola 7,2023-Q2,KAVAK,1,Experiencia_Venta_Pasada,46.44,900,True
+Ola 7,2023-Q2,Segunda Mano Autos Usados,2,Top_of_Mind,3.78,900,False
+Ola 7,2023-Q2,Segunda Mano Autos Usados,2,Awareness_Espontanea,16.22,900,False
+Ola 7,2023-Q2,Segunda Mano Autos Usados,2,Awareness_Asistida,59.56,900,False
+Ola 7,2023-Q2,Segunda Mano Autos Usados,2,Consideracion,15.44,900,False
+Ola 7,2023-Q2,Segunda Mano Autos Usados,2,Intencion_Compra_1a,4.33,900,False
+Ola 7,2023-Q2,Segunda Mano Autos Usados,2,Intencion_Compra_Total,8.78,900,False
+Ola 7,2023-Q2,Segunda Mano Autos Usados,2,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Segunda Mano Autos Usados,2,Experiencia_Venta_Pasada,14.0,900,False
+Ola 7,2023-Q2,Mercado Libre,3,Top_of_Mind,4.78,900,False
+Ola 7,2023-Q2,Mercado Libre,3,Awareness_Espontanea,24.56,900,False
+Ola 7,2023-Q2,Mercado Libre,3,Awareness_Asistida,69.89,900,False
+Ola 7,2023-Q2,Mercado Libre,3,Consideracion,18.78,900,False
+Ola 7,2023-Q2,Mercado Libre,3,Intencion_Compra_1a,4.0,900,False
+Ola 7,2023-Q2,Mercado Libre,3,Intencion_Compra_Total,8.78,900,False
+Ola 7,2023-Q2,Mercado Libre,3,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Mercado Libre,3,Experiencia_Venta_Pasada,22.67,900,False
+Ola 7,2023-Q2,CarShop,4,Top_of_Mind,0.0,900,False
+Ola 7,2023-Q2,CarShop,4,Awareness_Espontanea,0.0,900,False
+Ola 7,2023-Q2,CarShop,4,Awareness_Asistida,9.22,900,False
+Ola 7,2023-Q2,CarShop,4,Consideracion,1.56,900,False
+Ola 7,2023-Q2,CarShop,4,Intencion_Compra_1a,0.11,900,False
+Ola 7,2023-Q2,CarShop,4,Intencion_Compra_Total,1.0,900,False
+Ola 7,2023-Q2,CarShop,4,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,CarShop,4,Experiencia_Venta_Pasada,2.11,900,False
+Ola 7,2023-Q2,Vivanuncios,5,Top_of_Mind,0.56,900,False
+Ola 7,2023-Q2,Vivanuncios,5,Awareness_Espontanea,4.22,900,False
+Ola 7,2023-Q2,Vivanuncios,5,Awareness_Asistida,40.11,900,False
+Ola 7,2023-Q2,Vivanuncios,5,Consideracion,7.78,900,False
+Ola 7,2023-Q2,Vivanuncios,5,Intencion_Compra_1a,1.56,900,False
+Ola 7,2023-Q2,Vivanuncios,5,Intencion_Compra_Total,3.89,900,False
+Ola 7,2023-Q2,Vivanuncios,5,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Vivanuncios,5,Experiencia_Venta_Pasada,7.22,900,False
+Ola 7,2023-Q2,Trovit,6,Top_of_Mind,0.0,900,False
+Ola 7,2023-Q2,Trovit,6,Awareness_Espontanea,0.44,900,False
+Ola 7,2023-Q2,Trovit,6,Awareness_Asistida,17.22,900,False
+Ola 7,2023-Q2,Trovit,6,Consideracion,1.89,900,False
+Ola 7,2023-Q2,Trovit,6,Intencion_Compra_1a,0.22,900,False
+Ola 7,2023-Q2,Trovit,6,Intencion_Compra_Total,1.89,900,False
+Ola 7,2023-Q2,Trovit,6,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Trovit,6,Experiencia_Venta_Pasada,3.44,900,False
+Ola 7,2023-Q2,VendeTuAuto.com,7,Top_of_Mind,0.0,900,False
+Ola 7,2023-Q2,VendeTuAuto.com,7,Awareness_Espontanea,0.22,900,False
+Ola 7,2023-Q2,VendeTuAuto.com,7,Awareness_Asistida,0.0,900,False
+Ola 7,2023-Q2,VendeTuAuto.com,7,Consideracion,,900,False
+Ola 7,2023-Q2,VendeTuAuto.com,7,Intencion_Compra_1a,,900,False
+Ola 7,2023-Q2,VendeTuAuto.com,7,Intencion_Compra_Total,0.0,900,False
+Ola 7,2023-Q2,VendeTuAuto.com,7,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,VendeTuAuto.com,7,Experiencia_Venta_Pasada,,900,False
+Ola 7,2023-Q2,Lotes de autos usados,8,Top_of_Mind,0.44,900,False
+Ola 7,2023-Q2,Lotes de autos usados,8,Awareness_Espontanea,1.0,900,False
+Ola 7,2023-Q2,Lotes de autos usados,8,Awareness_Asistida,37.33,900,False
+Ola 7,2023-Q2,Lotes de autos usados,8,Consideracion,11.33,900,False
+Ola 7,2023-Q2,Lotes de autos usados,8,Intencion_Compra_1a,1.44,900,False
+Ola 7,2023-Q2,Lotes de autos usados,8,Intencion_Compra_Total,4.33,900,False
+Ola 7,2023-Q2,Lotes de autos usados,8,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Lotes de autos usados,8,Experiencia_Venta_Pasada,11.11,900,False
+Ola 7,2023-Q2,Seminuevos (Agencias),9,Top_of_Mind,0.11,900,False
+Ola 7,2023-Q2,Seminuevos (Agencias),9,Awareness_Espontanea,1.67,900,False
+Ola 7,2023-Q2,Seminuevos (Agencias),9,Awareness_Asistida,60.11,900,False
+Ola 7,2023-Q2,Seminuevos (Agencias),9,Consideracion,20.44,900,False
+Ola 7,2023-Q2,Seminuevos (Agencias),9,Intencion_Compra_1a,4.11,900,False
+Ola 7,2023-Q2,Seminuevos (Agencias),9,Intencion_Compra_Total,9.22,900,False
+Ola 7,2023-Q2,Seminuevos (Agencias),9,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Seminuevos (Agencias),9,Experiencia_Venta_Pasada,31.22,900,False
+Ola 7,2023-Q2,Clasificados periódicos,10,Top_of_Mind,0.0,900,False
+Ola 7,2023-Q2,Clasificados periódicos,10,Awareness_Espontanea,0.67,900,False
+Ola 7,2023-Q2,Clasificados periódicos,10,Awareness_Asistida,25.33,900,False
+Ola 7,2023-Q2,Clasificados periódicos,10,Consideracion,4.44,900,False
+Ola 7,2023-Q2,Clasificados periódicos,10,Intencion_Compra_1a,0.56,900,False
+Ola 7,2023-Q2,Clasificados periódicos,10,Intencion_Compra_Total,2.33,900,False
+Ola 7,2023-Q2,Clasificados periódicos,10,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Clasificados periódicos,10,Experiencia_Venta_Pasada,4.44,900,False
+Ola 7,2023-Q2,Autocosmos.com,11,Top_of_Mind,0.44,900,False
+Ola 7,2023-Q2,Autocosmos.com,11,Awareness_Espontanea,4.44,900,False
+Ola 7,2023-Q2,Autocosmos.com,11,Awareness_Asistida,14.56,900,False
+Ola 7,2023-Q2,Autocosmos.com,11,Consideracion,2.56,900,False
+Ola 7,2023-Q2,Autocosmos.com,11,Intencion_Compra_1a,0.56,900,False
+Ola 7,2023-Q2,Autocosmos.com,11,Intencion_Compra_Total,2.0,900,False
+Ola 7,2023-Q2,Autocosmos.com,11,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Autocosmos.com,11,Experiencia_Venta_Pasada,5.0,900,False
+Ola 7,2023-Q2,Mercado/Tianguis,12,Top_of_Mind,0.22,900,False
+Ola 7,2023-Q2,Mercado/Tianguis,12,Awareness_Espontanea,2.11,900,False
+Ola 7,2023-Q2,Mercado/Tianguis,12,Awareness_Asistida,42.56,900,False
+Ola 7,2023-Q2,Mercado/Tianguis,12,Consideracion,14.22,900,False
+Ola 7,2023-Q2,Mercado/Tianguis,12,Intencion_Compra_1a,2.67,900,False
+Ola 7,2023-Q2,Mercado/Tianguis,12,Intencion_Compra_Total,5.78,900,False
+Ola 7,2023-Q2,Mercado/Tianguis,12,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Mercado/Tianguis,12,Experiencia_Venta_Pasada,11.67,900,False
+Ola 7,2023-Q2,Trato directo,13,Top_of_Mind,0.33,900,False
+Ola 7,2023-Q2,Trato directo,13,Awareness_Espontanea,1.33,900,False
+Ola 7,2023-Q2,Trato directo,13,Awareness_Asistida,30.22,900,False
+Ola 7,2023-Q2,Trato directo,13,Consideracion,16.56,900,False
+Ola 7,2023-Q2,Trato directo,13,Intencion_Compra_1a,3.0,900,False
+Ola 7,2023-Q2,Trato directo,13,Intencion_Compra_Total,5.11,900,False
+Ola 7,2023-Q2,Trato directo,13,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Trato directo,13,Experiencia_Venta_Pasada,13.0,900,False
+Ola 7,2023-Q2,Cambiauto.mx,14,Top_of_Mind,0.0,900,False
+Ola 7,2023-Q2,Cambiauto.mx,14,Awareness_Espontanea,0.0,900,False
+Ola 7,2023-Q2,Cambiauto.mx,14,Awareness_Asistida,12.22,900,False
+Ola 7,2023-Q2,Cambiauto.mx,14,Consideracion,1.78,900,False
+Ola 7,2023-Q2,Cambiauto.mx,14,Intencion_Compra_1a,0.56,900,False
+Ola 7,2023-Q2,Cambiauto.mx,14,Intencion_Compra_Total,1.67,900,False
+Ola 7,2023-Q2,Cambiauto.mx,14,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Cambiauto.mx,14,Experiencia_Venta_Pasada,4.0,900,False
+Ola 7,2023-Q2,Tipi Top,15,Top_of_Mind,0.0,900,False
+Ola 7,2023-Q2,Tipi Top,15,Awareness_Espontanea,0.0,900,False
+Ola 7,2023-Q2,Tipi Top,15,Awareness_Asistida,0.0,900,False
+Ola 7,2023-Q2,Tipi Top,15,Consideracion,,900,False
+Ola 7,2023-Q2,Tipi Top,15,Intencion_Compra_1a,,900,False
+Ola 7,2023-Q2,Tipi Top,15,Intencion_Compra_Total,0.0,900,False
+Ola 7,2023-Q2,Tipi Top,15,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Tipi Top,15,Experiencia_Venta_Pasada,,900,False
+Ola 7,2023-Q2,soloautos.mx,16,Top_of_Mind,2.44,900,False
+Ola 7,2023-Q2,soloautos.mx,16,Awareness_Espontanea,11.11,900,False
+Ola 7,2023-Q2,soloautos.mx,16,Awareness_Asistida,46.89,900,False
+Ola 7,2023-Q2,soloautos.mx,16,Consideracion,11.11,900,False
+Ola 7,2023-Q2,soloautos.mx,16,Intencion_Compra_1a,1.89,900,False
+Ola 7,2023-Q2,soloautos.mx,16,Intencion_Compra_Total,6.67,900,False
+Ola 7,2023-Q2,soloautos.mx,16,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,soloautos.mx,16,Experiencia_Venta_Pasada,17.0,900,False
+Ola 7,2023-Q2,Car One,17,Top_of_Mind,1.22,900,False
+Ola 7,2023-Q2,Car One,17,Awareness_Espontanea,4.33,900,False
+Ola 7,2023-Q2,Car One,17,Awareness_Asistida,28.89,900,False
+Ola 7,2023-Q2,Car One,17,Consideracion,6.56,900,False
+Ola 7,2023-Q2,Car One,17,Intencion_Compra_1a,0.78,900,False
+Ola 7,2023-Q2,Car One,17,Intencion_Compra_Total,4.22,900,False
+Ola 7,2023-Q2,Car One,17,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Car One,17,Experiencia_Venta_Pasada,10.78,900,False
+Ola 7,2023-Q2,Facebook Marketplace,78,Top_of_Mind,0.78,900,False
+Ola 7,2023-Q2,Facebook Marketplace,78,Awareness_Espontanea,4.0,900,False
+Ola 7,2023-Q2,Facebook Marketplace,78,Awareness_Asistida,43.56,900,False
+Ola 7,2023-Q2,Facebook Marketplace,78,Consideracion,13.0,900,False
+Ola 7,2023-Q2,Facebook Marketplace,78,Intencion_Compra_1a,4.0,900,False
+Ola 7,2023-Q2,Facebook Marketplace,78,Intencion_Compra_Total,6.0,900,False
+Ola 7,2023-Q2,Facebook Marketplace,78,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Facebook Marketplace,78,Experiencia_Venta_Pasada,13.67,900,False
+Ola 7,2023-Q2,O|X Autos,102,Top_of_Mind,1.22,900,False
+Ola 7,2023-Q2,O|X Autos,102,Awareness_Espontanea,9.78,900,False
+Ola 7,2023-Q2,O|X Autos,102,Awareness_Asistida,31.67,900,False
+Ola 7,2023-Q2,O|X Autos,102,Consideracion,5.11,900,False
+Ola 7,2023-Q2,O|X Autos,102,Intencion_Compra_1a,0.89,900,False
+Ola 7,2023-Q2,O|X Autos,102,Intencion_Compra_Total,4.33,900,False
+Ola 7,2023-Q2,O|X Autos,102,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,O|X Autos,102,Experiencia_Venta_Pasada,12.0,900,False
+Ola 7,2023-Q2,SemiNuevos.com,111,Top_of_Mind,0.67,900,False
+Ola 7,2023-Q2,SemiNuevos.com,111,Awareness_Espontanea,3.67,900,False
+Ola 7,2023-Q2,SemiNuevos.com,111,Awareness_Asistida,31.56,900,False
+Ola 7,2023-Q2,SemiNuevos.com,111,Consideracion,6.67,900,False
+Ola 7,2023-Q2,SemiNuevos.com,111,Intencion_Compra_1a,1.22,900,False
+Ola 7,2023-Q2,SemiNuevos.com,111,Intencion_Compra_Total,4.11,900,False
+Ola 7,2023-Q2,SemiNuevos.com,111,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,SemiNuevos.com,111,Experiencia_Venta_Pasada,10.78,900,False
+Ola 7,2023-Q2,Odetta,384,Top_of_Mind,0.0,900,False
+Ola 7,2023-Q2,Odetta,384,Awareness_Espontanea,0.22,900,False
+Ola 7,2023-Q2,Odetta,384,Awareness_Asistida,4.22,900,False
+Ola 7,2023-Q2,Odetta,384,Consideracion,0.44,900,False
+Ola 7,2023-Q2,Odetta,384,Intencion_Compra_1a,,900,False
+Ola 7,2023-Q2,Odetta,384,Intencion_Compra_Total,0.67,900,False
+Ola 7,2023-Q2,Odetta,384,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Odetta,384,Experiencia_Venta_Pasada,1.22,900,False
+Ola 7,2023-Q2,Creditas,457,Top_of_Mind,0.0,900,False
+Ola 7,2023-Q2,Creditas,457,Awareness_Espontanea,0.0,900,False
+Ola 7,2023-Q2,Creditas,457,Awareness_Asistida,2.67,900,False
+Ola 7,2023-Q2,Creditas,457,Consideracion,0.78,900,False
+Ola 7,2023-Q2,Creditas,457,Intencion_Compra_1a,0.11,900,False
+Ola 7,2023-Q2,Creditas,457,Intencion_Compra_Total,0.44,900,False
+Ola 7,2023-Q2,Creditas,457,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Creditas,457,Experiencia_Venta_Pasada,0.67,900,False
+Ola 7,2023-Q2,Caranty,595,Top_of_Mind,0.0,900,False
+Ola 7,2023-Q2,Caranty,595,Awareness_Espontanea,0.56,900,False
+Ola 7,2023-Q2,Caranty,595,Awareness_Asistida,5.89,900,False
+Ola 7,2023-Q2,Caranty,595,Consideracion,0.78,900,False
+Ola 7,2023-Q2,Caranty,595,Intencion_Compra_1a,0.11,900,False
+Ola 7,2023-Q2,Caranty,595,Intencion_Compra_Total,0.33,900,False
+Ola 7,2023-Q2,Caranty,595,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Caranty,595,Experiencia_Venta_Pasada,2.0,900,False
+Ola 7,2023-Q2,Wahu,820,Top_of_Mind,0.0,900,False
+Ola 7,2023-Q2,Wahu,820,Awareness_Espontanea,0.0,900,False
+Ola 7,2023-Q2,Wahu,820,Awareness_Asistida,0.0,900,False
+Ola 7,2023-Q2,Wahu,820,Consideracion,,900,False
+Ola 7,2023-Q2,Wahu,820,Intencion_Compra_1a,,900,False
+Ola 7,2023-Q2,Wahu,820,Intencion_Compra_Total,0.0,900,False
+Ola 7,2023-Q2,Wahu,820,Experiencia_Compra_Pasada,,900,False
+Ola 7,2023-Q2,Wahu,820,Experiencia_Venta_Pasada,,900,False
+Ola 8,2023-Q4,KAVAK,1,Top_of_Mind,36.11,900,True
+Ola 8,2023-Q4,KAVAK,1,Awareness_Espontanea,47.67,900,True
+Ola 8,2023-Q4,KAVAK,1,Awareness_Asistida,79.78,900,True
+Ola 8,2023-Q4,KAVAK,1,Consideracion,31.78,900,True
+Ola 8,2023-Q4,KAVAK,1,Intencion_Compra_1a,9.11,900,True
+Ola 8,2023-Q4,KAVAK,1,Intencion_Compra_Total,18.78,900,True
+Ola 8,2023-Q4,KAVAK,1,NPS_Score,46.1,718,True
+Ola 8,2023-Q4,KAVAK,1,NPS_Promotores_pct,46.33,900,True
+Ola 8,2023-Q4,KAVAK,1,NPS_Detractores_pct,9.56,900,True
+Ola 8,2023-Q4,KAVAK,1,NPS_Top2box_pct_recomendadores,58.08,718,True
+Ola 8,2023-Q4,KAVAK,1,Brand_Satisfaction_Media,8.56,718,True
+Ola 8,2023-Q4,KAVAK,1,Brand_Satisfaction_Top2box,61.42,718,True
+Ola 8,2023-Q4,KAVAK,1,Brand_Affinity_Media,8.17,718,True
+Ola 8,2023-Q4,KAVAK,1,Brand_Affinity_Top2box,51.53,718,True
+Ola 8,2023-Q4,KAVAK,1,Experiencia_Compra_Pasada,,900,True
+Ola 8,2023-Q4,KAVAK,1,Experiencia_Venta_Pasada,48.89,900,True
+Ola 8,2023-Q4,Segunda Mano Autos Usados,2,Top_of_Mind,2.11,900,False
+Ola 8,2023-Q4,Segunda Mano Autos Usados,2,Awareness_Espontanea,9.56,900,False
+Ola 8,2023-Q4,Segunda Mano Autos Usados,2,Awareness_Asistida,53.56,900,False
+Ola 8,2023-Q4,Segunda Mano Autos Usados,2,Consideracion,13.44,900,False
+Ola 8,2023-Q4,Segunda Mano Autos Usados,2,Intencion_Compra_1a,2.67,900,False
+Ola 8,2023-Q4,Segunda Mano Autos Usados,2,Intencion_Compra_Total,6.44,900,False
+Ola 8,2023-Q4,Segunda Mano Autos Usados,2,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Segunda Mano Autos Usados,2,Experiencia_Venta_Pasada,15.56,900,False
+Ola 8,2023-Q4,Mercado Libre,3,Top_of_Mind,5.0,900,False
+Ola 8,2023-Q4,Mercado Libre,3,Awareness_Espontanea,20.44,900,False
+Ola 8,2023-Q4,Mercado Libre,3,Awareness_Asistida,68.56,900,False
+Ola 8,2023-Q4,Mercado Libre,3,Consideracion,17.78,900,False
+Ola 8,2023-Q4,Mercado Libre,3,Intencion_Compra_1a,4.56,900,False
+Ola 8,2023-Q4,Mercado Libre,3,Intencion_Compra_Total,10.89,900,False
+Ola 8,2023-Q4,Mercado Libre,3,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Mercado Libre,3,Experiencia_Venta_Pasada,23.44,900,False
+Ola 8,2023-Q4,CarShop,4,Top_of_Mind,0.11,900,False
+Ola 8,2023-Q4,CarShop,4,Awareness_Espontanea,0.22,900,False
+Ola 8,2023-Q4,CarShop,4,Awareness_Asistida,12.78,900,False
+Ola 8,2023-Q4,CarShop,4,Consideracion,2.22,900,False
+Ola 8,2023-Q4,CarShop,4,Intencion_Compra_1a,0.78,900,False
+Ola 8,2023-Q4,CarShop,4,Intencion_Compra_Total,1.89,900,False
+Ola 8,2023-Q4,CarShop,4,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,CarShop,4,Experiencia_Venta_Pasada,4.11,900,False
+Ola 8,2023-Q4,Vivanuncios,5,Top_of_Mind,0.22,900,False
+Ola 8,2023-Q4,Vivanuncios,5,Awareness_Espontanea,2.0,900,False
+Ola 8,2023-Q4,Vivanuncios,5,Awareness_Asistida,39.11,900,False
+Ola 8,2023-Q4,Vivanuncios,5,Consideracion,6.11,900,False
+Ola 8,2023-Q4,Vivanuncios,5,Intencion_Compra_1a,1.22,900,False
+Ola 8,2023-Q4,Vivanuncios,5,Intencion_Compra_Total,4.67,900,False
+Ola 8,2023-Q4,Vivanuncios,5,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Vivanuncios,5,Experiencia_Venta_Pasada,9.33,900,False
+Ola 8,2023-Q4,Trovit,6,Top_of_Mind,0.11,900,False
+Ola 8,2023-Q4,Trovit,6,Awareness_Espontanea,1.22,900,False
+Ola 8,2023-Q4,Trovit,6,Awareness_Asistida,22.56,900,False
+Ola 8,2023-Q4,Trovit,6,Consideracion,3.11,900,False
+Ola 8,2023-Q4,Trovit,6,Intencion_Compra_1a,0.67,900,False
+Ola 8,2023-Q4,Trovit,6,Intencion_Compra_Total,3.22,900,False
+Ola 8,2023-Q4,Trovit,6,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Trovit,6,Experiencia_Venta_Pasada,5.22,900,False
+Ola 8,2023-Q4,VendeTuAuto.com,7,Top_of_Mind,0.11,900,False
+Ola 8,2023-Q4,VendeTuAuto.com,7,Awareness_Espontanea,0.44,900,False
+Ola 8,2023-Q4,VendeTuAuto.com,7,Awareness_Asistida,0.0,900,False
+Ola 8,2023-Q4,VendeTuAuto.com,7,Consideracion,,900,False
+Ola 8,2023-Q4,VendeTuAuto.com,7,Intencion_Compra_1a,,900,False
+Ola 8,2023-Q4,VendeTuAuto.com,7,Intencion_Compra_Total,0.0,900,False
+Ola 8,2023-Q4,VendeTuAuto.com,7,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,VendeTuAuto.com,7,Experiencia_Venta_Pasada,,900,False
+Ola 8,2023-Q4,Lotes de autos usados,8,Top_of_Mind,0.11,900,False
+Ola 8,2023-Q4,Lotes de autos usados,8,Awareness_Espontanea,0.89,900,False
+Ola 8,2023-Q4,Lotes de autos usados,8,Awareness_Asistida,39.44,900,False
+Ola 8,2023-Q4,Lotes de autos usados,8,Consideracion,12.67,900,False
+Ola 8,2023-Q4,Lotes de autos usados,8,Intencion_Compra_1a,2.44,900,False
+Ola 8,2023-Q4,Lotes de autos usados,8,Intencion_Compra_Total,6.0,900,False
+Ola 8,2023-Q4,Lotes de autos usados,8,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Lotes de autos usados,8,Experiencia_Venta_Pasada,14.11,900,False
+Ola 8,2023-Q4,Seminuevos (Agencias),9,Top_of_Mind,0.22,900,False
+Ola 8,2023-Q4,Seminuevos (Agencias),9,Awareness_Espontanea,0.78,900,False
+Ola 8,2023-Q4,Seminuevos (Agencias),9,Awareness_Asistida,35.44,900,False
+Ola 8,2023-Q4,Seminuevos (Agencias),9,Consideracion,7.0,900,False
+Ola 8,2023-Q4,Seminuevos (Agencias),9,Intencion_Compra_1a,1.56,900,False
+Ola 8,2023-Q4,Seminuevos (Agencias),9,Intencion_Compra_Total,4.33,900,False
+Ola 8,2023-Q4,Seminuevos (Agencias),9,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Seminuevos (Agencias),9,Experiencia_Venta_Pasada,12.22,900,False
+Ola 8,2023-Q4,Clasificados periódicos,10,Top_of_Mind,0.0,900,False
+Ola 8,2023-Q4,Clasificados periódicos,10,Awareness_Espontanea,0.22,900,False
+Ola 8,2023-Q4,Clasificados periódicos,10,Awareness_Asistida,22.56,900,False
+Ola 8,2023-Q4,Clasificados periódicos,10,Consideracion,4.56,900,False
+Ola 8,2023-Q4,Clasificados periódicos,10,Intencion_Compra_1a,0.22,900,False
+Ola 8,2023-Q4,Clasificados periódicos,10,Intencion_Compra_Total,1.89,900,False
+Ola 8,2023-Q4,Clasificados periódicos,10,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Clasificados periódicos,10,Experiencia_Venta_Pasada,4.33,900,False
+Ola 8,2023-Q4,Autocosmos.com,11,Top_of_Mind,0.22,900,False
+Ola 8,2023-Q4,Autocosmos.com,11,Awareness_Espontanea,5.67,900,False
+Ola 8,2023-Q4,Autocosmos.com,11,Awareness_Asistida,21.0,900,False
+Ola 8,2023-Q4,Autocosmos.com,11,Consideracion,2.89,900,False
+Ola 8,2023-Q4,Autocosmos.com,11,Intencion_Compra_1a,0.78,900,False
+Ola 8,2023-Q4,Autocosmos.com,11,Intencion_Compra_Total,2.78,900,False
+Ola 8,2023-Q4,Autocosmos.com,11,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Autocosmos.com,11,Experiencia_Venta_Pasada,6.22,900,False
+Ola 8,2023-Q4,Mercado/Tianguis,12,Top_of_Mind,0.22,900,False
+Ola 8,2023-Q4,Mercado/Tianguis,12,Awareness_Espontanea,1.56,900,False
+Ola 8,2023-Q4,Mercado/Tianguis,12,Awareness_Asistida,43.44,900,False
+Ola 8,2023-Q4,Mercado/Tianguis,12,Consideracion,16.22,900,False
+Ola 8,2023-Q4,Mercado/Tianguis,12,Intencion_Compra_1a,3.0,900,False
+Ola 8,2023-Q4,Mercado/Tianguis,12,Intencion_Compra_Total,5.56,900,False
+Ola 8,2023-Q4,Mercado/Tianguis,12,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Mercado/Tianguis,12,Experiencia_Venta_Pasada,14.22,900,False
+Ola 8,2023-Q4,Trato directo,13,Top_of_Mind,0.44,900,False
+Ola 8,2023-Q4,Trato directo,13,Awareness_Espontanea,0.89,900,False
+Ola 8,2023-Q4,Trato directo,13,Awareness_Asistida,29.22,900,False
+Ola 8,2023-Q4,Trato directo,13,Consideracion,15.67,900,False
+Ola 8,2023-Q4,Trato directo,13,Intencion_Compra_1a,4.0,900,False
+Ola 8,2023-Q4,Trato directo,13,Intencion_Compra_Total,6.44,900,False
+Ola 8,2023-Q4,Trato directo,13,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Trato directo,13,Experiencia_Venta_Pasada,13.56,900,False
+Ola 8,2023-Q4,Cambiauto.mx,14,Top_of_Mind,0.0,900,False
+Ola 8,2023-Q4,Cambiauto.mx,14,Awareness_Espontanea,0.0,900,False
+Ola 8,2023-Q4,Cambiauto.mx,14,Awareness_Asistida,13.22,900,False
+Ola 8,2023-Q4,Cambiauto.mx,14,Consideracion,2.11,900,False
+Ola 8,2023-Q4,Cambiauto.mx,14,Intencion_Compra_1a,0.67,900,False
+Ola 8,2023-Q4,Cambiauto.mx,14,Intencion_Compra_Total,2.22,900,False
+Ola 8,2023-Q4,Cambiauto.mx,14,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Cambiauto.mx,14,Experiencia_Venta_Pasada,3.44,900,False
+Ola 8,2023-Q4,Tipi Top,15,Top_of_Mind,0.0,900,False
+Ola 8,2023-Q4,Tipi Top,15,Awareness_Espontanea,0.0,900,False
+Ola 8,2023-Q4,Tipi Top,15,Awareness_Asistida,0.0,900,False
+Ola 8,2023-Q4,Tipi Top,15,Consideracion,,900,False
+Ola 8,2023-Q4,Tipi Top,15,Intencion_Compra_1a,,900,False
+Ola 8,2023-Q4,Tipi Top,15,Intencion_Compra_Total,0.0,900,False
+Ola 8,2023-Q4,Tipi Top,15,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Tipi Top,15,Experiencia_Venta_Pasada,,900,False
+Ola 8,2023-Q4,soloautos.mx,16,Top_of_Mind,2.44,900,False
+Ola 8,2023-Q4,soloautos.mx,16,Awareness_Espontanea,10.56,900,False
+Ola 8,2023-Q4,soloautos.mx,16,Awareness_Asistida,48.22,900,False
+Ola 8,2023-Q4,soloautos.mx,16,Consideracion,9.67,900,False
+Ola 8,2023-Q4,soloautos.mx,16,Intencion_Compra_1a,1.78,900,False
+Ola 8,2023-Q4,soloautos.mx,16,Intencion_Compra_Total,7.44,900,False
+Ola 8,2023-Q4,soloautos.mx,16,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,soloautos.mx,16,Experiencia_Venta_Pasada,18.44,900,False
+Ola 8,2023-Q4,Car One,17,Top_of_Mind,1.22,900,False
+Ola 8,2023-Q4,Car One,17,Awareness_Espontanea,3.33,900,False
+Ola 8,2023-Q4,Car One,17,Awareness_Asistida,26.33,900,False
+Ola 8,2023-Q4,Car One,17,Consideracion,7.0,900,False
+Ola 8,2023-Q4,Car One,17,Intencion_Compra_1a,1.33,900,False
+Ola 8,2023-Q4,Car One,17,Intencion_Compra_Total,4.78,900,False
+Ola 8,2023-Q4,Car One,17,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Car One,17,Experiencia_Venta_Pasada,11.44,900,False
+Ola 8,2023-Q4,Facebook Marketplace,78,Top_of_Mind,0.67,900,False
+Ola 8,2023-Q4,Facebook Marketplace,78,Awareness_Espontanea,4.22,900,False
+Ola 8,2023-Q4,Facebook Marketplace,78,Awareness_Asistida,36.67,900,False
+Ola 8,2023-Q4,Facebook Marketplace,78,Consideracion,12.11,900,False
+Ola 8,2023-Q4,Facebook Marketplace,78,Intencion_Compra_1a,4.11,900,False
+Ola 8,2023-Q4,Facebook Marketplace,78,Intencion_Compra_Total,6.33,900,False
+Ola 8,2023-Q4,Facebook Marketplace,78,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Facebook Marketplace,78,Experiencia_Venta_Pasada,13.0,900,False
+Ola 8,2023-Q4,O|X Autos,102,Top_of_Mind,0.22,900,False
+Ola 8,2023-Q4,O|X Autos,102,Awareness_Espontanea,3.67,900,False
+Ola 8,2023-Q4,O|X Autos,102,Awareness_Asistida,0.0,900,False
+Ola 8,2023-Q4,O|X Autos,102,Consideracion,,900,False
+Ola 8,2023-Q4,O|X Autos,102,Intencion_Compra_1a,,900,False
+Ola 8,2023-Q4,O|X Autos,102,Intencion_Compra_Total,0.0,900,False
+Ola 8,2023-Q4,O|X Autos,102,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,O|X Autos,102,Experiencia_Venta_Pasada,,900,False
+Ola 8,2023-Q4,SemiNuevos.com,111,Top_of_Mind,0.56,900,False
+Ola 8,2023-Q4,SemiNuevos.com,111,Awareness_Espontanea,1.89,900,False
+Ola 8,2023-Q4,SemiNuevos.com,111,Awareness_Asistida,37.33,900,False
+Ola 8,2023-Q4,SemiNuevos.com,111,Consideracion,7.44,900,False
+Ola 8,2023-Q4,SemiNuevos.com,111,Intencion_Compra_1a,1.67,900,False
+Ola 8,2023-Q4,SemiNuevos.com,111,Intencion_Compra_Total,5.67,900,False
+Ola 8,2023-Q4,SemiNuevos.com,111,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,SemiNuevos.com,111,Experiencia_Venta_Pasada,12.33,900,False
+Ola 8,2023-Q4,Odetta,384,Top_of_Mind,0.0,900,False
+Ola 8,2023-Q4,Odetta,384,Awareness_Espontanea,0.44,900,False
+Ola 8,2023-Q4,Odetta,384,Awareness_Asistida,0.0,900,False
+Ola 8,2023-Q4,Odetta,384,Consideracion,,900,False
+Ola 8,2023-Q4,Odetta,384,Intencion_Compra_1a,,900,False
+Ola 8,2023-Q4,Odetta,384,Intencion_Compra_Total,0.0,900,False
+Ola 8,2023-Q4,Odetta,384,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Odetta,384,Experiencia_Venta_Pasada,,900,False
+Ola 8,2023-Q4,Creditas,457,Top_of_Mind,0.0,900,False
+Ola 8,2023-Q4,Creditas,457,Awareness_Espontanea,0.0,900,False
+Ola 8,2023-Q4,Creditas,457,Awareness_Asistida,4.56,900,False
+Ola 8,2023-Q4,Creditas,457,Consideracion,0.56,900,False
+Ola 8,2023-Q4,Creditas,457,Intencion_Compra_1a,0.11,900,False
+Ola 8,2023-Q4,Creditas,457,Intencion_Compra_Total,0.67,900,False
+Ola 8,2023-Q4,Creditas,457,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Creditas,457,Experiencia_Venta_Pasada,1.11,900,False
+Ola 8,2023-Q4,Caranty,595,Top_of_Mind,0.11,900,False
+Ola 8,2023-Q4,Caranty,595,Awareness_Espontanea,0.89,900,False
+Ola 8,2023-Q4,Caranty,595,Awareness_Asistida,6.67,900,False
+Ola 8,2023-Q4,Caranty,595,Consideracion,1.33,900,False
+Ola 8,2023-Q4,Caranty,595,Intencion_Compra_1a,0.11,900,False
+Ola 8,2023-Q4,Caranty,595,Intencion_Compra_Total,1.33,900,False
+Ola 8,2023-Q4,Caranty,595,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Caranty,595,Experiencia_Venta_Pasada,1.56,900,False
+Ola 8,2023-Q4,Wahu,820,Top_of_Mind,0.0,900,False
+Ola 8,2023-Q4,Wahu,820,Awareness_Espontanea,0.0,900,False
+Ola 8,2023-Q4,Wahu,820,Awareness_Asistida,4.33,900,False
+Ola 8,2023-Q4,Wahu,820,Consideracion,0.67,900,False
+Ola 8,2023-Q4,Wahu,820,Intencion_Compra_1a,0.11,900,False
+Ola 8,2023-Q4,Wahu,820,Intencion_Compra_Total,0.67,900,False
+Ola 8,2023-Q4,Wahu,820,Experiencia_Compra_Pasada,,900,False
+Ola 8,2023-Q4,Wahu,820,Experiencia_Venta_Pasada,1.56,900,False
+Ola 9 Ligth,2024-Q2,KAVAK,1,Top_of_Mind,39.0,600,True
+Ola 9 Ligth,2024-Q2,KAVAK,1,Awareness_Espontanea,51.33,600,True
+Ola 9 Ligth,2024-Q2,KAVAK,1,Awareness_Asistida,81.0,600,True
+Ola 9 Ligth,2024-Q2,KAVAK,1,Consideracion,32.0,600,True
+Ola 9 Ligth,2024-Q2,KAVAK,1,Intencion_Compra_1a,7.83,600,True
+Ola 9 Ligth,2024-Q2,KAVAK,1,Intencion_Compra_Total,16.0,600,True
+Ola 9 Ligth,2024-Q2,KAVAK,1,NPS_Score,,600,True
+Ola 9 Ligth,2024-Q2,KAVAK,1,NPS_Promotores_pct,,600,True
+Ola 9 Ligth,2024-Q2,KAVAK,1,NPS_Detractores_pct,,600,True
+Ola 9 Ligth,2024-Q2,KAVAK,1,NPS_Top2box_pct_recomendadores,,600,True
+Ola 9 Ligth,2024-Q2,KAVAK,1,Brand_Satisfaction_Media,,0,True
+Ola 9 Ligth,2024-Q2,KAVAK,1,Brand_Satisfaction_Top2box,,0,True
+Ola 9 Ligth,2024-Q2,KAVAK,1,Brand_Affinity_Media,,0,True
+Ola 9 Ligth,2024-Q2,KAVAK,1,Brand_Affinity_Top2box,,0,True
+Ola 9 Ligth,2024-Q2,KAVAK,1,Experiencia_Compra_Pasada,,600,True
+Ola 9 Ligth,2024-Q2,KAVAK,1,Experiencia_Venta_Pasada,48.67,600,True
+Ola 9 Ligth,2024-Q2,Segunda Mano Autos Usados,2,Top_of_Mind,1.33,600,False
+Ola 9 Ligth,2024-Q2,Segunda Mano Autos Usados,2,Awareness_Espontanea,9.0,600,False
+Ola 9 Ligth,2024-Q2,Segunda Mano Autos Usados,2,Awareness_Asistida,55.5,600,False
+Ola 9 Ligth,2024-Q2,Segunda Mano Autos Usados,2,Consideracion,12.0,600,False
+Ola 9 Ligth,2024-Q2,Segunda Mano Autos Usados,2,Intencion_Compra_1a,2.0,600,False
+Ola 9 Ligth,2024-Q2,Segunda Mano Autos Usados,2,Intencion_Compra_Total,5.33,600,False
+Ola 9 Ligth,2024-Q2,Segunda Mano Autos Usados,2,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Segunda Mano Autos Usados,2,Experiencia_Venta_Pasada,14.0,600,False
+Ola 9 Ligth,2024-Q2,Mercado Libre,3,Top_of_Mind,4.83,600,False
+Ola 9 Ligth,2024-Q2,Mercado Libre,3,Awareness_Espontanea,25.33,600,False
+Ola 9 Ligth,2024-Q2,Mercado Libre,3,Awareness_Asistida,68.5,600,False
+Ola 9 Ligth,2024-Q2,Mercado Libre,3,Consideracion,17.5,600,False
+Ola 9 Ligth,2024-Q2,Mercado Libre,3,Intencion_Compra_1a,3.83,600,False
+Ola 9 Ligth,2024-Q2,Mercado Libre,3,Intencion_Compra_Total,8.83,600,False
+Ola 9 Ligth,2024-Q2,Mercado Libre,3,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Mercado Libre,3,Experiencia_Venta_Pasada,22.0,600,False
+Ola 9 Ligth,2024-Q2,CarShop,4,Top_of_Mind,0.0,600,False
+Ola 9 Ligth,2024-Q2,CarShop,4,Awareness_Espontanea,0.0,600,False
+Ola 9 Ligth,2024-Q2,CarShop,4,Awareness_Asistida,10.0,600,False
+Ola 9 Ligth,2024-Q2,CarShop,4,Consideracion,1.5,600,False
+Ola 9 Ligth,2024-Q2,CarShop,4,Intencion_Compra_1a,0.17,600,False
+Ola 9 Ligth,2024-Q2,CarShop,4,Intencion_Compra_Total,0.83,600,False
+Ola 9 Ligth,2024-Q2,CarShop,4,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,CarShop,4,Experiencia_Venta_Pasada,2.67,600,False
+Ola 9 Ligth,2024-Q2,Vivanuncios,5,Top_of_Mind,0.67,600,False
+Ola 9 Ligth,2024-Q2,Vivanuncios,5,Awareness_Espontanea,3.83,600,False
+Ola 9 Ligth,2024-Q2,Vivanuncios,5,Awareness_Asistida,43.83,600,False
+Ola 9 Ligth,2024-Q2,Vivanuncios,5,Consideracion,8.17,600,False
+Ola 9 Ligth,2024-Q2,Vivanuncios,5,Intencion_Compra_1a,1.33,600,False
+Ola 9 Ligth,2024-Q2,Vivanuncios,5,Intencion_Compra_Total,3.17,600,False
+Ola 9 Ligth,2024-Q2,Vivanuncios,5,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Vivanuncios,5,Experiencia_Venta_Pasada,11.5,600,False
+Ola 9 Ligth,2024-Q2,Trovit,6,Top_of_Mind,0.5,600,False
+Ola 9 Ligth,2024-Q2,Trovit,6,Awareness_Espontanea,1.83,600,False
+Ola 9 Ligth,2024-Q2,Trovit,6,Awareness_Asistida,25.0,600,False
+Ola 9 Ligth,2024-Q2,Trovit,6,Consideracion,4.0,600,False
+Ola 9 Ligth,2024-Q2,Trovit,6,Intencion_Compra_1a,0.67,600,False
+Ola 9 Ligth,2024-Q2,Trovit,6,Intencion_Compra_Total,3.0,600,False
+Ola 9 Ligth,2024-Q2,Trovit,6,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Trovit,6,Experiencia_Venta_Pasada,6.17,600,False
+Ola 9 Ligth,2024-Q2,VendeTuAuto.com,7,Top_of_Mind,0.0,600,False
+Ola 9 Ligth,2024-Q2,VendeTuAuto.com,7,Awareness_Espontanea,0.33,600,False
+Ola 9 Ligth,2024-Q2,VendeTuAuto.com,7,Awareness_Asistida,0.0,600,False
+Ola 9 Ligth,2024-Q2,VendeTuAuto.com,7,Consideracion,,600,False
+Ola 9 Ligth,2024-Q2,VendeTuAuto.com,7,Intencion_Compra_1a,,600,False
+Ola 9 Ligth,2024-Q2,VendeTuAuto.com,7,Intencion_Compra_Total,0.0,600,False
+Ola 9 Ligth,2024-Q2,VendeTuAuto.com,7,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,VendeTuAuto.com,7,Experiencia_Venta_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Lotes de autos usados,8,Top_of_Mind,0.17,600,False
+Ola 9 Ligth,2024-Q2,Lotes de autos usados,8,Awareness_Espontanea,1.33,600,False
+Ola 9 Ligth,2024-Q2,Lotes de autos usados,8,Awareness_Asistida,44.17,600,False
+Ola 9 Ligth,2024-Q2,Lotes de autos usados,8,Consideracion,15.0,600,False
+Ola 9 Ligth,2024-Q2,Lotes de autos usados,8,Intencion_Compra_1a,1.83,600,False
+Ola 9 Ligth,2024-Q2,Lotes de autos usados,8,Intencion_Compra_Total,4.67,600,False
+Ola 9 Ligth,2024-Q2,Lotes de autos usados,8,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Lotes de autos usados,8,Experiencia_Venta_Pasada,12.17,600,False
+Ola 9 Ligth,2024-Q2,Seminuevos (Agencias),9,Top_of_Mind,0.0,600,False
+Ola 9 Ligth,2024-Q2,Seminuevos (Agencias),9,Awareness_Espontanea,0.83,600,False
+Ola 9 Ligth,2024-Q2,Seminuevos (Agencias),9,Awareness_Asistida,59.67,600,False
+Ola 9 Ligth,2024-Q2,Seminuevos (Agencias),9,Consideracion,25.33,600,False
+Ola 9 Ligth,2024-Q2,Seminuevos (Agencias),9,Intencion_Compra_1a,4.17,600,False
+Ola 9 Ligth,2024-Q2,Seminuevos (Agencias),9,Intencion_Compra_Total,9.5,600,False
+Ola 9 Ligth,2024-Q2,Seminuevos (Agencias),9,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Seminuevos (Agencias),9,Experiencia_Venta_Pasada,32.83,600,False
+Ola 9 Ligth,2024-Q2,Clasificados periódicos,10,Top_of_Mind,0.33,600,False
+Ola 9 Ligth,2024-Q2,Clasificados periódicos,10,Awareness_Espontanea,0.83,600,False
+Ola 9 Ligth,2024-Q2,Clasificados periódicos,10,Awareness_Asistida,25.5,600,False
+Ola 9 Ligth,2024-Q2,Clasificados periódicos,10,Consideracion,6.17,600,False
+Ola 9 Ligth,2024-Q2,Clasificados periódicos,10,Intencion_Compra_1a,0.67,600,False
+Ola 9 Ligth,2024-Q2,Clasificados periódicos,10,Intencion_Compra_Total,2.17,600,False
+Ola 9 Ligth,2024-Q2,Clasificados periódicos,10,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Clasificados periódicos,10,Experiencia_Venta_Pasada,6.5,600,False
+Ola 9 Ligth,2024-Q2,Autocosmos.com,11,Top_of_Mind,0.67,600,False
+Ola 9 Ligth,2024-Q2,Autocosmos.com,11,Awareness_Espontanea,6.5,600,False
+Ola 9 Ligth,2024-Q2,Autocosmos.com,11,Awareness_Asistida,20.67,600,False
+Ola 9 Ligth,2024-Q2,Autocosmos.com,11,Consideracion,5.17,600,False
+Ola 9 Ligth,2024-Q2,Autocosmos.com,11,Intencion_Compra_1a,0.33,600,False
+Ola 9 Ligth,2024-Q2,Autocosmos.com,11,Intencion_Compra_Total,2.83,600,False
+Ola 9 Ligth,2024-Q2,Autocosmos.com,11,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Autocosmos.com,11,Experiencia_Venta_Pasada,6.83,600,False
+Ola 9 Ligth,2024-Q2,Mercado/Tianguis,12,Top_of_Mind,0.5,600,False
+Ola 9 Ligth,2024-Q2,Mercado/Tianguis,12,Awareness_Espontanea,2.67,600,False
+Ola 9 Ligth,2024-Q2,Mercado/Tianguis,12,Awareness_Asistida,42.0,600,False
+Ola 9 Ligth,2024-Q2,Mercado/Tianguis,12,Consideracion,15.0,600,False
+Ola 9 Ligth,2024-Q2,Mercado/Tianguis,12,Intencion_Compra_1a,1.0,600,False
+Ola 9 Ligth,2024-Q2,Mercado/Tianguis,12,Intencion_Compra_Total,3.5,600,False
+Ola 9 Ligth,2024-Q2,Mercado/Tianguis,12,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Mercado/Tianguis,12,Experiencia_Venta_Pasada,11.0,600,False
+Ola 9 Ligth,2024-Q2,Trato directo,13,Top_of_Mind,0.83,600,False
+Ola 9 Ligth,2024-Q2,Trato directo,13,Awareness_Espontanea,1.67,600,False
+Ola 9 Ligth,2024-Q2,Trato directo,13,Awareness_Asistida,32.83,600,False
+Ola 9 Ligth,2024-Q2,Trato directo,13,Consideracion,16.33,600,False
+Ola 9 Ligth,2024-Q2,Trato directo,13,Intencion_Compra_1a,3.33,600,False
+Ola 9 Ligth,2024-Q2,Trato directo,13,Intencion_Compra_Total,5.33,600,False
+Ola 9 Ligth,2024-Q2,Trato directo,13,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Trato directo,13,Experiencia_Venta_Pasada,13.5,600,False
+Ola 9 Ligth,2024-Q2,Cambiauto.mx,14,Top_of_Mind,0.0,600,False
+Ola 9 Ligth,2024-Q2,Cambiauto.mx,14,Awareness_Espontanea,0.0,600,False
+Ola 9 Ligth,2024-Q2,Cambiauto.mx,14,Awareness_Asistida,13.5,600,False
+Ola 9 Ligth,2024-Q2,Cambiauto.mx,14,Consideracion,2.83,600,False
+Ola 9 Ligth,2024-Q2,Cambiauto.mx,14,Intencion_Compra_1a,0.33,600,False
+Ola 9 Ligth,2024-Q2,Cambiauto.mx,14,Intencion_Compra_Total,1.67,600,False
+Ola 9 Ligth,2024-Q2,Cambiauto.mx,14,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Cambiauto.mx,14,Experiencia_Venta_Pasada,3.33,600,False
+Ola 9 Ligth,2024-Q2,Tipi Top,15,Top_of_Mind,0.0,600,False
+Ola 9 Ligth,2024-Q2,Tipi Top,15,Awareness_Espontanea,0.0,600,False
+Ola 9 Ligth,2024-Q2,Tipi Top,15,Awareness_Asistida,0.0,600,False
+Ola 9 Ligth,2024-Q2,Tipi Top,15,Consideracion,,600,False
+Ola 9 Ligth,2024-Q2,Tipi Top,15,Intencion_Compra_1a,,600,False
+Ola 9 Ligth,2024-Q2,Tipi Top,15,Intencion_Compra_Total,0.0,600,False
+Ola 9 Ligth,2024-Q2,Tipi Top,15,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Tipi Top,15,Experiencia_Venta_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,soloautos.mx,16,Top_of_Mind,1.5,600,False
+Ola 9 Ligth,2024-Q2,soloautos.mx,16,Awareness_Espontanea,5.33,600,False
+Ola 9 Ligth,2024-Q2,soloautos.mx,16,Awareness_Asistida,0.0,600,False
+Ola 9 Ligth,2024-Q2,soloautos.mx,16,Consideracion,,600,False
+Ola 9 Ligth,2024-Q2,soloautos.mx,16,Intencion_Compra_1a,,600,False
+Ola 9 Ligth,2024-Q2,soloautos.mx,16,Intencion_Compra_Total,0.0,600,False
+Ola 9 Ligth,2024-Q2,soloautos.mx,16,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,soloautos.mx,16,Experiencia_Venta_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Car One,17,Top_of_Mind,1.17,600,False
+Ola 9 Ligth,2024-Q2,Car One,17,Awareness_Espontanea,5.33,600,False
+Ola 9 Ligth,2024-Q2,Car One,17,Awareness_Asistida,30.83,600,False
+Ola 9 Ligth,2024-Q2,Car One,17,Consideracion,9.17,600,False
+Ola 9 Ligth,2024-Q2,Car One,17,Intencion_Compra_1a,0.67,600,False
+Ola 9 Ligth,2024-Q2,Car One,17,Intencion_Compra_Total,3.17,600,False
+Ola 9 Ligth,2024-Q2,Car One,17,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Car One,17,Experiencia_Venta_Pasada,13.83,600,False
+Ola 9 Ligth,2024-Q2,Facebook Marketplace,78,Top_of_Mind,0.67,600,False
+Ola 9 Ligth,2024-Q2,Facebook Marketplace,78,Awareness_Espontanea,5.17,600,False
+Ola 9 Ligth,2024-Q2,Facebook Marketplace,78,Awareness_Asistida,39.67,600,False
+Ola 9 Ligth,2024-Q2,Facebook Marketplace,78,Consideracion,11.67,600,False
+Ola 9 Ligth,2024-Q2,Facebook Marketplace,78,Intencion_Compra_1a,3.0,600,False
+Ola 9 Ligth,2024-Q2,Facebook Marketplace,78,Intencion_Compra_Total,5.5,600,False
+Ola 9 Ligth,2024-Q2,Facebook Marketplace,78,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Facebook Marketplace,78,Experiencia_Venta_Pasada,12.5,600,False
+Ola 9 Ligth,2024-Q2,O|X Autos,102,Top_of_Mind,0.5,600,False
+Ola 9 Ligth,2024-Q2,O|X Autos,102,Awareness_Espontanea,2.5,600,False
+Ola 9 Ligth,2024-Q2,O|X Autos,102,Awareness_Asistida,0.0,600,False
+Ola 9 Ligth,2024-Q2,O|X Autos,102,Consideracion,,600,False
+Ola 9 Ligth,2024-Q2,O|X Autos,102,Intencion_Compra_1a,,600,False
+Ola 9 Ligth,2024-Q2,O|X Autos,102,Intencion_Compra_Total,0.0,600,False
+Ola 9 Ligth,2024-Q2,O|X Autos,102,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,O|X Autos,102,Experiencia_Venta_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,SemiNuevos.com,111,Top_of_Mind,0.33,600,False
+Ola 9 Ligth,2024-Q2,SemiNuevos.com,111,Awareness_Espontanea,2.17,600,False
+Ola 9 Ligth,2024-Q2,SemiNuevos.com,111,Awareness_Asistida,39.83,600,False
+Ola 9 Ligth,2024-Q2,SemiNuevos.com,111,Consideracion,12.0,600,False
+Ola 9 Ligth,2024-Q2,SemiNuevos.com,111,Intencion_Compra_1a,2.83,600,False
+Ola 9 Ligth,2024-Q2,SemiNuevos.com,111,Intencion_Compra_Total,7.0,600,False
+Ola 9 Ligth,2024-Q2,SemiNuevos.com,111,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,SemiNuevos.com,111,Experiencia_Venta_Pasada,14.5,600,False
+Ola 9 Ligth,2024-Q2,Odetta,384,Top_of_Mind,0.0,600,False
+Ola 9 Ligth,2024-Q2,Odetta,384,Awareness_Espontanea,0.5,600,False
+Ola 9 Ligth,2024-Q2,Odetta,384,Awareness_Asistida,0.0,600,False
+Ola 9 Ligth,2024-Q2,Odetta,384,Consideracion,,600,False
+Ola 9 Ligth,2024-Q2,Odetta,384,Intencion_Compra_1a,,600,False
+Ola 9 Ligth,2024-Q2,Odetta,384,Intencion_Compra_Total,0.0,600,False
+Ola 9 Ligth,2024-Q2,Odetta,384,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Odetta,384,Experiencia_Venta_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Creditas,457,Top_of_Mind,0.0,600,False
+Ola 9 Ligth,2024-Q2,Creditas,457,Awareness_Espontanea,0.0,600,False
+Ola 9 Ligth,2024-Q2,Creditas,457,Awareness_Asistida,5.5,600,False
+Ola 9 Ligth,2024-Q2,Creditas,457,Consideracion,1.17,600,False
+Ola 9 Ligth,2024-Q2,Creditas,457,Intencion_Compra_1a,0.17,600,False
+Ola 9 Ligth,2024-Q2,Creditas,457,Intencion_Compra_Total,0.5,600,False
+Ola 9 Ligth,2024-Q2,Creditas,457,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Creditas,457,Experiencia_Venta_Pasada,2.0,600,False
+Ola 9 Ligth,2024-Q2,Caranty,595,Top_of_Mind,0.0,600,False
+Ola 9 Ligth,2024-Q2,Caranty,595,Awareness_Espontanea,1.5,600,False
+Ola 9 Ligth,2024-Q2,Caranty,595,Awareness_Asistida,6.67,600,False
+Ola 9 Ligth,2024-Q2,Caranty,595,Consideracion,1.67,600,False
+Ola 9 Ligth,2024-Q2,Caranty,595,Intencion_Compra_1a,0.17,600,False
+Ola 9 Ligth,2024-Q2,Caranty,595,Intencion_Compra_Total,1.33,600,False
+Ola 9 Ligth,2024-Q2,Caranty,595,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Caranty,595,Experiencia_Venta_Pasada,2.67,600,False
+Ola 9 Ligth,2024-Q2,Wahu,820,Top_of_Mind,0.0,600,False
+Ola 9 Ligth,2024-Q2,Wahu,820,Awareness_Espontanea,0.67,600,False
+Ola 9 Ligth,2024-Q2,Wahu,820,Awareness_Asistida,5.5,600,False
+Ola 9 Ligth,2024-Q2,Wahu,820,Consideracion,0.67,600,False
+Ola 9 Ligth,2024-Q2,Wahu,820,Intencion_Compra_1a,,600,False
+Ola 9 Ligth,2024-Q2,Wahu,820,Intencion_Compra_Total,0.67,600,False
+Ola 9 Ligth,2024-Q2,Wahu,820,Experiencia_Compra_Pasada,,600,False
+Ola 9 Ligth,2024-Q2,Wahu,820,Experiencia_Venta_Pasada,2.33,600,False

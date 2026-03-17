@@ -1,0 +1,9 @@
+outputs/
+__pycache__/
+*.pyc
+.env
+.streamlit/secrets.toml
+*.sav
+*.xlsm
+BHT_mexico/
+data/bht_ola*.csv
