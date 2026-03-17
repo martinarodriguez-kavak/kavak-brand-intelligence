@@ -1009,47 +1009,52 @@ def main():
                 # ── Definition ──
                 st.markdown(
                     f'<div style="font-size:13px;color:#4A5568;line-height:1.7;'
-                    f'margin:20px 0 0;padding:16px 0;border-top:1px solid #F0F4F8;">'
+                    f'padding:16px 0;border-top:1px solid #F0F4F8;border-bottom:1px solid #F0F4F8;">'
                     f'{def_text}</div>',
                     unsafe_allow_html=True
                 )
 
-                # ── Contextual breakdown rows ──
-                def section(title):
-                    st.markdown(
-                        f'<div style="font-size:11px;font-weight:700;text-transform:uppercase;'
-                        f'letter-spacing:.8px;color:#0467FC;margin:20px 0 4px;">{title}</div>',
-                        unsafe_allow_html=True
-                    )
-
-                def row(lbl, v, v_color="#1A202C"):
-                    st.markdown(
+                # ── Helper: render a whole section (label + rows) as one block ──
+                def render_section(title, rows_data):
+                    """rows_data: list of (label, value_str, color_hex)"""
+                    rows_html = "".join(
                         f'<div style="display:flex;justify-content:space-between;align-items:center;'
-                        f'padding:10px 0;border-bottom:1px solid #F7FAFC;">'
-                        f'<span style="font-size:14px;color:#2D3748;">{lbl}</span>'
-                        f'<span style="font-size:14px;font-weight:700;color:{v_color};">{v}</span>'
-                        f'</div>',
+                        f'padding:9px 0;border-bottom:1px solid #F7FAFC;">'
+                        f'<span style="font-size:13px;color:#2D3748;">{lbl}</span>'
+                        f'<span style="font-size:13px;font-weight:700;color:{vc};">{v}</span>'
+                        f'</div>'
+                        for lbl, v, vc in rows_data
+                    )
+                    st.markdown(
+                        f'<div style="margin-top:20px;">'
+                        f'<div style="font-size:10px;font-weight:700;text-transform:uppercase;'
+                        f'letter-spacing:.8px;color:#0467FC;margin-bottom:10px;">{title}</div>'
+                        f'{rows_html}</div>',
                         unsafe_allow_html=True
                     )
 
+                # Evolución
                 v0 = pv(col_name, first_label)
                 if v0 is not None:
-                    section("Evolución")
-                    row(f"Valor inicial ({first_label})", f"{v0:.1f}{suffix}")
-                    row(f"Valor actual ({latest_label})", f"{val:.1f}{suffix}", color)
                     growth = val - v0
-                    row("Crecimiento total", f'{"+" if growth >= 0 else ""}{growth:.1f}pp',
-                        "#38A169" if growth > 0 else "#E53E3E")
+                    render_section("Evolución", [
+                        (f"Valor inicial ({first_label})", f"{v0:.1f}{suffix}", "#2D3748"),
+                        (f"Valor actual ({latest_label})", f"{val:.1f}{suffix}", color),
+                        ("Crecimiento total", f'{"+" if growth >= 0 else ""}{growth:.1f}pp',
+                         "#38A169" if growth > 0 else "#E53E3E"),
+                    ])
 
+                # Metric-specific breakdowns
                 if col_name == "NPS_Score":
                     prom = pv("NPS_Promotores_pct")
                     pas  = pv("NPS_Pasivos_pct")
                     det  = pv("NPS_Detractores_pct")
-                    if any(x is not None for x in [prom, pas, det]):
-                        section("Desglose NPS")
-                        if prom is not None: row("Promotores (9–10)", f"{prom:.0f}%", "#38A169")
-                        if pas  is not None: row("Pasivos (7–8)",     f"{pas:.0f}%",  "#D69E2E")
-                        if det  is not None: row("Detractores (0–6)", f"{det:.0f}%",  "#E53E3E")
+                    breakdown = []
+                    if prom is not None: breakdown.append(("Promotores (9–10)", f"{prom:.0f}%", "#38A169"))
+                    if pas  is not None: breakdown.append(("Pasivos (7–8)",     f"{pas:.0f}%",  "#D69E2E"))
+                    if det  is not None: breakdown.append(("Detractores (0–6)", f"{det:.0f}%",  "#E53E3E"))
+                    if breakdown:
+                        render_section("Desglose NPS", breakdown)
 
                 elif col_name == "Brand_Equity_Index":
                     sub_items = [
@@ -1058,33 +1063,38 @@ def main():
                         ("Brand_Differentiation_T2B","Diferenciación (T2B)"),
                         ("Brand_Closeness_T3B",      "Cercanía emocional (T3B)"),
                     ]
-                    rows_data = [(lbl, pv(c)) for c, lbl in sub_items if pv(c) is not None]
-                    if rows_data:
-                        section("Submétricas")
-                        for lbl, sv in rows_data:
-                            row(lbl, f"{sv:.0f}%")
+                    breakdown = [(lbl, f"{pv(c):.0f}%", "#2D3748") for c, lbl in sub_items if pv(c) is not None]
+                    if breakdown:
+                        render_section("Submétricas", breakdown)
 
                 elif col_name == "Awareness_Asistida":
                     esp = pv("Awareness_Espontanea")
                     if esp is not None:
-                        section("Comparativa")
-                        row("Awareness Espontáneo", f"{esp:.1f}%")
-                        row("Awareness Asistido",   f"{val:.1f}%")
-                        row("Ratio espontáneo/asistido", f"{esp/val*100:.0f}%" if val else "—")
+                        render_section("Comparativa", [
+                            ("Awareness Espontáneo", f"{esp:.1f}%", "#2D3748"),
+                            ("Awareness Asistido",   f"{val:.1f}%", "#2D3748"),
+                            ("Ratio espontáneo/asistido", f"{esp/val*100:.0f}%" if val else "—", "#2D3748"),
+                        ])
 
                 elif col_name == "Intencion_Compra_Total":
                     v1 = pv("Intencion_Compra_1a")
                     if v1 is not None:
-                        section("Desglose")
-                        row("Primera mención", f"{v1:.1f}%")
-                        row("Total (1ª + 2ª)", f"{val:.1f}%")
+                        render_section("Desglose", [
+                            ("Primera mención", f"{v1:.1f}%", "#2D3748"),
+                            ("Total (1ª + 2ª)", f"{val:.1f}%", "#2D3748"),
+                        ])
 
                 # ── Mini chart ──
                 if col_name in pivot.columns:
                     pairs = [(x, v) for x, v in zip(pivot.index.tolist(), pivot[col_name].tolist()) if v is not None and not pd.isna(v)]
                     if len(pairs) > 1:
                         xs, ys = zip(*pairs)
-                        section("Tendencia histórica")
+                        st.markdown(
+                            '<div style="font-size:10px;font-weight:700;text-transform:uppercase;'
+                            'letter-spacing:.8px;color:#0467FC;margin-top:24px;margin-bottom:4px;">'
+                            'Tendencia histórica</div>',
+                            unsafe_allow_html=True
+                        )
                         fig = go.Figure()
                         r, g, b = int(color[1:3],16), int(color[3:5],16), int(color[5:7],16)
                         fig.add_trace(go.Scatter(
@@ -1095,7 +1105,7 @@ def main():
                             hovertemplate="%{x}: <b>%{y:.1f}" + suffix + "</b><extra></extra>",
                         ))
                         fig.update_layout(
-                            height=180, margin=dict(l=0,r=0,t=4,b=0),
+                            height=200, margin=dict(l=0, r=0, t=8, b=0),
                             plot_bgcolor="white", paper_bgcolor="white",
                             xaxis=dict(showgrid=False, tickangle=-30, tickfont=dict(size=10)),
                             yaxis=dict(showgrid=True, gridcolor="#F0F4F8", zeroline=False, tickfont=dict(size=10)),
