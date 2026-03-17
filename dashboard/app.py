@@ -215,6 +215,25 @@ st.markdown("""
   .delta-down { color: var(--red); font-size: 12px; font-weight: 600; }
   .delta-flat { color: var(--text-light); font-size: 12px; font-weight: 600; }
 
+  /* Popover info button — subtle, below each KPI card */
+  div[data-testid="stPopover"] > button {
+    background: transparent !important;
+    border: none !important;
+    color: var(--text-muted) !important;
+    font-size: 11px !important;
+    padding: 2px 0 8px 0 !important;
+    margin-top: -4px !important;
+    box-shadow: none !important;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    cursor: pointer;
+    width: 100% !important;
+  }
+  div[data-testid="stPopover"] > button:hover {
+    color: var(--kavak-blue) !important;
+    background: transparent !important;
+  }
+
   /* ─── INSIGHT / KPI CARDS (border-left) ─── */
   .kpi-card {
     background: var(--card);
@@ -752,6 +771,75 @@ def main():
                 ("Brand_Satisfaction_Top2box", "Satisfacción", "#D69E2E", True),
             ]
 
+            METRIC_DEFINITIONS = {
+                "Top_of_Mind": (
+                    "Top of Mind (TOM)",
+                    "Primera marca que viene a la mente al pensar en compra/venta de autos seminuevos, "
+                    "sin ningún estímulo previo. Es el indicador más fuerte de liderazgo de marca. "
+                    "Se mide como % de personas que mencionan Kavak en primer lugar."
+                ),
+                "Awareness_Asistida": (
+                    "Awareness Asistida",
+                    "% de personas que conocen o han escuchado hablar de Kavak cuando se les muestra "
+                    "el nombre o logo de la marca. Mide el alcance total del reconocimiento de marca "
+                    "en la categoría de seminuevos."
+                ),
+                "Awareness_Espontanea": (
+                    "Awareness Espontáneo",
+                    "% de personas que mencionan Kavak sin recibir ninguna ayuda o estímulo, "
+                    "al preguntar qué marcas conocen de compra/venta de autos seminuevos. "
+                    "Más exigente que el awareness asistido."
+                ),
+                "Consideracion": (
+                    "Consideración",
+                    "% de personas que considerarían comprar o vender su auto con Kavak en los "
+                    "próximos 12 meses. Es un indicador clave del funnel de conversión: "
+                    "quienes conocen la marca y estarían dispuestos a usarla."
+                ),
+                "NPS_Score": (
+                    "NPS — Net Promoter Score",
+                    "Índice de lealtad y recomendación: % Promotores (9-10) menos % Detractores (0-6). "
+                    "Rango: -100 a +100. Un NPS > 50 se considera excelente. "
+                    "Mide qué tan probable es que los clientes recomienden Kavak a amigos/familia."
+                ),
+                "Brand_Equity_Index": (
+                    "Brand Equity Index",
+                    "Índice compuesto que combina favorabilidad, diferenciación y cercanía emocional "
+                    "con la marca. Refleja la fortaleza integral del brand equity de Kavak vs la competencia. "
+                    "Escala de 0 a 100."
+                ),
+                "Intencion_Compra_Total": (
+                    "Intención de Compra Total",
+                    "% de personas que declaran intención de comprar un auto seminuevo con Kavak "
+                    "en el corto/mediano plazo, incluyendo primera y segunda mención. "
+                    "Indicador directo de demanda potencial."
+                ),
+                "Brand_Favorability_T2B": (
+                    "Favorabilidad de Marca (T2B)",
+                    "Top 2 Box de opinión favorable hacia Kavak: % de personas con opinión "
+                    "'muy favorable' o 'favorable'. Mide la simpatía general hacia la marca "
+                    "independientemente de si son clientes actuales."
+                ),
+                "Brand_Satisfaction_Top2box": (
+                    "Satisfacción (T2B)",
+                    "Top 2 Box de satisfacción: % de clientes que califican su experiencia "
+                    "con Kavak como 'muy satisfactoria' o 'satisfactoria'. "
+                    "Indicador de calidad del servicio post-venta."
+                ),
+                "Brand_Affinity_Top2box": (
+                    "Afinidad de Marca (T2B)",
+                    "% de personas que sienten conexión o afinidad con Kavak. "
+                    "Mide el vínculo emocional entre la marca y el consumidor, "
+                    "más allá de la transacción racional."
+                ),
+                "Experiencia_Compra_Pasada": (
+                    "Experiencia de Compra Pasada",
+                    "% de personas que han tenido una experiencia de compra/venta con Kavak "
+                    "y la califican positivamente. Refleja la satisfacción real basada en "
+                    "interacción directa con la marca."
+                ),
+            }
+
             section_header(f"Brand Health — Última Ola ({latest_label})", dot_color="blue")
             cols = st.columns(4)
             shown = 0
@@ -785,6 +873,12 @@ def main():
                       <div style="margin-top:4px">{delta_html}</div>
                     </div>
                     """, unsafe_allow_html=True)
+
+                    if col_name in METRIC_DEFINITIONS:
+                        def_title, def_text = METRIC_DEFINITIONS[col_name]
+                        with st.popover("ⓘ Qué mide esto", use_container_width=True):
+                            st.markdown(f"**{def_title}**")
+                            st.markdown(def_text)
                 shown += 1
 
             # ── Gráfico de evolución ──
