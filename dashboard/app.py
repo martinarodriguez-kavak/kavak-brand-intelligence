@@ -447,9 +447,12 @@ st.markdown("""
   /* hide top padding from streamlit */
   .block-container { padding-top: 0 !important; margin-top: 0 !important; }
   .block-container > div:first-child { padding-top: 0 !important; margin-top: 0 !important; }
-  div[data-testid="stVerticalBlock"] > div:first-child { padding-top: 0 !important; }
+  div[data-testid="stVerticalBlock"] > div:first-child { padding-top: 0 !important; margin-top: 0 !important; }
+  div[data-testid="stVerticalBlock"] { gap: 0 !important; }
   section[data-testid="stAppViewContainer"] > div:first-child { padding-top: 0 !important; }
-  div[data-testid="stAppViewBlockContainer"] { padding-top: 0 !important; }
+  div[data-testid="stAppViewBlockContainer"] { padding-top: 0 !important; margin-top: 0 !important; }
+  div[data-testid="stMainBlockContainer"] { padding-top: 0 !important; margin-top: 0 !important; }
+  .main > div:first-child { padding-top: 0 !important; margin-top: 0 !important; }
 </style>
 """, unsafe_allow_html=True)
 
