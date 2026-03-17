@@ -1083,101 +1083,90 @@ def main():
             inten = pv("Intencion_Compra_Total")
             tom0  = pv("Top_of_Mind", first_label)
 
-            col_funnel, col_insights = st.columns(2, gap="medium")
-
-            with col_funnel:
-                st.markdown(
-                    f'<div style="background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:20px 22px;">'
-                    f'<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#A0AEC0;margin-bottom:16px;">Funnel de marca · {latest_label}</div>',
-                    unsafe_allow_html=True
-                )
-                funnel_steps = [
-                    ("Top of Mind",       "Top_of_Mind",            "#0467FC"),
-                    ("Awareness Asistida","Awareness_Asistida",     "#3685FD"),
-                    ("Consideración",     "Consideracion",          "#68A4FD"),
-                    ("Intención Compra",  "Intencion_Compra_Total", "#95BFFE"),
-                ]
-                for f_label, f_col, f_color in funnel_steps:
-                    f_val = pv(f_col)
-                    if f_val is None:
-                        continue
-                    f_v0  = pv(f_col, first_label)
-                    g_str = ""
-                    if f_v0 is not None and f_val > f_v0:
-                        g = f_val - f_v0
-                        g_str = f'<span style="color:#38A169;font-size:10px;font-weight:700;margin-left:6px;background:#F0FFF4;padding:1px 5px;border-radius:4px;">+{g:.0f}pp</span>'
-                    pct = min(float(f_val), 100)
-                    st.markdown(f"""
-                    <div style="margin-bottom:14px;">
-                      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                        <span style="font-size:12px;font-weight:600;color:#4A5568;">{f_label}{g_str}</span>
-                        <span style="font-size:14px;font-weight:800;color:#1A202C;letter-spacing:-0.3px;">{f_val:.0f}%</span>
-                      </div>
-                      <div style="background:#EDF2F7;border-radius:6px;height:8px;overflow:hidden;">
-                        <div style="width:{pct:.1f}%;height:100%;background:{f_color};border-radius:6px;"></div>
-                      </div>
-                    </div>
-                    """, unsafe_allow_html=True)
-                st.markdown('</div>', unsafe_allow_html=True)
-
-            with col_insights:
-                # Build insights list first
-                insights = []
-
-                if awa and cons:
-                    gap = awa - cons
-                    if gap > 30:
-                        insights.append(("🎯",
-                            f"<b>Brecha Awareness → Consideración: {gap:.0f}pp.</b> "
-                            f"El {awa:.0f}% conoce Kavak pero solo el {cons:.0f}% lo consideraría. "
-                            "Oportunidad clave para convertir conocimiento en intención."))
-                    else:
-                        insights.append(("✅",
-                            f"<b>Conversión Awareness → Consideración saludable ({gap:.0f}pp).</b> "
-                            "La marca convierte conocimiento en intención mejor que el promedio."))
-
-                if nps is not None:
-                    prom_v = pv("NPS_Promotores_pct")
-                    det_v  = pv("NPS_Detractores_pct")
-                    if nps >= 50:
-                        extra = f" El {prom_v:.0f}% son promotores, solo el {det_v:.0f}% detractores." if (prom_v and det_v) else ""
-                        insights.append(("🏆",
-                            f"<b>NPS {nps:.0f} pts — nivel excelente.</b>{extra} Base de recomendación orgánica sólida."))
-                    elif nps >= 30:
-                        insights.append(("📈",
-                            f"<b>NPS {nps:.0f} pts — rango positivo.</b> Hay margen para fortalecer el pool de promotores."))
-
-                if tom and tom >= 40:
-                    insights.append(("🥇",
-                        f"<b>Top of Mind {tom:.0f}% — liderazgo claro en MX.</b> "
-                        "Primera marca en mente al pensar en seminuevos."))
-
-                if bei and bei >= 75:
-                    insights.append(("💡",
-                        f"<b>Brand Equity Index {bei:.0f}/100.</b> "
-                        "Favorabilidad, diferenciación y cercanía emocional en zona alta."))
-
-                if tom and tom0:
-                    g_total = tom - tom0
-                    insights.append(("🚀",
-                        f"<b>TOM: {tom0:.0f}% → {tom:.0f}% en 5 años (+{g_total:.0f}pp).</b> "
-                        "Uno de los crecimientos de brand equity más rápidos en México."))
-
-                items_html = "".join(
-                    f'<div style="display:flex;gap:12px;align-items:flex-start;padding:10px 0;'
-                    f'border-bottom:1px solid #F0F4F8;">'
-                    f'<span style="font-size:18px;line-height:1.2;flex-shrink:0;margin-top:1px;">{ico}</span>'
-                    f'<span style="font-size:12px;color:#2D3748;line-height:1.65;">{txt}</span>'
+            # ── Funnel pills ──
+            funnel_steps = [
+                ("Top of Mind",        "Top_of_Mind",            "#0467FC"),
+                ("Awareness Asistida", "Awareness_Asistida",     "#3685FD"),
+                ("Consideración",      "Consideracion",          "#68A4FD"),
+                ("Intención Compra",   "Intencion_Compra_Total", "#95BFFE"),
+            ]
+            pills = []
+            for f_label, f_col, f_color in funnel_steps:
+                f_val = pv(f_col)
+                if f_val is None:
+                    continue
+                f_v0 = pv(f_col, first_label)
+                delta_str = ""
+                if f_v0 is not None and f_val > f_v0:
+                    delta_str = f'<div style="font-size:10px;font-weight:700;color:#38A169;margin-top:3px;">+{f_val-f_v0:.0f}pp vs W0</div>'
+                pills.append(
+                    f'<div style="flex:1;background:#fff;border:1px solid #E2E8F0;border-top:3px solid {f_color};'
+                    f'border-radius:10px;padding:16px 18px;min-width:0;">'
+                    f'<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#A0AEC0;margin-bottom:6px;">{f_label}</div>'
+                    f'<div style="font-size:28px;font-weight:800;color:{f_color};letter-spacing:-1px;line-height:1;">{f_val:.0f}%</div>'
+                    f'{delta_str}'
                     f'</div>'
-                    for ico, txt in insights[:4]
                 )
-                st.markdown(
-                    f'<div style="background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:20px 22px;">'
-                    f'<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#A0AEC0;margin-bottom:4px;">Insights clave</div>'
-                    f'{items_html}'
-                    f'</div>',
-                    unsafe_allow_html=True
-                )
+
+            arrow = '<div style="color:#CBD5E0;font-size:18px;align-self:center;flex-shrink:0;padding:0 2px;">→</div>'
+            funnel_html = arrow.join(pills)
+            st.markdown(
+                f'<div style="display:flex;gap:8px;align-items:stretch;margin-bottom:20px;">{funnel_html}</div>',
+                unsafe_allow_html=True
+            )
+
+            # ── Insights 2×2 ──
+            insights = []
+
+            if awa and cons:
+                gap_val = awa - cons
+                if gap_val > 30:
+                    insights.append(("#EBF8FF", "#3182CE", "Brecha de conversión",
+                        f"El {awa:.0f}% conoce Kavak pero solo el {cons:.0f}% lo considera ({gap_val:.0f}pp de brecha). Oportunidad para convertir conocimiento en intención con mensajería de consideración."))
+                else:
+                    insights.append(("#F0FFF4", "#38A169", "Conversión saludable",
+                        f"Solo {gap_val:.0f}pp de brecha Awareness → Consideración. La marca convierte conocimiento en intención mejor que el promedio de la categoría."))
+
+            if nps is not None:
+                prom_v = pv("NPS_Promotores_pct")
+                det_v  = pv("NPS_Detractores_pct")
+                if nps >= 50:
+                    body = f"NPS de {nps:.0f} pts: nivel excelente (>50)."
+                    if prom_v and det_v:
+                        body += f" {prom_v:.0f}% promotores vs {det_v:.0f}% detractores."
+                    body += " Base de recomendación orgánica lista para activar."
+                    insights.append(("#FFFAF0", "#D69E2E", "NPS excelente", body))
+                elif nps >= 30:
+                    insights.append(("#FFFAF0", "#D69E2E", "NPS positivo",
+                        f"NPS de {nps:.0f} pts. Rango sano pero con margen para crecer el pool de promotores vía experiencia post-compra."))
+
+            if tom and tom >= 40:
+                insights.append(("#EBF2FF", "#0467FC", "Liderazgo en TOM",
+                    f"Top of Mind del {tom:.0f}%: Kavak es la primera marca en mente al pensar en comprar o vender un auto seminuevo en México."))
+
+            if bei and bei >= 75:
+                insights.append(("#FAF5FF", "#805AD5", "Brand Equity sólido",
+                    f"Brand Equity Index de {bei:.0f}/100. Favorabilidad, diferenciación y cercanía emocional en zona alta frente a la competencia."))
+
+            if tom and tom0:
+                g_total = tom - tom0
+                insights.append(("#F0FFF4", "#38A169", "Crecimiento histórico",
+                    f"TOM pasó de {tom0:.0f}% (W0, 2020) a {tom:.0f}% (W12, 2025): +{g_total:.0f}pp en 5 años. Uno de los crecimientos de brand equity más rápidos en la categoría automotriz MX."))
+
+            if insights:
+                rows = []
+                for i in range(0, min(len(insights), 4), 2):
+                    pair = insights[i:i+2]
+                    cells = "".join(
+                        f'<div style="flex:1;background:{bg};border:1px solid {border};border-left:4px solid {border};'
+                        f'border-radius:10px;padding:16px 18px;">'
+                        f'<div style="font-size:11px;font-weight:700;color:{border};margin-bottom:6px;">{title}</div>'
+                        f'<div style="font-size:12px;color:#4A5568;line-height:1.65;">{body}</div>'
+                        f'</div>'
+                        for bg, border, title, body in pair
+                    )
+                    rows.append(f'<div style="display:flex;gap:12px;margin-bottom:12px;">{cells}</div>')
+                st.markdown("".join(rows), unsafe_allow_html=True)
 
             # ── Gráfico de evolución ──
             section_header("Evolución Brand Health — W0 a W12 (2020–2025)", dot_color="blue")
