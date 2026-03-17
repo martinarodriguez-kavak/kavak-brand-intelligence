@@ -175,35 +175,7 @@ st.markdown("""
     gap: 10px;
     margin-bottom: 24px;
   }
-  .kpi-block {
-    flex: 0 0 auto;
-    width: 190px;
-    background: #F9FAFB;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
-    cursor: pointer;
-    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
-    position: relative;
-  }
-  .kpi-block:hover {
-    background: #EBF2FF;
-    border-color: var(--kavak-blue);
-    box-shadow: 0 2px 8px rgba(4,103,252,0.08);
-  }
-  .kpi-block[open] {
-    background: #EBF2FF;
-    border-color: var(--kavak-blue);
-  }
-  .kpi-block > summary {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 8px;
-    outline: none;
-  }
-  .kpi-block > summary::-webkit-details-marker { display: none; }
+  /* kpi-block base defined later, near button styles */
   .kpi-label {
     font-size: 10px;
     font-weight: 700;
@@ -277,38 +249,45 @@ st.markdown("""
   .delta-down { color: var(--red);   font-size: 11px; font-weight: 700; }
   .delta-flat { color: var(--text-light); font-size: 11px; font-weight: 600; }
 
-  /* KPI footer hint inside card */
-  .kpi-footer-hint {
-    margin-top: 8px;
-    padding-top: 7px;
-    border-top: 1px solid #EDF2F7;
-    font-size: 10px;
-    font-weight: 600;
-    color: #C4CAD4;
-    text-align: right;
-    letter-spacing: .03em;
+  /* KPI card: no bottom border/radius — merges with button below */
+  .kpi-block {
+    flex: 0 0 auto;
+    width: 100%;
+    background: #F9FAFB;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    padding: 12px 14px 10px;
+    cursor: default;
+    transition: background 0.15s, border-color 0.15s;
+    position: relative;
   }
-  .kpi-block:hover .kpi-footer-hint { color: var(--kavak-blue); }
+  .kpi-block:hover {
+    background: #EBF2FF;
+    border-color: var(--kavak-blue);
+  }
 
-  /* KPI dialog trigger button — invisible overlay, positioned over card bottom */
+  /* KPI dialog button — bottom cap of the card */
   div[data-testid="stButton"] > button[kind="secondary"] {
-    background: transparent !important;
-    border: none !important;
-    color: transparent !important;
-    font-size: 0 !important;
-    height: 36px !important;
-    min-height: 0 !important;
-    padding: 0 !important;
-    margin-top: -36px !important;
+    background: #F2F5F9 !important;
+    border: 1px solid var(--border) !important;
+    border-top: none !important;
+    border-radius: 0 0 10px 10px !important;
+    color: #A0AEC0 !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    padding: 5px 14px !important;
+    margin-top: 0 !important;
     box-shadow: none !important;
-    cursor: pointer !important;
-    position: relative !important;
-    z-index: 5 !important;
+    letter-spacing: .03em !important;
     width: 100% !important;
-    overflow: hidden !important;
+    transition: color .15s, background .15s, border-color .15s !important;
+    cursor: pointer !important;
   }
   div[data-testid="stButton"] > button[kind="secondary"]:hover {
-    background: transparent !important;
+    color: var(--kavak-blue) !important;
+    background: #EBF2FF !important;
+    border-color: var(--kavak-blue) !important;
   }
 
   /* ─── LECTURA ESTRATÉGICA ─── */
@@ -809,7 +788,7 @@ def main():
     # ── SIDEBAR ──
     with st.sidebar:
         st.markdown("### ⚙️ Controles")
-        force_refresh = st.button("🔄 Actualizar datos", use_container_width=True)
+        force_refresh = st.button("🔄 Actualizar datos", use_container_width=True, type="primary")
         st.divider()
         st.markdown("**Filtros — Accionables**")
         filter_priority = st.multiselect(
@@ -834,7 +813,7 @@ def main():
             st.divider()
             st.info("⚠️ Social Listening y Accionables requieren `ANTHROPIC_API_KEY`.", icon="🔑")
         st.divider()
-        if st.button("🗑️ Limpiar cache", use_container_width=True):
+        if st.button("🗑️ Limpiar cache", use_container_width=True, type="primary"):
             for f in ["outputs/social_listening_cache.json", "outputs/analysis_cache.json"]:
                 if Path(f).exists():
                     Path(f).unlink()
@@ -1231,11 +1210,10 @@ def main():
                             f'    <div>{delta_html}</div>'
                             f'  </div>'
                             f'  {sub_html}'
-                            f'  <div class="kpi-footer-hint">Ver detalle →</div>'
                             f'</div>',
                             unsafe_allow_html=True
                         )
-                        if st.button(" ", key=f"kpi_dlg_{col_name}", use_container_width=True):
+                        if st.button("Ver detalle →", key=f"kpi_dlg_{col_name}", use_container_width=True):
                             kpi_dialog(col_name, label, color, val, suffix, prev_val, prev_label)
 
             # ── LECTURA ESTRATÉGICA ──
