@@ -779,7 +779,7 @@ def main():
     )
     st.markdown(f"""
     <div class="exec-banner">
-      <div class="e-eyebrow">Executive Summary · BHT México W0–W12 (2020–2025)</div>
+      <div class="e-eyebrow">Executive Summary · Brand Health Tracker Analysis</div>
       <div class="e-text">{exec_text}</div>
     </div>
     """, unsafe_allow_html=True)
