@@ -772,10 +772,12 @@ def main():
     # ── EXEC SUMMARY BANNER ──
     exec_text = analysis.get("executive_summary") or (
         "Kavak México muestra un crecimiento sostenido de marca en los últimos 5 años: "
-        "el Top of Mind pasó de <strong>3.3%</strong> a <strong>53%</strong>, la Awareness Asistida de <strong>26%</strong> a <strong>84%</strong> "
+        "el Top of Mind pasó de <strong>3.3%</strong> a <strong>53%</strong>, el Awareness Asistido de <strong>26%</strong> a <strong>84%</strong> "
         "y la Consideración de <strong>5%</strong> a <strong>63%</strong>. "
         "El NPS alcanzó <strong>53 puntos</strong> y el Brand Equity Index se ubica en <strong>84</strong>. "
-        "La marca se consolidó como líder indiscutida en seminuevos en México."
+        "La marca se consolidó como líder indiscutida en seminuevos en México. "
+        "<span style='color:rgba(255,220,80,0.95);font-weight:600;'>⚠ Señal a monitorear: "
+        "Consideración cayó 6pp e Intención de Compra 5pp en el último período.</span>"
     )
     st.markdown(f"""
     <div class="exec-banner">
