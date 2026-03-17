@@ -215,33 +215,78 @@ st.markdown("""
   .delta-down { color: var(--red); font-size: 12px; font-weight: 600; }
   .delta-flat { color: var(--text-light); font-size: 12px; font-weight: 600; }
 
-  /* ⓘ info button below each KPI card */
-  button[kind="secondary"][data-testid^="baseButton"]:has(> div > p:only-child) {
-    display: none;
+  /* ── Metric tooltip ── */
+  .metric-tip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid #CBD5E0;
+    color: #A0AEC0;
+    font-size: 9px;
+    font-weight: 700;
+    font-family: 'Helvetica Neue', sans-serif;
+    margin-left: 6px;
+    cursor: default;
+    position: relative;
+    vertical-align: middle;
+    line-height: 1;
+    transition: border-color .15s, color .15s;
   }
-  [data-testid="stButton"] button {
-    transition: all .15s ease;
+  .metric-tip:hover {
+    border-color: #0467FC;
+    color: #0467FC;
   }
-  /* Target the small ⓘ buttons by their specific pattern */
-  div[data-testid="column"] button[kind="secondary"] {
-    background: transparent !important;
-    border: 1px solid var(--border) !important;
-    color: var(--text-muted) !important;
-    font-size: 11px !important;
-    padding: 2px 8px !important;
-    margin-top: -6px !important;
-    margin-bottom: 4px !important;
-    box-shadow: none !important;
-    border-radius: 20px !important;
-    min-height: unset !important;
-    height: 22px !important;
-    line-height: 1 !important;
-    width: auto !important;
+  .metric-tip::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1A202C;
+    color: #F7FAFC;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.55;
+    padding: 10px 14px;
+    border-radius: 8px;
+    width: 220px;
+    white-space: normal;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .18s ease, transform .18s ease;
+    transform: translateX(-50%) translateY(4px);
+    z-index: 9999;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
   }
-  div[data-testid="column"] button[kind="secondary"]:hover {
-    border-color: var(--kavak-blue) !important;
-    color: var(--kavak-blue) !important;
-    background: var(--kavak-blue-light) !important;
+  .metric-tip::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #1A202C;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .18s ease;
+    z-index: 9999;
+  }
+  .metric-tip:hover::after,
+  .metric-tip:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  .summary-card.highlight .metric-tip {
+    border-color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.55);
+  }
+  .summary-card.highlight .metric-tip:hover {
+    border-color: rgba(255,255,255,0.9);
+    color: #fff;
   }
 
   /* ─── INSIGHT / KPI CARDS (border-left) ─── */
@@ -853,7 +898,6 @@ def main():
             section_header(f"Brand Health — Última Ola ({latest_label})", dot_color="blue")
             cols = st.columns(4)
             shown = 0
-            visible_metrics = []
             for (col_name, label, color, is_pct) in METRIC_CONFIG:
                 if col_name not in pivot.columns:
                     continue
@@ -873,50 +917,24 @@ def main():
                     delta_html = ""
                     sub = prev_label or ""
 
-                visible_metrics.append((col_name, label, color, val, suffix))
+                tip_html = ""
+                if col_name in METRIC_DEFINITIONS:
+                    _, tip_text = METRIC_DEFINITIONS[col_name]
+                    tip_text_safe = tip_text.replace('"', '&quot;').replace("'", "&#39;")
+                    tip_html = f'<span class="metric-tip" data-tip="{tip_text_safe}">?</span>'
+
                 with cols[shown % 4]:
                     highlight = "highlight" if shown == 0 else ""
                     val_str = f"{val:.1f}{suffix}"
-                    is_selected = st.session_state.get("bht_selected_metric") == col_name
-                    selected_ring = f"box-shadow: 0 0 0 2px {color};" if is_selected else ""
                     st.markdown(f"""
-                    <div class="summary-card {highlight}" style="{"border-top: 3px solid "+color if not highlight else ""}{selected_ring}cursor:pointer;">
-                      <div class="s-label">{label}</div>
+                    <div class="summary-card {highlight}" style="{"border-top: 3px solid "+color if not highlight else ""}">
+                      <div class="s-label">{label}{tip_html}</div>
                       <div class="s-value" style="{"color:"+color if not highlight else ""}">{val_str}</div>
                       <div class="s-sub">{sub}</div>
                       <div style="margin-top:4px">{delta_html}</div>
                     </div>
                     """, unsafe_allow_html=True)
-                    if st.button("ⓘ", key=f"def_btn_{col_name}", help=f"Ver definición de {label}",
-                                 use_container_width=False):
-                        if st.session_state.get("bht_selected_metric") == col_name:
-                            st.session_state["bht_selected_metric"] = None
-                        else:
-                            st.session_state["bht_selected_metric"] = col_name
-                        st.rerun()
                 shown += 1
-
-            # ── Definition panel ──
-            selected_key = st.session_state.get("bht_selected_metric")
-            if selected_key and selected_key in METRIC_DEFINITIONS:
-                def_title, def_text = METRIC_DEFINITIONS[selected_key]
-                def_color = next((c for k, _, c, _, _ in visible_metrics if k == selected_key), "#0467FC")
-                st.markdown(f"""
-                <div style="background:#F8FAFF;border-left:4px solid {def_color};border-radius:8px;
-                            padding:16px 20px;margin:8px 0 16px 0;animation:fadeIn .2s ease;">
-                  <div style="font-size:11px;font-weight:700;text-transform:uppercase;
-                              letter-spacing:.08em;color:{def_color};margin-bottom:6px;">
-                    ¿Qué mide esta métrica?
-                  </div>
-                  <div style="font-size:14px;font-weight:600;color:#1A202C;margin-bottom:4px;">
-                    {def_title}
-                  </div>
-                  <div style="font-size:13px;color:#4A5568;line-height:1.6;">
-                    {def_text}
-                  </div>
-                </div>
-                <style>@keyframes fadeIn{{from{{opacity:0;transform:translateY(-4px)}}to{{opacity:1;transform:translateY(0)}}}}</style>
-                """, unsafe_allow_html=True)
 
             # ── Gráfico de evolución ──
             section_header("Evolución Brand Health — W0 a W12 (2020–2025)", dot_color="blue")
