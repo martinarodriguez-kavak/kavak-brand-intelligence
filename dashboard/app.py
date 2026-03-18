@@ -969,27 +969,30 @@ def main():
             for t in _tt
         )
 
-        def _sent_cell(label, pct, txt_color, bg, border):
+        def _sent_row(label, pct, color, bg):
+            bar_w = min(pct, 100)
             return (
-                '<td style="width:50%;padding:5px;vertical-align:top">'
-                '<div style="background:' + bg + ';border:1px solid ' + border + ';border-radius:10px;'
-                'padding:20px 12px;text-align:center">'
-                '<div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;'
-                'color:' + txt_color + ';margin-bottom:10px">' + label + '</div>'
-                '<div style="font-size:34px;font-weight:800;color:' + txt_color + ';line-height:1">' + str(pct) + '%</div>'
+                '<tr style="border-bottom:1px solid #F0F0F0">'
+                '<td style="padding:14px 14px 14px 0;width:28%;vertical-align:middle">'
+                '<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#718096">'
+                + label + '</div></td>'
+                '<td style="padding:14px 10px;width:18%;vertical-align:middle;text-align:right">'
+                '<div style="font-size:26px;font-weight:800;color:' + color + ';line-height:1">' + str(pct) + '%</div></td>'
+                '<td style="padding:14px 0 14px 14px;vertical-align:middle">'
+                '<div style="background:#F0F0F0;border-radius:4px;height:8px">'
+                '<div style="background:' + color + ';width:' + str(bar_w) + '%;height:8px;border-radius:4px"></div>'
                 '</div></td>'
+                '</tr>'
             )
 
         _rep_html = (
             '<table style="width:100%;border-collapse:collapse">'
-            '<tr>'
-            + _sent_cell("Positivas", _pct_pos_r, "#38A169", "#F0FFF4", "#C6F6D5")
-            + _sent_cell("Negativas", _pct_neg_r, "#E53E3E", "#FFF5F5", "#FED7D7")
-            + '</tr><tr>'
-            + _sent_cell("Mixtas",    _pct_mix_r, "#D69E2E", "#FFFFF0", "#FEEBC8")
-            + _sent_cell("Neutrales", _pct_neu_r, "#718096", "#F7FAFC", "#E2E8F0")
-            + '</tr></table>'
-            '<div style="font-size:11px;color:#A0AEC0;margin:16px 0 12px;line-height:1.6;font-style:italic">'
+            + _sent_row("Positivas", _pct_pos_r, "#38A169", "#F0FFF4")
+            + _sent_row("Negativas", _pct_neg_r, "#E53E3E", "#FFF5F5")
+            + _sent_row("Mixtas",    _pct_mix_r, "#D69E2E", "#FFFFF0")
+            + _sent_row("Neutrales", _pct_neu_r, "#718096", "#F7FAFC")
+            + '</table>'
+            '<div style="font-size:11px;color:#A0AEC0;margin:14px 0 12px;line-height:1.6;font-style:italic">'
             + str(_tot_men) + ' menciones analizadas &middot; Para más detalle, ingresá a la tab de Social Listening.</div>'
             '<div style="line-height:2.4">' + _pills + '</div>'
         )
