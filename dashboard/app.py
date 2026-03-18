@@ -1017,7 +1017,7 @@ def main():
             "Brand_Satisfaction_Top2box":"% de clientes que califican su experiencia como satisfecho o muy satisfecho (top 2 de escala 5 pts).",
         }
         section_header("Brand Health · Última Ola", dot_color="blue")
-        st.markdown('<div style="height:12px"></div>', unsafe_allow_html=True)
+        st.markdown('<div style="height:24px"></div>', unsafe_allow_html=True)
         if _bht_ov is not None and not _bht_ov.empty:
             _kpi_defs = [
                 ("Top_of_Mind",               "Top of Mind",    "%"),
