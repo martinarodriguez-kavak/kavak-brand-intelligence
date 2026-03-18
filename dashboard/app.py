@@ -959,94 +959,114 @@ def main():
 
         with _col_soc:
             section_header("Reputación Digital", dot_color="blue")
-            # 4 metric cards en 2x2
-            _sent_defs = [
-                ("positivo", "Positivas",  "#38A169", "#F0FFF4", "#276749"),
-                ("negativo", "Negativas",  "#E53E3E", "#FFF5F5", "#9B2C2C"),
-                ("mixto",    "Mixtas",     "#D69E2E", "#FFFFF0", "#975A16"),
-                ("neutro",   "Neutrales",  "#718096", "#F7FAFC", "#4A5568"),
-            ]
-            _sc1, _sc2 = st.columns(2)
-            for _i, (_sk, _sl, _sc, _sbg, _sdr) in enumerate(_sent_defs):
-                _pct = _sd_ov.get(_sk, 0)
-                _target_col = _sc1 if _i % 2 == 0 else _sc2
-                with _target_col:
-                    st.markdown(f"""
-                    <div style="background:{_sbg};border:1px solid {_sc}33;border-radius:10px;
-                                padding:16px;margin-bottom:10px">
-                      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;
-                                  text-transform:uppercase;color:{_sdr};margin-bottom:8px">{_sl}</div>
-                      <div style="font-size:32px;font-weight:800;color:{_sc};line-height:1">{_pct}%</div>
-                      <div style="margin-top:10px;background:rgba(0,0,0,0.08);border-radius:3px;height:4px">
-                        <div style="background:{_sc};width:{_pct}%;height:4px;border-radius:3px"></div>
-                      </div>
-                    </div>""", unsafe_allow_html=True)
-
-            # Top themes
-            _tt = _soc_ov.get("top_themes", [])[:6]
-            if _tt:
-                _pills = "".join(
-                    f'<span style="background:var(--kavak-blue-light);color:var(--kavak-blue);'
-                    f'border-radius:4px;padding:3px 10px;font-size:11px;font-weight:600;'
-                    f'margin:2px">{t["tema"]}&nbsp;·&nbsp;{t["count"]}</span>'
-                    for t in _tt
-                )
-                st.markdown(f'<div style="margin-top:4px;display:flex;flex-wrap:wrap;gap:4px">{_pills}</div>',
-                            unsafe_allow_html=True)
+            _pct_pos_r = round(_sd_ov.get("positivo", 0))
+            _pct_neg_r = round(_sd_ov.get("negativo", 0))
+            _pct_mix_r = round(_sd_ov.get("mixto", 0))
+            _pct_neu_r = round(_sd_ov.get("neutro", 0))
+            _tt = _soc_ov.get("top_themes", [])[:5]
+            _pills_html = "".join(
+                '<span style="background:#EBF4FF;color:#0467FC;border-radius:20px;padding:4px 12px;'
+                'font-size:11px;font-weight:600;white-space:nowrap">' + t["tema"] + ' · ' + str(t["count"]) + '</span>'
+                for t in _tt
+            )
+            _rep_html = (
+                '<div style="background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:20px 22px">'
+                # sentiment bar
+                '<div style="display:flex;border-radius:6px;overflow:hidden;height:10px;margin-bottom:18px">'
+                '<div style="background:#38A169;width:' + str(_pct_pos_r) + '%"></div>'
+                '<div style="background:#E53E3E;width:' + str(_pct_neg_r) + '%"></div>'
+                '<div style="background:#D69E2E;width:' + str(_pct_mix_r) + '%"></div>'
+                '<div style="background:#CBD5E0;width:' + str(_pct_neu_r) + '%"></div>'
+                '</div>'
+                # four stats in a row
+                '<div style="display:flex;gap:0;border-radius:8px;overflow:hidden;border:1px solid #E2E8F0;margin-bottom:16px">'
+                '<div style="flex:1;padding:12px 10px;text-align:center;border-right:1px solid #E2E8F0">'
+                '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#276749;margin-bottom:4px">Positivas</div>'
+                '<div style="font-size:22px;font-weight:800;color:#38A169">' + str(_pct_pos_r) + '%</div>'
+                '</div>'
+                '<div style="flex:1;padding:12px 10px;text-align:center;border-right:1px solid #E2E8F0">'
+                '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9B2C2C;margin-bottom:4px">Negativas</div>'
+                '<div style="font-size:22px;font-weight:800;color:#E53E3E">' + str(_pct_neg_r) + '%</div>'
+                '</div>'
+                '<div style="flex:1;padding:12px 10px;text-align:center;border-right:1px solid #E2E8F0">'
+                '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#975A16;margin-bottom:4px">Mixtas</div>'
+                '<div style="font-size:22px;font-weight:800;color:#D69E2E">' + str(_pct_mix_r) + '%</div>'
+                '</div>'
+                '<div style="flex:1;padding:12px 10px;text-align:center">'
+                '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#4A5568;margin-bottom:4px">Neutrales</div>'
+                '<div style="font-size:22px;font-weight:800;color:#718096">' + str(_pct_neu_r) + '%</div>'
+                '</div>'
+                '</div>'
+                # total + themes
+                '<div style="font-size:12px;color:#718096;margin-bottom:10px">'
+                + str(_tot_men) + ' menciones analizadas</div>'
+                '<div style="display:flex;flex-wrap:wrap;gap:6px">' + _pills_html + '</div>'
+                '</div>'
+            )
+            st.markdown(_rep_html, unsafe_allow_html=True)
 
         with _col_sig:
             section_header("Señales", dot_color="blue")
             _pos_clusters = _soc_ov.get("positive_clusters", [])[:3]
-            _neg_clusters = _soc_ov.get("negative_clusters", [])[:4]
-
-            st.markdown("""<div style="font-size:10px;font-weight:700;letter-spacing:2px;
-                text-transform:uppercase;color:#276749;margin-bottom:8px">Fortalezas</div>""",
-                unsafe_allow_html=True)
+            _neg_clusters = _soc_ov.get("negative_clusters", [])[:3]
             _strengths = (
-                ([f"Top of Mind: {round(_tom)}% — liderazgo absoluto en categoría"] if _tom else []) +
-                ["Serie F $300M liderada por a16z · Primera rentabilidad global dic 2025"] +
-                [f"Percepción positiva consolidada: {c['tema']}" for c in _pos_clusters]
+                ([f"Top of Mind {round(_tom)}% — liderazgo en categoría"] if _tom else []) +
+                ["Serie F $300M a16z · Primera rentabilidad global dic 2025"] +
+                [f"Percepción positiva en {c['tema']}" for c in _pos_clusters]
             )
-            for _s in _strengths[:4]:
-                st.markdown(
-                    f'<div style="border-left:3px solid #38A169;background:#F0FFF4;border-radius:0 6px 6px 0;'
-                    f'padding:10px 14px;margin-bottom:8px;font-size:13px;color:#1A202C;line-height:1.5">{_s}</div>',
-                    unsafe_allow_html=True)
-
-            st.markdown("""<div style="font-size:10px;font-weight:700;letter-spacing:2px;
-                text-transform:uppercase;color:#9B2C2C;margin-top:16px;margin-bottom:8px">Riesgos</div>""",
-                unsafe_allow_html=True)
             _risks = (
-                [f"{round(_pct_neg or 0)}% de menciones negativas · tema crítico: {_top_neg}"] +
-                [f"Queja recurrente en '{c['tema']}' — {c['count']} menciones"
+                [f"{round(_pct_neg or 0)}% menciones negativas — tema crítico: {_top_neg}"] +
+                [f"Quejas recurrentes en {c['tema']} ({c['count']} menciones)"
                  for c in _neg_clusters if c.get("tema") != _top_neg]
             )
-            for _r in _risks[:4]:
-                st.markdown(
-                    f'<div style="border-left:3px solid #E53E3E;background:#FFF5F5;border-radius:0 6px 6px 0;'
-                    f'padding:10px 14px;margin-bottom:8px;font-size:13px;color:#1A202C;line-height:1.5">{_r}</div>',
-                    unsafe_allow_html=True)
+            _str_items = "".join(
+                '<div style="padding:10px 14px;border-left:3px solid #38A169;background:#F0FFF4;'
+                'border-radius:0 6px 6px 0;margin-bottom:6px;font-size:13px;color:#1A202C;line-height:1.4">'
+                + s + '</div>'
+                for s in _strengths[:3]
+            )
+            _risk_items = "".join(
+                '<div style="padding:10px 14px;border-left:3px solid #E53E3E;background:#FFF5F5;'
+                'border-radius:0 6px 6px 0;margin-bottom:6px;font-size:13px;color:#1A202C;line-height:1.4">'
+                + r + '</div>'
+                for r in _risks[:3]
+            )
+            _sig_html = (
+                '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
+                'color:#276749;margin-bottom:8px">Fortalezas</div>'
+                + _str_items +
+                '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
+                'color:#9B2C2C;margin-top:14px;margin-bottom:8px">Riesgos</div>'
+                + _risk_items
+            )
+            st.markdown(_sig_html, unsafe_allow_html=True)
 
         # ── Crisis preview ──────────────────────────────────────
-        _crisis_ov = [m for m in _raw_ov if m.get("intensidad", 0) >= 5 and m.get("sentimiento") == "negativo"]
+        _crisis_ov = sorted(
+            [m for m in _raw_ov if m.get("intensidad", 0) >= 5 and m.get("sentimiento") == "negativo"],
+            key=lambda x: x.get("intensidad", 0), reverse=True
+        )
         if _crisis_ov:
-            section_header(f"Menciones de Alto Impacto · {len(_crisis_ov)} virales", dot_color="red")
-            for _cm in _crisis_ov[:3]:
+            section_header("Menciones de Alto Impacto", dot_color="red")
+            _crisis_items = ""
+            for _cm in _crisis_ov[:2]:
                 _cfuente = _cm.get("fuente", "?")
                 _curl    = _cm.get("url") or ""
-                _ctext   = _cm.get("texto", "")[:200]
+                _ctext   = _cm.get("texto", "")[:180]
                 _cfecha  = _cm.get("fecha_aprox", "")
-                _csrc    = f'<a href="{_curl}" target="_blank">{_cfuente}</a>' if _curl else _cfuente
-                st.markdown(f"""
-                <div class="verbatim neg">
-                  <div class="verbatim-text">"{_ctext}"</div>
-                  <div class="verbatim-footer">
-                    <span class="verbatim-source">{_csrc}</span>
-                    <span class="verbatim-date">{_cfecha}</span>
-                    <span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
-                          background:#E53E3E;color:white;padding:2px 8px;border-radius:4px;margin-left:auto">VIRAL</span>
-                  </div>
-                </div>""", unsafe_allow_html=True)
+                _csrc    = '<a href="' + _curl + '" target="_blank">' + _cfuente + '</a>' if _curl else _cfuente
+                _crisis_items += (
+                    '<div style="background:#FFF5F5;border:1px solid #FED7D7;border-radius:8px;'
+                    'padding:14px 16px;margin-bottom:10px">'
+                    '<div style="font-size:13px;color:#2D3748;line-height:1.5;margin-bottom:8px">&ldquo;' + _ctext + '&rdquo;</div>'
+                    '<div style="display:flex;align-items:center;gap:8px">'
+                    '<span style="font-size:11px;color:#718096">' + _csrc + '</span>'
+                    '<span style="font-size:11px;color:#A0AEC0">' + _cfecha + '</span>'
+                    '<span style="margin-left:auto;font-size:10px;font-weight:700;letter-spacing:1px;'
+                    'text-transform:uppercase;background:#E53E3E;color:white;padding:2px 8px;border-radius:4px">VIRAL</span>'
+                    '</div></div>'
+                )
+            st.markdown(_crisis_items, unsafe_allow_html=True)
 
     # ════════════════════════════════════════
     # TAB 1 — BRAND HEALTH
