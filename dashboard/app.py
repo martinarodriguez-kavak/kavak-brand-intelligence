@@ -1327,6 +1327,74 @@ def main():
         if total_mentions == 0:
             empty_state("🌐", "Sin datos de social listening", "Corrés <code>python run.py</code> para recolectar menciones.")
         else:
+            # ── Filtro de fechas ──────────────────────────────────────
+            import datetime as _dt
+
+            _QUARTER_START = {
+                "2025-Q1": _dt.date(2025, 1, 1), "2025-Q2": _dt.date(2025, 4, 1),
+                "2025-Q3": _dt.date(2025, 7, 1), "2025-Q4": _dt.date(2025, 10, 1),
+                "2026-Q1": _dt.date(2026, 1, 1), "2026-Q2": _dt.date(2026, 4, 1),
+            }
+
+            def _mention_date(m):
+                """Devuelve un date aproximado de una mención para filtrar."""
+                fd = m.get("fecha_mencion")
+                if fd:
+                    try:
+                        return _dt.date.fromisoformat(str(fd)[:10])
+                    except ValueError:
+                        pass
+                fa = m.get("fecha_aprox", "")
+                return _QUARTER_START.get(fa, _dt.date(2025, 1, 1))
+
+            raw_mentions = social.get("raw_mentions", [])
+
+            _fcol1, _fcol2, _fcol3 = st.columns([2, 2, 3])
+            with _fcol1:
+                date_start = st.date_input(
+                    "Desde",
+                    value=_dt.date(2025, 1, 1),
+                    min_value=_dt.date(2025, 1, 1),
+                    max_value=_dt.date.today(),
+                    key="sl_date_start",
+                )
+            with _fcol2:
+                date_end = st.date_input(
+                    "Hasta",
+                    value=_dt.date.today(),
+                    min_value=_dt.date(2025, 1, 1),
+                    max_value=_dt.date.today(),
+                    key="sl_date_end",
+                )
+            with _fcol3:
+                all_platforms = sorted(set(
+                    (m.get("plataforma_normalizada") or m.get("fuente", "otro")).split(" —")[0][:30]
+                    for m in raw_mentions
+                ))
+                selected_platforms = st.multiselect(
+                    "Plataformas",
+                    options=all_platforms,
+                    default=[],
+                    placeholder="Todas",
+                    key="sl_platforms",
+                )
+
+            # Filtrar menciones
+            filtered_mentions = [
+                m for m in raw_mentions
+                if date_start <= _mention_date(m) <= date_end
+                and (not selected_platforms or
+                     (m.get("plataforma_normalizada") or m.get("fuente", ""))[:30] in selected_platforms)
+            ]
+
+            if not filtered_mentions:
+                st.info("Sin menciones para el rango seleccionado. Ajustá los filtros.")
+                st.stop()
+
+            from collectors.social_listener import aggregate_insights
+            social = aggregate_insights(filtered_mentions)
+            total_mentions = social.get("total_mentions", 0)
+
             sentiment_dist = social.get("sentiment_distribution", {})
 
             # ── Summary cards ──
