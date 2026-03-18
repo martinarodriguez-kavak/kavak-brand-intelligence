@@ -1049,15 +1049,17 @@ def main():
              for c in _neg_clusters if c.get("tema") != _top_neg]
         )[:3]
 
-        # Signal item — inline-block dot + text, no table, no borders
+        # Signal item — table for reliable dot/text alignment (borders killed by global CSS)
         def _sig_row(text, color):
             return (
-                '<div style="padding:9px 0">'
-                '<span style="display:inline-block;width:14px;vertical-align:top;padding-top:7px">'
+                '<div style="padding:7px 0">'
+                '<table style="width:100%;border-collapse:collapse">'
+                '<tr style="vertical-align:top">'
+                '<td style="width:14px;padding-top:8px;padding-right:8px">'
                 '<span style="display:inline-block;width:5px;height:5px;border-radius:50%;background:' + color + '"></span>'
-                '</span>'
-                '<span style="display:inline-block;vertical-align:top;width:88%;'
-                'font-size:13px;color:#2D3748;line-height:1.6;padding-left:6px">' + text + '</span>'
+                '</td>'
+                '<td style="font-size:13px;color:#2D3748;line-height:1.6">' + text + '</td>'
+                '</tr></table>'
                 '</div>'
             )
 
