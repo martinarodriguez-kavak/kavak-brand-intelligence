@@ -1045,10 +1045,13 @@ def main():
                       <div style="font-size:28px;font-weight:800;color:var(--kavak-blue);line-height:1">{_v_str}</div>
                       <div style="margin-top:8px;min-height:18px">{_d_chip}</div>
                     </div>""", unsafe_allow_html=True)
-            st.markdown('<div style="height:8px"></div>', unsafe_allow_html=True)
-            if st.button("Ver Brand Health completo →", key="nav_bht"):
-                st.session_state.goto_tab = 1
-                st.rerun()
+            st.markdown(
+                '<div style="margin-top:10px">'
+                '<a href="#" onclick="window.parent.document.querySelectorAll(\'button[data-baseweb=&quot;tab&quot;]\')[1].click();return false;"'
+                ' style="font-size:12px;font-weight:600;color:#0467FC;text-decoration:none;letter-spacing:0.3px">'
+                'Ver Brand Health completo →</a></div>',
+                unsafe_allow_html=True
+            )
         else:
             st.info("Cargá archivos BHT en /data para ver los KPIs.")
 
@@ -1184,15 +1187,18 @@ def main():
             '</tr></table>'
         )
 
-        st.markdown('<div style="height:8px"></div>', unsafe_allow_html=True)
+        st.markdown('<div style="height:20px"></div>', unsafe_allow_html=True)
         _col_snap, _col_sig = st.columns([1, 1])
         with _col_snap:
             section_header("Social Listening · Snapshot", dot_color="blue")
             st.markdown(_social_snap_html, unsafe_allow_html=True)
-            st.markdown('<div style="height:6px"></div>', unsafe_allow_html=True)
-            if st.button("Ver Social Listening completo →", key="nav_social"):
-                st.session_state.goto_tab = 2
-                st.rerun()
+            st.markdown(
+                '<div style="margin-top:10px">'
+                '<a href="#" onclick="window.parent.document.querySelectorAll(\'button[data-baseweb=&quot;tab&quot;]\')[2].click();return false;"'
+                ' style="font-size:12px;font-weight:600;color:#0467FC;text-decoration:none;letter-spacing:0.3px">'
+                'Ver Social Listening completo →</a></div>',
+                unsafe_allow_html=True
+            )
         with _col_sig:
             section_header("Se&#241;ales Estrat&#233;gicas", dot_color="blue")
             st.markdown(_senales_html, unsafe_allow_html=True)
