@@ -29,7 +29,7 @@ EXTRACTION_PROMPT = """Sos un analista de brand intelligence para Kavak México.
 Contexto sobre Kavak:
 {kavak_context}
 
-Tu tarea: buscar en internet menciones, comentarios, reviews y opiniones sobre Kavak México 
+Tu tarea: buscar en internet menciones, comentarios, reviews y opiniones sobre Kavak México
 relacionadas con la siguiente búsqueda: "{query}"
 
 Instrucciones:
@@ -40,15 +40,21 @@ Instrucciones:
 Para cada mención encontrada, responde ÚNICAMENTE con un JSON array con esta estructura:
 [
   {{
-    "fuente": "Twitter/Reddit/Google Reviews/YouTube/Foros/Noticias/etc",
-    "url": "URL si está disponible, sino null",
-    "texto": "Cita o paráfrasis del comentario/mención (máx 200 caracteres)",
+    "fuente": "Twitter/X | TikTok | Instagram | Facebook | YouTube | Reddit | Foros | Noticias | Trustpilot | Google Reviews",
+    "plataforma_normalizada": "twitter | tiktok | instagram | facebook | youtube | reddit | foros | medios | reviews",
+    "url": "URL completa si está disponible, sino null",
+    "texto": "Cita o paráfrasis del comentario/mención (máx 250 caracteres)",
+    "autor": "Handle o nombre si es visible, sino null",
     "sentimiento": "positivo|negativo|neutro|mixto",
-    "temas": ["tema1", "tema2"],  // De: precio, confianza, proceso, garantía, servicio, variedad, financiamiento, entrega, postventa, comparativa
-    "intensidad": 1-5,  // 1=débil, 5=muy fuerte
-    "fecha_aprox": "2024-Q1|2024-Q2|2024-Q3|2024-Q4|2025-Q1|2025-Q2|desconocida"
+    "temas": ["tema1", "tema2"],
+    "intensidad": 1,
+    "fecha_mencion": "YYYY-MM-DD si la conocés, sino null",
+    "fecha_aprox": "2025-Q1|2025-Q2|2025-Q3|2025-Q4|2026-Q1|desconocida"
   }}
 ]
+
+Temas válidos: precio, confianza, proceso, garantía, servicio, variedad, financiamiento, entrega, postventa, comparativa
+Intensidad: 1=débil, 5=muy fuerte/viral
 
 Si no encontrás menciones relevantes, devolvé un array vacío: []
 Responde SOLO el JSON, sin texto adicional ni markdown.
@@ -222,8 +228,28 @@ def aggregate_insights(mentions: list) -> dict:
     top_themes = [{"tema": t, "count": c, "pct": round(c / total * 100, 1)}
                   for t, c in theme_counts.most_common(10)]
 
-    # Por fuente
-    sources = Counter(m.get("fuente", "unknown") for m in mentions)
+    # Por fuente (usar plataforma_normalizada si existe, sino fuente raw)
+    def _normalize_source(m):
+        p = m.get("plataforma_normalizada") or m.get("fuente", "otro")
+        # Agrupar variantes de fuente raw en categorías limpias
+        p_low = p.lower()
+        if "tiktok" in p_low:          return "TikTok"
+        if "instagram" in p_low:       return "Instagram"
+        if "twitter" in p_low or "x.com" in p_low: return "Twitter/X"
+        if "facebook" in p_low:        return "Facebook"
+        if "youtube" in p_low:         return "YouTube"
+        if "reddit" in p_low:          return "Reddit"
+        if "trustpilot" in p_low:      return "Trustpilot"
+        if "medios" in p_low or "noticias" in p_low or "bloomberg" in p_low \
+           or "expansión" in p_low or "expansion" in p_low: return "Medios"
+        if "profeco" in p_low:         return "Profeco/Medios"
+        if "foros" in p_low or "promodescuento" in p_low: return "Foros"
+        if "threads" in p_low:         return "Threads"
+        if "reviews" in p_low or "google" in p_low: return "Google Reviews"
+        if "linkedin" in p_low:        return "LinkedIn"
+        return p.split(" —")[0].split(" /")[0][:30]  # limpiar sufijos largos
+
+    sources = Counter(_normalize_source(m) for m in mentions)
     by_source = dict(sources.most_common())
 
     # Verbatims por sentimiento (top 5 de cada uno por intensidad)
