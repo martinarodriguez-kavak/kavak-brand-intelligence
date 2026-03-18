@@ -1581,14 +1581,35 @@ def main():
             ]
 
             if not filtered_mentions:
-                st.info("Sin menciones para el rango seleccionado. Ajustá los filtros.")
-                st.stop()
+                filtered_mentions = raw_mentions  # fallback: mostrar todo si el filtro no matchea
 
             from collectors.social_listener import aggregate_insights
             social = aggregate_insights(filtered_mentions)
             total_mentions = social.get("total_mentions", 0)
 
             sentiment_dist = social.get("sentiment_distribution", {})
+
+            # ── verbatim_card helper (defined early so drill-down can use it) ──
+            def verbatim_card(v, css_class):
+                texto = v.get("texto", "")
+                fuente = v.get("fuente", "?")
+                url = v.get("url") or ""
+                fecha = v.get("fecha_aprox", "")
+                fecha_html = f'<span class="verbatim-date">{fecha}</span>' if fecha and fecha != "desconocida" else ""
+                source_inner = (
+                    f'<a href="{url}" target="_blank" rel="noopener">{fuente}</a>'
+                    if url else fuente
+                )
+                st.markdown(
+                    f'<div class="verbatim {css_class}">'
+                    f'  <div class="verbatim-text">"{texto}"</div>'
+                    f'  <div class="verbatim-footer">'
+                    f'    <span class="verbatim-source">{source_inner}</span>'
+                    f'    {fecha_html}'
+                    f'  </div>'
+                    f'</div>',
+                    unsafe_allow_html=True
+                )
 
             # ── Summary cards ──
             section_header("Resumen de Menciones", dot_color="blue")
@@ -1785,27 +1806,6 @@ def main():
             verbatims = social.get("verbatims", {})
             if verbatims:
                 section_header("Comentarios", dot_color="blue")
-
-                def verbatim_card(v, css_class):
-                    texto = v.get("texto", "")
-                    fuente = v.get("fuente", "?")
-                    url = v.get("url") or ""
-                    fecha = v.get("fecha_aprox", "")
-                    fecha_html = f'<span class="verbatim-date">{fecha}</span>' if fecha and fecha != "desconocida" else ""
-                    source_inner = (
-                        f'<a href="{url}" target="_blank" rel="noopener">{fuente}</a>'
-                        if url else fuente
-                    )
-                    st.markdown(
-                        f'<div class="verbatim {css_class}">'
-                        f'  <div class="verbatim-text">"{texto}"</div>'
-                        f'  <div class="verbatim-footer">'
-                        f'    <span class="verbatim-source">{source_inner}</span>'
-                        f'    {fecha_html}'
-                        f'  </div>'
-                        f'</div>',
-                        unsafe_allow_html=True
-                    )
 
                 tab_pos, tab_neu, tab_neg = st.tabs(["😊  Positivos", "😐  Neutrales", "😤  Negativos"])
                 with tab_pos:
