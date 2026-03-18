@@ -1027,7 +1027,7 @@ def main():
             '<table style="width:100%;border-collapse:collapse;height:100%">'
             # Row 1: hero | stats | themes(rowspan=2)
             '<tr style="vertical-align:top">'
-            '<td style="width:28%;padding-right:20px;border-right:1px solid #EDF2F7;vertical-align:middle">'
+            '<td style="width:28%;padding-right:20px;padding-top:16px;padding-bottom:16px;border-right:1px solid #EDF2F7;vertical-align:middle">'
             '<div style="font-size:44px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-3px">'
             + str(_tot_men) + '</div>'
             '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
