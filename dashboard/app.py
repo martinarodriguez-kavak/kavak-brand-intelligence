@@ -1000,7 +1000,7 @@ def main():
         _THEME_COLORS = ["#0467FC","#3685FD","#68A4FD","#94BBFE","#BDD4FE"]
         _themes_col = (
             '<div style="font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;'
-            'color:#718096;margin-bottom:10px">Temas principales</div>'
+            'color:#718096;margin-bottom:10px;font-size:11px">Temas principales</div>'
             + "".join(
                 '<div style="margin-bottom:7px">'
                 '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;'
