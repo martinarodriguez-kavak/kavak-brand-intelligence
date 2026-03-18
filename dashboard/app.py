@@ -926,27 +926,23 @@ def main():
         _alert_html = ""
         if _alert_parts:
             _alert_text = " e ".join(_alert_parts)
-            _alert_html = f'<div style="margin-top:16px;font-size:14px"><span style="color:#C5E50B;font-weight:700;margin-right:4px">&#9888;</span><span style="color:#C5E50B;font-weight:700">Se&#241;al a monitorear:</span><span style="color:#C5E50B"> {_alert_text} en el &#250;ltimo per&#237;odo.</span></div>'
+            _alert_html = ('<div style="margin-top:16px;font-size:14px">'
+                           '<span style="color:#C5E50B;font-weight:700;margin-right:4px">&#9888;</span>'
+                           '<span style="color:#C5E50B;font-weight:700">Se&#241;al a monitorear:</span>'
+                           '<span style="color:#C5E50B"> ' + _alert_text + ' en el &#250;ltimo per&#237;odo.</span>'
+                           '</div>')
 
-        st.markdown(f"""
-        <div style="background:#0467FC;border-radius:12px;padding:28px 36px;margin-bottom:20px;
-                    position:relative;overflow:hidden">
-          <div style="position:absolute;right:-40px;top:-40px;width:220px;height:220px;
-                      border-radius:50%;background:rgba(255,255,255,0.07)"></div>
-          <div style="position:absolute;right:60px;bottom:-60px;width:160px;height:160px;
-                      border-radius:50%;background:rgba(255,255,255,0.05)"></div>
-          <div style="position:relative;z-index:1">
-            <div style="font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
-                        color:#C5E50B;margin-bottom:14px">
-              Executive Summary · Brand Health Tracker Analysis
-            </div>
-            <div style="font-size:15px;font-weight:400;color:rgba(255,255,255,0.95);line-height:1.7">
-              {_body_html}
-            </div>
-            {_alert_html}
-          </div>
-        </div>
-        """, unsafe_allow_html=True)
+        _hero = (
+            '<div style="background:#0467FC;border-radius:12px;padding:28px 36px;margin-bottom:20px;position:relative;overflow:hidden">'
+            '<div style="position:absolute;right:-40px;top:-40px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.07)"></div>'
+            '<div style="position:absolute;right:60px;bottom:-60px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.05)"></div>'
+            '<div style="position:relative;z-index:1">'
+            '<div style="font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#C5E50B;margin-bottom:14px">Executive Summary &middot; Brand Health Tracker Analysis</div>'
+            '<div style="font-size:15px;font-weight:400;color:rgba(255,255,255,0.95);line-height:1.7">' + _body_html + '</div>'
+            + _alert_html +
+            '</div></div>'
+        )
+        st.markdown(_hero, unsafe_allow_html=True)
 
         # ── BHT KPI row ────────────────────────────────────────
         section_header("Brand Health · Última Ola", dot_color="blue")
