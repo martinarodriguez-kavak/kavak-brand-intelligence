@@ -964,12 +964,12 @@ def main():
 
         def _sent_card(label, pct, color):
             return (
-                '<td style="width:25%;padding:4px;vertical-align:top">'
-                '<div class="summary-card" style="text-align:center;padding:18px 8px">'
-                '<div class="s-label" style="margin-bottom:8px">' + label + '</div>'
+                '<td style="width:25%;padding:8px 12px;vertical-align:top;text-align:center">'
+                '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
+                'color:#A0AEC0;margin-bottom:8px">' + label + '</div>'
                 '<div style="font-size:28px;font-weight:800;color:' + color + ';line-height:1">'
                 + str(pct) + '%</div>'
-                '</div></td>'
+                '</td>'
             )
 
         _pills = " &nbsp; ".join(
@@ -1027,22 +1027,18 @@ def main():
         _sig_html = (
             '<table style="width:100%;border-collapse:separate;border-spacing:8px 0">'
             '<tr style="vertical-align:top">'
-            # Fortalezas card
-            '<td style="width:50%;vertical-align:top">'
-            '<div class="summary-card" style="padding:18px 16px;height:100%">'
+            # Fortalezas
+            '<td style="width:50%;vertical-align:top;padding-right:24px">'
             '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-            'color:#0467FC;margin-bottom:10px;padding-bottom:10px;border-bottom:2px solid #0467FC">'
-            'Fortalezas</div>'
+            'color:#0467FC;margin-bottom:12px">Fortalezas</div>'
             + _str_items +
-            '</div></td>'
-            # Riesgos card
-            '<td style="width:50%;vertical-align:top">'
-            '<div class="summary-card" style="padding:18px 16px;height:100%">'
+            '</td>'
+            # Riesgos
+            '<td style="width:50%;vertical-align:top;padding-left:8px">'
             '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-            'color:#E53E3E;margin-bottom:10px;padding-bottom:10px;border-bottom:2px solid #E53E3E">'
-            'Riesgos</div>'
+            'color:#E53E3E;margin-bottom:12px">Riesgos</div>'
             + _risk_items +
-            '</div></td>'
+            '</td>'
             '</tr></table>'
         )
 
