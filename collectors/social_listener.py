@@ -73,6 +73,12 @@ def run_social_listening(
     Returns:
         Lista de menciones agregadas de todas las queries
     """
+    # Cargar cache primero — no necesita API key
+    cache = _load_cache(cache_file)
+    if cache:
+        print(f"[Social Listener] Cache cargado: {len(cache)} menciones")
+        return cache
+
     try:
         import anthropic
     except ImportError:
@@ -83,12 +89,6 @@ def run_social_listening(
         print("[Social Listener] ⚠️  ANTHROPIC_API_KEY no seteada en environment.")
         print("   Setear con: export ANTHROPIC_API_KEY='sk-ant-...'")
         return []
-
-    # Cargar cache si existe y es reciente (< 24h)
-    cache = _load_cache(cache_file)
-    if cache:
-        print(f"[Social Listener] Cache cargado: {len(cache)} menciones")
-        return cache
 
     # Construir lista de queries
     if queries is None:
@@ -303,18 +303,19 @@ def get_social_summary_for_llm(aggregated: dict) -> str:
 
 
 def _load_cache(cache_file: str) -> list:
-    """Carga cache si existe y fue generado hace menos de 24 horas."""
+    """Carga cache si existe. Expira en 24h solo si hay API key disponible para regenerar."""
     import time as time_module
     cache_path = Path(cache_file)
     if not cache_path.exists():
         return []
 
-    # Verificar antigüedad
-    mtime = cache_path.stat().st_mtime
-    age_hours = (time_module.time() - mtime) / 3600
-    if age_hours > 24:
-        print(f"[Social Listener] Cache expirado ({age_hours:.1f}h). Volviendo a correr.")
-        return []
+    # Solo expirar si hay API key (se puede regenerar); si no, usar cache estático siempre
+    if ANTHROPIC_API_KEY:
+        mtime = cache_path.stat().st_mtime
+        age_hours = (time_module.time() - mtime) / 3600
+        if age_hours > 24:
+            print(f"[Social Listener] Cache expirado ({age_hours:.1f}h). Regenerando con API.")
+            return []
 
     try:
         with open(cache_path, "r", encoding="utf-8") as f:

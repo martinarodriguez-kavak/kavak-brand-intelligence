@@ -551,11 +551,10 @@ def load_all_data(force_refresh: bool = False):
     bht_summary = get_bht_summary_for_llm(all_waves)
 
     mentions, aggregated_social, social_summary = [], {}, ""
-    if has_api_key:
-        from collectors.social_listener import run_social_listening, aggregate_insights, get_social_summary_for_llm
-        mentions = run_social_listening(max_queries=15, cache_file="outputs/social_listening_cache.json")
-        aggregated_social = aggregate_insights(mentions)
-        social_summary = get_social_summary_for_llm(aggregated_social)
+    from collectors.social_listener import run_social_listening, aggregate_insights, get_social_summary_for_llm
+    mentions = run_social_listening(max_queries=15, cache_file="outputs/social_listening_cache.json")
+    aggregated_social = aggregate_insights(mentions)
+    social_summary = get_social_summary_for_llm(aggregated_social)
 
     analysis = {}
     if has_api_key:
