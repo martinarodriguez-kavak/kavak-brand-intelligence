@@ -998,37 +998,71 @@ def main():
             section_header("Reputación Digital", dot_color="blue")
             st.markdown(_rep_html, unsafe_allow_html=True)
 
+            # ── Expandable verbatims per sentiment ──────────────
+            _verbatims_ov = _soc_ov.get("verbatims", {})
+            _sent_labels = [
+                ("positivo", "Positivas", "28%", "#38A169"),
+                ("negativo", "Negativas", "66%", "#E53E3E"),
+                ("mixto",    "Mixtas",    "6%",  "#D69E2E"),
+            ]
+            with st.expander("Ver menciones por sentimiento"):
+                _exp_tabs = st.tabs(["Positivas", "Negativas", "Mixtas"])
+                for _et, (_sk, _sl, _, _sc) in zip(_exp_tabs, _sent_labels):
+                    with _et:
+                        _vlist = _verbatims_ov.get(_sk, [])[:5]
+                        if not _vlist:
+                            st.caption("Sin menciones.")
+                        for _v in _vlist:
+                            _vtxt  = _v.get("texto", "")
+                            _vfnt  = _v.get("fuente", "?")
+                            _vdate = _v.get("fecha_aprox") or _v.get("fecha_mencion") or ""
+                            _vurl  = _v.get("url") or ""
+                            _vsrc  = f"[{_vfnt}]({_vurl})" if _vurl else _vfnt
+                            st.markdown(
+                                f'<div style="border-left:3px solid {_sc};padding:10px 14px;'
+                                f'margin-bottom:10px;background:#FAFAFA;border-radius:0 6px 6px 0;'
+                                f'font-size:13px;color:#2D3748;line-height:1.7">'
+                                f'&ldquo;{_vtxt}&rdquo;'
+                                f'<div style="font-size:11px;color:#A0AEC0;margin-top:6px">{_vsrc} &middot; {_vdate}</div>'
+                                f'</div>',
+                                unsafe_allow_html=True)
+
+        # ── Señales ──────────────────────────────────────────────
         _pos_clusters = _soc_ov.get("positive_clusters", [])[:2]
         _neg_clusters = _soc_ov.get("negative_clusters", [])[:3]
         _strengths = (
-            ([f"Top of Mind {round(_tom)}% — liderazgo en categoría"] if _tom else []) +
-            ["Serie F $300M a16z · Primera rentabilidad global dic 2025"] +
-            [f"Percepción positiva en {c['tema']}" for c in _pos_clusters]
+            ([f"Top of Mind {round(_tom)}% — liderazgo absoluto en categoría"] if _tom else []) +
+            ["Serie F $300M liderada por a16z · Primera rentabilidad global dic 2025"] +
+            [f"Percepción positiva consolidada en: {c['tema']}" for c in _pos_clusters]
         )
         _risks = (
-            [f"{round(_pct_neg or 0)}% menciones negativas — tema crítico: {_top_neg}"] +
+            [f"{round(_pct_neg or 0)}% de menciones son negativas — tema crítico: {_top_neg}"] +
             [f"Quejas recurrentes en {c['tema']} ({c['count']} menciones)"
              for c in _neg_clusters if c.get("tema") != _top_neg]
         )
         _str_rows = "".join(
-            '<div style="padding:12px 16px;border-left:3px solid #38A169;background:#F0FFF4;'
-            'border-radius:0 8px 8px 0;margin-bottom:10px;font-size:13px;color:#2D3748;line-height:1.7">'
+            '<div style="padding:14px 18px;background:#F0FFF4;border-radius:8px;'
+            'margin-bottom:10px;font-size:14px;color:#1A202C;line-height:1.8">'
+            '<span style="color:#38A169;font-weight:700;margin-right:8px">&#10003;</span>'
             + s + '</div>'
             for s in _strengths[:3]
         )
         _risk_rows = "".join(
-            '<div style="padding:12px 16px;border-left:3px solid #E53E3E;background:#FFF5F5;'
-            'border-radius:0 8px 8px 0;margin-bottom:10px;font-size:13px;color:#2D3748;line-height:1.7">'
+            '<div style="padding:14px 18px;background:#FFF5F5;border-radius:8px;'
+            'margin-bottom:10px;font-size:14px;color:#1A202C;line-height:1.8">'
+            '<span style="color:#E53E3E;font-weight:700;margin-right:8px">&#9650;</span>'
             + r + '</div>'
             for r in _risks[:3]
         )
         _sig_html = (
-            '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-            'color:#276749;margin-bottom:12px">Fortalezas</div>'
-            + _str_rows
-            + '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-            'color:#9B2C2C;margin-top:20px;margin-bottom:12px">Riesgos</div>'
-            + _risk_rows
+            '<div style="background:#F0FFF4;border-radius:10px;padding:16px 18px 8px;margin-bottom:16px">'
+            '<div style="font-size:15px;font-weight:700;color:#276749;margin-bottom:14px;letter-spacing:0.3px">'
+            '&#10003;&nbsp; Fortalezas</div>'
+            + _str_rows + '</div>'
+            '<div style="background:#FFF5F5;border-radius:10px;padding:16px 18px 8px">'
+            '<div style="font-size:15px;font-weight:700;color:#C53030;margin-bottom:14px;letter-spacing:0.3px">'
+            '&#9650;&nbsp; Riesgos</div>'
+            + _risk_rows + '</div>'
         )
 
         with _col_sig:
