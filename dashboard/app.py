@@ -742,9 +742,6 @@ def main():
             default=[],
             format_func=lambda x: x.replace("_", " ").title(),
         )
-        if not has_api_key:
-            st.divider()
-            st.info("⚠️ Social Listening y Accionables requieren `ANTHROPIC_API_KEY`.", icon="🔑")
         st.divider()
         if st.button("🗑️ Limpiar cache", use_container_width=True, type="primary"):
             for f in ["outputs/social_listening_cache.json", "outputs/analysis_cache.json"]:
@@ -1281,14 +1278,7 @@ def main():
     with tab2:
         total_mentions = social.get("total_mentions", 0)
 
-        if not has_api_key:
-            empty_state(
-                "🔑",
-                "API key requerida",
-                "Social Listening usa Claude API + web_search para rastrear menciones en tiempo real.<br>"
-                "Configurá <code>ANTHROPIC_API_KEY</code> y volvé a correr el dashboard."
-            )
-        elif total_mentions == 0:
+        if total_mentions == 0:
             empty_state("🌐", "Sin datos de social listening", "Corrés <code>python run.py</code> para recolectar menciones.")
         else:
             sentiment_dist = social.get("sentiment_distribution", {})
