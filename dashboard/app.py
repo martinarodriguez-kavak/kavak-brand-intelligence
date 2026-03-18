@@ -1061,14 +1061,21 @@ def main():
                 '</div>'
             )
 
-        _senales_html = (
-            '<div style="font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
-            'color:#0467FC;margin-bottom:6px">Fortalezas</div>'
+        _str_col = (
+            '<div style="font-size:13px;font-weight:700;color:#0467FC;margin-bottom:12px;letter-spacing:0.2px">'
+            'Fortalezas</div>'
             + "".join(_sig_row(s, "#0467FC") for s in _strengths)
-            + '<div style="height:22px"></div>'
-            '<div style="font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
-            'color:#E53E3E;margin-bottom:6px">Riesgos</div>'
+        )
+        _risk_col = (
+            '<div style="font-size:13px;font-weight:700;color:#E53E3E;margin-bottom:12px;letter-spacing:0.2px">'
+            'Riesgos</div>'
             + "".join(_sig_row(r, "#E53E3E") for r in _risks)
+        )
+        _senales_html = (
+            '<table style="width:100%;border-collapse:collapse"><tr style="vertical-align:top">'
+            '<td style="width:50%;padding-right:20px;border:none">' + _str_col + '</td>'
+            '<td style="width:50%;padding-left:4px;border:none">'  + _risk_col + '</td>'
+            '</tr></table>'
         )
 
         _col_snap, _col_sig = st.columns([1, 1])
