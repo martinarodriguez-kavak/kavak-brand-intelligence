@@ -862,7 +862,9 @@ def main():
             _piv_ov = _piv_ov.reindex([o for o in _OLA_ORDER_OV if o in _piv_ov.index])
             _latest_ov = _piv_ov.iloc[-1] if len(_piv_ov) > 0 else pd.Series(dtype=float)
             _prev_ov   = _piv_ov.iloc[-2] if len(_piv_ov) > 1 else pd.Series(dtype=float)
+            _first_ov  = _piv_ov.iloc[0]  if len(_piv_ov) > 0 else pd.Series(dtype=float)
             def _ov_val(col): return _safe(_latest_ov.get(col, None))
+            def _ov_first(col): return _safe(_first_ov.get(col, None))
             def _ov_delta(col):
                 v, p = _safe(_latest_ov.get(col)), _safe(_prev_ov.get(col))
                 return round(v - p, 1) if (v is not None and p is not None) else None
@@ -870,6 +872,7 @@ def main():
             _awa  = _ov_val("Awareness_Asistida")
         else:
             _ov_val   = lambda col: None
+            _ov_first = lambda col: None
             _ov_delta = lambda col: None
             _tom = _awa = None
 
@@ -880,41 +883,71 @@ def main():
             arr = "▲" if d > 0 else "▼"
             return f'<span style="font-size:11px;font-weight:600;color:{col};margin-left:6px">{arr} {abs(d)}{unit}</span>'
 
-        # ── Hero: Estado de Marca ───────────────────────────────
-        _month = pd.Timestamp.now().strftime("%B %Y").capitalize() if _bht_ov is not None else "Mar 2026"
-        _tom_str = f"{round(_tom)}%" if _tom is not None else "–"
-        _awa_str = f"{round(_awa)}%" if _awa is not None else "–"
-        _neg_str = f"{round(_pct_neg or 0)}%"
-        _pos_str = f"{round(_pct_pos or 0)}%"
+        # ── Hero: Executive Summary ─────────────────────────────
+        # Build narrative from BHT data (first → latest ola)
+        _tom_f   = _ov_first("Top_of_Mind")        if _bht_ov is not None and not _bht_ov.empty else None
+        _awa_f   = _ov_first("Awareness_Asistida") if _bht_ov is not None and not _bht_ov.empty else None
+        _con_f   = _ov_first("Consideracion")      if _bht_ov is not None and not _bht_ov.empty else None
+        _tom_l   = _ov_val("Top_of_Mind")
+        _awa_l   = _ov_val("Awareness_Asistida")
+        _con_l   = _ov_val("Consideracion")
+        _nps_l   = _ov_val("NPS_Score")
+        _bei_l   = _ov_val("Brand_Equity_Index")
+        _con_d   = _ov_delta("Consideracion")
+        _int_d   = _ov_delta("Intencion_de_Compra")
+
+        def _range_str(f, l, unit="%"):
+            if f is not None and l is not None:
+                return f"<strong>de {round(f)}{unit} a {round(l)}{unit}</strong>"
+            if l is not None:
+                return f"<strong>{round(l)}{unit}</strong>"
+            return "–"
+
+        _body_parts = [
+            f"Kavak México muestra un crecimiento sostenido de marca en los últimos 5 años: "
+            f"el Top of Mind pasó {_range_str(_tom_f, _tom_l)}, "
+            f"el Awareness Asistido {_range_str(_awa_f, _awa_l)} "
+            f"y la Consideración {_range_str(_con_f, _con_l)}."
+        ]
+        _kpi_parts = []
+        if _nps_l is not None: _kpi_parts.append(f"El NPS alcanzó <strong>{round(_nps_l)} puntos</strong>")
+        if _bei_l is not None: _kpi_parts.append(f"el Brand Equity Index se ubica en <strong>{round(_bei_l)}</strong>")
+        if _kpi_parts:
+            _body_parts.append(" ".join(_kpi_parts) + ". La marca se consolidó como líder indiscutida en seminuevos en México.")
+
+        _body_html = " ".join(_body_parts)
+
+        # Alert signal: highlight negative deltas from last period
+        _alert_parts = []
+        if _con_d is not None and _con_d < 0:
+            _alert_parts.append(f"Consideración cayó {abs(_con_d)}pp")
+        if _int_d is not None and _int_d < 0:
+            _alert_parts.append(f"Intención de Compra {abs(_int_d)}pp")
+        _alert_html = ""
+        if _alert_parts:
+            _alert_html = f"""
+            <div style="margin-top:16px;font-size:14px;color:rgba(255,255,255,0.9)">
+              <span style="color:#C5E50B;font-weight:700;margin-right:6px">⚠</span>
+              <span style="color:#C5E50B;font-weight:700">Señal a monitorear:</span>
+              <span style="color:#C5E50B"> {" e ".join(_alert_parts)} en el último período.</span>
+            </div>"""
 
         st.markdown(f"""
-        <div style="background:#0E1829;border-radius:12px;padding:32px 36px;margin-bottom:20px;
-                    display:flex;justify-content:space-between;align-items:flex-start;gap:32px;flex-wrap:wrap">
-          <div style="flex:2;min-width:260px">
+        <div style="background:#0467FC;border-radius:12px;padding:28px 36px;margin-bottom:20px;
+                    position:relative;overflow:hidden">
+          <div style="position:absolute;right:-40px;top:-40px;width:220px;height:220px;
+                      border-radius:50%;background:rgba(255,255,255,0.07)"></div>
+          <div style="position:absolute;right:60px;bottom:-60px;width:160px;height:160px;
+                      border-radius:50%;background:rgba(255,255,255,0.05)"></div>
+          <div style="position:relative;z-index:1">
             <div style="font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
                         color:#C5E50B;margin-bottom:14px">
-              Kavak México · Consumer Perception · {_month}
+              Executive Summary · Brand Health Tracker Analysis
             </div>
-            <div style="font-size:17px;font-weight:500;color:rgba(255,255,255,0.9);line-height:1.6">
-              Kavak lidera seminuevos en México con
-              <strong style="color:#fff">{_tom_str} Top of Mind</strong>
-              y <strong style="color:#fff">{_awa_str} Awareness Asistida</strong>.<br>
-              En redes, el <strong style="color:#C5E50B">{_pos_str} de menciones son positivas</strong>
-              frente a un <strong style="color:#ff7c7c">{_neg_str} negativo</strong>,
-              concentrado en <em style="color:rgba(255,255,255,0.7)">{_top_neg}</em>.
+            <div style="font-size:15px;font-weight:400;color:rgba(255,255,255,0.95);line-height:1.7">
+              {_body_html}
             </div>
-          </div>
-          <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:10px;align-items:flex-end">
-            <div style="background:rgba(197,229,11,0.12);border:1px solid rgba(197,229,11,0.3);
-                        border-radius:8px;padding:12px 20px;text-align:center;min-width:140px">
-              <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:4px;letter-spacing:1px;text-transform:uppercase">Top of Mind</div>
-              <div style="font-size:32px;font-weight:800;color:#C5E50B">{_tom_str}</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
-                        border-radius:8px;padding:10px 20px;text-align:center;min-width:140px">
-              <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:4px;letter-spacing:1px;text-transform:uppercase">Menciones analizadas</div>
-              <div style="font-size:24px;font-weight:700;color:#fff">{_tot_men}</div>
-            </div>
+            {_alert_html}
           </div>
         </div>
         """, unsafe_allow_html=True)
