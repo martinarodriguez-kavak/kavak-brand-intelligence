@@ -985,9 +985,10 @@ def main():
         _bu = max(0, 100 - _bp - _bn - _bm)
 
         # Sentiment stat cell — refined
-        def _sent_cell(pct, label, color):
+        def _sent_cell(pct, label, color, last_row=False):
+            pb = '0' if last_row else '18px'
             return (
-                '<td style="padding:0 28px 16px 0;vertical-align:top">'
+                '<td style="padding:0 28px ' + pb + ' 0;vertical-align:top">'
                 '<div style="font-size:26px;font-weight:800;color:' + color + ';line-height:1;letter-spacing:-0.5px">'
                 + str(pct) + '%</div>'
                 '<div style="font-size:9px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;'
@@ -1016,14 +1017,12 @@ def main():
             # Three columns: hero | 2×2 stats | themes
             '<table style="width:100%;border-collapse:collapse;margin-bottom:18px"><tr style="vertical-align:top">'
             # Hero + bar in same cell
-            '<td style="width:38%;padding-right:24px;border-right:1px solid #EDF2F7;'
-            'vertical-align:top;position:relative">'
+            '<td style="width:38%;padding-right:24px;border-right:1px solid #EDF2F7;vertical-align:top">'
             '<div style="font-size:60px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-4px">'
             + str(_tot_men) + '</div>'
             '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
             'color:#C8D0DC;margin-top:8px">menciones analizadas</div>'
-            '<div style="position:absolute;bottom:4px;left:0;right:24px;'
-            'font-size:11px;color:#C8D0DC;font-style:italic;line-height:1.5">'
+            '<div style="margin-top:25px;font-size:11px;color:#C8D0DC;font-style:italic;line-height:1.5">'
             'Ver detalle completo en la tab Social Listening.</div>'
             '</td>'
             # 2×2 sentiment stats
@@ -1032,8 +1031,8 @@ def main():
             + _sent_cell(_pct_pos_r, "Positivas", "#38A169")
             + _sent_cell(_pct_neg_r, "Negativas", "#E53E3E")
             + '</tr><tr>'
-            + _sent_cell(_pct_mix_r, "Mixtas",    "#D69E2E")
-            + _sent_cell(_pct_neu_r, "Neutras",   "#C8D0DC")
+            + _sent_cell(_pct_mix_r, "Mixtas",    "#D69E2E", last_row=True)
+            + _sent_cell(_pct_neu_r, "Neutras",   "#C8D0DC", last_row=True)
             + '</tr></table>'
             '</td>'
             # Themes vertical list
