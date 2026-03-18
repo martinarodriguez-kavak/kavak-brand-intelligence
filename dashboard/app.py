@@ -957,74 +957,83 @@ def main():
         # ── Social + Señales ────────────────────────────────────
         _col_soc, _col_sig = st.columns([1, 1])
 
+        _pct_pos_r = round(_sd_ov.get("positivo", 0))
+        _pct_neg_r = round(_sd_ov.get("negativo", 0))
+        _pct_mix_r = round(_sd_ov.get("mixto", 0))
+        _pct_neu_r = round(_sd_ov.get("neutro", 0))
+        _tt        = _soc_ov.get("top_themes", [])[:5]
+        _pills     = " &nbsp; ".join(
+            '<span style="background:#EBF4FF;color:#0467FC;border-radius:20px;'
+            'padding:4px 12px;font-size:11px;font-weight:600">'
+            + t["tema"] + " &middot; " + str(t["count"]) + "</span>"
+            for t in _tt
+        )
+
+        def _sent_cell(label, pct, txt_color, bg, border):
+            return (
+                '<td style="width:50%;padding:5px;vertical-align:top">'
+                '<div style="background:' + bg + ';border:1px solid ' + border + ';border-radius:10px;'
+                'padding:20px 12px;text-align:center">'
+                '<div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;'
+                'color:' + txt_color + ';margin-bottom:10px">' + label + '</div>'
+                '<div style="font-size:34px;font-weight:800;color:' + txt_color + ';line-height:1">' + str(pct) + '%</div>'
+                '</div></td>'
+            )
+
+        _rep_html = (
+            '<table style="width:100%;border-collapse:collapse">'
+            '<tr>'
+            + _sent_cell("Positivas", _pct_pos_r, "#38A169", "#F0FFF4", "#C6F6D5")
+            + _sent_cell("Negativas", _pct_neg_r, "#E53E3E", "#FFF5F5", "#FED7D7")
+            + '</tr><tr>'
+            + _sent_cell("Mixtas",    _pct_mix_r, "#D69E2E", "#FFFFF0", "#FEEBC8")
+            + _sent_cell("Neutrales", _pct_neu_r, "#718096", "#F7FAFC", "#E2E8F0")
+            + '</tr></table>'
+            '<div style="font-size:12px;color:#A0AEC0;margin:16px 0 12px;line-height:1.6">'
+            + str(_tot_men) + ' menciones analizadas</div>'
+            '<div style="line-height:2.4">' + _pills + '</div>'
+        )
+
         with _col_soc:
             section_header("Reputación Digital", dot_color="blue")
-            _pct_pos_r = round(_sd_ov.get("positivo", 0))
-            _pct_neg_r = round(_sd_ov.get("negativo", 0))
-            _pct_mix_r = round(_sd_ov.get("mixto", 0))
-            _pct_neu_r = round(_sd_ov.get("neutro", 0))
+            st.markdown(_rep_html, unsafe_allow_html=True)
 
-            # 4 metric columns
-            _mc1, _mc2, _mc3, _mc4 = st.columns(4)
-            _mc1.markdown(
-                '<div style="text-align:center;padding:14px 4px;border:1px solid #C6F6D5;border-radius:8px;background:#F0FFF4">'
-                '<div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#276749;margin-bottom:6px">Positivas</div>'
-                '<div style="font-size:26px;font-weight:800;color:#38A169;line-height:1">' + str(_pct_pos_r) + '%</div>'
-                '</div>', unsafe_allow_html=True)
-            _mc2.markdown(
-                '<div style="text-align:center;padding:14px 4px;border:1px solid #FED7D7;border-radius:8px;background:#FFF5F5">'
-                '<div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9B2C2C;margin-bottom:6px">Negativas</div>'
-                '<div style="font-size:26px;font-weight:800;color:#E53E3E;line-height:1">' + str(_pct_neg_r) + '%</div>'
-                '</div>', unsafe_allow_html=True)
-            _mc3.markdown(
-                '<div style="text-align:center;padding:14px 4px;border:1px solid #FEEBC8;border-radius:8px;background:#FFFFF0">'
-                '<div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#975A16;margin-bottom:6px">Mixtas</div>'
-                '<div style="font-size:26px;font-weight:800;color:#D69E2E;line-height:1">' + str(_pct_mix_r) + '%</div>'
-                '</div>', unsafe_allow_html=True)
-            _mc4.markdown(
-                '<div style="text-align:center;padding:14px 4px;border:1px solid #E2E8F0;border-radius:8px;background:#F7FAFC">'
-                '<div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#4A5568;margin-bottom:6px">Neutrales</div>'
-                '<div style="font-size:26px;font-weight:800;color:#718096;line-height:1">' + str(_pct_neu_r) + '%</div>'
-                '</div>', unsafe_allow_html=True)
-
-            st.markdown(f'<div style="font-size:12px;color:#A0AEC0;margin-top:10px;margin-bottom:8px">{_tot_men} menciones analizadas</div>', unsafe_allow_html=True)
-
-            # theme pills
-            _tt = _soc_ov.get("top_themes", [])[:6]
-            if _tt:
-                _pill_cols = st.columns(len(_tt))
-                for _pi, (_pc, _t) in enumerate(zip(_pill_cols, _tt)):
-                    _pc.markdown(
-                        '<div style="text-align:center;background:#EBF4FF;color:#0467FC;border-radius:20px;'
-                        'padding:5px 4px;font-size:11px;font-weight:600">' + _t["tema"] + '<br><span style="font-size:10px;font-weight:400;opacity:0.7">' + str(_t["count"]) + '</span></div>',
-                        unsafe_allow_html=True)
+        _pos_clusters = _soc_ov.get("positive_clusters", [])[:2]
+        _neg_clusters = _soc_ov.get("negative_clusters", [])[:3]
+        _strengths = (
+            ([f"Top of Mind {round(_tom)}% — liderazgo en categoría"] if _tom else []) +
+            ["Serie F $300M a16z · Primera rentabilidad global dic 2025"] +
+            [f"Percepción positiva en {c['tema']}" for c in _pos_clusters]
+        )
+        _risks = (
+            [f"{round(_pct_neg or 0)}% menciones negativas — tema crítico: {_top_neg}"] +
+            [f"Quejas recurrentes en {c['tema']} ({c['count']} menciones)"
+             for c in _neg_clusters if c.get("tema") != _top_neg]
+        )
+        _str_rows = "".join(
+            '<div style="padding:12px 16px;border-left:3px solid #38A169;background:#F0FFF4;'
+            'border-radius:0 8px 8px 0;margin-bottom:10px;font-size:13px;color:#2D3748;line-height:1.7">'
+            + s + '</div>'
+            for s in _strengths[:3]
+        )
+        _risk_rows = "".join(
+            '<div style="padding:12px 16px;border-left:3px solid #E53E3E;background:#FFF5F5;'
+            'border-radius:0 8px 8px 0;margin-bottom:10px;font-size:13px;color:#2D3748;line-height:1.7">'
+            + r + '</div>'
+            for r in _risks[:3]
+        )
+        _sig_html = (
+            '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
+            'color:#276749;margin-bottom:12px">Fortalezas</div>'
+            + _str_rows
+            + '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
+            'color:#9B2C2C;margin-top:20px;margin-bottom:12px">Riesgos</div>'
+            + _risk_rows
+        )
 
         with _col_sig:
             section_header("Señales", dot_color="blue")
-            _pos_clusters = _soc_ov.get("positive_clusters", [])[:2]
-            _neg_clusters = _soc_ov.get("negative_clusters", [])[:3]
-            _strengths = (
-                ([f"Top of Mind {round(_tom)}% — liderazgo en categoría"] if _tom else []) +
-                ["Serie F $300M a16z · Primera rentabilidad global dic 2025"] +
-                [f"Percepción positiva en {c['tema']}" for c in _pos_clusters]
-            )
-            _risks = (
-                [f"{round(_pct_neg or 0)}% menciones negativas — tema crítico: {_top_neg}"] +
-                [f"Quejas recurrentes en {c['tema']} ({c['count']} menciones)"
-                 for c in _neg_clusters if c.get("tema") != _top_neg]
-            )
-            st.markdown('<p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#276749;margin:0 0 6px 0">Fortalezas</p>', unsafe_allow_html=True)
-            for _s in _strengths[:3]:
-                st.markdown(
-                    '<div style="padding:9px 14px;border-left:3px solid #38A169;background:#F0FFF4;'
-                    'border-radius:0 6px 6px 0;margin-bottom:6px;font-size:13px;color:#1A202C;line-height:1.4">'
-                    + _s + '</div>', unsafe_allow_html=True)
-            st.markdown('<p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9B2C2C;margin:12px 0 6px 0">Riesgos</p>', unsafe_allow_html=True)
-            for _r in _risks[:3]:
-                st.markdown(
-                    '<div style="padding:9px 14px;border-left:3px solid #E53E3E;background:#FFF5F5;'
-                    'border-radius:0 6px 6px 0;margin-bottom:6px;font-size:13px;color:#1A202C;line-height:1.4">'
-                    + _r + '</div>', unsafe_allow_html=True)
+            st.markdown(_sig_html, unsafe_allow_html=True)
 
         # ── Crisis preview ──────────────────────────────────────
         _crisis_ov = sorted(
@@ -1033,18 +1042,19 @@ def main():
         )
         if _crisis_ov:
             section_header("Menciones de Alto Impacto", dot_color="red")
-            for _cm in _crisis_ov[:2]:
-                _cfuente = _cm.get("fuente", "?")
-                _curl    = _cm.get("url") or ""
-                _ctext   = _cm.get("texto", "")[:180]
-                _cfecha  = _cm.get("fecha_aprox", "")
-                _csrc    = f'<a href="{_curl}" target="_blank" style="color:#718096">{_cfuente}</a>' if _curl else _cfuente
-                st.markdown(
-                    '<div style="background:#FFF5F5;border:1px solid #FED7D7;border-radius:8px;padding:14px 16px;margin-bottom:10px">'
-                    '<div style="font-size:13px;color:#2D3748;line-height:1.5;margin-bottom:8px">&ldquo;' + _ctext + '&rdquo;</div>'
-                    '<div style="font-size:11px;color:#718096">' + _csrc + ' &nbsp;&middot;&nbsp; ' + _cfecha +
-                    ' &nbsp;<span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:#E53E3E;color:white;padding:2px 8px;border-radius:4px">VIRAL</span></div>'
-                    '</div>', unsafe_allow_html=True)
+            _crisis_html = "".join(
+                '<div style="background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;'
+                'padding:18px 20px;margin-bottom:12px">'
+                '<div style="font-size:14px;color:#2D3748;line-height:1.7;margin-bottom:10px">'
+                '&ldquo;' + _cm.get("texto","")[:180] + '&rdquo;</div>'
+                '<div style="font-size:11px;color:#A0AEC0;line-height:1.6">'
+                + (_cm.get("fuente","?")) + ' &nbsp;&middot;&nbsp; ' + (_cm.get("fecha_aprox",""))
+                + ' &nbsp;<span style="font-size:10px;font-weight:700;letter-spacing:1px;'
+                'text-transform:uppercase;background:#E53E3E;color:white;padding:2px 8px;border-radius:4px">VIRAL</span>'
+                '</div></div>'
+                for _cm in _crisis_ov[:2]
+            )
+            st.markdown(_crisis_html, unsafe_allow_html=True)
 
     # ════════════════════════════════════════
     # TAB 1 — BRAND HEALTH
