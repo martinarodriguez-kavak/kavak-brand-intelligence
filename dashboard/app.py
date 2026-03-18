@@ -1006,18 +1006,33 @@ def main():
             for t in _tt
         )
 
+        # Themes as vertical list for right column
+        _themes_col = (
+            '<div style="font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
+            'color:#C0C8D8;margin-bottom:8px">Temas principales</div>'
+            + "".join(
+                '<div style="margin-bottom:5px;font-size:11px;color:#4A5568;font-weight:500">'
+                '<span style="display:inline-block;width:6px;height:6px;border-radius:50%;'
+                'background:#0467FC;opacity:0.45;vertical-align:middle;margin-right:6px"></span>'
+                + t["tema"]
+                + '<span style="color:#C0C8D8;margin-left:4px;font-size:10px">' + str(t["count"]) + '</span>'
+                + '</div>'
+                for t in _tt
+            )
+        )
+
         _social_snap_html = (
-            # Row: hero number (left) + 2×2 stats (right)
+            # Single row: hero | 2×2 stats | themes
             '<table style="width:100%;border-collapse:collapse;margin-bottom:14px"><tr style="vertical-align:top">'
-            # Left: big hero
-            '<td style="width:35%;padding-right:24px;padding-bottom:0">'
+            # Hero
+            '<td style="width:28%;padding-right:20px">'
             '<div style="font-size:52px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-3px">'
             + str(_tot_men) + '</div>'
             '<div style="font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
             'color:#C0C8D8;margin-top:6px">menciones analizadas</div>'
             '</td>'
-            # Right: 2×2 sentiment grid
-            '<td style="vertical-align:top">'
+            # 2×2 stats
+            '<td style="width:36%;vertical-align:top;padding-right:20px">'
             '<table style="border-collapse:collapse"><tr>'
             + _sent_cell(_pct_pos_r, "Positivas", "#38A169")
             + _sent_cell(_pct_neg_r, "Negativas", "#E53E3E")
@@ -1026,19 +1041,17 @@ def main():
             + _sent_cell(_pct_neu_r, "Neutras",   "#C0C8D8")
             + '</tr></table>'
             '</td>'
+            # Themes
+            '<td style="vertical-align:top">' + _themes_col + '</td>'
             '</tr></table>'
-            # Full-width stacked bar
+            # Full-width stacked bar at bottom
             '<div style="width:100%;height:5px;border-radius:3px;overflow:hidden;'
-            'display:table;table-layout:fixed;margin-bottom:12px">'
+            'display:table;table-layout:fixed">'
             '<div style="display:table-cell;width:' + str(_bp) + '%;background:#38A169"></div>'
             '<div style="display:table-cell;width:' + str(_bn) + '%;background:#E53E3E"></div>'
             '<div style="display:table-cell;width:' + str(_bm) + '%;background:#D69E2E"></div>'
             '<div style="display:table-cell;width:' + str(_bu) + '%;background:#CBD5E0"></div>'
             '</div>'
-            # Themes full width
-            '<div style="font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
-            'color:#C0C8D8;margin-bottom:6px">Temas principales</div>'
-            '<div>' + _pills_html + '</div>'
         )
 
         # Señales
