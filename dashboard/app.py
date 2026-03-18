@@ -984,20 +984,20 @@ def main():
         _bm = round(_pct_mix_r / _tp * 100)
         _bu = max(0, 100 - _bp - _bn - _bm)
 
-        # Sentiment stat — compact inline-block
-        def _sent_inline(pct, label, color):
+        # Sentiment stat cell for 2×2 grid (right side)
+        def _sent_cell(pct, label, color):
             return (
-                '<span style="display:inline-block;margin-right:22px;vertical-align:top">'
-                '<div style="font-size:22px;font-weight:800;color:' + color + ';line-height:1;letter-spacing:-0.5px">'
+                '<td style="padding:0 20px 14px 0;vertical-align:top">'
+                '<div style="font-size:24px;font-weight:800;color:' + color + ';line-height:1;letter-spacing:-0.5px">'
                 + str(pct) + '%</div>'
                 '<div style="font-size:9px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;'
                 'color:#C0C8D8;margin-top:4px">' + label + '</div>'
-                '</span>'
+                '</td>'
             )
 
-        # Theme tags — dots + text, compact
+        # Theme tags
         _pills_html = "".join(
-            '<span style="display:inline-block;margin:0 12px 0 0;font-size:11px;color:#4A5568;font-weight:500">'
+            '<span style="display:inline-block;margin:0 14px 0 0;font-size:11px;color:#4A5568;font-weight:500">'
             '<span style="display:inline-block;width:6px;height:6px;border-radius:50%;'
             'background:#0467FC;opacity:0.45;vertical-align:middle;margin-right:5px"></span>'
             + t["tema"]
@@ -1007,14 +1007,27 @@ def main():
         )
 
         _social_snap_html = (
-            # Hero number — compact
-            '<div style="margin-bottom:10px">'
-            '<div style="font-size:36px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-2px">'
+            # Row: hero number (left) + 2×2 stats (right)
+            '<table style="width:100%;border-collapse:collapse;margin-bottom:14px"><tr style="vertical-align:top">'
+            # Left: big hero
+            '<td style="width:35%;padding-right:24px;padding-bottom:0">'
+            '<div style="font-size:52px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-3px">'
             + str(_tot_men) + '</div>'
             '<div style="font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
-            'color:#C0C8D8;margin-top:5px">menciones analizadas</div>'
-            '</div>'
-            # Stacked bar
+            'color:#C0C8D8;margin-top:6px">menciones analizadas</div>'
+            '</td>'
+            # Right: 2×2 sentiment grid
+            '<td style="vertical-align:top">'
+            '<table style="border-collapse:collapse"><tr>'
+            + _sent_cell(_pct_pos_r, "Positivas", "#38A169")
+            + _sent_cell(_pct_neg_r, "Negativas", "#E53E3E")
+            + '</tr><tr>'
+            + _sent_cell(_pct_mix_r, "Mixtas",    "#D69E2E")
+            + _sent_cell(_pct_neu_r, "Neutras",   "#C0C8D8")
+            + '</tr></table>'
+            '</td>'
+            '</tr></table>'
+            # Full-width stacked bar
             '<div style="width:100%;height:5px;border-radius:3px;overflow:hidden;'
             'display:table;table-layout:fixed;margin-bottom:12px">'
             '<div style="display:table-cell;width:' + str(_bp) + '%;background:#38A169"></div>'
@@ -1022,17 +1035,10 @@ def main():
             '<div style="display:table-cell;width:' + str(_bm) + '%;background:#D69E2E"></div>'
             '<div style="display:table-cell;width:' + str(_bu) + '%;background:#CBD5E0"></div>'
             '</div>'
-            # Sentiment stats
-            '<div style="margin-bottom:14px;white-space:nowrap">'
-            + _sent_inline(_pct_pos_r, "Positivas", "#38A169")
-            + _sent_inline(_pct_neg_r, "Negativas", "#E53E3E")
-            + _sent_inline(_pct_mix_r, "Mixtas",    "#D69E2E")
-            + _sent_inline(_pct_neu_r, "Neutras",   "#C0C8D8")
-            + '</div>'
-            # Themes
+            # Themes full width
             '<div style="font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
             'color:#C0C8D8;margin-bottom:6px">Temas principales</div>'
-            '<div style="line-height:1.9">' + _pills_html + '</div>'
+            '<div>' + _pills_html + '</div>'
         )
 
         # Señales
@@ -1079,7 +1085,7 @@ def main():
             '</tr></table>'
         )
 
-        _col_snap, _col_sig = st.columns([2, 3])
+        _col_snap, _col_sig = st.columns([1, 1])
         with _col_snap:
             section_header("Social Listening · Snapshot", dot_color="blue")
             st.markdown(_social_snap_html, unsafe_allow_html=True)
