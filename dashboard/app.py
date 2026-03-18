@@ -1014,18 +1014,17 @@ def main():
         )
 
         _takeaway_card = (
-            '<div style="background:#0467FC;border-radius:8px;padding:11px 13px">'
-            '<div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-            'color:#C5E50B;margin-bottom:6px">Takeaway &middot; Senior Manager</div>'
+            '<div style="background:#0467FC;border-radius:8px;padding:10px 13px;'
+            'height:100%;box-sizing:border-box">'
             '<div style="font-size:11px;color:rgba(255,255,255,0.92);line-height:1.55">'
             + f'Con <strong>{_pct_neg_r}%</strong> de menciones negativas concentradas en '
-            f'<strong>{_top_neg}</strong>, la reputación digital requiere atención urgente. '
-            f'El <strong>{_pct_pos_r}%</strong> positivo sostiene diferenciación de marca.'
+            f'<strong>{_top_neg}</strong>, la reputación digital requiere atención. '
+            f'El <strong>{_pct_pos_r}%</strong> positivo sostiene la diferenciación de marca.'
             + '</div></div>'
         )
 
         _social_snap_html = (
-            '<table style="width:100%;border-collapse:collapse">'
+            '<table style="width:100%;border-collapse:collapse;height:100%">'
             # Row 1: hero | stats | themes(rowspan=2)
             '<tr style="vertical-align:top">'
             '<td style="width:28%;padding-right:20px;border-right:1px solid #EDF2F7;vertical-align:top">'
@@ -1047,9 +1046,9 @@ def main():
             + _themes_col +
             '</td>'
             '</tr>'
-            # Row 2: card spanning hero + stats
+            # Row 2: card spanning hero + stats — height:1px lets child div use height:100%
             '<tr><td colspan="2" style="padding-top:12px;padding-right:20px;'
-            'border-right:1px solid #EDF2F7;vertical-align:top">'
+            'border-right:1px solid #EDF2F7;vertical-align:top;height:1px">'
             + _takeaway_card +
             '</td></tr>'
             '</table>'
