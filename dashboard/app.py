@@ -1030,7 +1030,7 @@ def main():
         _sig_html = (
             '<table style="width:100%;border-collapse:separate;border-spacing:10px 0">'
             '<tr style="vertical-align:top">'
-            '<td style="width:50%;background:#0E1829;border-radius:12px;padding:20px 18px;vertical-align:top">'
+            '<td style="width:50%;background:#0467FC;border-radius:12px;padding:20px 18px;vertical-align:top">'
             '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
             'color:#C5E50B;margin-bottom:16px">Fortalezas</div>'
             + _str_items +
