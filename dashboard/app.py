@@ -1065,12 +1065,8 @@ def main():
 
         def _col_label(text, color):
             return (
-                '<div style="display:inline-block;margin-bottom:14px">'
-                '<span style="display:inline-block;width:6px;height:6px;border-radius:50%;'
-                'background:' + color + ';vertical-align:middle;margin-right:7px"></span>'
-                '<span style="font-size:10px;font-weight:700;text-transform:uppercase;'
-                'letter-spacing:1.8px;color:' + color + ';vertical-align:middle">' + text + '</span>'
-                '</div>'
+                '<div style="font-size:13px;font-weight:700;text-transform:uppercase;'
+                'letter-spacing:1.5px;color:' + color + ';margin-bottom:14px">' + text + '</div>'
             )
 
         _str_col = _col_label("Fortalezas", "#0467FC") + "".join(_sig_row(s, "#0467FC") for s in _strengths)
