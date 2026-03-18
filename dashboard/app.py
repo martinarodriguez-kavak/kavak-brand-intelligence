@@ -956,124 +956,92 @@ def main():
         else:
             st.info("Cargá archivos BHT en /data para ver los KPIs.")
 
-        # ── Social + Señales ────────────────────────────────────
-        _col_soc, _col_sig = st.columns([1, 1])
+        # ── Reputación Digital — layout like image reference ───────
+        import plotly.graph_objects as go
 
         _pct_pos_r = round(_sd_ov.get("positivo", 0))
         _pct_neg_r = round(_sd_ov.get("negativo", 0))
         _pct_mix_r = round(_sd_ov.get("mixto", 0))
         _pct_neu_r = round(_sd_ov.get("neutro", 0))
-        _tt        = _soc_ov.get("top_themes", [])[:5]
+        _tt        = _soc_ov.get("top_themes", [])[:8]
+        _tema1     = _tt[0]["tema"] if _tt else "–"
 
-        # ─ Sentiment bar proportions ─
-        _total_pct = _pct_pos_r + _pct_neg_r + _pct_mix_r + _pct_neu_r
-        if _total_pct == 0: _total_pct = 1
-        _bar_pos = round(_pct_pos_r / _total_pct * 100)
-        _bar_neg = round(_pct_neg_r / _total_pct * 100)
-        _bar_mix = round(_pct_mix_r / _total_pct * 100)
-        _bar_neu = max(0, 100 - _bar_pos - _bar_neg - _bar_mix)
+        section_header("Reputaci&#243;n Digital", dot_color="blue")
 
-        def _stat_cell(pct, label, color, border_r=True):
-            bdr = 'border-right:1px solid #EDF2F7;' if border_r else ''
-            return (
-                '<td style="text-align:center;padding:0 16px;' + bdr + '">'
-                '<div style="width:8px;height:8px;border-radius:50%;background:' + color + ';margin:0 auto 10px"></div>'
-                '<div style="font-size:28px;font-weight:800;color:' + color + ';line-height:1;letter-spacing:-1px">' + str(pct) + '%</div>'
-                '<div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#B0BAC9;margin-top:6px">' + label + '</div>'
-                '</td>'
-            )
+        # ─ Row: 4 KPI cards ─
+        _ov_cols = st.columns(4)
+        _kpi_cards = [
+            ("Total Menciones", str(_tot_men),           "#1A202C", True),
+            ("Positivas",       str(_pct_pos_r) + "%",   "#38A169", False),
+            ("Negativas",       str(_pct_neg_r) + "%",   "#E53E3E", False),
+            ("Tema #1",         _tema1,                  "#1A202C", False),
+        ]
+        for _c, (_lbl, _val, _clr, _accent) in zip(_ov_cols, _kpi_cards):
+            _bl = "border-left:3px solid #0467FC;" if _accent else ""
+            with _c:
+                st.markdown(
+                    '<div style="background:#fff;border:1px solid #E2E8F0;border-radius:8px;'
+                    'padding:16px 18px;' + _bl + 'box-shadow:0 1px 3px rgba(0,0,0,0.04)">'
+                    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;'
+                    'text-transform:uppercase;color:#A0AEC0;margin-bottom:10px">' + _lbl + '</div>'
+                    '<div style="font-size:26px;font-weight:800;color:' + _clr + ';line-height:1;letter-spacing:-0.5px">' + _val + '</div>'
+                    '</div>',
+                    unsafe_allow_html=True,
+                )
 
-        _pills = "".join(
-            '<span style="display:inline-block;background:#F5F8FF;color:#0467FC;border-radius:6px;'
-            'padding:3px 10px;font-size:11px;font-weight:600;margin:3px 5px 3px 0;letter-spacing:0.2px">'
-            + t["tema"] + '<span style="color:#A0AEC0;margin-left:5px;font-weight:500">' + str(t["count"]) + '</span></span>'
-            for t in _tt
-        )
+        # ─ Charts row: bar chart (left) + donut (right) ─
+        _ch_left, _ch_right = st.columns([6, 4])
 
-        _rep_html = (
-            # thick stacked bar with gradient segments
-            '<div style="width:100%;height:10px;border-radius:6px;overflow:hidden;'
-            'display:table;table-layout:fixed;margin-bottom:24px;'
-            'box-shadow:0 1px 4px rgba(0,0,0,0.08)">'
-            '<div style="display:table-cell;width:' + str(_bar_pos) + '%;background:linear-gradient(90deg,#2F9E57,#48C774)"></div>'
-            '<div style="display:table-cell;width:' + str(_bar_neg) + '%;background:linear-gradient(90deg,#D63030,#F05252)"></div>'
-            '<div style="display:table-cell;width:' + str(_bar_mix) + '%;background:linear-gradient(90deg,#B7791F,#E6A817)"></div>'
-            '<div style="display:table-cell;width:' + str(_bar_neu) + '%;background:#CBD5E0"></div>'
-            '</div>'
-            # 4 balanced stat columns
-            '<table style="width:100%;border-collapse:collapse;margin-bottom:20px"><tr>'
-            + _stat_cell(_pct_pos_r, "Positivas",  "#2F9E57", True)
-            + _stat_cell(_pct_neg_r, "Negativas",  "#D63030", True)
-            + _stat_cell(_pct_mix_r, "Mixtas",     "#B7791F", True)
-            + _stat_cell(_pct_neu_r, "Neutras",    "#A0AEC0", False)
-            + '</tr></table>'
-            # theme pills with refined style
-            '<div style="margin-bottom:10px">' + _pills + '</div>'
-            '<div style="font-size:11px;color:#CBD5E0;margin-top:6px;letter-spacing:0.1px">'
-            + str(_tot_men) + ' menciones &nbsp;&middot;&nbsp; ver detalle en Social Listening'
-            '</div>'
-        )
+        with _ch_left:
+            section_header("Temas m&#225;s mencionados", dot_color="blue")
+            if _tt:
+                _fig_bar = go.Figure(go.Bar(
+                    x=[t["count"] for t in _tt],
+                    y=[t["tema"]  for t in _tt],
+                    orientation="h",
+                    marker_color="#0467FC",
+                    marker_opacity=0.82,
+                    hovertemplate="%{y}: %{x} menciones<extra></extra>",
+                ))
+                _fig_bar.update_layout(
+                    height=260,
+                    margin=dict(l=0, r=20, t=4, b=0),
+                    plot_bgcolor="white", paper_bgcolor="white",
+                    yaxis=dict(autorange="reversed", tickfont=dict(size=12, color="#4A5568"),
+                               showgrid=False, showline=False, ticks=""),
+                    xaxis=dict(showgrid=True, gridcolor="#F0F4F8",
+                               tickfont=dict(size=11, color="#A0AEC0"), zeroline=False),
+                    showlegend=False,
+                )
+                st.plotly_chart(_fig_bar, use_container_width=True,
+                                config={"displayModeBar": False})
 
-        with _col_soc:
-            section_header("Reputación Digital", dot_color="blue")
-            st.markdown(_rep_html, unsafe_allow_html=True)
-
-        # ── Señales ──────────────────────────────────────────────
-        _pos_clusters = _soc_ov.get("positive_clusters", [])[:2]
-        _neg_clusters = _soc_ov.get("negative_clusters", [])[:3]
-        _strengths = (
-            ([f"Top of Mind {round(_tom)}% — liderazgo en categoría"] if _tom else []) +
-            ["Serie F $300M a16z · Primera rentabilidad global dic 2025"] +
-            [f"Percepción positiva en {c['tema']}" for c in _pos_clusters]
-        )[:3]
-        _risks = (
-            [f"{round(_pct_neg or 0)}% menciones negativas — tema crítico: {_top_neg}"] +
-            [f"Quejas en {c['tema']} ({c['count']} menciones)"
-             for c in _neg_clusters if c.get("tema") != _top_neg]
-        )[:3]
-
-        def _signal_item(text, icon, color):
-            return (
-                '<div style="padding:11px 0;border-bottom:1px solid #F7F9FC">'
-                '<table style="width:100%;border-collapse:collapse"><tr>'
-                '<td style="width:22px;vertical-align:top;padding-top:1px">'
-                '<div style="width:20px;height:20px;border-radius:50%;background:' + color + '14;'
-                'text-align:center;line-height:20px;font-size:11px;color:' + color + ';font-weight:800">'
-                + icon + '</div>'
-                '</td>'
-                '<td style="vertical-align:top;padding-left:10px">'
-                '<div style="font-size:13px;color:#1A202C;line-height:1.55;font-weight:400">' + text + '</div>'
-                '</td>'
-                '</tr></table>'
-                '</div>'
-            )
-
-        _str_items  = "".join(_signal_item(s, "&#10003;", "#0467FC") for s in _strengths)
-        _risk_items = "".join(_signal_item(r, "&#33;",    "#E53E3E") for r in _risks)
-
-        def _col_header(label, color, bg):
-            return (
-                '<div style="display:inline-block;background:' + bg + ';color:' + color + ';'
-                'border-radius:6px;padding:4px 12px;font-size:9px;font-weight:700;'
-                'letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">' + label + '</div>'
-            )
-
-        _sig_html = (
-            '<table style="width:100%;border-collapse:separate;border-spacing:0"><tr style="vertical-align:top">'
-            '<td style="width:50%;vertical-align:top;padding-right:16px">'
-            + _col_header("Fortalezas", "#0467FC", "#EBF4FF")
-            + _str_items +
-            '</td>'
-            '<td style="width:50%;vertical-align:top;padding-left:16px">'
-            + _col_header("Riesgos", "#C53030", "#FFF5F5")
-            + _risk_items +
-            '</td>'
-            '</tr></table>'
-        )
-
-        with _col_sig:
-            section_header("Se&#241;ales", dot_color="blue")
-            st.markdown(_sig_html, unsafe_allow_html=True)
+        with _ch_right:
+            section_header("Fuentes populares", dot_color="blue")
+            _by_source = _soc_ov.get("by_source", {})
+            if _by_source:
+                _src_items = sorted(_by_source.items(), key=lambda x: -x[1])[:7]
+                _PALETTE = ["#0467FC","#E53E3E","#38A169","#D69E2E","#718096","#805AD5","#2C7A7B"]
+                _fig_pie = go.Figure(go.Pie(
+                    labels=[s[0] for s in _src_items],
+                    values=[s[1] for s in _src_items],
+                    hole=0.52,
+                    textinfo="percent",
+                    textfont=dict(size=11, color="white"),
+                    marker=dict(colors=_PALETTE, line=dict(color="white", width=2)),
+                    hovertemplate="%{label}: %{value} menciones (%{percent})<extra></extra>",
+                ))
+                _fig_pie.update_layout(
+                    height=260,
+                    margin=dict(l=0, r=0, t=4, b=0),
+                    plot_bgcolor="white", paper_bgcolor="white",
+                    legend=dict(font=dict(size=11, color="#4A5568"),
+                                orientation="v", x=1.02, y=0.5,
+                                borderwidth=0),
+                    showlegend=True,
+                )
+                st.plotly_chart(_fig_pie, use_container_width=True,
+                                config={"displayModeBar": False})
 
     # ════════════════════════════════════════
     # TAB 1 — BRAND HEALTH
