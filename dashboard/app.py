@@ -1013,15 +1013,7 @@ def main():
             )
         )
 
-        _social_snap_html = (
-            # Three columns: hero | 2×2 stats | themes
-            '<table style="width:100%;border-collapse:collapse;margin-bottom:18px"><tr style="vertical-align:top">'
-            # Hero + bar in same cell
-            '<td style="width:38%;padding-right:24px;border-right:1px solid #EDF2F7;vertical-align:top">'
-            '<div style="font-size:44px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-3px">'
-            + str(_tot_men) + '</div>'
-            '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-            'color:#C8D0DC;margin-top:6px;margin-bottom:14px">menciones analizadas</div>'
+        _takeaway_card = (
             '<div style="background:#0467FC;border-radius:8px;padding:11px 13px">'
             '<div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
             'color:#C5E50B;margin-bottom:6px">Takeaway &middot; Senior Manager</div>'
@@ -1029,11 +1021,20 @@ def main():
             + f'Con <strong>{_pct_neg_r}%</strong> de menciones negativas concentradas en '
             f'<strong>{_top_neg}</strong>, la reputación digital requiere atención urgente. '
             f'El <strong>{_pct_pos_r}%</strong> positivo sostiene diferenciación de marca.'
-            + '</div>'
-            '</div>'
+            + '</div></div>'
+        )
+
+        _social_snap_html = (
+            '<table style="width:100%;border-collapse:collapse">'
+            # Row 1: hero | stats | themes(rowspan=2)
+            '<tr style="vertical-align:top">'
+            '<td style="width:28%;padding-right:20px;border-right:1px solid #EDF2F7;vertical-align:top">'
+            '<div style="font-size:44px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-3px">'
+            + str(_tot_men) + '</div>'
+            '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
+            'color:#C8D0DC;margin-top:6px">menciones analizadas</div>'
             '</td>'
-            # 2×2 sentiment stats
-            '<td style="width:38%;vertical-align:top;padding:0 24px;border-right:1px solid #EDF2F7;vertical-align:top">'
+            '<td style="width:37%;padding:0 20px;border-right:1px solid #EDF2F7;vertical-align:top">'
             '<table style="border-collapse:collapse"><tr>'
             + _sent_cell(_pct_pos_r, "Positivas", "#38A169")
             + _sent_cell(_pct_neg_r, "Negativas", "#E53E3E")
@@ -1042,9 +1043,16 @@ def main():
             + _sent_cell(_pct_neu_r, "Neutras",   "#C8D0DC", last_row=True)
             + '</tr></table>'
             '</td>'
-            # Themes vertical list
-            '<td style="vertical-align:top;padding-left:24px">' + _themes_col + '</td>'
-            '</tr></table>'
+            '<td rowspan="2" style="vertical-align:top;padding-left:20px">'
+            + _themes_col +
+            '</td>'
+            '</tr>'
+            # Row 2: card spanning hero + stats
+            '<tr><td colspan="2" style="padding-top:12px;padding-right:20px;'
+            'border-right:1px solid #EDF2F7;vertical-align:top">'
+            + _takeaway_card +
+            '</td></tr>'
+            '</table>'
         )
 
         # Señales
