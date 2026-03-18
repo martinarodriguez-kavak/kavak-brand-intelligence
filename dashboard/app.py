@@ -566,6 +566,19 @@ st.markdown("""
     font-weight: 600 !important;
   }
 
+  /* ─── Kill Streamlit default table borders ─── */
+  div[data-testid="stMarkdownContainer"] table,
+  div[data-testid="stMarkdownContainer"] tbody,
+  div[data-testid="stMarkdownContainer"] thead,
+  div[data-testid="stMarkdownContainer"] tr,
+  div[data-testid="stMarkdownContainer"] td,
+  div[data-testid="stMarkdownContainer"] th {
+    border: none !important;
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    background: transparent !important;
+  }
+
   /* hide top padding from streamlit */
   .block-container { padding-top: 0 !important; margin-top: 0 !important; }
   .block-container > div:first-child { padding-top: 0 !important; margin-top: 0 !important; }
@@ -971,15 +984,15 @@ def main():
         _bm = round(_pct_mix_r / _tp * 100)
         _bu = max(0, 100 - _bp - _bn - _bm)
 
-        # Sentiment inline row (no grid, no borders — pure type)
+        # Sentiment stat — inline-block span, zero borders
         def _sent_inline(pct, label, color):
             return (
-                '<td style="padding-right:28px;vertical-align:top">'
+                '<span style="display:inline-block;margin-right:28px;vertical-align:top">'
                 '<div style="font-size:30px;font-weight:800;color:' + color + ';line-height:1;letter-spacing:-1px">'
                 + str(pct) + '%</div>'
                 '<div style="font-size:9px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;'
                 'color:#C0C8D8;margin-top:5px">' + label + '</div>'
-                '</td>'
+                '</span>'
             )
 
         # Theme tags — just colored dots + text, no box
@@ -1009,13 +1022,13 @@ def main():
             '<div style="display:table-cell;width:' + str(_bm) + '%;background:#D69E2E"></div>'
             '<div style="display:table-cell;width:' + str(_bu) + '%;background:#CBD5E0"></div>'
             '</div>'
-            # Sentiment stats — single row, no containers
-            '<table style="border-collapse:collapse;margin-bottom:28px"><tr>'
+            # Sentiment stats — inline-block, no table, no borders
+            '<div style="margin-bottom:28px;white-space:nowrap">'
             + _sent_inline(_pct_pos_r, "Positivas", "#38A169")
             + _sent_inline(_pct_neg_r, "Negativas", "#E53E3E")
             + _sent_inline(_pct_mix_r, "Mixtas",    "#D69E2E")
             + _sent_inline(_pct_neu_r, "Neutras",   "#C0C8D8")
-            + '</tr></table>'
+            + '</div>'
             # Themes — dots + text only
             '<div style="font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
             'color:#C0C8D8;margin-bottom:10px">Temas principales</div>'
@@ -1036,18 +1049,15 @@ def main():
              for c in _neg_clusters if c.get("tema") != _top_neg]
         )[:3]
 
-        # Signal item — dot + text, pure spacing, no borders
+        # Signal item — inline-block dot + text, no table, no borders
         def _sig_row(text, color):
             return (
                 '<div style="padding:9px 0">'
-                '<table style="border-collapse:collapse"><tr>'
-                '<td style="width:14px;vertical-align:top;padding-top:6px">'
-                '<div style="width:5px;height:5px;border-radius:50%;background:' + color + '"></div>'
-                '</td>'
-                '<td style="vertical-align:top;padding-left:9px">'
-                '<div style="font-size:13px;color:#2D3748;line-height:1.6;font-weight:400">' + text + '</div>'
-                '</td>'
-                '</tr></table>'
+                '<span style="display:inline-block;width:14px;vertical-align:top;padding-top:7px">'
+                '<span style="display:inline-block;width:5px;height:5px;border-radius:50%;background:' + color + '"></span>'
+                '</span>'
+                '<span style="display:inline-block;vertical-align:top;width:88%;'
+                'font-size:13px;color:#2D3748;line-height:1.6;padding-left:6px">' + text + '</span>'
                 '</div>'
             )
 
