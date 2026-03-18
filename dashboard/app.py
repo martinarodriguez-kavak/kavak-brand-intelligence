@@ -1052,7 +1052,7 @@ def main():
         # Signal item — table for reliable dot/text alignment (borders killed by global CSS)
         def _sig_row(text, color):
             return (
-                '<div style="padding:7px 0">'
+                '<div style="padding:3px 0">'
                 '<table style="width:100%;border-collapse:collapse">'
                 '<tr style="vertical-align:top">'
                 '<td style="width:14px;padding-top:3px;padding-right:8px">'
