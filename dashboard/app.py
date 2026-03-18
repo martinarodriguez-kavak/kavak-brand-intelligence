@@ -1016,19 +1016,15 @@ def main():
             # Three columns: hero | 2×2 stats | themes
             '<table style="width:100%;border-collapse:collapse;margin-bottom:18px"><tr style="vertical-align:top">'
             # Hero + bar in same cell
-            '<td style="width:38%;padding-right:24px;border-right:1px solid #EDF2F7;vertical-align:top">'
-            '<table style="width:100%;height:100%;border-collapse:collapse">'
-            '<tr><td style="vertical-align:top">'
+            '<td style="width:38%;padding-right:24px;border-right:1px solid #EDF2F7;'
+            'vertical-align:top;position:relative">'
             '<div style="font-size:60px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-4px">'
             + str(_tot_men) + '</div>'
             '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
             'color:#C8D0DC;margin-top:8px">menciones analizadas</div>'
-            '</td></tr>'
-            '<tr style="height:100%"><td style="vertical-align:bottom;padding-bottom:2px">'
-            '<div style="font-size:11px;color:#C8D0DC;font-style:italic;line-height:1.5">'
+            '<div style="position:absolute;bottom:4px;left:0;right:24px;'
+            'font-size:11px;color:#C8D0DC;font-style:italic;line-height:1.5">'
             'Ver detalle completo en la tab Social Listening.</div>'
-            '</td></tr>'
-            '</table>'
             '</td>'
             # 2×2 sentiment stats
             '<td style="width:38%;vertical-align:top;padding:0 24px;border-right:1px solid #EDF2F7;vertical-align:top">'
