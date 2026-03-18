@@ -844,174 +844,185 @@ def main():
         import math as _math
         _bht_ov = load_bht_real()
 
-        st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+        # ── Data prep ──────────────────────────────────────────
+        _soc_ov  = data.get("social", {})
+        _raw_ov  = _soc_ov.get("raw_mentions", [])
+        _sd_ov   = _soc_ov.get("sentiment_distribution", {})
+        _pct_neg = _sd_ov.get("negativo", 0)
+        _pct_pos = _sd_ov.get("positivo", 0)
+        _top_neg = _soc_ov.get("negative_clusters", [{}])[0].get("tema", "–") if _soc_ov.get("negative_clusters") else "–"
+        _tot_men = _soc_ov.get("total_mentions", 0)
 
-        # ── Headline narrative ──────────────────────────────────
-        _soc_ov   = data.get("social", {})
-        _raw_ov   = _soc_ov.get("raw_mentions", [])
-        _sd_ov    = _soc_ov.get("sentiment_distribution", {})
-        _pct_neg  = _sd_ov.get("negativo", 0)
-        _pct_pos  = _sd_ov.get("positivo", 0)
-        _top_neg  = _soc_ov.get("negative_clusters", [{}])[0].get("tema", "–") if _soc_ov.get("negative_clusters") else "–"
-        _tot_men  = _soc_ov.get("total_mentions", 0)
+        def _safe(v):
+            return None if (v is None or _math.isnan(v)) else v
 
-        # Pull latest BHT values
         if _bht_ov is not None and not _bht_ov.empty:
             _OLA_ORDER_OV = ["Ola 0","Ola 1","Ola 2","Ola 3","Ola 4","Ola 5","Ola 6","Ola 7","Ola 8","Ola 9 Ligth","W10","W11","W12"]
             _piv_ov = _bht_ov.pivot_table(index="ola", columns="metrica", values="valor", aggfunc="mean")
             _piv_ov = _piv_ov.reindex([o for o in _OLA_ORDER_OV if o in _piv_ov.index])
             _latest_ov = _piv_ov.iloc[-1] if len(_piv_ov) > 0 else pd.Series(dtype=float)
             _prev_ov   = _piv_ov.iloc[-2] if len(_piv_ov) > 1 else pd.Series(dtype=float)
-
-            def _ov_val(col):
-                return _latest_ov.get(col, None)
+            def _ov_val(col): return _safe(_latest_ov.get(col, None))
             def _ov_delta(col):
-                v, p = _latest_ov.get(col), _prev_ov.get(col)
-                if v is not None and p is not None:
-                    return round(v - p, 1)
-                return None
-            def _delta_html(d, unit="%", invert=False):
-                if d is None: return ""
-                good = d > 0 if not invert else d < 0
-                color = "var(--green)" if good else "var(--red)"
-                arrow = "▲" if d > 0 else "▼"
-                return f'<span style="font-size:12px;color:{color};margin-left:4px">{arrow} {abs(d)}{unit}</span>'
-
+                v, p = _safe(_latest_ov.get(col)), _safe(_prev_ov.get(col))
+                return round(v - p, 1) if (v is not None and p is not None) else None
             _tom  = _ov_val("Top_of_Mind")
             _awa  = _ov_val("Awareness_Asistida")
-            _cons = _ov_val("Consideracion")
-            _nps  = _ov_val("NPS_Score")
-            _bei  = _ov_val("Brand_Equity_Index")
-            _sat  = _ov_val("Brand_Satisfaction_Top2box")
         else:
-            _tom = _awa = _cons = _nps = _bei = _sat = None
+            _ov_val   = lambda col: None
             _ov_delta = lambda col: None
-            _delta_html = lambda d, **kw: ""
+            _tom = _awa = None
 
-        # Narrative pill
-        _health_color = "#38A169" if (_pct_neg or 0) < 40 else "#D69E2E" if (_pct_neg or 0) < 60 else "#E53E3E"
-        _health_label = "Sólida" if (_pct_neg or 0) < 40 else "En tensión" if (_pct_neg or 0) < 60 else "Bajo presión"
+        def _fmt(v, unit=""): return f"{round(v)}{unit}" if v is not None else "–"
+        def _delta_chip(d, unit="%"):
+            if d is None: return ""
+            col = "#38A169" if d > 0 else "#E53E3E"
+            arr = "▲" if d > 0 else "▼"
+            return f'<span style="font-size:11px;font-weight:600;color:{col};margin-left:6px">{arr} {abs(d)}{unit}</span>'
+
+        # ── Hero: Estado de Marca ───────────────────────────────
+        _month = pd.Timestamp.now().strftime("%B %Y").capitalize() if _bht_ov is not None else "Mar 2026"
+        _tom_str = f"{round(_tom)}%" if _tom is not None else "–"
+        _awa_str = f"{round(_awa)}%" if _awa is not None else "–"
+        _neg_str = f"{round(_pct_neg or 0)}%"
+        _pos_str = f"{round(_pct_pos or 0)}%"
 
         st.markdown(f"""
-        <div style="background:linear-gradient(135deg,#0467FC 0%,#0352C9 100%);border-radius:16px;
-                    padding:28px 32px;margin-bottom:24px;color:white;">
-          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:0.7;margin-bottom:10px">
-            Estado de Marca · Kavak México · {pd.Timestamp.now().strftime('%B %Y') if _bht_ov is not None else 'Mar 2026'}
+        <div style="background:#0E1829;border-radius:12px;padding:32px 36px;margin-bottom:20px;
+                    display:flex;justify-content:space-between;align-items:flex-start;gap:32px;flex-wrap:wrap">
+          <div style="flex:2;min-width:260px">
+            <div style="font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+                        color:#C5E50B;margin-bottom:14px">
+              Kavak México · Consumer Perception · {_month}
+            </div>
+            <div style="font-size:17px;font-weight:500;color:rgba(255,255,255,0.9);line-height:1.6">
+              Kavak lidera seminuevos en México con
+              <strong style="color:#fff">{_tom_str} Top of Mind</strong>
+              y <strong style="color:#fff">{_awa_str} Awareness Asistida</strong>.<br>
+              En redes, el <strong style="color:#C5E50B">{_pos_str} de menciones son positivas</strong>
+              frente a un <strong style="color:#ff7c7c">{_neg_str} negativo</strong>,
+              concentrado en <em style="color:rgba(255,255,255,0.7)">{_top_neg}</em>.
+            </div>
           </div>
-          <div style="font-size:22px;font-weight:700;line-height:1.4;margin-bottom:14px">
-            Kavak lidera el mercado de seminuevos en México con
-            {'<strong>' + str(round(_tom)) + '% de Top of Mind</strong>' if (_tom and not _math.isnan(_tom)) else 'liderazgo de Top of Mind'} y
-            {'<strong>' + str(round(_awa)) + '% de Awareness Asistida</strong>' if (_awa and not _math.isnan(_awa)) else 'alta notoriedad'}.
-            La percepción en redes muestra un
-            <span style="border-bottom:2px solid rgba(255,255,255,0.5)">{round(_pct_neg or 0)}% de menciones negativas</span>,
-            concentradas principalmente en <em>{_top_neg}</em>.
-          </div>
-          <div style="display:flex;gap:12px;flex-wrap:wrap">
-            <span style="background:rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600">
-              🔵 Marca en estado: {_health_label}
-            </span>
-            <span style="background:rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;font-size:12px">
-              📊 {_tot_men} menciones analizadas
-            </span>
-            {'<span style="background:rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;font-size:12px">💰 Serie F $300M · Feb 2026</span>' if True else ''}
+          <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:10px;align-items:flex-end">
+            <div style="background:rgba(197,229,11,0.12);border:1px solid rgba(197,229,11,0.3);
+                        border-radius:8px;padding:12px 20px;text-align:center;min-width:140px">
+              <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:4px;letter-spacing:1px;text-transform:uppercase">Top of Mind</div>
+              <div style="font-size:32px;font-weight:800;color:#C5E50B">{_tom_str}</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+                        border-radius:8px;padding:10px 20px;text-align:center;min-width:140px">
+              <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:4px;letter-spacing:1px;text-transform:uppercase">Menciones analizadas</div>
+              <div style="font-size:24px;font-weight:700;color:#fff">{_tot_men}</div>
+            </div>
           </div>
         </div>
         """, unsafe_allow_html=True)
 
         # ── BHT KPI row ────────────────────────────────────────
-        section_header("Brand Health — Última Ola", dot_color="blue")
+        section_header("Brand Health · Última Ola", dot_color="blue")
         if _bht_ov is not None and not _bht_ov.empty:
-            _kpi_cols = st.columns(6)
             _kpi_defs = [
-                ("Top_of_Mind",             "Top of Mind",    "%"),
-                ("Awareness_Asistida",       "Awareness",      "%"),
-                ("Consideracion",            "Consideración",  "%"),
-                ("NPS_Score",               "NPS Score",       "pts"),
-                ("Brand_Equity_Index",       "Brand Equity",   ""),
-                ("Brand_Satisfaction_Top2b"+"ox","Satisfacción", "%"),
+                ("Top_of_Mind",               "Top of Mind",    "%"),
+                ("Awareness_Asistida",         "Awareness",      "%"),
+                ("Consideracion",              "Consideración",  "%"),
+                ("NPS_Score",                 "NPS Score",       " pts"),
+                ("Brand_Equity_Index",         "Brand Equity",   ""),
+                ("Brand_Satisfaction_Top2box", "Satisfacción",   "%"),
             ]
+            _kpi_cols = st.columns(len(_kpi_defs))
             for _col, (_metric, _label, _unit) in zip(_kpi_cols, _kpi_defs):
                 _v = _ov_val(_metric)
                 _d = _ov_delta(_metric)
-                import math as _math
-                _v_str = f"{round(_v)}{_unit}" if (_v is not None and not _math.isnan(_v)) else "–"
-                _d_html = _delta_html(_d, unit=_unit)
+                _v_str   = _fmt(_v, _unit)
+                _d_chip  = _delta_chip(_d, unit=_unit.strip())
                 with _col:
                     st.markdown(f"""
-                    <div class="summary-card" style="text-align:center;padding:18px 10px">
-                      <div class="s-label" style="margin-bottom:6px">{_label}</div>
-                      <div class="s-value" style="font-size:26px">{_v_str}{_d_html}</div>
+                    <div class="summary-card" style="text-align:center;padding:20px 8px">
+                      <div class="s-label" style="margin-bottom:8px;font-size:11px">{_label}</div>
+                      <div style="font-size:28px;font-weight:800;color:var(--kavak-blue);line-height:1">{_v_str}</div>
+                      <div style="margin-top:6px;min-height:18px">{_d_chip}</div>
                     </div>""", unsafe_allow_html=True)
         else:
-            st.info("Cargá archivos BHT en /data para ver los KPIs de Brand Health.")
+            st.info("Cargá archivos BHT en /data para ver los KPIs.")
 
-        st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+        # ── Social + Señales ────────────────────────────────────
+        _col_soc, _col_sig = st.columns([1, 1])
 
-        # ── Social snapshot + señales ──────────────────────────
-        _left_ov, _right_ov = st.columns(2)
-
-        with _left_ov:
-            section_header("Pulso Social · Sentimiento", dot_color="blue")
-            _sents = [
-                ("positivo",  "Positivas",  "var(--green)", "😊"),
-                ("negativo",  "Negativas",  "var(--red)",   "😤"),
-                ("mixto",     "Mixtas",     "var(--yellow)","😐"),
-                ("neutro",    "Neutrales",  "var(--text-muted)", "😶"),
+        with _col_soc:
+            section_header("Reputación Digital", dot_color="blue")
+            # 4 metric cards en 2x2
+            _sent_defs = [
+                ("positivo", "Positivas",  "#38A169", "#F0FFF4", "#276749"),
+                ("negativo", "Negativas",  "#E53E3E", "#FFF5F5", "#9B2C2C"),
+                ("mixto",    "Mixtas",     "#D69E2E", "#FFFFF0", "#975A16"),
+                ("neutro",   "Neutrales",  "#718096", "#F7FAFC", "#4A5568"),
             ]
-            for _sk, _sl, _sc, _em in _sents:
+            _sc1, _sc2 = st.columns(2)
+            for _i, (_sk, _sl, _sc, _sbg, _sdr) in enumerate(_sent_defs):
                 _pct = _sd_ov.get(_sk, 0)
-                if _pct == 0: continue
-                st.markdown(f"""
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-                  <span style="font-size:18px">{_em}</span>
-                  <div style="flex:1">
-                    <div style="display:flex;justify-content:space-between;margin-bottom:3px">
-                      <span style="font-size:12px;color:var(--text)">{_sl}</span>
-                      <span style="font-size:13px;font-weight:700;color:{_sc}">{_pct}%</span>
-                    </div>
-                    <div style="background:var(--border);border-radius:4px;height:6px">
-                      <div style="background:{_sc};width:{_pct}%;height:6px;border-radius:4px"></div>
-                    </div>
-                  </div>
-                </div>""", unsafe_allow_html=True)
+                _target_col = _sc1 if _i % 2 == 0 else _sc2
+                with _target_col:
+                    st.markdown(f"""
+                    <div style="background:{_sbg};border:1px solid {_sc}33;border-radius:10px;
+                                padding:16px;margin-bottom:10px">
+                      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;
+                                  text-transform:uppercase;color:{_sdr};margin-bottom:8px">{_sl}</div>
+                      <div style="font-size:32px;font-weight:800;color:{_sc};line-height:1">{_pct}%</div>
+                      <div style="margin-top:10px;background:rgba(0,0,0,0.08);border-radius:3px;height:4px">
+                        <div style="background:{_sc};width:{_pct}%;height:4px;border-radius:3px"></div>
+                      </div>
+                    </div>""", unsafe_allow_html=True)
 
-            # Top themes pills
-            _tt = _soc_ov.get("top_themes", [])[:5]
+            # Top themes
+            _tt = _soc_ov.get("top_themes", [])[:6]
             if _tt:
-                st.markdown("<div style='margin-top:16px;display:flex;flex-wrap:wrap;gap:6px'>", unsafe_allow_html=True)
-                for _t in _tt:
-                    st.markdown(f'<span style="background:#EBF4FF;color:#0467FC;border-radius:12px;padding:4px 12px;font-size:11px;font-weight:600">{_t["tema"]} · {_t["count"]}</span>', unsafe_allow_html=True)
-                st.markdown("</div>", unsafe_allow_html=True)
+                _pills = "".join(
+                    f'<span style="background:var(--kavak-blue-light);color:var(--kavak-blue);'
+                    f'border-radius:4px;padding:3px 10px;font-size:11px;font-weight:600;'
+                    f'margin:2px">{t["tema"]}&nbsp;·&nbsp;{t["count"]}</span>'
+                    for t in _tt
+                )
+                st.markdown(f'<div style="margin-top:4px;display:flex;flex-wrap:wrap;gap:4px">{_pills}</div>',
+                            unsafe_allow_html=True)
 
-        with _right_ov:
-            section_header("Señales Clave", dot_color="blue")
-
-            # Positive signals
+        with _col_sig:
+            section_header("Señales", dot_color="blue")
             _pos_clusters = _soc_ov.get("positive_clusters", [])[:3]
-            _neg_clusters = _soc_ov.get("negative_clusters", [])[:3]
+            _neg_clusters = _soc_ov.get("negative_clusters", [])[:4]
 
-            st.markdown('<div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--green);margin-bottom:8px">✅ FORTALEZAS</div>', unsafe_allow_html=True)
-            _strengths = [
-                f"Liderazgo de Top of Mind: {round(_tom)}%" if _tom else None,
-                f"Serie F $300M liderada por a16z (feb 2026)",
-                f"Primera rentabilidad global: dic 2025",
-            ] + [f"Percepción positiva en '{c['tema']}'" for c in _pos_clusters]
-            for _s in [x for x in _strengths if x][:4]:
-                st.markdown(f'<div style="padding:8px 12px;background:#F0FFF4;border-left:3px solid var(--green);border-radius:4px;margin-bottom:6px;font-size:13px">{_s}</div>', unsafe_allow_html=True)
+            st.markdown("""<div style="font-size:10px;font-weight:700;letter-spacing:2px;
+                text-transform:uppercase;color:#276749;margin-bottom:8px">Fortalezas</div>""",
+                unsafe_allow_html=True)
+            _strengths = (
+                ([f"Top of Mind: {round(_tom)}% — liderazgo absoluto en categoría"] if _tom else []) +
+                ["Serie F $300M liderada por a16z · Primera rentabilidad global dic 2025"] +
+                [f"Percepción positiva consolidada: {c['tema']}" for c in _pos_clusters]
+            )
+            for _s in _strengths[:4]:
+                st.markdown(
+                    f'<div style="border-left:3px solid #38A169;background:#F0FFF4;border-radius:0 6px 6px 0;'
+                    f'padding:10px 14px;margin-bottom:8px;font-size:13px;color:#1A202C;line-height:1.5">{_s}</div>',
+                    unsafe_allow_html=True)
 
-            st.markdown('<div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--red);margin-top:14px;margin-bottom:8px">⚠️ RIESGOS</div>', unsafe_allow_html=True)
-            _risks = [
-                f"{round(_pct_neg or 0)}% de menciones negativas en redes",
-                f"Tema crítico recurrente: '{_top_neg}'",
-            ] + [f"Queja frecuente: '{c['tema']}' ({c['count']} menciones)" for c in _neg_clusters if c.get('tema') != _top_neg]
-            for _r in [x for x in _risks if x][:4]:
-                st.markdown(f'<div style="padding:8px 12px;background:#FFF5F5;border-left:3px solid var(--red);border-radius:4px;margin-bottom:6px;font-size:13px">{_r}</div>', unsafe_allow_html=True)
+            st.markdown("""<div style="font-size:10px;font-weight:700;letter-spacing:2px;
+                text-transform:uppercase;color:#9B2C2C;margin-top:16px;margin-bottom:8px">Riesgos</div>""",
+                unsafe_allow_html=True)
+            _risks = (
+                [f"{round(_pct_neg or 0)}% de menciones negativas · tema crítico: {_top_neg}"] +
+                [f"Queja recurrente en '{c['tema']}' — {c['count']} menciones"
+                 for c in _neg_clusters if c.get("tema") != _top_neg]
+            )
+            for _r in _risks[:4]:
+                st.markdown(
+                    f'<div style="border-left:3px solid #E53E3E;background:#FFF5F5;border-radius:0 6px 6px 0;'
+                    f'padding:10px 14px;margin-bottom:8px;font-size:13px;color:#1A202C;line-height:1.5">{_r}</div>',
+                    unsafe_allow_html=True)
 
-        # ── Crisis mentions preview ────────────────────────────
+        # ── Crisis preview ──────────────────────────────────────
         _crisis_ov = [m for m in _raw_ov if m.get("intensidad", 0) >= 5 and m.get("sentimiento") == "negativo"]
         if _crisis_ov:
-            st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
-            section_header(f"Crisis Radar — {len(_crisis_ov)} menciones virales", dot_color="red")
+            section_header(f"Menciones de Alto Impacto · {len(_crisis_ov)} virales", dot_color="red")
             for _cm in _crisis_ov[:3]:
                 _cfuente = _cm.get("fuente", "?")
                 _curl    = _cm.get("url") or ""
@@ -1019,12 +1030,13 @@ def main():
                 _cfecha  = _cm.get("fecha_aprox", "")
                 _csrc    = f'<a href="{_curl}" target="_blank">{_cfuente}</a>' if _curl else _cfuente
                 st.markdown(f"""
-                <div class="verbatim neg" style="border-left-color:#E53E3E;background:#FFF5F5">
+                <div class="verbatim neg">
                   <div class="verbatim-text">"{_ctext}"</div>
                   <div class="verbatim-footer">
                     <span class="verbatim-source">{_csrc}</span>
                     <span class="verbatim-date">{_cfecha}</span>
-                    <span style="font-size:11px;background:#E53E3E;color:white;padding:2px 8px;border-radius:10px;margin-left:6px">🔥 viral</span>
+                    <span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+                          background:#E53E3E;color:white;padding:2px 8px;border-radius:4px;margin-left:auto">VIRAL</span>
                   </div>
                 </div>""", unsafe_allow_html=True)
 
