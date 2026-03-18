@@ -963,21 +963,14 @@ def main():
         _pct_neu_r = round(_sd_ov.get("neutro", 0))
         _tt        = _soc_ov.get("top_themes", [])[:5]
 
-        def _sent_row(label, pct, color):
-            bar_w = min(pct, 100)
+        def _sent_card(label, pct, color):
             return (
-                '<tr>'
-                '<td style="padding:14px 0;width:22%;vertical-align:middle">'
-                '<span style="font-size:9px;font-weight:700;letter-spacing:2px;'
-                'text-transform:uppercase;color:#A0AEC0">' + label + '</span></td>'
-                '<td style="padding:14px 14px 14px 0;width:14%;vertical-align:middle;text-align:right">'
-                '<span style="font-size:30px;font-weight:800;color:' + color + ';line-height:1;'
-                'letter-spacing:-1px">' + str(pct) + '%</span></td>'
-                '<td style="padding:14px 0;vertical-align:middle">'
-                '<div style="background:#EEF2F7;border-radius:3px;height:4px">'
-                '<div style="background:' + color + ';width:' + str(bar_w) + '%;'
-                'height:4px;border-radius:3px"></div></div></td>'
-                '</tr>'
+                '<td style="width:25%;padding:4px;vertical-align:top">'
+                '<div class="summary-card" style="text-align:center;padding:18px 8px">'
+                '<div class="s-label" style="margin-bottom:8px">' + label + '</div>'
+                '<div style="font-size:28px;font-weight:800;color:' + color + ';line-height:1">'
+                + str(pct) + '%</div>'
+                '</div></td>'
             )
 
         _pills = " &nbsp; ".join(
@@ -987,20 +980,16 @@ def main():
             for t in _tt
         )
         _rep_html = (
-            '<div style="background:#fff;border-radius:12px;border:1px solid #E8EDF2;'
-            'border-top:3px solid #0467FC;padding:4px 20px 16px;'
-            'box-shadow:0 1px 6px rgba(4,103,252,0.07)">'
             '<table style="width:100%;border-collapse:collapse">'
-            + _sent_row("Positivas", _pct_pos_r, "#38A169")
-            + _sent_row("Negativas", _pct_neg_r, "#E53E3E")
-            + _sent_row("Mixtas",    _pct_mix_r, "#D69E2E")
-            + _sent_row("Neutrales", _pct_neu_r, "#A0AEC0")
-            + '</table>'
-            '<div style="border-top:1px solid #F0F4F8;margin-top:4px;padding-top:14px;line-height:2.4">'
-            + _pills + '</div>'
+            '<tr>'
+            + _sent_card("Positivas", _pct_pos_r, "#38A169")
+            + _sent_card("Negativas", _pct_neg_r, "#E53E3E")
+            + _sent_card("Mixtas",    _pct_mix_r, "#D69E2E")
+            + _sent_card("Neutrales", _pct_neu_r, "#A0AEC0")
+            + '</tr></table>'
+            '<div style="margin-top:12px;line-height:2.4">' + _pills + '</div>'
             '<div style="font-size:11px;color:#A0AEC0;margin-top:8px;font-style:italic">'
             + str(_tot_men) + ' menciones &middot; Ver detalle en Social Listening.</div>'
-            '</div>'
         )
 
         with _col_soc:
