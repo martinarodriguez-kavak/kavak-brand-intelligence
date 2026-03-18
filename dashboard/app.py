@@ -479,25 +479,69 @@ st.markdown("""
   .empty-state h3 { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
   .empty-state p { font-size: 13px; line-height: 1.6; color: var(--text-muted); }
 
+  /* ─── SUMMARY STAT CARDS ─── */
+  .summary-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+  }
+  .summary-card.highlight { border-left: 3px solid var(--kavak-blue); }
+  .s-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .s-value {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
   /* ─── VERBATIM ─── */
   .verbatim {
-    background: var(--bg);
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin-bottom: 8px;
-    font-size: 13px;
-    line-height: 1.55;
-    color: #2D3748;
+    background: var(--card);
+    border: 1px solid var(--border);
     border-left: 3px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #2D3748;
   }
   .verbatim.neg { border-left-color: var(--red); }
   .verbatim.pos { border-left-color: var(--green); }
-  .verbatim.mix { border-left-color: var(--purple); }
+  .verbatim.neu { border-left-color: var(--text-light); }
+  .verbatim-text { margin-bottom: 10px; }
+  .verbatim-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
   .verbatim-source {
     font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg);
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .verbatim-source a {
+    color: var(--kavak-blue);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .verbatim-source a:hover { text-decoration: underline; }
+  .verbatim-date {
+    font-size: 11px;
     color: var(--text-light);
-    margin-top: 6px;
-    font-family: 'Courier New', monospace;
   }
 
   /* ─── TABS override ─── */
@@ -1329,15 +1373,16 @@ def main():
                 section_header("Por fuente", dot_color="blue")
                 by_source = social.get("by_source", {})
                 if by_source:
-                    for source, count in list(by_source.items())[:8]:
-                        pct = round(count / total_mentions * 100, 1) if total_mentions else 0
-                        st.markdown(f"""
-                        <div style="display:flex;justify-content:space-between;padding:8px 0;
-                             border-bottom:1px solid var(--border);font-size:13px">
-                          <span style="color:var(--text)">{source}</span>
-                          <span style="color:var(--kavak-blue);font-weight:600">{count} <span style="color:var(--text-muted);font-weight:400">({pct}%)</span></span>
-                        </div>
-                        """, unsafe_allow_html=True)
+                    rows_html = "".join(
+                        f'<div style="display:flex;justify-content:space-between;align-items:center;'
+                        f'padding:9px 0;border-bottom:1px solid var(--border);">'
+                        f'<span style="font-size:13px;color:var(--text);">{source}</span>'
+                        f'<span style="font-size:13px;font-weight:700;color:var(--kavak-blue);">{count}'
+                        f'<span style="font-weight:400;color:var(--text-muted);font-size:11px;"> &nbsp;{round(count/total_mentions*100,0):.0f}%</span></span>'
+                        f'</div>'
+                        for source, count in list(by_source.items())[:8]
+                    )
+                    st.markdown(f'<div style="margin-top:4px;">{rows_html}</div>', unsafe_allow_html=True)
 
             # ── Narrativas ──
             social_insights = analysis.get("social_insights", [])
@@ -1355,20 +1400,51 @@ def main():
             # ── Verbatims ──
             verbatims = social.get("verbatims", {})
             if verbatims:
-                section_header("Verbatims", dot_color="blue")
-                v1, v2, v3 = st.tabs(["😤 Negativos", "😊 Positivos", "😐 Mixtos"])
-                with v1:
-                    for v in verbatims.get("negativo", [])[:8]:
-                        fecha = v.get("fecha_aprox", "")
-                        st.markdown(f'<div class="verbatim neg">"{v.get("texto","")}"<div class="verbatim-source">{v.get("fuente","?")}{"  ·  "+fecha if fecha and fecha!="desconocida" else ""}</div></div>', unsafe_allow_html=True)
-                with v2:
-                    for v in verbatims.get("positivo", [])[:8]:
-                        fecha = v.get("fecha_aprox", "")
-                        st.markdown(f'<div class="verbatim pos">"{v.get("texto","")}"<div class="verbatim-source">{v.get("fuente","?")}{"  ·  "+fecha if fecha and fecha!="desconocida" else ""}</div></div>', unsafe_allow_html=True)
-                with v3:
-                    for v in verbatims.get("mixto", [])[:8]:
-                        fecha = v.get("fecha_aprox", "")
-                        st.markdown(f'<div class="verbatim mix">"{v.get("texto","")}"<div class="verbatim-source">{v.get("fuente","?")}{"  ·  "+fecha if fecha and fecha!="desconocida" else ""}</div></div>', unsafe_allow_html=True)
+                section_header("Comentarios", dot_color="blue")
+
+                def verbatim_card(v, css_class):
+                    texto = v.get("texto", "")
+                    fuente = v.get("fuente", "?")
+                    url = v.get("url") or ""
+                    fecha = v.get("fecha_aprox", "")
+                    fecha_html = f'<span class="verbatim-date">{fecha}</span>' if fecha and fecha != "desconocida" else ""
+                    source_inner = (
+                        f'<a href="{url}" target="_blank" rel="noopener">{fuente}</a>'
+                        if url else fuente
+                    )
+                    st.markdown(
+                        f'<div class="verbatim {css_class}">'
+                        f'  <div class="verbatim-text">"{texto}"</div>'
+                        f'  <div class="verbatim-footer">'
+                        f'    <span class="verbatim-source">{source_inner}</span>'
+                        f'    {fecha_html}'
+                        f'  </div>'
+                        f'</div>',
+                        unsafe_allow_html=True
+                    )
+
+                tab_pos, tab_neu, tab_neg = st.tabs(["😊  Positivos", "😐  Neutrales", "😤  Negativos"])
+                with tab_pos:
+                    items = verbatims.get("positivo", [])[:8]
+                    if items:
+                        for v in items:
+                            verbatim_card(v, "pos")
+                    else:
+                        st.markdown('<p style="color:var(--text-muted);font-size:13px;padding:12px 0">Sin comentarios positivos en este período.</p>', unsafe_allow_html=True)
+                with tab_neu:
+                    items = verbatims.get("neutro", [])[:4] + verbatims.get("mixto", [])[:4]
+                    if items:
+                        for v in items[:8]:
+                            verbatim_card(v, "neu")
+                    else:
+                        st.markdown('<p style="color:var(--text-muted);font-size:13px;padding:12px 0">Sin comentarios neutrales en este período.</p>', unsafe_allow_html=True)
+                with tab_neg:
+                    items = verbatims.get("negativo", [])[:8]
+                    if items:
+                        for v in items:
+                            verbatim_card(v, "neg")
+                    else:
+                        st.markdown('<p style="color:var(--text-muted);font-size:13px;padding:12px 0">Sin comentarios negativos en este período.</p>', unsafe_allow_html=True)
 
     # ════════════════════════════════════════
     # TAB 3 — ACCIONABLES GROWTH
