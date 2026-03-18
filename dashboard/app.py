@@ -1015,12 +1015,21 @@ def main():
         _social_snap_html = (
             # Three columns: hero | 2×2 stats | themes
             '<table style="width:100%;border-collapse:collapse;margin-bottom:18px"><tr style="vertical-align:top">'
-            # Hero
-            '<td style="width:26%;padding-right:24px;border-right:1px solid #EDF2F7">'
+            # Hero + bar in same cell
+            '<td style="width:26%;padding-right:24px;border-right:1px solid #EDF2F7;vertical-align:top">'
             '<div style="font-size:60px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-4px">'
             + str(_tot_men) + '</div>'
             '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-            'color:#C8D0DC;margin-top:8px">menciones analizadas</div>'
+            'color:#C8D0DC;margin-top:8px;margin-bottom:20px">menciones analizadas</div>'
+            '<div style="font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;'
+            'color:#C8D0DC;margin-bottom:6px">Distribución</div>'
+            '<div style="width:100%;height:6px;border-radius:3px;overflow:hidden;'
+            'display:table;table-layout:fixed">'
+            '<div style="display:table-cell;width:' + str(_bp) + '%;background:#38A169"></div>'
+            '<div style="display:table-cell;width:' + str(_bn) + '%;background:#E53E3E"></div>'
+            '<div style="display:table-cell;width:' + str(_bm) + '%;background:#D69E2E"></div>'
+            '<div style="display:table-cell;width:' + str(_bu) + '%;background:#CBD5E0"></div>'
+            '</div>'
             '</td>'
             # 2×2 sentiment stats
             '<td style="width:38%;vertical-align:top;padding:0 24px;border-right:1px solid #EDF2F7">'
@@ -1034,20 +1043,7 @@ def main():
             '</td>'
             # Themes vertical list
             '<td style="vertical-align:top;padding-left:24px">' + _themes_col + '</td>'
-            '</tr>'
-            # Bar row — full width spanning all 3 cols
-            '<tr><td colspan="3" style="padding-top:18px">'
-            '<div style="font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;'
-            'color:#C8D0DC;margin-bottom:6px">Distribución de sentimiento</div>'
-            '<div style="width:100%;height:6px;border-radius:3px;overflow:hidden;'
-            'display:table;table-layout:fixed">'
-            '<div style="display:table-cell;width:' + str(_bp) + '%;background:#38A169"></div>'
-            '<div style="display:table-cell;width:' + str(_bn) + '%;background:#E53E3E"></div>'
-            '<div style="display:table-cell;width:' + str(_bm) + '%;background:#D69E2E"></div>'
-            '<div style="display:table-cell;width:' + str(_bu) + '%;background:#CBD5E0"></div>'
-            '</div>'
-            '</td></tr>'
-            '</table>'
+            '</tr></table>'
         )
 
         # Señales
