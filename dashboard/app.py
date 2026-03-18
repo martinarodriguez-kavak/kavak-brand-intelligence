@@ -829,11 +829,202 @@ def main():
     """, unsafe_allow_html=True)
 
     # ── TABS ──
-    tab1, tab2, tab3 = st.tabs([
+    tab0, tab1, tab2, tab3 = st.tabs([
+        "🎯  Overview Ejecutivo",
         "📊  Brand Health Tracker",
         "🌐  Social Listening",
         "⚡  Accionables Growth",
     ])
+
+    # ════════════════════════════════════════
+    # TAB 0 — OVERVIEW EJECUTIVO
+    # ════════════════════════════════════════
+    with tab0:
+        import pandas as pd
+        _bht_ov = load_bht_real()
+
+        st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+
+        # ── Headline narrative ──────────────────────────────────
+        _soc_ov   = data.get("social", {})
+        _raw_ov   = _soc_ov.get("raw_mentions", [])
+        _sd_ov    = _soc_ov.get("sentiment_distribution", {})
+        _pct_neg  = _sd_ov.get("negativo", 0)
+        _pct_pos  = _sd_ov.get("positivo", 0)
+        _top_neg  = _soc_ov.get("negative_clusters", [{}])[0].get("tema", "–") if _soc_ov.get("negative_clusters") else "–"
+        _tot_men  = _soc_ov.get("total_mentions", 0)
+
+        # Pull latest BHT values
+        if _bht_ov is not None and not _bht_ov.empty:
+            _OLA_ORDER_OV = ["Ola 0","Ola 1","Ola 2","Ola 3","Ola 4","Ola 5","Ola 6","Ola 7","Ola 8","Ola 9 Ligth","W10","W11","W12"]
+            _piv_ov = _bht_ov.pivot_table(index="ola", columns="metrica", values="valor", aggfunc="mean")
+            _piv_ov = _piv_ov.reindex([o for o in _OLA_ORDER_OV if o in _piv_ov.index])
+            _latest_ov = _piv_ov.iloc[-1] if len(_piv_ov) > 0 else pd.Series(dtype=float)
+            _prev_ov   = _piv_ov.iloc[-2] if len(_piv_ov) > 1 else pd.Series(dtype=float)
+
+            def _ov_val(col):
+                return _latest_ov.get(col, None)
+            def _ov_delta(col):
+                v, p = _latest_ov.get(col), _prev_ov.get(col)
+                if v is not None and p is not None:
+                    return round(v - p, 1)
+                return None
+            def _delta_html(d, unit="%", invert=False):
+                if d is None: return ""
+                good = d > 0 if not invert else d < 0
+                color = "var(--green)" if good else "var(--red)"
+                arrow = "▲" if d > 0 else "▼"
+                return f'<span style="font-size:12px;color:{color};margin-left:4px">{arrow} {abs(d)}{unit}</span>'
+
+            _tom  = _ov_val("Top_of_Mind")
+            _awa  = _ov_val("Awareness_Asistida")
+            _cons = _ov_val("Consideracion")
+            _nps  = _ov_val("NPS_Score")
+            _bei  = _ov_val("Brand_Equity_Index")
+            _sat  = _ov_val("Brand_Satisfaction_Top2box")
+        else:
+            _tom = _awa = _cons = _nps = _bei = _sat = None
+            _ov_delta = lambda col: None
+            _delta_html = lambda d, **kw: ""
+
+        # Narrative pill
+        _health_color = "#38A169" if (_pct_neg or 0) < 40 else "#D69E2E" if (_pct_neg or 0) < 60 else "#E53E3E"
+        _health_label = "Sólida" if (_pct_neg or 0) < 40 else "En tensión" if (_pct_neg or 0) < 60 else "Bajo presión"
+
+        st.markdown(f"""
+        <div style="background:linear-gradient(135deg,#0467FC 0%,#0352C9 100%);border-radius:16px;
+                    padding:28px 32px;margin-bottom:24px;color:white;">
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:0.7;margin-bottom:10px">
+            Estado de Marca · Kavak México · {pd.Timestamp.now().strftime('%B %Y') if _bht_ov is not None else 'Mar 2026'}
+          </div>
+          <div style="font-size:22px;font-weight:700;line-height:1.4;margin-bottom:14px">
+            Kavak lidera el mercado de seminuevos en México con
+            {'<strong>' + str(round(_tom)) + '% de Top of Mind</strong>' if _tom else 'liderazgo de Top of Mind'} y
+            {'<strong>' + str(round(_awa)) + '% de Awareness Asistida</strong>' if _awa else 'alta notoriedad'}.
+            La percepción en redes muestra un
+            <span style="border-bottom:2px solid rgba(255,255,255,0.5)">{round(_pct_neg or 0)}% de menciones negativas</span>,
+            concentradas principalmente en <em>{_top_neg}</em>.
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <span style="background:rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600">
+              🔵 Marca en estado: {_health_label}
+            </span>
+            <span style="background:rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;font-size:12px">
+              📊 {_tot_men} menciones analizadas
+            </span>
+            {'<span style="background:rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;font-size:12px">💰 Serie F $300M · Feb 2026</span>' if True else ''}
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # ── BHT KPI row ────────────────────────────────────────
+        section_header("Brand Health — Última Ola", dot_color="blue")
+        if _bht_ov is not None and not _bht_ov.empty:
+            _kpi_cols = st.columns(6)
+            _kpi_defs = [
+                ("Top_of_Mind",             "Top of Mind",    "%"),
+                ("Awareness_Asistida",       "Awareness",      "%"),
+                ("Consideracion",            "Consideración",  "%"),
+                ("NPS_Score",               "NPS Score",       "pts"),
+                ("Brand_Equity_Index",       "Brand Equity",   ""),
+                ("Brand_Satisfaction_Top2b"+"ox","Satisfacción", "%"),
+            ]
+            for _col, (_metric, _label, _unit) in zip(_kpi_cols, _kpi_defs):
+                _v = _ov_val(_metric)
+                _d = _ov_delta(_metric)
+                _v_str = f"{round(_v)}{_unit}" if _v is not None else "–"
+                _d_html = _delta_html(_d, unit=_unit)
+                with _col:
+                    st.markdown(f"""
+                    <div class="summary-card" style="text-align:center;padding:18px 10px">
+                      <div class="s-label" style="margin-bottom:6px">{_label}</div>
+                      <div class="s-value" style="font-size:26px">{_v_str}{_d_html}</div>
+                    </div>""", unsafe_allow_html=True)
+        else:
+            st.info("Cargá archivos BHT en /data para ver los KPIs de Brand Health.")
+
+        st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+
+        # ── Social snapshot + señales ──────────────────────────
+        _left_ov, _right_ov = st.columns(2)
+
+        with _left_ov:
+            section_header("Pulso Social · Sentimiento", dot_color="blue")
+            _sents = [
+                ("positivo",  "Positivas",  "var(--green)", "😊"),
+                ("negativo",  "Negativas",  "var(--red)",   "😤"),
+                ("mixto",     "Mixtas",     "var(--yellow)","😐"),
+                ("neutro",    "Neutrales",  "var(--text-muted)", "😶"),
+            ]
+            for _sk, _sl, _sc, _em in _sents:
+                _pct = _sd_ov.get(_sk, 0)
+                if _pct == 0: continue
+                st.markdown(f"""
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                  <span style="font-size:18px">{_em}</span>
+                  <div style="flex:1">
+                    <div style="display:flex;justify-content:space-between;margin-bottom:3px">
+                      <span style="font-size:12px;color:var(--text)">{_sl}</span>
+                      <span style="font-size:13px;font-weight:700;color:{_sc}">{_pct}%</span>
+                    </div>
+                    <div style="background:var(--border);border-radius:4px;height:6px">
+                      <div style="background:{_sc};width:{_pct}%;height:6px;border-radius:4px"></div>
+                    </div>
+                  </div>
+                </div>""", unsafe_allow_html=True)
+
+            # Top themes pills
+            _tt = _soc_ov.get("top_themes", [])[:5]
+            if _tt:
+                st.markdown("<div style='margin-top:16px;display:flex;flex-wrap:wrap;gap:6px'>", unsafe_allow_html=True)
+                for _t in _tt:
+                    st.markdown(f'<span style="background:#EBF4FF;color:#0467FC;border-radius:12px;padding:4px 12px;font-size:11px;font-weight:600">{_t["tema"]} · {_t["count"]}</span>', unsafe_allow_html=True)
+                st.markdown("</div>", unsafe_allow_html=True)
+
+        with _right_ov:
+            section_header("Señales Clave", dot_color="blue")
+
+            # Positive signals
+            _pos_clusters = _soc_ov.get("positive_clusters", [])[:3]
+            _neg_clusters = _soc_ov.get("negative_clusters", [])[:3]
+
+            st.markdown('<div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--green);margin-bottom:8px">✅ FORTALEZAS</div>', unsafe_allow_html=True)
+            _strengths = [
+                f"Liderazgo de Top of Mind: {round(_tom)}%" if _tom else None,
+                f"Serie F $300M liderada por a16z (feb 2026)",
+                f"Primera rentabilidad global: dic 2025",
+            ] + [f"Percepción positiva en '{c['tema']}'" for c in _pos_clusters]
+            for _s in [x for x in _strengths if x][:4]:
+                st.markdown(f'<div style="padding:8px 12px;background:#F0FFF4;border-left:3px solid var(--green);border-radius:4px;margin-bottom:6px;font-size:13px">{_s}</div>', unsafe_allow_html=True)
+
+            st.markdown('<div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--red);margin-top:14px;margin-bottom:8px">⚠️ RIESGOS</div>', unsafe_allow_html=True)
+            _risks = [
+                f"{round(_pct_neg or 0)}% de menciones negativas en redes",
+                f"Tema crítico recurrente: '{_top_neg}'",
+            ] + [f"Queja frecuente: '{c['tema']}' ({c['count']} menciones)" for c in _neg_clusters if c.get('tema') != _top_neg]
+            for _r in [x for x in _risks if x][:4]:
+                st.markdown(f'<div style="padding:8px 12px;background:#FFF5F5;border-left:3px solid var(--red);border-radius:4px;margin-bottom:6px;font-size:13px">{_r}</div>', unsafe_allow_html=True)
+
+        # ── Crisis mentions preview ────────────────────────────
+        _crisis_ov = [m for m in _raw_ov if m.get("intensidad", 0) >= 5 and m.get("sentimiento") == "negativo"]
+        if _crisis_ov:
+            st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+            section_header(f"Crisis Radar — {len(_crisis_ov)} menciones virales", dot_color="red")
+            for _cm in _crisis_ov[:3]:
+                _cfuente = _cm.get("fuente", "?")
+                _curl    = _cm.get("url") or ""
+                _ctext   = _cm.get("texto", "")[:200]
+                _cfecha  = _cm.get("fecha_aprox", "")
+                _csrc    = f'<a href="{_curl}" target="_blank">{_cfuente}</a>' if _curl else _cfuente
+                st.markdown(f"""
+                <div class="verbatim neg" style="border-left-color:#E53E3E;background:#FFF5F5">
+                  <div class="verbatim-text">"{_ctext}"</div>
+                  <div class="verbatim-footer">
+                    <span class="verbatim-source">{_csrc}</span>
+                    <span class="verbatim-date">{_cfecha}</span>
+                    <span style="font-size:11px;background:#E53E3E;color:white;padding:2px 8px;border-radius:10px;margin-left:6px">🔥 viral</span>
+                  </div>
+                </div>""", unsafe_allow_html=True)
 
     # ════════════════════════════════════════
     # TAB 1 — BRAND HEALTH
@@ -1453,6 +1644,127 @@ def main():
                         for source, count in list(by_source.items())[:8]
                     )
                     st.markdown(f'<div style="margin-top:4px;">{rows_html}</div>', unsafe_allow_html=True)
+
+            # ── Tendencia de sentimiento en el tiempo ──────────────
+            st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
+            section_header("Tendencia de Sentimiento", dot_color="blue")
+            _QUARTER_ORDER = ["2025-Q1","2025-Q2","2025-Q3","2025-Q4","2026-Q1","2026-Q2"]
+            _QUARTER_LABEL = {"2025-Q1":"Q1 '25","2025-Q2":"Q2 '25","2025-Q3":"Q3 '25",
+                               "2025-Q4":"Q4 '25","2026-Q1":"Q1 '26","2026-Q2":"Q2 '26"}
+            from collections import defaultdict
+            _trend_buckets = defaultdict(lambda: {"positivo":0,"negativo":0,"neutro":0,"mixto":0,"total":0})
+            for _m in filtered_mentions:
+                _fa = _m.get("fecha_aprox","desconocida")
+                if _fa in _QUARTER_ORDER:
+                    _s = _m.get("sentimiento","neutro")
+                    _trend_buckets[_fa][_s] = _trend_buckets[_fa].get(_s,0) + 1
+                    _trend_buckets[_fa]["total"] += 1
+            _trend_periods = [q for q in _QUARTER_ORDER if q in _trend_buckets]
+            if len(_trend_periods) >= 2:
+                try:
+                    import plotly.graph_objects as go
+                    _xlabels = [_QUARTER_LABEL.get(p, p) for p in _trend_periods]
+                    def _pct_series(snt):
+                        return [
+                            round(_trend_buckets[p][snt] / _trend_buckets[p]["total"] * 100, 1)
+                            if _trend_buckets[p]["total"] else 0
+                            for p in _trend_periods
+                        ]
+                    _fig_trend = go.Figure()
+                    _fig_trend.add_trace(go.Scatter(x=_xlabels, y=_pct_series("negativo"),
+                        name="Negativo", line=dict(color="#E53E3E", width=3), mode="lines+markers",
+                        marker=dict(size=8)))
+                    _fig_trend.add_trace(go.Scatter(x=_xlabels, y=_pct_series("positivo"),
+                        name="Positivo", line=dict(color="#38A169", width=3), mode="lines+markers",
+                        marker=dict(size=8)))
+                    _fig_trend.add_trace(go.Scatter(x=_xlabels, y=_pct_series("mixto"),
+                        name="Mixto", line=dict(color="#D69E2E", width=2, dash="dot"), mode="lines+markers",
+                        marker=dict(size=6)))
+                    _fig_trend.update_layout(
+                        plot_bgcolor="white", paper_bgcolor="white",
+                        font=dict(family="Helvetica Neue", size=12),
+                        margin=dict(l=0, r=20, t=10, b=0),
+                        xaxis=dict(showgrid=False),
+                        yaxis=dict(showgrid=True, gridcolor="#F0F4F8", ticksuffix="%", range=[0, 100]),
+                        legend=dict(orientation="h", y=1.12, x=0),
+                        height=240,
+                    )
+                    st.plotly_chart(_fig_trend, use_container_width=True)
+                    # Volume bars below
+                    _vols = [_trend_buckets[p]["total"] for p in _trend_periods]
+                    _fig_vol = go.Figure(go.Bar(x=_xlabels, y=_vols,
+                        marker_color="#93B4FF", name="Menciones"))
+                    _fig_vol.update_layout(
+                        plot_bgcolor="white", paper_bgcolor="white",
+                        font=dict(family="Helvetica Neue", size=11),
+                        margin=dict(l=0, r=20, t=4, b=0),
+                        xaxis=dict(showgrid=False),
+                        yaxis=dict(showgrid=True, gridcolor="#F0F4F8", title="menciones"),
+                        height=120,
+                    )
+                    st.plotly_chart(_fig_vol, use_container_width=True)
+                except ImportError:
+                    for _p in _trend_periods:
+                        _b = _trend_buckets[_p]
+                        st.write(f"**{_QUARTER_LABEL.get(_p,_p)}** — neg {round(_b['negativo']/_b['total']*100)}% | pos {round(_b['positivo']/_b['total']*100)}%")
+            else:
+                st.caption("Seleccioná un rango más amplio para ver la tendencia temporal.")
+
+            # ── Crisis Radar ────────────────────────────────────
+            _crisis = [m for m in filtered_mentions if m.get("intensidad", 0) >= 4 and m.get("sentimiento") == "negativo"]
+            if _crisis:
+                st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
+                section_header(f"Crisis Radar · {len(_crisis)} menciones de alto impacto", dot_color="red")
+                _crisis_sorted = sorted(_crisis, key=lambda x: x.get("intensidad", 0), reverse=True)
+                for _cm in _crisis_sorted[:6]:
+                    _cfuente = _cm.get("fuente", "?")
+                    _curl    = _cm.get("url") or ""
+                    _ctext   = _cm.get("texto", "")[:220]
+                    _cfecha  = _cm.get("fecha_aprox","")
+                    _cint    = _cm.get("intensidad", 0)
+                    _ctemas  = ", ".join(_cm.get("temas", []))
+                    _csrc    = f'<a href="{_curl}" target="_blank">{_cfuente}</a>' if _curl else _cfuente
+                    _badge   = "🔥 viral" if _cint == 5 else "⚡ alto impacto"
+                    _bcol    = "#E53E3E" if _cint == 5 else "#D69E2E"
+                    st.markdown(f"""
+                    <div class="verbatim neg" style="border-left-color:{_bcol};background:#FFFAF0">
+                      <div class="verbatim-text">"{_ctext}"</div>
+                      <div class="verbatim-footer" style="gap:6px">
+                        <span class="verbatim-source">{_csrc}</span>
+                        <span class="verbatim-date">{_cfecha}</span>
+                        <span style="font-size:11px;color:var(--text-muted)">{_ctemas}</span>
+                        <span style="font-size:11px;background:{_bcol};color:white;padding:2px 8px;border-radius:10px;margin-left:auto">{_badge}</span>
+                      </div>
+                    </div>""", unsafe_allow_html=True)
+
+            # ── Drill-down por tema ─────────────────────────────
+            st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
+            section_header("Drill-down por Tema", dot_color="purple")
+            _all_themes_dd = [t["tema"] for t in social.get("top_themes", [])]
+            if _all_themes_dd:
+                _selected_theme = st.selectbox(
+                    "Seleccioná un tema para ver sus menciones",
+                    options=_all_themes_dd,
+                    key="sl_theme_drill",
+                )
+                _theme_mentions = [m for m in filtered_mentions if _selected_theme in m.get("temas", [])]
+                _theme_neg = [m for m in _theme_mentions if m.get("sentimiento") == "negativo"]
+                _theme_pos = [m for m in _theme_mentions if m.get("sentimiento") == "positivo"]
+                _tc1, _tc2, _tc3 = st.columns(3)
+                with _tc1:
+                    st.markdown(f'<div class="summary-card"><div class="s-label">Menciones</div><div class="s-value">{len(_theme_mentions)}</div></div>', unsafe_allow_html=True)
+                with _tc2:
+                    st.markdown(f'<div class="summary-card"><div class="s-label">Negativas</div><div class="s-value" style="color:var(--red)">{len(_theme_neg)}</div></div>', unsafe_allow_html=True)
+                with _tc3:
+                    st.markdown(f'<div class="summary-card"><div class="s-label">Positivas</div><div class="s-value" style="color:var(--green)">{len(_theme_pos)}</div></div>', unsafe_allow_html=True)
+                st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+                _tab_dn, _tab_dp = st.tabs([f"😤 Negativos ({len(_theme_neg)})", f"😊 Positivos ({len(_theme_pos)})"])
+                with _tab_dn:
+                    for _v in sorted(_theme_neg, key=lambda x: x.get("intensidad",0), reverse=True)[:8]:
+                        verbatim_card(_v, "neg")
+                with _tab_dp:
+                    for _v in sorted(_theme_pos, key=lambda x: x.get("intensidad",0), reverse=True)[:8]:
+                        verbatim_card(_v, "pos")
 
             # ── Narrativas ──
             social_insights = analysis.get("social_insights", [])
