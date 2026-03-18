@@ -75,6 +75,16 @@ QUERY_TEMPLATES = [
     "Kavak reciente queja",
     "\"kavak.com\" review {fecha_iso}",
     "Kavak México últimas 24 horas",
+
+    # Google Reviews MTD
+    "Kavak México Google reseñas {mes_anio}",
+    "site:google.com/maps Kavak México {mes_anio}",
+    "Kavak reseña Google este mes",
+
+    # Meta (Instagram + Facebook) MTD
+    "Kavak Instagram {mes_anio} comentarios",
+    "Kavak Facebook {mes_anio} opiniones",
+    "kavak.com Instagram reels {mes_anio}",
 ]
 
 EXTRACTION_PROMPT = """Sos un analista de social listening para Kavak México.
@@ -121,10 +131,14 @@ def build_queries(fecha_obj: date) -> list[str]:
                  "julio","agosto","septiembre","octubre","noviembre","diciembre"]
     fecha_larga = f"{fecha_obj.day} de {meses_es[fecha_obj.month - 1]} de {fecha_obj.year}"
     fecha_iso   = fecha_obj.strftime("%Y-%m-%d")
+    mes_anio    = f"{meses_es[fecha_obj.month - 1]} {fecha_obj.year}"  # ej: "marzo 2026"
 
     queries = []
     for tpl in QUERY_TEMPLATES:
-        q = tpl.replace("{fecha}", fecha_larga).replace("{fecha_iso}", fecha_iso)
+        q = (tpl
+             .replace("{fecha}", fecha_larga)
+             .replace("{fecha_iso}", fecha_iso)
+             .replace("{mes_anio}", mes_anio))
         queries.append(q)
     return queries, fecha_larga
 
