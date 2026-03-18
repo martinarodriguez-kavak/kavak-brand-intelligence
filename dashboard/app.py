@@ -1063,16 +1063,18 @@ def main():
                 '</div>'
             )
 
-        _str_col = (
-            '<div style="font-size:13px;font-weight:700;color:#0467FC;margin-bottom:12px;letter-spacing:0.2px">'
-            'Fortalezas</div>'
-            + "".join(_sig_row(s, "#0467FC") for s in _strengths)
-        )
-        _risk_col = (
-            '<div style="font-size:13px;font-weight:700;color:#E53E3E;margin-bottom:12px;letter-spacing:0.2px">'
-            'Riesgos</div>'
-            + "".join(_sig_row(r, "#E53E3E") for r in _risks)
-        )
+        def _col_label(text, color):
+            return (
+                '<div style="display:inline-block;margin-bottom:14px">'
+                '<span style="display:inline-block;width:6px;height:6px;border-radius:50%;'
+                'background:' + color + ';vertical-align:middle;margin-right:7px"></span>'
+                '<span style="font-size:10px;font-weight:700;text-transform:uppercase;'
+                'letter-spacing:1.8px;color:' + color + ';vertical-align:middle">' + text + '</span>'
+                '</div>'
+            )
+
+        _str_col = _col_label("Fortalezas", "#0467FC") + "".join(_sig_row(s, "#0467FC") for s in _strengths)
+        _risk_col = _col_label("Riesgos", "#E53E3E")   + "".join(_sig_row(r, "#E53E3E") for r in _risks)
         _senales_html = (
             '<table style="width:100%;border-collapse:collapse"><tr style="vertical-align:top">'
             '<td style="width:50%;padding-right:20px;border:none">' + _str_col + '</td>'
