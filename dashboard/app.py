@@ -53,21 +53,37 @@ st.markdown("""
     background: var(--bg) !important;
   }
 
-  /* ─── KPI popover trigger: invisible overlay so the card is the visual ─── */
-  div[data-testid="stPopover"] > div > button {
-    position: absolute !important;
-    top: 0; left: 0; width: 100% !important; height: 100% !important;
-    opacity: 0 !important;
-    cursor: pointer !important;
-    z-index: 10;
-    border: none !important;
-    background: transparent !important;
-    padding: 0 !important;
+  /* ─── KPI hover tooltip ─── */
+  .kpi-tip {
+    position: relative;
+    cursor: help;
+    display: inline-block;
   }
-  div[data-testid="stPopover"] {
-    position: relative !important;
-    width: 100% !important;
+  .kpi-tip::before {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1A202C;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    padding: 8px 11px;
+    border-radius: 7px;
+    width: 220px;
+    text-align: left;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s;
+    line-height: 1.45;
+    white-space: normal;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
   }
+  .kpi-tip:hover::before { opacity: 1; }
 
   /* ─── "Ver más" nav buttons: subtle text-link style ─── */
   button[kind="secondary"][data-testid="baseButton-secondary"]:is(
@@ -993,12 +1009,12 @@ def main():
 
         # ── BHT KPI row ────────────────────────────────────────
         _KPI_EXP = {
-            "Top_of_Mind":               "**Top of Mind** — Primera marca en que piensa el consumidor al pensar en autos usados. Es el indicador más fuerte de liderazgo de categoría.",
-            "Awareness_Asistida":        "**Awareness Asistida** — % de personas que reconocen Kavak cuando se les menciona el nombre. Mide el alcance total de notoriedad de marca.",
-            "Consideracion":             "**Consideración** — % de consumidores que incluirían a Kavak al evaluar opciones para comprar o vender su auto. Mide intención real.",
-            "NPS_Score":                 "**NPS Score** — Net Promoter Score: mide disposición a recomendar Kavak. Escala de −100 a +100. Benchmark industria: > 30 bueno, > 50 excelente.",
-            "Brand_Equity_Index":        "**Brand Equity Index** — Índice compuesto del valor de marca: combina awareness, consideración, preferencia y lealtad en un solo número.",
-            "Brand_Satisfaction_Top2box":"**Satisfacción Top2Box** — % de clientes que califican su experiencia como 'satisfecho' o 'muy satisfecho' (top 2 opciones de escala de 5 puntos).",
+            "Top_of_Mind":               "Primera marca en que piensa el consumidor al pensar en autos usados. Indicador clave de liderazgo de categoría.",
+            "Awareness_Asistida":        "% de personas que reconocen Kavak al escuchar el nombre. Mide el alcance total de notoriedad de marca.",
+            "Consideracion":             "% de consumidores que incluirían a Kavak al evaluar opciones para comprar o vender su auto.",
+            "NPS_Score":                 "Net Promoter Score: mide disposición a recomendar Kavak. Escala -100 a +100. Benchmark: &gt;50 excelente.",
+            "Brand_Equity_Index":        "Índice compuesto: combina awareness, consideración, preferencia y lealtad en un solo número.",
+            "Brand_Satisfaction_Top2box":"% de clientes que califican su experiencia como satisfecho o muy satisfecho (top 2 de escala 5 pts).",
         }
         section_header("Brand Health · Última Ola", dot_color="blue")
         if _bht_ov is not None and not _bht_ov.empty:
@@ -1016,15 +1032,14 @@ def main():
                 _d = _ov_delta(_metric)
                 _v_str   = _fmt(_v, _unit)
                 _d_chip  = _delta_chip(_d, unit=_unit.strip())
+                _tip_text = _KPI_EXP.get(_metric, "").replace('"', '&quot;')
                 with _col:
-                    with st.popover("", use_container_width=True):
-                        st.markdown(_KPI_EXP.get(_metric, _label))
-                        st.markdown(f"**Última ola:** {_v_str}")
                     st.markdown(f"""
                     <div style="background:#fff;border:1px solid #EDF0F7;border-radius:12px;
                       padding:20px 10px;text-align:center;
-                      box-shadow:0 2px 8px rgba(4,103,252,0.06);margin-top:-38px">
-                      <div style="font-size:10px;font-weight:700;text-transform:uppercase;
+                      box-shadow:0 2px 8px rgba(4,103,252,0.06)">
+                      <div class="kpi-tip" data-tip="{_tip_text}"
+                        style="font-size:10px;font-weight:700;text-transform:uppercase;
                         letter-spacing:.6px;color:#A0AEC0;margin-bottom:10px">{_label}</div>
                       <div style="font-size:28px;font-weight:800;color:var(--kavak-blue);line-height:1">{_v_str}</div>
                       <div style="margin-top:8px;min-height:18px">{_d_chip}</div>
