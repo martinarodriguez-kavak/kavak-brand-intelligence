@@ -1034,8 +1034,9 @@ def main():
             '</td>'
             # Themes vertical list
             '<td style="vertical-align:top;padding-left:24px">' + _themes_col + '</td>'
-            '</tr></table>'
-            # Sentiment distribution bar — labeled
+            '</tr>'
+            # Bar row — full width spanning all 3 cols
+            '<tr><td colspan="3" style="padding-top:18px">'
             '<div style="font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;'
             'color:#C8D0DC;margin-bottom:6px">Distribución de sentimiento</div>'
             '<div style="width:100%;height:6px;border-radius:3px;overflow:hidden;'
@@ -1045,6 +1046,8 @@ def main():
             '<div style="display:table-cell;width:' + str(_bm) + '%;background:#D69E2E"></div>'
             '<div style="display:table-cell;width:' + str(_bu) + '%;background:#CBD5E0"></div>'
             '</div>'
+            '</td></tr>'
+            '</table>'
         )
 
         # Señales
