@@ -971,60 +971,58 @@ def main():
         _bm = round(_pct_mix_r / _tp * 100)
         _bu = max(0, 100 - _bp - _bn - _bm)
 
-        # Theme pills
+        # Sentiment inline row (no grid, no borders — pure type)
+        def _sent_inline(pct, label, color):
+            return (
+                '<td style="padding-right:28px;vertical-align:top">'
+                '<div style="font-size:30px;font-weight:800;color:' + color + ';line-height:1;letter-spacing:-1px">'
+                + str(pct) + '%</div>'
+                '<div style="font-size:9px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;'
+                'color:#C0C8D8;margin-top:5px">' + label + '</div>'
+                '</td>'
+            )
+
+        # Theme tags — just colored dots + text, no box
         _pills_html = "".join(
-            '<span style="display:inline-block;background:#F0F4FF;color:#0467FC;'
-            'border-radius:5px;padding:3px 9px;font-size:11px;font-weight:600;margin:3px 4px 3px 0">'
+            '<span style="display:inline-block;margin:0 14px 0 0;font-size:12px;color:#4A5568;font-weight:500">'
+            '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;'
+            'background:#0467FC;opacity:0.5;vertical-align:middle;margin-right:5px"></span>'
             + t["tema"]
-            + '<span style="color:#A0AEC0;font-weight:500;margin-left:4px">' + str(t["count"]) + '</span>'
+            + '<span style="color:#C0C8D8;margin-left:4px;font-size:11px">' + str(t["count"]) + '</span>'
             + '</span>'
             for t in _tt
         )
 
-        # Sentiment stat cell helper (2×2 grid)
-        def _sc(pct, label, color, pb=False):
-            sep = 'padding-bottom:14px;' if pb else ''
-            return (
-                '<td style="width:50%;' + sep + 'padding-right:8px">'
-                '<div style="font-size:26px;font-weight:800;color:' + color + ';line-height:1;letter-spacing:-0.5px">'
-                + str(pct) + '%</div>'
-                '<div style="font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;'
-                'color:#B0BAC9;margin-top:5px">' + label + '</div>'
-                '</td>'
-            )
-
         _social_snap_html = (
-            # Hero number
-            '<div style="margin-bottom:20px">'
-            '<div style="font-size:52px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-3px">'
-            + str(_tot_men) +
+            # Hero number — breathing room
+            '<div style="margin-bottom:24px">'
+            '<div style="font-size:56px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-3px">'
+            + str(_tot_men) + '</div>'
+            '<div style="font-size:10px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
+            'color:#C0C8D8;margin-top:8px">menciones analizadas</div>'
             '</div>'
-            '<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;'
-            'color:#A0AEC0;margin-top:7px">menciones analizadas</div>'
-            '</div>'
-            # Stacked sentiment bar
-            '<div style="width:100%;height:8px;border-radius:4px;overflow:hidden;'
-            'display:table;table-layout:fixed;margin-bottom:20px">'
+            # Thin stacked bar
+            '<div style="width:100%;height:6px;border-radius:3px;overflow:hidden;'
+            'display:table;table-layout:fixed;margin-bottom:24px">'
             '<div style="display:table-cell;width:' + str(_bp) + '%;background:#38A169"></div>'
             '<div style="display:table-cell;width:' + str(_bn) + '%;background:#E53E3E"></div>'
             '<div style="display:table-cell;width:' + str(_bm) + '%;background:#D69E2E"></div>'
             '<div style="display:table-cell;width:' + str(_bu) + '%;background:#CBD5E0"></div>'
             '</div>'
-            # 2×2 sentiment grid
-            '<table style="width:100%;border-collapse:collapse;margin-bottom:20px"><tr>'
-            + _sc(_pct_pos_r, "Positivas", "#38A169", pb=True)
-            + _sc(_pct_neg_r, "Negativas", "#E53E3E", pb=True)
-            + '</tr><tr>'
-            + _sc(_pct_mix_r, "Mixtas",   "#D69E2E")
-            + _sc(_pct_neu_r, "Neutras",  "#A0AEC0")
+            # Sentiment stats — single row, no containers
+            '<table style="border-collapse:collapse;margin-bottom:28px"><tr>'
+            + _sent_inline(_pct_pos_r, "Positivas", "#38A169")
+            + _sent_inline(_pct_neg_r, "Negativas", "#E53E3E")
+            + _sent_inline(_pct_mix_r, "Mixtas",    "#D69E2E")
+            + _sent_inline(_pct_neu_r, "Neutras",   "#C0C8D8")
             + '</tr></table>'
-            # Top themes pills
-            '<div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;'
-            'color:#B0BAC9;margin-bottom:8px">Temas principales</div>'
-            + _pills_html
+            # Themes — dots + text only
+            '<div style="font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
+            'color:#C0C8D8;margin-bottom:10px">Temas principales</div>'
+            '<div style="line-height:2.2">' + _pills_html + '</div>'
         )
 
-        # Señales: strengths + risks
+        # Señales
         _pos_clusters = _soc_ov.get("positive_clusters", [])[:2]
         _neg_clusters = _soc_ov.get("negative_clusters", [])[:3]
         _strengths = (
@@ -1033,35 +1031,33 @@ def main():
             [f"Percepción positiva en {c['tema']}" for c in _pos_clusters]
         )[:3]
         _risks = (
-            [f"{round(_pct_neg or 0)}% menciones negativas — principal tema: {_top_neg}"] +
+            [f"{round(_pct_neg or 0)}% menciones negativas · tema crítico: {_top_neg}"] +
             [f"Quejas en {c['tema']} ({c['count']} menciones)"
              for c in _neg_clusters if c.get("tema") != _top_neg]
         )[:3]
 
+        # Signal item — dot + text, pure spacing, no borders
         def _sig_row(text, color):
             return (
-                '<div style="padding:11px 0;border-bottom:1px solid #F4F6F9">'
-                '<table style="width:100%;border-collapse:collapse"><tr>'
-                '<td style="width:16px;vertical-align:top;padding-top:3px">'
-                '<div style="width:6px;height:6px;border-radius:50%;background:' + color + ';margin-top:3px"></div>'
+                '<div style="padding:9px 0">'
+                '<table style="border-collapse:collapse"><tr>'
+                '<td style="width:14px;vertical-align:top;padding-top:6px">'
+                '<div style="width:5px;height:5px;border-radius:50%;background:' + color + '"></div>'
                 '</td>'
-                '<td style="vertical-align:top;padding-left:8px">'
-                '<div style="font-size:13px;color:#2D3748;line-height:1.55">' + text + '</div>'
+                '<td style="vertical-align:top;padding-left:9px">'
+                '<div style="font-size:13px;color:#2D3748;line-height:1.6;font-weight:400">' + text + '</div>'
                 '</td>'
                 '</tr></table>'
                 '</div>'
             )
 
         _senales_html = (
-            # Fortalezas block
-            '<div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;'
-            'color:#0467FC;margin-bottom:2px">Fortalezas</div>'
+            '<div style="font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
+            'color:#0467FC;margin-bottom:6px">Fortalezas</div>'
             + "".join(_sig_row(s, "#0467FC") for s in _strengths)
-            # gap
-            + '<div style="height:18px"></div>'
-            # Riesgos block
-            '<div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;'
-            'color:#E53E3E;margin-bottom:2px">Riesgos</div>'
+            + '<div style="height:22px"></div>'
+            '<div style="font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
+            'color:#E53E3E;margin-bottom:6px">Riesgos</div>'
             + "".join(_sig_row(r, "#E53E3E") for r in _risks)
         )
 
