@@ -984,68 +984,61 @@ def main():
         _bm = round(_pct_mix_r / _tp * 100)
         _bu = max(0, 100 - _bp - _bn - _bm)
 
-        # Sentiment stat cell for 2×2 grid (right side)
+        # Sentiment stat cell — refined
         def _sent_cell(pct, label, color):
             return (
-                '<td style="padding:0 20px 14px 0;vertical-align:top">'
-                '<div style="font-size:24px;font-weight:800;color:' + color + ';line-height:1;letter-spacing:-0.5px">'
+                '<td style="padding:0 28px 16px 0;vertical-align:top">'
+                '<div style="font-size:26px;font-weight:800;color:' + color + ';line-height:1;letter-spacing:-0.5px">'
                 + str(pct) + '%</div>'
-                '<div style="font-size:9px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;'
-                'color:#C0C8D8;margin-top:4px">' + label + '</div>'
+                '<div style="font-size:9px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;'
+                'color:#C8D0DC;margin-top:5px">' + label + '</div>'
                 '</td>'
             )
 
-        # Theme tags
-        _pills_html = "".join(
-            '<span style="display:inline-block;margin:0 14px 0 0;font-size:11px;color:#4A5568;font-weight:500">'
-            '<span style="display:inline-block;width:6px;height:6px;border-radius:50%;'
-            'background:#0467FC;opacity:0.45;vertical-align:middle;margin-right:5px"></span>'
-            + t["tema"]
-            + '<span style="color:#C0C8D8;margin-left:3px;font-size:10px">' + str(t["count"]) + '</span>'
-            + '</span>'
-            for t in _tt
-        )
-
-        # Themes as vertical list for right column
+        # Theme dots — colored by rank
+        _THEME_COLORS = ["#0467FC","#3685FD","#68A4FD","#94BBFE","#BDD4FE"]
         _themes_col = (
-            '<div style="font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
-            'color:#C0C8D8;margin-bottom:8px">Temas principales</div>'
+            '<div style="font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;'
+            'color:#C8D0DC;margin-bottom:10px">Temas principales</div>'
             + "".join(
-                '<div style="margin-bottom:5px;font-size:11px;color:#4A5568;font-weight:500">'
-                '<span style="display:inline-block;width:6px;height:6px;border-radius:50%;'
-                'background:#0467FC;opacity:0.45;vertical-align:middle;margin-right:6px"></span>'
-                + t["tema"]
-                + '<span style="color:#C0C8D8;margin-left:4px;font-size:10px">' + str(t["count"]) + '</span>'
-                + '</div>'
-                for t in _tt
+                '<div style="margin-bottom:7px">'
+                '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;'
+                'background:' + _THEME_COLORS[min(i, len(_THEME_COLORS)-1)] + ';'
+                'vertical-align:middle;margin-right:8px"></span>'
+                '<span style="font-size:12px;font-weight:600;color:#2D3748;vertical-align:middle">' + t["tema"] + '</span>'
+                '<span style="font-size:11px;color:#C8D0DC;margin-left:5px;vertical-align:middle">' + str(t["count"]) + '</span>'
+                '</div>'
+                for i, t in enumerate(_tt)
             )
         )
 
         _social_snap_html = (
-            # Single row: hero | 2×2 stats | themes
-            '<table style="width:100%;border-collapse:collapse;margin-bottom:14px"><tr style="vertical-align:top">'
+            # Three columns: hero | 2×2 stats | themes
+            '<table style="width:100%;border-collapse:collapse;margin-bottom:18px"><tr style="vertical-align:top">'
             # Hero
-            '<td style="width:28%;padding-right:20px">'
-            '<div style="font-size:52px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-3px">'
+            '<td style="width:26%;padding-right:24px;border-right:1px solid #EDF2F7">'
+            '<div style="font-size:60px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-4px">'
             + str(_tot_men) + '</div>'
-            '<div style="font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
-            'color:#C0C8D8;margin-top:6px">menciones analizadas</div>'
+            '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
+            'color:#C8D0DC;margin-top:8px">menciones analizadas</div>'
             '</td>'
-            # 2×2 stats
-            '<td style="width:36%;vertical-align:top;padding-right:20px">'
+            # 2×2 sentiment stats
+            '<td style="width:38%;vertical-align:top;padding:0 24px;border-right:1px solid #EDF2F7">'
             '<table style="border-collapse:collapse"><tr>'
             + _sent_cell(_pct_pos_r, "Positivas", "#38A169")
             + _sent_cell(_pct_neg_r, "Negativas", "#E53E3E")
             + '</tr><tr>'
             + _sent_cell(_pct_mix_r, "Mixtas",    "#D69E2E")
-            + _sent_cell(_pct_neu_r, "Neutras",   "#C0C8D8")
+            + _sent_cell(_pct_neu_r, "Neutras",   "#C8D0DC")
             + '</tr></table>'
             '</td>'
-            # Themes
-            '<td style="vertical-align:top">' + _themes_col + '</td>'
+            # Themes vertical list
+            '<td style="vertical-align:top;padding-left:24px">' + _themes_col + '</td>'
             '</tr></table>'
-            # Full-width stacked bar at bottom
-            '<div style="width:100%;height:5px;border-radius:3px;overflow:hidden;'
+            # Sentiment distribution bar — labeled
+            '<div style="font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;'
+            'color:#C8D0DC;margin-bottom:6px">Distribución de sentimiento</div>'
+            '<div style="width:100%;height:6px;border-radius:3px;overflow:hidden;'
             'display:table;table-layout:fixed">'
             '<div style="display:table-cell;width:' + str(_bp) + '%;background:#38A169"></div>'
             '<div style="display:table-cell;width:' + str(_bn) + '%;background:#E53E3E"></div>'
