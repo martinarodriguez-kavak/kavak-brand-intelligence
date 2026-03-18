@@ -984,55 +984,55 @@ def main():
         _bm = round(_pct_mix_r / _tp * 100)
         _bu = max(0, 100 - _bp - _bn - _bm)
 
-        # Sentiment stat — inline-block span, zero borders
+        # Sentiment stat — compact inline-block
         def _sent_inline(pct, label, color):
             return (
-                '<span style="display:inline-block;margin-right:28px;vertical-align:top">'
-                '<div style="font-size:30px;font-weight:800;color:' + color + ';line-height:1;letter-spacing:-1px">'
+                '<span style="display:inline-block;margin-right:22px;vertical-align:top">'
+                '<div style="font-size:22px;font-weight:800;color:' + color + ';line-height:1;letter-spacing:-0.5px">'
                 + str(pct) + '%</div>'
                 '<div style="font-size:9px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;'
-                'color:#C0C8D8;margin-top:5px">' + label + '</div>'
+                'color:#C0C8D8;margin-top:4px">' + label + '</div>'
                 '</span>'
             )
 
-        # Theme tags — just colored dots + text, no box
+        # Theme tags — dots + text, compact
         _pills_html = "".join(
-            '<span style="display:inline-block;margin:0 14px 0 0;font-size:12px;color:#4A5568;font-weight:500">'
-            '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;'
-            'background:#0467FC;opacity:0.5;vertical-align:middle;margin-right:5px"></span>'
+            '<span style="display:inline-block;margin:0 12px 0 0;font-size:11px;color:#4A5568;font-weight:500">'
+            '<span style="display:inline-block;width:6px;height:6px;border-radius:50%;'
+            'background:#0467FC;opacity:0.45;vertical-align:middle;margin-right:5px"></span>'
             + t["tema"]
-            + '<span style="color:#C0C8D8;margin-left:4px;font-size:11px">' + str(t["count"]) + '</span>'
+            + '<span style="color:#C0C8D8;margin-left:3px;font-size:10px">' + str(t["count"]) + '</span>'
             + '</span>'
             for t in _tt
         )
 
         _social_snap_html = (
-            # Hero number — breathing room
-            '<div style="margin-bottom:24px">'
-            '<div style="font-size:56px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-3px">'
+            # Hero number — compact
+            '<div style="margin-bottom:10px">'
+            '<div style="font-size:36px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-2px">'
             + str(_tot_men) + '</div>'
-            '<div style="font-size:10px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
-            'color:#C0C8D8;margin-top:8px">menciones analizadas</div>'
+            '<div style="font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
+            'color:#C0C8D8;margin-top:5px">menciones analizadas</div>'
             '</div>'
-            # Thin stacked bar
-            '<div style="width:100%;height:6px;border-radius:3px;overflow:hidden;'
-            'display:table;table-layout:fixed;margin-bottom:24px">'
+            # Stacked bar
+            '<div style="width:100%;height:5px;border-radius:3px;overflow:hidden;'
+            'display:table;table-layout:fixed;margin-bottom:12px">'
             '<div style="display:table-cell;width:' + str(_bp) + '%;background:#38A169"></div>'
             '<div style="display:table-cell;width:' + str(_bn) + '%;background:#E53E3E"></div>'
             '<div style="display:table-cell;width:' + str(_bm) + '%;background:#D69E2E"></div>'
             '<div style="display:table-cell;width:' + str(_bu) + '%;background:#CBD5E0"></div>'
             '</div>'
-            # Sentiment stats — inline-block, no table, no borders
-            '<div style="margin-bottom:28px;white-space:nowrap">'
+            # Sentiment stats
+            '<div style="margin-bottom:14px;white-space:nowrap">'
             + _sent_inline(_pct_pos_r, "Positivas", "#38A169")
             + _sent_inline(_pct_neg_r, "Negativas", "#E53E3E")
             + _sent_inline(_pct_mix_r, "Mixtas",    "#D69E2E")
             + _sent_inline(_pct_neu_r, "Neutras",   "#C0C8D8")
             + '</div>'
-            # Themes — dots + text only
+            # Themes
             '<div style="font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;'
-            'color:#C0C8D8;margin-bottom:10px">Temas principales</div>'
-            '<div style="line-height:2.2">' + _pills_html + '</div>'
+            'color:#C0C8D8;margin-bottom:6px">Temas principales</div>'
+            '<div style="line-height:1.9">' + _pills_html + '</div>'
         )
 
         # Señales
