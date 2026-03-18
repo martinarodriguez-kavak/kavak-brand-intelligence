@@ -998,6 +998,8 @@ def main():
 
         # Theme dots — colored by rank
         _THEME_COLORS = ["#0467FC","#3685FD","#68A4FD","#94BBFE","#BDD4FE"]
+        _all_themes   = _soc_ov.get("top_themes", [])
+        _total_theme_count = sum(t["count"] for t in _all_themes) or 1
         _themes_col = (
             '<div style="font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;'
             'color:#718096;margin-bottom:10px;font-size:11px">Temas principales</div>'
@@ -1007,7 +1009,8 @@ def main():
                 'background:' + _THEME_COLORS[min(i, len(_THEME_COLORS)-1)] + ';'
                 'vertical-align:middle;margin-right:8px"></span>'
                 '<span style="font-size:12px;font-weight:600;color:#2D3748;vertical-align:middle">' + t["tema"] + '</span>'
-                '<span style="font-size:11px;color:#A0AEC0;margin-left:5px;vertical-align:middle">' + str(round(t["pct"])) + '%</span>'
+                '<span style="font-size:11px;color:#A0AEC0;margin-left:5px;vertical-align:middle">'
+                + str(round(t["count"] / _total_theme_count * 100)) + '%</span>'
                 '</div>'
                 for i, t in enumerate(_tt)
             )
