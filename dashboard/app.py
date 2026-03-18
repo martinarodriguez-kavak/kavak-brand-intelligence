@@ -1044,27 +1044,6 @@ def main():
             section_header("Señales", dot_color="blue")
             st.markdown(_sig_html, unsafe_allow_html=True)
 
-        # ── Crisis preview ──────────────────────────────────────
-        _crisis_ov = sorted(
-            [m for m in _raw_ov if m.get("intensidad", 0) >= 5 and m.get("sentimiento") == "negativo"],
-            key=lambda x: x.get("intensidad", 0), reverse=True
-        )
-        if _crisis_ov:
-            section_header("Menciones de Alto Impacto", dot_color="red")
-            _crisis_html = "".join(
-                '<div style="background:#FFF5F5;border:1px solid #FED7D7;border-radius:10px;'
-                'padding:18px 20px;margin-bottom:12px">'
-                '<div style="font-size:14px;color:#2D3748;line-height:1.7;margin-bottom:10px">'
-                '&ldquo;' + _cm.get("texto","")[:180] + '&rdquo;</div>'
-                '<div style="font-size:11px;color:#A0AEC0;line-height:1.6">'
-                + (_cm.get("fuente","?")) + ' &nbsp;&middot;&nbsp; ' + (_cm.get("fecha_aprox",""))
-                + ' &nbsp;<span style="font-size:10px;font-weight:700;letter-spacing:1px;'
-                'text-transform:uppercase;background:#E53E3E;color:white;padding:2px 8px;border-radius:4px">VIRAL</span>'
-                '</div></div>'
-                for _cm in _crisis_ov[:2]
-            )
-            st.markdown(_crisis_html, unsafe_allow_html=True)
-
     # ════════════════════════════════════════
     # TAB 1 — BRAND HEALTH
     # ════════════════════════════════════════
