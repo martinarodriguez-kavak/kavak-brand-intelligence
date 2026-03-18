@@ -841,6 +841,7 @@ def main():
     # ════════════════════════════════════════
     with tab0:
         import pandas as pd
+        import math as _math
         _bht_ov = load_bht_real()
 
         st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
@@ -899,8 +900,8 @@ def main():
           </div>
           <div style="font-size:22px;font-weight:700;line-height:1.4;margin-bottom:14px">
             Kavak lidera el mercado de seminuevos en México con
-            {'<strong>' + str(round(_tom)) + '% de Top of Mind</strong>' if _tom else 'liderazgo de Top of Mind'} y
-            {'<strong>' + str(round(_awa)) + '% de Awareness Asistida</strong>' if _awa else 'alta notoriedad'}.
+            {'<strong>' + str(round(_tom)) + '% de Top of Mind</strong>' if (_tom and not _math.isnan(_tom)) else 'liderazgo de Top of Mind'} y
+            {'<strong>' + str(round(_awa)) + '% de Awareness Asistida</strong>' if (_awa and not _math.isnan(_awa)) else 'alta notoriedad'}.
             La percepción en redes muestra un
             <span style="border-bottom:2px solid rgba(255,255,255,0.5)">{round(_pct_neg or 0)}% de menciones negativas</span>,
             concentradas principalmente en <em>{_top_neg}</em>.
@@ -932,7 +933,8 @@ def main():
             for _col, (_metric, _label, _unit) in zip(_kpi_cols, _kpi_defs):
                 _v = _ov_val(_metric)
                 _d = _ov_delta(_metric)
-                _v_str = f"{round(_v)}{_unit}" if _v is not None else "–"
+                import math as _math
+                _v_str = f"{round(_v)}{_unit}" if (_v is not None and not _math.isnan(_v)) else "–"
                 _d_html = _delta_html(_d, unit=_unit)
                 with _col:
                     st.markdown(f"""
