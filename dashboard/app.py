@@ -1072,6 +1072,7 @@ def main():
         _str_col = _col_label("Fortalezas", "#0467FC") + "".join(_sig_row(s, "#0467FC") for s in _strengths)
         _risk_col = _col_label("Riesgos", "#E53E3E")   + "".join(_sig_row(r, "#E53E3E") for r in _risks)
         _senales_html = (
+            '<div style="height:16px"></div>'
             '<table style="width:100%;border-collapse:collapse"><tr style="vertical-align:top">'
             '<td style="width:50%;padding-right:20px;border:none">' + _str_col + '</td>'
             '<td style="width:50%;padding-left:4px;border:none">'  + _risk_col + '</td>'
