@@ -811,23 +811,6 @@ def main():
     # ── CONTAINER START ──
     st.markdown('<div class="container">', unsafe_allow_html=True)
 
-    # ── EXEC SUMMARY BANNER ──
-    exec_text = analysis.get("executive_summary") or (
-        "Kavak México muestra un crecimiento sostenido de marca en los últimos 5 años: "
-        "el Top of Mind pasó de <strong>3.3%</strong> a <strong>53%</strong>, el Awareness Asistido de <strong>26%</strong> a <strong>84%</strong> "
-        "y la Consideración de <strong>5%</strong> a <strong>63%</strong>. "
-        "El NPS alcanzó <strong>53 puntos</strong> y el Brand Equity Index se ubica en <strong>84</strong>. "
-        "La marca se consolidó como líder indiscutida en seminuevos en México. "
-        "<span style='color:rgba(255,220,80,0.95);font-weight:600;'>⚠ Señal a monitorear: "
-        "Consideración cayó 6pp e Intención de Compra 5pp en el último período.</span>"
-    )
-    st.markdown(f"""
-    <div class="exec-banner">
-      <div class="e-eyebrow">Executive Summary · Brand Health Tracker Analysis</div>
-      <div class="e-text">{exec_text}</div>
-    </div>
-    """, unsafe_allow_html=True)
-
     # ── TABS ──
     tab0, tab1, tab2, tab3 = st.tabs([
         "🎯  Overview Ejecutivo",
@@ -913,7 +896,7 @@ def main():
         if _nps_l is not None: _kpi_parts.append(f"El NPS alcanzó <strong>{round(_nps_l)} puntos</strong>")
         if _bei_l is not None: _kpi_parts.append(f"el Brand Equity Index se ubica en <strong>{round(_bei_l)}</strong>")
         if _kpi_parts:
-            _body_parts.append(" ".join(_kpi_parts) + ". La marca se consolidó como líder indiscutida en seminuevos en México.")
+            _body_parts.append(", ".join(_kpi_parts) + ". La marca se consolidó como líder indiscutida en seminuevos en México.")
 
         _body_html = " ".join(_body_parts)
 
@@ -937,7 +920,7 @@ def main():
             '<div style="position:absolute;right:-40px;top:-40px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.07)"></div>'
             '<div style="position:absolute;right:60px;bottom:-60px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.05)"></div>'
             '<div style="position:relative;z-index:1">'
-            '<div style="font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#C5E50B;margin-bottom:14px">Executive Summary &middot; Brand Health Tracker Analysis</div>'
+            '<div style="font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C5E50B;margin-bottom:14px">Executive Summary &middot; Brand Health Tracker Analysis</div>'
             '<div style="font-size:15px;font-weight:400;color:rgba(255,255,255,0.95);line-height:1.7">' + _body_html + '</div>'
             + _alert_html +
             '</div></div>'
