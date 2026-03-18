@@ -967,15 +967,16 @@ def main():
             bar_w = min(pct, 100)
             return (
                 '<tr>'
-                '<td style="padding:12px 16px 12px 0;width:26%;vertical-align:middle">'
-                '<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#718096">'
-                + label + '</div></td>'
-                '<td style="padding:12px 12px;width:16%;vertical-align:middle;text-align:right">'
-                '<div style="font-size:24px;font-weight:800;color:' + color + ';line-height:1">' + str(pct) + '%</div></td>'
-                '<td style="padding:12px 0;vertical-align:middle">'
-                '<div style="background:#F0F0F0;border-radius:4px;height:7px">'
-                '<div style="background:' + color + ';width:' + str(bar_w) + '%;height:7px;border-radius:4px"></div>'
-                '</div></td>'
+                '<td style="padding:14px 0;width:22%;vertical-align:middle">'
+                '<span style="font-size:9px;font-weight:700;letter-spacing:2px;'
+                'text-transform:uppercase;color:#A0AEC0">' + label + '</span></td>'
+                '<td style="padding:14px 14px 14px 0;width:14%;vertical-align:middle;text-align:right">'
+                '<span style="font-size:30px;font-weight:800;color:' + color + ';line-height:1;'
+                'letter-spacing:-1px">' + str(pct) + '%</span></td>'
+                '<td style="padding:14px 0;vertical-align:middle">'
+                '<div style="background:#EEF2F7;border-radius:3px;height:4px">'
+                '<div style="background:' + color + ';width:' + str(bar_w) + '%;'
+                'height:4px;border-radius:3px"></div></div></td>'
                 '</tr>'
             )
 
@@ -986,15 +987,20 @@ def main():
             for t in _tt
         )
         _rep_html = (
-            '<table style="width:100%;border-collapse:collapse;border-bottom:1px solid #F0F0F0">'
+            '<div style="background:#fff;border-radius:12px;border:1px solid #E8EDF2;'
+            'border-top:3px solid #0467FC;padding:4px 20px 16px;'
+            'box-shadow:0 1px 6px rgba(4,103,252,0.07)">'
+            '<table style="width:100%;border-collapse:collapse">'
             + _sent_row("Positivas", _pct_pos_r, "#38A169")
             + _sent_row("Negativas", _pct_neg_r, "#E53E3E")
             + _sent_row("Mixtas",    _pct_mix_r, "#D69E2E")
             + _sent_row("Neutrales", _pct_neu_r, "#A0AEC0")
             + '</table>'
-            '<div style="margin-top:14px;line-height:2.4">' + _pills + '</div>'
-            '<div style="font-size:11px;color:#A0AEC0;margin-top:10px;font-style:italic;line-height:1.6">'
+            '<div style="border-top:1px solid #F0F4F8;margin-top:4px;padding-top:14px;line-height:2.4">'
+            + _pills + '</div>'
+            '<div style="font-size:11px;color:#A0AEC0;margin-top:8px;font-style:italic">'
             + str(_tot_men) + ' menciones &middot; Ver detalle en Social Listening.</div>'
+            '</div>'
         )
 
         with _col_soc:
