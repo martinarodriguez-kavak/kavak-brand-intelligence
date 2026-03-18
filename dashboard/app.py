@@ -1079,7 +1079,7 @@ def main():
             '</tr></table>'
         )
 
-        _col_snap, _col_sig = st.columns([1, 1])
+        _col_snap, _col_sig = st.columns([2, 3])
         with _col_snap:
             section_header("Social Listening · Snapshot", dot_color="blue")
             st.markdown(_social_snap_html, unsafe_allow_html=True)
