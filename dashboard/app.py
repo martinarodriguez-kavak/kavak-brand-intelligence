@@ -962,44 +962,45 @@ def main():
         _pct_mix_r = round(_sd_ov.get("mixto", 0))
         _pct_neu_r = round(_sd_ov.get("neutro", 0))
         _tt        = _soc_ov.get("top_themes", [])[:5]
-        _pills     = " &nbsp; ".join(
-            '<span style="background:#EBF4FF;color:#0467FC;border-radius:20px;'
-            'padding:4px 12px;font-size:11px;font-weight:600">'
-            + t["tema"] + " &middot; " + str(t["count"]) + "</span>"
-            for t in _tt
-        )
-
-        def _sent_row(label, pct, color, bg):
-            bar_w = min(pct, 100)
-            return (
-                '<tr style="border-bottom:1px solid #F0F0F0">'
-                '<td style="padding:14px 14px 14px 0;width:28%;vertical-align:middle">'
-                '<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#718096">'
-                + label + '</div></td>'
-                '<td style="padding:14px 10px;width:18%;vertical-align:middle;text-align:right">'
-                '<div style="font-size:26px;font-weight:800;color:' + color + ';line-height:1">' + str(pct) + '%</div></td>'
-                '<td style="padding:14px 0 14px 14px;vertical-align:middle">'
-                '<div style="background:#F0F0F0;border-radius:4px;height:8px">'
-                '<div style="background:' + color + ';width:' + str(bar_w) + '%;height:8px;border-radius:4px"></div>'
-                '</div></td>'
-                '</tr>'
-            )
-
-        _rep_html = (
-            '<table style="width:100%;border-collapse:collapse">'
-            + _sent_row("Positivas", _pct_pos_r, "#38A169", "#F0FFF4")
-            + _sent_row("Negativas", _pct_neg_r, "#E53E3E", "#FFF5F5")
-            + _sent_row("Mixtas",    _pct_mix_r, "#D69E2E", "#FFFFF0")
-            + _sent_row("Neutrales", _pct_neu_r, "#718096", "#F7FAFC")
-            + '</table>'
-            '<div style="font-size:11px;color:#A0AEC0;margin:14px 0 12px;line-height:1.6;font-style:italic">'
-            + str(_tot_men) + ' menciones analizadas &middot; Para más detalle, ingresá a la tab de Social Listening.</div>'
-            '<div style="line-height:2.4">' + _pills + '</div>'
-        )
 
         with _col_soc:
             section_header("Reputación Digital", dot_color="blue")
-            st.markdown(_rep_html, unsafe_allow_html=True)
+            import plotly.graph_objects as go
+            _donut_labels = ["Positivas", "Negativas", "Mixtas", "Neutrales"]
+            _donut_vals   = [_pct_pos_r, _pct_neg_r, _pct_mix_r, _pct_neu_r]
+            _donut_colors = ["#38A169", "#E53E3E", "#D69E2E", "#CBD5E0"]
+            _fig_donut = go.Figure(go.Pie(
+                labels=_donut_labels, values=_donut_vals, hole=0.58,
+                marker=dict(colors=_donut_colors),
+                textinfo="label+percent",
+                textfont=dict(size=12),
+                insidetextorientation="radial",
+            ))
+            _fig_donut.update_layout(
+                showlegend=False,
+                margin=dict(l=20, r=20, t=20, b=10),
+                height=300,
+                paper_bgcolor="white",
+                font=dict(family="Helvetica Neue"),
+                annotations=[dict(
+                    text=f"<b>{_tot_men}</b><br><span style='font-size:10px'>menciones</span>",
+                    x=0.5, y=0.5, showarrow=False,
+                    font=dict(size=18, family="Helvetica Neue"),
+                )]
+            )
+            st.plotly_chart(_fig_donut, use_container_width=True)
+
+            _pills = " &nbsp; ".join(
+                '<span style="background:#EBF4FF;color:#0467FC;border-radius:20px;'
+                'padding:4px 12px;font-size:11px;font-weight:600">'
+                + t["tema"] + " &middot; " + str(t["count"]) + "</span>"
+                for t in _tt
+            )
+            st.markdown(
+                '<div style="line-height:2.6">' + _pills + '</div>'
+                '<div style="font-size:11px;color:#A0AEC0;margin-top:12px;font-style:italic">'
+                'Para más detalle, ingresá a la tab de Social Listening.</div>',
+                unsafe_allow_html=True)
 
 
         # ── Señales ──────────────────────────────────────────────
