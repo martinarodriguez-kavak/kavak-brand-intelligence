@@ -53,6 +53,44 @@ st.markdown("""
     background: var(--bg) !important;
   }
 
+  /* ─── KPI popover trigger: invisible overlay so the card is the visual ─── */
+  div[data-testid="stPopover"] > div > button {
+    position: absolute !important;
+    top: 0; left: 0; width: 100% !important; height: 100% !important;
+    opacity: 0 !important;
+    cursor: pointer !important;
+    z-index: 10;
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+  div[data-testid="stPopover"] {
+    position: relative !important;
+    width: 100% !important;
+  }
+
+  /* ─── "Ver más" nav buttons: subtle text-link style ─── */
+  button[kind="secondary"][data-testid="baseButton-secondary"]:is(
+    [data-key="nav_bht"], [data-key="nav_social"]
+  ) { display: none; } /* fallback hidden; override below */
+  div[data-testid="stButton"]:has(button[data-key="nav_bht"]) > button,
+  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button {
+    background: transparent !important;
+    border: none !important;
+    color: #0467FC !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    letter-spacing: 0.3px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  div[data-testid="stButton"]:has(button[data-key="nav_bht"]) > button:hover,
+  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button:hover {
+    color: #0352C9 !important;
+  }
+
   /* Hide Streamlit chrome */
   header[data-testid="stHeader"] { display: none !important; }
   #MainMenu { visibility: hidden !important; }
@@ -823,6 +861,20 @@ def main():
     # ── CONTAINER START ──
     st.markdown('<div class="container">', unsafe_allow_html=True)
 
+    # ── Tab navigation via JS ──
+    if "goto_tab" not in st.session_state:
+        st.session_state.goto_tab = None
+    if st.session_state.goto_tab is not None:
+        _goto = st.session_state.goto_tab
+        st.session_state.goto_tab = None
+        import streamlit.components.v1 as _cmp
+        _cmp.html(f"""<script>
+        setTimeout(function(){{
+            var tabs=window.parent.document.querySelectorAll('button[data-baseweb="tab"]');
+            if(tabs[{_goto}])tabs[{_goto}].click();
+        }},250);
+        </script>""", height=0)
+
     # ── TABS ──
     tab0, tab1, tab2, tab3 = st.tabs([
         "🎯  Overview Ejecutivo",
@@ -940,6 +992,14 @@ def main():
         st.markdown(_hero, unsafe_allow_html=True)
 
         # ── BHT KPI row ────────────────────────────────────────
+        _KPI_EXP = {
+            "Top_of_Mind":               "**Top of Mind** — Primera marca en que piensa el consumidor al pensar en autos usados. Es el indicador más fuerte de liderazgo de categoría.",
+            "Awareness_Asistida":        "**Awareness Asistida** — % de personas que reconocen Kavak cuando se les menciona el nombre. Mide el alcance total de notoriedad de marca.",
+            "Consideracion":             "**Consideración** — % de consumidores que incluirían a Kavak al evaluar opciones para comprar o vender su auto. Mide intención real.",
+            "NPS_Score":                 "**NPS Score** — Net Promoter Score: mide disposición a recomendar Kavak. Escala de −100 a +100. Benchmark industria: > 30 bueno, > 50 excelente.",
+            "Brand_Equity_Index":        "**Brand Equity Index** — Índice compuesto del valor de marca: combina awareness, consideración, preferencia y lealtad en un solo número.",
+            "Brand_Satisfaction_Top2box":"**Satisfacción Top2Box** — % de clientes que califican su experiencia como 'satisfecho' o 'muy satisfecho' (top 2 opciones de escala de 5 puntos).",
+        }
         section_header("Brand Health · Última Ola", dot_color="blue")
         if _bht_ov is not None and not _bht_ov.empty:
             _kpi_defs = [
@@ -957,15 +1017,22 @@ def main():
                 _v_str   = _fmt(_v, _unit)
                 _d_chip  = _delta_chip(_d, unit=_unit.strip())
                 with _col:
+                    with st.popover("", use_container_width=True):
+                        st.markdown(_KPI_EXP.get(_metric, _label))
+                        st.markdown(f"**Última ola:** {_v_str}")
                     st.markdown(f"""
                     <div style="background:#fff;border:1px solid #EDF0F7;border-radius:12px;
                       padding:20px 10px;text-align:center;
-                      box-shadow:0 2px 8px rgba(4,103,252,0.06)">
+                      box-shadow:0 2px 8px rgba(4,103,252,0.06);margin-top:-38px">
                       <div style="font-size:10px;font-weight:700;text-transform:uppercase;
                         letter-spacing:.6px;color:#A0AEC0;margin-bottom:10px">{_label}</div>
                       <div style="font-size:28px;font-weight:800;color:var(--kavak-blue);line-height:1">{_v_str}</div>
                       <div style="margin-top:8px;min-height:18px">{_d_chip}</div>
                     </div>""", unsafe_allow_html=True)
+            st.markdown('<div style="height:8px"></div>', unsafe_allow_html=True)
+            if st.button("Ver Brand Health completo →", key="nav_bht"):
+                st.session_state.goto_tab = 1
+                st.rerun()
         else:
             st.info("Cargá archivos BHT en /data para ver los KPIs.")
 
@@ -1106,6 +1173,10 @@ def main():
         with _col_snap:
             section_header("Social Listening · Snapshot", dot_color="blue")
             st.markdown(_social_snap_html, unsafe_allow_html=True)
+            st.markdown('<div style="height:6px"></div>', unsafe_allow_html=True)
+            if st.button("Ver Social Listening completo →", key="nav_social"):
+                st.session_state.goto_tab = 2
+                st.rerun()
         with _col_sig:
             section_header("Se&#241;ales Estrat&#233;gicas", dot_color="blue")
             st.markdown(_senales_html, unsafe_allow_html=True)
