@@ -1098,6 +1098,7 @@ def main():
             '</tr></table>'
         )
 
+        st.markdown('<div style="height:20px"></div>', unsafe_allow_html=True)
         _col_snap, _col_sig = st.columns([1, 1])
         with _col_snap:
             section_header("Social Listening · Snapshot", dot_color="blue")
