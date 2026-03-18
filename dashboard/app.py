@@ -1000,14 +1000,14 @@ def main():
         _THEME_COLORS = ["#0467FC","#3685FD","#68A4FD","#94BBFE","#BDD4FE"]
         _themes_col = (
             '<div style="font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;'
-            'color:#C8D0DC;margin-bottom:10px">Temas principales</div>'
+            'color:#718096;margin-bottom:10px">Temas principales</div>'
             + "".join(
                 '<div style="margin-bottom:7px">'
                 '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;'
                 'background:' + _THEME_COLORS[min(i, len(_THEME_COLORS)-1)] + ';'
                 'vertical-align:middle;margin-right:8px"></span>'
                 '<span style="font-size:12px;font-weight:600;color:#2D3748;vertical-align:middle">' + t["tema"] + '</span>'
-                '<span style="font-size:11px;color:#C8D0DC;margin-left:5px;vertical-align:middle">' + str(t["count"]) + '</span>'
+                '<span style="font-size:11px;color:#A0AEC0;margin-left:5px;vertical-align:middle">' + str(round(t["pct"])) + '%</span>'
                 '</div>'
                 for i, t in enumerate(_tt)
             )
