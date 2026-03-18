@@ -1015,28 +1015,33 @@ def main():
              for c in _neg_clusters if c.get("tema") != _top_neg]
         )[:3]
 
-        def _signal_row(text, color, bg):
-            return (
-                '<tr>'
-                '<td style="padding:10px 0;vertical-align:top;width:20px">'
-                '<div style="width:8px;height:8px;border-radius:50%;background:' + color + ';margin-top:5px"></div>'
-                '</td>'
-                '<td style="padding:10px 0 10px 10px;font-size:13px;color:#2D3748;line-height:1.6;'
-                'border-bottom:1px solid #F7F7F7">' + text + '</td>'
-                '</tr>'
-            )
-
+        _str_items = "".join(
+            '<div style="font-size:13px;color:rgba(255,255,255,0.88);line-height:1.65;'
+            'margin-bottom:12px;padding-left:12px;border-left:2px solid #C5E50B">'
+            + s + '</div>'
+            for s in _strengths
+        )
+        _risk_items = "".join(
+            '<div style="font-size:13px;color:#2D3748;line-height:1.65;'
+            'margin-bottom:12px;padding-left:12px;border-left:2px solid #E53E3E">'
+            + r + '</div>'
+            for r in _risks
+        )
         _sig_html = (
-            '<div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-            'color:#276749;margin-bottom:6px">Fortalezas</div>'
-            '<table style="width:100%;border-collapse:collapse;margin-bottom:20px">'
-            + "".join(_signal_row(s, "#38A169", "#F0FFF4") for s in _strengths)
-            + '</table>'
-            '<div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-            'color:#C53030;margin-bottom:6px">Riesgos</div>'
-            '<table style="width:100%;border-collapse:collapse">'
-            + "".join(_signal_row(r, "#E53E3E", "#FFF5F5") for r in _risks)
-            + '</table>'
+            '<table style="width:100%;border-collapse:separate;border-spacing:10px 0">'
+            '<tr style="vertical-align:top">'
+            '<td style="width:50%;background:#0E1829;border-radius:12px;padding:20px 18px;vertical-align:top">'
+            '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
+            'color:#C5E50B;margin-bottom:16px">Fortalezas</div>'
+            + _str_items +
+            '</td>'
+            '<td style="width:50%;background:#FFF5F5;border:1px solid #FED7D7;border-radius:12px;'
+            'padding:20px 18px;vertical-align:top">'
+            '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
+            'color:#C53030;margin-bottom:16px">Riesgos</div>'
+            + _risk_items +
+            '</td>'
+            '</tr></table>'
         )
 
         with _col_sig:
