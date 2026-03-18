@@ -945,10 +945,13 @@ def main():
                 _d_chip  = _delta_chip(_d, unit=_unit.strip())
                 with _col:
                     st.markdown(f"""
-                    <div class="summary-card" style="text-align:center;padding:20px 8px">
-                      <div class="s-label" style="margin-bottom:8px;font-size:11px">{_label}</div>
+                    <div style="background:#fff;border:1px solid #EDF0F7;border-radius:12px;
+                      padding:20px 10px;text-align:center;
+                      box-shadow:0 2px 8px rgba(4,103,252,0.06)">
+                      <div style="font-size:10px;font-weight:700;text-transform:uppercase;
+                        letter-spacing:.6px;color:#A0AEC0;margin-bottom:10px">{_label}</div>
                       <div style="font-size:28px;font-weight:800;color:var(--kavak-blue);line-height:1">{_v_str}</div>
-                      <div style="margin-top:6px;min-height:18px">{_d_chip}</div>
+                      <div style="margin-top:8px;min-height:18px">{_d_chip}</div>
                     </div>""", unsafe_allow_html=True)
         else:
             st.info("Cargá archivos BHT en /data para ver los KPIs.")
@@ -963,12 +966,16 @@ def main():
         _tt        = _soc_ov.get("top_themes", [])[:5]
 
         def _sent_card(label, pct, color):
+            bar_w = min(int(pct), 100)
             return (
-                '<td style="width:25%;padding:8px 12px;vertical-align:top;text-align:center">'
+                '<td style="width:25%;padding:10px 14px;vertical-align:top;text-align:center">'
                 '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-                'color:#A0AEC0;margin-bottom:8px">' + label + '</div>'
-                '<div style="font-size:28px;font-weight:800;color:' + color + ';line-height:1">'
+                'color:#A0AEC0;margin-bottom:10px">' + label + '</div>'
+                '<div style="font-size:30px;font-weight:800;color:' + color + ';line-height:1">'
                 + str(pct) + '%</div>'
+                '<div style="margin-top:10px;height:3px;background:#F0F2F5;border-radius:2px">'
+                '<div style="width:' + str(bar_w) + '%;height:100%;background:' + color + ';border-radius:2px"></div>'
+                '</div>'
                 '</td>'
             )
 
@@ -1011,10 +1018,9 @@ def main():
 
         def _signal_item(text, accent):
             return (
-                '<div style="display:table;width:100%;padding:11px 0;'
-                'border-bottom:1px solid #F3F4F6">'
-                '<div style="display:table-cell;width:4px;vertical-align:top;padding-top:6px">'
-                '<div style="width:3px;height:3px;border-radius:50%;background:' + accent + '"></div>'
+                '<div style="display:table;width:100%;padding:10px 0">'
+                '<div style="display:table-cell;width:3px;vertical-align:top;padding-top:5px">'
+                '<div style="width:3px;height:14px;border-radius:2px;background:' + accent + ';opacity:0.7"></div>'
                 '</div>'
                 '<div style="display:table-cell;padding-left:12px;font-size:13px;'
                 'color:#2D3748;line-height:1.65">' + text + '</div>'
@@ -1025,18 +1031,22 @@ def main():
         _risk_items = "".join(_signal_item(r, "#E53E3E") for r in _risks)
 
         _sig_html = (
-            '<table style="width:100%;border-collapse:separate;border-spacing:8px 0">'
+            '<table style="width:100%;border-collapse:separate;border-spacing:0">'
             '<tr style="vertical-align:top">'
             # Fortalezas
-            '<td style="width:50%;vertical-align:top;padding-right:24px">'
+            '<td style="width:50%;vertical-align:top;padding-right:20px">'
             '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-            'color:#0467FC;margin-bottom:12px">Fortalezas</div>'
+            'color:#0467FC;margin-bottom:6px;padding-bottom:8px;border-bottom:2px solid #EBF4FF">Fortalezas</div>'
             + _str_items +
             '</td>'
+            # separator
+            '<td style="width:1px;padding:0;vertical-align:stretch">'
+            '<div style="width:1px;background:#EDF0F7;height:100%;min-height:120px"></div>'
+            '</td>'
             # Riesgos
-            '<td style="width:50%;vertical-align:top;padding-left:8px">'
+            '<td style="width:50%;vertical-align:top;padding-left:20px">'
             '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-            'color:#E53E3E;margin-bottom:12px">Riesgos</div>'
+            'color:#E53E3E;margin-bottom:6px;padding-bottom:8px;border-bottom:2px solid #FFF5F5">Riesgos</div>'
             + _risk_items +
             '</td>'
             '</tr></table>'
