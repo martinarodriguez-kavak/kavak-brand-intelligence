@@ -1016,14 +1016,16 @@ def main():
             # Three columns: hero | 2×2 stats | themes
             '<table style="width:100%;border-collapse:collapse;margin-bottom:18px"><tr style="vertical-align:top">'
             # Hero + bar in same cell
-            '<td style="width:38%;padding-right:24px;border-right:1px solid #EDF2F7;vertical-align:middle">'
+            '<td style="width:38%;padding-right:24px;border-right:1px solid #EDF2F7;vertical-align:top">'
             '<div style="font-size:60px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-4px">'
             + str(_tot_men) + '</div>'
             '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
             'color:#C8D0DC;margin-top:8px">menciones analizadas</div>'
+            '<div style="margin-top:20px;font-size:11px;color:#C8D0DC;font-style:italic;line-height:1.5">'
+            'Ver detalle completo en la tab Social Listening.</div>'
             '</td>'
             # 2×2 sentiment stats
-            '<td style="width:38%;vertical-align:top;padding:0 24px;border-right:1px solid #EDF2F7">'
+            '<td style="width:38%;vertical-align:top;padding:0 24px;border-right:1px solid #EDF2F7;vertical-align:top">'
             '<table style="border-collapse:collapse"><tr>'
             + _sent_cell(_pct_pos_r, "Positivas", "#38A169")
             + _sent_cell(_pct_neg_r, "Negativas", "#E53E3E")
