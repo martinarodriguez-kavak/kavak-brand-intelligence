@@ -925,12 +925,8 @@ def main():
             _alert_parts.append(f"Intención de Compra {abs(_int_d)}pp")
         _alert_html = ""
         if _alert_parts:
-            _alert_html = f"""
-            <div style="margin-top:16px;font-size:14px;color:rgba(255,255,255,0.9)">
-              <span style="color:#C5E50B;font-weight:700;margin-right:6px">⚠</span>
-              <span style="color:#C5E50B;font-weight:700">Señal a monitorear:</span>
-              <span style="color:#C5E50B"> {" e ".join(_alert_parts)} en el último período.</span>
-            </div>"""
+            _alert_text = " e ".join(_alert_parts)
+            _alert_html = f'<div style="margin-top:16px;font-size:14px"><span style="color:#C5E50B;font-weight:700;margin-right:4px">&#9888;</span><span style="color:#C5E50B;font-weight:700">Se&#241;al a monitorear:</span><span style="color:#C5E50B"> {_alert_text} en el &#250;ltimo per&#237;odo.</span></div>'
 
         st.markdown(f"""
         <div style="background:#0467FC;border-radius:12px;padding:28px 36px;margin-bottom:20px;
