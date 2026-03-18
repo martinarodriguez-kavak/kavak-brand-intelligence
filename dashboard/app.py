@@ -641,7 +641,9 @@ def load_bht_real() -> "pd.DataFrame | None":
 
 def navbar(has_api_key: bool):
     import datetime
-    now = datetime.datetime.now().strftime("%d %b %Y")
+    import zoneinfo
+    tz_mx = zoneinfo.ZoneInfo("America/Mexico_City")
+    now = datetime.datetime.now(tz=tz_mx).strftime("%d %b %Y")
     api_badge = "" if has_api_key else '<span class="api-badge-off">⚠ Sin API key</span>'
     st.markdown(f"""
     <div class="navbar">
