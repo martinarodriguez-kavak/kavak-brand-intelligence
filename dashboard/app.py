@@ -989,8 +989,8 @@ def main():
             + _sent_cell("Mixtas",    _pct_mix_r, "#D69E2E", "#FFFFF0", "#FEEBC8")
             + _sent_cell("Neutrales", _pct_neu_r, "#718096", "#F7FAFC", "#E2E8F0")
             + '</tr></table>'
-            '<div style="font-size:12px;color:#A0AEC0;margin:16px 0 12px;line-height:1.6">'
-            + str(_tot_men) + ' menciones analizadas</div>'
+            '<div style="font-size:11px;color:#A0AEC0;margin:16px 0 12px;line-height:1.6;font-style:italic">'
+            + str(_tot_men) + ' menciones analizadas &middot; Para más detalle, ingresá a la tab de Social Listening.</div>'
             '<div style="line-height:2.4">' + _pills + '</div>'
         )
 
@@ -998,34 +998,6 @@ def main():
             section_header("Reputación Digital", dot_color="blue")
             st.markdown(_rep_html, unsafe_allow_html=True)
 
-            # ── Expandable verbatims per sentiment ──────────────
-            _verbatims_ov = _soc_ov.get("verbatims", {})
-            _sent_labels = [
-                ("positivo", "Positivas", "28%", "#38A169"),
-                ("negativo", "Negativas", "66%", "#E53E3E"),
-                ("mixto",    "Mixtas",    "6%",  "#D69E2E"),
-            ]
-            with st.expander("Ver menciones por sentimiento"):
-                _exp_tabs = st.tabs(["Positivas", "Negativas", "Mixtas"])
-                for _et, (_sk, _sl, _, _sc) in zip(_exp_tabs, _sent_labels):
-                    with _et:
-                        _vlist = _verbatims_ov.get(_sk, [])[:5]
-                        if not _vlist:
-                            st.caption("Sin menciones.")
-                        for _v in _vlist:
-                            _vtxt  = _v.get("texto", "")
-                            _vfnt  = _v.get("fuente", "?")
-                            _vdate = _v.get("fecha_aprox") or _v.get("fecha_mencion") or ""
-                            _vurl  = _v.get("url") or ""
-                            _vsrc  = f"[{_vfnt}]({_vurl})" if _vurl else _vfnt
-                            st.markdown(
-                                f'<div style="border-left:3px solid {_sc};padding:10px 14px;'
-                                f'margin-bottom:10px;background:#FAFAFA;border-radius:0 6px 6px 0;'
-                                f'font-size:13px;color:#2D3748;line-height:1.7">'
-                                f'&ldquo;{_vtxt}&rdquo;'
-                                f'<div style="font-size:11px;color:#A0AEC0;margin-top:6px">{_vsrc} &middot; {_vdate}</div>'
-                                f'</div>',
-                                unsafe_allow_html=True)
 
         # ── Señales ──────────────────────────────────────────────
         _pos_clusters = _soc_ov.get("positive_clusters", [])[:2]
