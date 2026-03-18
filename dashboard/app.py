@@ -138,8 +138,7 @@ st.markdown("""
     align-items: center;
     gap: 10px;
     margin: 28px 0 16px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--border);
+    padding-bottom: 0;
   }
   .section-dot {
     width: 10px;
@@ -1010,32 +1009,40 @@ def main():
              for c in _neg_clusters if c.get("tema") != _top_neg]
         )[:3]
 
-        _str_items = "".join(
-            '<div style="font-size:13px;color:rgba(255,255,255,0.88);line-height:1.65;'
-            'margin-bottom:12px;padding-left:12px;border-left:2px solid #C5E50B">'
-            + s + '</div>'
-            for s in _strengths
-        )
-        _risk_items = "".join(
-            '<div style="font-size:13px;color:#2D3748;line-height:1.65;'
-            'margin-bottom:12px;padding-left:12px;border-left:2px solid #E53E3E">'
-            + r + '</div>'
-            for r in _risks
-        )
+        def _signal_item(text, accent):
+            return (
+                '<div style="display:table;width:100%;padding:11px 0;'
+                'border-bottom:1px solid #F3F4F6">'
+                '<div style="display:table-cell;width:4px;vertical-align:top;padding-top:6px">'
+                '<div style="width:3px;height:3px;border-radius:50%;background:' + accent + '"></div>'
+                '</div>'
+                '<div style="display:table-cell;padding-left:12px;font-size:13px;'
+                'color:#2D3748;line-height:1.65">' + text + '</div>'
+                '</div>'
+            )
+
+        _str_items  = "".join(_signal_item(s, "#0467FC") for s in _strengths)
+        _risk_items = "".join(_signal_item(r, "#E53E3E") for r in _risks)
+
         _sig_html = (
-            '<table style="width:100%;border-collapse:separate;border-spacing:10px 0">'
+            '<table style="width:100%;border-collapse:separate;border-spacing:8px 0">'
             '<tr style="vertical-align:top">'
-            '<td style="width:50%;background:#0467FC;border-radius:12px;padding:20px 18px;vertical-align:top">'
-            '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-            'color:#C5E50B;margin-bottom:16px">Fortalezas</div>'
+            # Fortalezas card
+            '<td style="width:50%;vertical-align:top">'
+            '<div class="summary-card" style="padding:18px 16px;height:100%">'
+            '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
+            'color:#0467FC;margin-bottom:10px;padding-bottom:10px;border-bottom:2px solid #0467FC">'
+            'Fortalezas</div>'
             + _str_items +
-            '</td>'
-            '<td style="width:50%;background:#FFF5F5;border:1px solid #FED7D7;border-radius:12px;'
-            'padding:20px 18px;vertical-align:top">'
-            '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-            'color:#C53030;margin-bottom:16px">Riesgos</div>'
+            '</div></td>'
+            # Riesgos card
+            '<td style="width:50%;vertical-align:top">'
+            '<div class="summary-card" style="padding:18px 16px;height:100%">'
+            '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
+            'color:#E53E3E;margin-bottom:10px;padding-bottom:10px;border-bottom:2px solid #E53E3E">'
+            'Riesgos</div>'
             + _risk_items +
-            '</td>'
+            '</div></td>'
             '</tr></table>'
         )
 
