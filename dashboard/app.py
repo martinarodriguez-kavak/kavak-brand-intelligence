@@ -965,7 +965,7 @@ def main():
         _pct_neu_r = round(_sd_ov.get("neutro", 0))
         _tt        = _soc_ov.get("top_themes", [])[:5]
 
-        # ─ Stacked sentiment bar ─
+        # ─ Sentiment bar proportions ─
         _total_pct = _pct_pos_r + _pct_neg_r + _pct_mix_r + _pct_neu_r
         if _total_pct == 0: _total_pct = 1
         _bar_pos = round(_pct_pos_r / _total_pct * 100)
@@ -973,42 +973,44 @@ def main():
         _bar_mix = round(_pct_mix_r / _total_pct * 100)
         _bar_neu = max(0, 100 - _bar_pos - _bar_neg - _bar_mix)
 
+        def _stat_cell(pct, label, color, border_r=True):
+            bdr = 'border-right:1px solid #EDF2F7;' if border_r else ''
+            return (
+                '<td style="text-align:center;padding:0 16px;' + bdr + '">'
+                '<div style="width:8px;height:8px;border-radius:50%;background:' + color + ';margin:0 auto 10px"></div>'
+                '<div style="font-size:28px;font-weight:800;color:' + color + ';line-height:1;letter-spacing:-1px">' + str(pct) + '%</div>'
+                '<div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#B0BAC9;margin-top:6px">' + label + '</div>'
+                '</td>'
+            )
+
         _pills = "".join(
-            '<span style="display:inline-block;background:#F0F5FF;color:#0467FC;border-radius:20px;'
-            'padding:4px 11px;font-size:11px;font-weight:600;margin:3px 4px 3px 0">'
-            + t["tema"] + '<span style="opacity:0.55;margin-left:4px">' + str(t["count"]) + '</span></span>'
+            '<span style="display:inline-block;background:#F5F8FF;color:#0467FC;border-radius:6px;'
+            'padding:3px 10px;font-size:11px;font-weight:600;margin:3px 5px 3px 0;letter-spacing:0.2px">'
+            + t["tema"] + '<span style="color:#A0AEC0;margin-left:5px;font-weight:500">' + str(t["count"]) + '</span></span>'
             for t in _tt
         )
 
         _rep_html = (
-            # stacked bar
-            '<div style="width:100%;height:7px;border-radius:4px;overflow:hidden;display:flex;margin-bottom:18px">'
-            '<div style="width:' + str(_bar_pos) + '%;background:#38A169"></div>'
-            '<div style="width:' + str(_bar_neg) + '%;background:#E53E3E"></div>'
-            '<div style="width:' + str(_bar_mix) + '%;background:#D69E2E"></div>'
-            '<div style="width:' + str(_bar_neu) + '%;background:#CBD5E0"></div>'
+            # thick stacked bar with gradient segments
+            '<div style="width:100%;height:10px;border-radius:6px;overflow:hidden;'
+            'display:table;table-layout:fixed;margin-bottom:24px;'
+            'box-shadow:0 1px 4px rgba(0,0,0,0.08)">'
+            '<div style="display:table-cell;width:' + str(_bar_pos) + '%;background:linear-gradient(90deg,#2F9E57,#48C774)"></div>'
+            '<div style="display:table-cell;width:' + str(_bar_neg) + '%;background:linear-gradient(90deg,#D63030,#F05252)"></div>'
+            '<div style="display:table-cell;width:' + str(_bar_mix) + '%;background:linear-gradient(90deg,#B7791F,#E6A817)"></div>'
+            '<div style="display:table-cell;width:' + str(_bar_neu) + '%;background:#CBD5E0"></div>'
             '</div>'
-            # two big numbers + supporting
-            '<table style="width:100%;border-collapse:collapse;margin-bottom:16px"><tr>'
-            '<td style="width:35%;vertical-align:top;padding-right:8px">'
-            '<div style="font-size:38px;font-weight:800;color:#38A169;line-height:1">' + str(_pct_pos_r) + '%</div>'
-            '<div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#A0AEC0;margin-top:5px">Positivas</div>'
-            '</td>'
-            '<td style="width:35%;vertical-align:top;padding-right:8px">'
-            '<div style="font-size:38px;font-weight:800;color:#E53E3E;line-height:1">' + str(_pct_neg_r) + '%</div>'
-            '<div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#A0AEC0;margin-top:5px">Negativas</div>'
-            '</td>'
-            '<td style="width:30%;vertical-align:bottom;padding-bottom:6px">'
-            '<div style="font-size:11px;color:#A0AEC0;line-height:1.9">'
-            'Mixtas &nbsp;<strong style="color:#D69E2E">' + str(_pct_mix_r) + '%</strong><br>'
-            'Neutras &nbsp;<strong style="color:#A0AEC0">' + str(_pct_neu_r) + '%</strong>'
-            '</div>'
-            '</td>'
-            '</tr></table>'
-            # theme pills
-            '<div style="margin-bottom:8px">' + _pills + '</div>'
-            '<div style="font-size:11px;color:#CBD5E0;margin-top:4px">'
-            + str(_tot_men) + ' menciones &middot; Social Listening tab para detalle.'
+            # 4 balanced stat columns
+            '<table style="width:100%;border-collapse:collapse;margin-bottom:20px"><tr>'
+            + _stat_cell(_pct_pos_r, "Positivas",  "#2F9E57", True)
+            + _stat_cell(_pct_neg_r, "Negativas",  "#D63030", True)
+            + _stat_cell(_pct_mix_r, "Mixtas",     "#B7791F", True)
+            + _stat_cell(_pct_neu_r, "Neutras",    "#A0AEC0", False)
+            + '</tr></table>'
+            # theme pills with refined style
+            '<div style="margin-bottom:10px">' + _pills + '</div>'
+            '<div style="font-size:11px;color:#CBD5E0;margin-top:6px;letter-spacing:0.1px">'
+            + str(_tot_men) + ' menciones &nbsp;&middot;&nbsp; ver detalle en Social Listening'
             '</div>'
         )
 
@@ -1030,37 +1032,47 @@ def main():
              for c in _neg_clusters if c.get("tema") != _top_neg]
         )[:3]
 
-        def _signal_item(text, accent, bg):
+        def _signal_item(text, icon, color):
             return (
-                '<div style="background:' + bg + ';border-radius:8px;padding:10px 12px;margin-bottom:8px;'
-                'border-left:3px solid ' + accent + '">'
-                '<div style="font-size:13px;color:#2D3748;line-height:1.55">' + text + '</div>'
+                '<div style="padding:11px 0;border-bottom:1px solid #F7F9FC">'
+                '<table style="width:100%;border-collapse:collapse"><tr>'
+                '<td style="width:22px;vertical-align:top;padding-top:1px">'
+                '<div style="width:20px;height:20px;border-radius:50%;background:' + color + '14;'
+                'text-align:center;line-height:20px;font-size:11px;color:' + color + ';font-weight:800">'
+                + icon + '</div>'
+                '</td>'
+                '<td style="vertical-align:top;padding-left:10px">'
+                '<div style="font-size:13px;color:#1A202C;line-height:1.55;font-weight:400">' + text + '</div>'
+                '</td>'
+                '</tr></table>'
                 '</div>'
             )
 
-        _str_items  = "".join(_signal_item(s, "#0467FC", "#F0F5FF") for s in _strengths)
-        _risk_items = "".join(_signal_item(r, "#E53E3E", "#FFF8F8") for r in _risks)
+        _str_items  = "".join(_signal_item(s, "&#10003;", "#0467FC") for s in _strengths)
+        _risk_items = "".join(_signal_item(r, "&#33;",    "#E53E3E") for r in _risks)
+
+        def _col_header(label, color, bg):
+            return (
+                '<div style="display:inline-block;background:' + bg + ';color:' + color + ';'
+                'border-radius:6px;padding:4px 12px;font-size:9px;font-weight:700;'
+                'letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">' + label + '</div>'
+            )
 
         _sig_html = (
-            '<table style="width:100%;border-collapse:separate;border-spacing:0">'
-            '<tr style="vertical-align:top">'
-            # Fortalezas
-            '<td style="width:50%;vertical-align:top;padding-right:12px">'
-            '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-            'color:#0467FC;margin-bottom:10px">&#x2714; Fortalezas</div>'
+            '<table style="width:100%;border-collapse:separate;border-spacing:0"><tr style="vertical-align:top">'
+            '<td style="width:50%;vertical-align:top;padding-right:16px">'
+            + _col_header("Fortalezas", "#0467FC", "#EBF4FF")
             + _str_items +
             '</td>'
-            # Riesgos
-            '<td style="width:50%;vertical-align:top;padding-left:12px">'
-            '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
-            'color:#E53E3E;margin-bottom:10px">&#9888; Riesgos</div>'
+            '<td style="width:50%;vertical-align:top;padding-left:16px">'
+            + _col_header("Riesgos", "#C53030", "#FFF5F5")
             + _risk_items +
             '</td>'
             '</tr></table>'
         )
 
         with _col_sig:
-            section_header("Señales", dot_color="blue")
+            section_header("Se&#241;ales", dot_color="blue")
             st.markdown(_sig_html, unsafe_allow_html=True)
 
     # ════════════════════════════════════════
