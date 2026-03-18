@@ -956,92 +956,122 @@ def main():
         else:
             st.info("Cargá archivos BHT en /data para ver los KPIs.")
 
-        # ── Reputación Digital — layout like image reference ───────
-        import plotly.graph_objects as go
-
+        # ── Social Snapshot + Señales ────────────────────────────
         _pct_pos_r = round(_sd_ov.get("positivo", 0))
         _pct_neg_r = round(_sd_ov.get("negativo", 0))
         _pct_mix_r = round(_sd_ov.get("mixto", 0))
         _pct_neu_r = round(_sd_ov.get("neutro", 0))
-        _tt        = _soc_ov.get("top_themes", [])[:8]
-        _tema1     = _tt[0]["tema"] if _tt else "–"
+        _tt        = _soc_ov.get("top_themes", [])[:5]
 
-        section_header("Reputaci&#243;n Digital", dot_color="blue")
+        # Stacked bar proportions
+        _tp = _pct_pos_r + _pct_neg_r + _pct_mix_r + _pct_neu_r
+        if _tp == 0: _tp = 1
+        _bp = round(_pct_pos_r / _tp * 100)
+        _bn = round(_pct_neg_r / _tp * 100)
+        _bm = round(_pct_mix_r / _tp * 100)
+        _bu = max(0, 100 - _bp - _bn - _bm)
 
-        # ─ Row: 4 KPI cards ─
-        _ov_cols = st.columns(4)
-        _kpi_cards = [
-            ("Total Menciones", str(_tot_men),           "#1A202C", True),
-            ("Positivas",       str(_pct_pos_r) + "%",   "#38A169", False),
-            ("Negativas",       str(_pct_neg_r) + "%",   "#E53E3E", False),
-            ("Tema #1",         _tema1,                  "#1A202C", False),
-        ]
-        for _c, (_lbl, _val, _clr, _accent) in zip(_ov_cols, _kpi_cards):
-            _bl = "border-left:3px solid #0467FC;" if _accent else ""
-            with _c:
-                st.markdown(
-                    '<div style="background:#fff;border:1px solid #E2E8F0;border-radius:8px;'
-                    'padding:16px 18px;' + _bl + 'box-shadow:0 1px 3px rgba(0,0,0,0.04)">'
-                    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;'
-                    'text-transform:uppercase;color:#A0AEC0;margin-bottom:10px">' + _lbl + '</div>'
-                    '<div style="font-size:26px;font-weight:800;color:' + _clr + ';line-height:1;letter-spacing:-0.5px">' + _val + '</div>'
-                    '</div>',
-                    unsafe_allow_html=True,
-                )
+        # Theme pills
+        _pills_html = "".join(
+            '<span style="display:inline-block;background:#F0F4FF;color:#0467FC;'
+            'border-radius:5px;padding:3px 9px;font-size:11px;font-weight:600;margin:3px 4px 3px 0">'
+            + t["tema"]
+            + '<span style="color:#A0AEC0;font-weight:500;margin-left:4px">' + str(t["count"]) + '</span>'
+            + '</span>'
+            for t in _tt
+        )
 
-        # ─ Charts row: bar chart (left) + donut (right) ─
-        _ch_left, _ch_right = st.columns([6, 4])
+        # Sentiment stat cell helper (2×2 grid)
+        def _sc(pct, label, color, pb=False):
+            sep = 'padding-bottom:14px;' if pb else ''
+            return (
+                '<td style="width:50%;' + sep + 'padding-right:8px">'
+                '<div style="font-size:26px;font-weight:800;color:' + color + ';line-height:1;letter-spacing:-0.5px">'
+                + str(pct) + '%</div>'
+                '<div style="font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;'
+                'color:#B0BAC9;margin-top:5px">' + label + '</div>'
+                '</td>'
+            )
 
-        with _ch_left:
-            section_header("Temas m&#225;s mencionados", dot_color="blue")
-            if _tt:
-                _fig_bar = go.Figure(go.Bar(
-                    x=[t["count"] for t in _tt],
-                    y=[t["tema"]  for t in _tt],
-                    orientation="h",
-                    marker_color="#0467FC",
-                    marker_opacity=0.82,
-                    hovertemplate="%{y}: %{x} menciones<extra></extra>",
-                ))
-                _fig_bar.update_layout(
-                    height=260,
-                    margin=dict(l=0, r=20, t=4, b=0),
-                    plot_bgcolor="white", paper_bgcolor="white",
-                    yaxis=dict(autorange="reversed", tickfont=dict(size=12, color="#4A5568"),
-                               showgrid=False, showline=False, ticks=""),
-                    xaxis=dict(showgrid=True, gridcolor="#F0F4F8",
-                               tickfont=dict(size=11, color="#A0AEC0"), zeroline=False),
-                    showlegend=False,
-                )
-                st.plotly_chart(_fig_bar, use_container_width=True,
-                                config={"displayModeBar": False})
+        _social_snap_html = (
+            # Hero number
+            '<div style="margin-bottom:20px">'
+            '<div style="font-size:52px;font-weight:800;color:#0E1829;line-height:1;letter-spacing:-3px">'
+            + str(_tot_men) +
+            '</div>'
+            '<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;'
+            'color:#A0AEC0;margin-top:7px">menciones analizadas</div>'
+            '</div>'
+            # Stacked sentiment bar
+            '<div style="width:100%;height:8px;border-radius:4px;overflow:hidden;'
+            'display:table;table-layout:fixed;margin-bottom:20px">'
+            '<div style="display:table-cell;width:' + str(_bp) + '%;background:#38A169"></div>'
+            '<div style="display:table-cell;width:' + str(_bn) + '%;background:#E53E3E"></div>'
+            '<div style="display:table-cell;width:' + str(_bm) + '%;background:#D69E2E"></div>'
+            '<div style="display:table-cell;width:' + str(_bu) + '%;background:#CBD5E0"></div>'
+            '</div>'
+            # 2×2 sentiment grid
+            '<table style="width:100%;border-collapse:collapse;margin-bottom:20px"><tr>'
+            + _sc(_pct_pos_r, "Positivas", "#38A169", pb=True)
+            + _sc(_pct_neg_r, "Negativas", "#E53E3E", pb=True)
+            + '</tr><tr>'
+            + _sc(_pct_mix_r, "Mixtas",   "#D69E2E")
+            + _sc(_pct_neu_r, "Neutras",  "#A0AEC0")
+            + '</tr></table>'
+            # Top themes pills
+            '<div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;'
+            'color:#B0BAC9;margin-bottom:8px">Temas principales</div>'
+            + _pills_html
+        )
 
-        with _ch_right:
-            section_header("Fuentes populares", dot_color="blue")
-            _by_source = _soc_ov.get("by_source", {})
-            if _by_source:
-                _src_items = sorted(_by_source.items(), key=lambda x: -x[1])[:7]
-                _PALETTE = ["#0467FC","#E53E3E","#38A169","#D69E2E","#718096","#805AD5","#2C7A7B"]
-                _fig_pie = go.Figure(go.Pie(
-                    labels=[s[0] for s in _src_items],
-                    values=[s[1] for s in _src_items],
-                    hole=0.52,
-                    textinfo="percent",
-                    textfont=dict(size=11, color="white"),
-                    marker=dict(colors=_PALETTE, line=dict(color="white", width=2)),
-                    hovertemplate="%{label}: %{value} menciones (%{percent})<extra></extra>",
-                ))
-                _fig_pie.update_layout(
-                    height=260,
-                    margin=dict(l=0, r=0, t=4, b=0),
-                    plot_bgcolor="white", paper_bgcolor="white",
-                    legend=dict(font=dict(size=11, color="#4A5568"),
-                                orientation="v", x=1.02, y=0.5,
-                                borderwidth=0),
-                    showlegend=True,
-                )
-                st.plotly_chart(_fig_pie, use_container_width=True,
-                                config={"displayModeBar": False})
+        # Señales: strengths + risks
+        _pos_clusters = _soc_ov.get("positive_clusters", [])[:2]
+        _neg_clusters = _soc_ov.get("negative_clusters", [])[:3]
+        _strengths = (
+            ([f"Top of Mind {round(_tom)}% — liderazgo de categoría"] if _tom else []) +
+            ["Serie F $300M · Primera rentabilidad global dic 2025"] +
+            [f"Percepción positiva en {c['tema']}" for c in _pos_clusters]
+        )[:3]
+        _risks = (
+            [f"{round(_pct_neg or 0)}% menciones negativas — principal tema: {_top_neg}"] +
+            [f"Quejas en {c['tema']} ({c['count']} menciones)"
+             for c in _neg_clusters if c.get("tema") != _top_neg]
+        )[:3]
+
+        def _sig_row(text, color):
+            return (
+                '<div style="padding:11px 0;border-bottom:1px solid #F4F6F9">'
+                '<table style="width:100%;border-collapse:collapse"><tr>'
+                '<td style="width:16px;vertical-align:top;padding-top:3px">'
+                '<div style="width:6px;height:6px;border-radius:50%;background:' + color + ';margin-top:3px"></div>'
+                '</td>'
+                '<td style="vertical-align:top;padding-left:8px">'
+                '<div style="font-size:13px;color:#2D3748;line-height:1.55">' + text + '</div>'
+                '</td>'
+                '</tr></table>'
+                '</div>'
+            )
+
+        _senales_html = (
+            # Fortalezas block
+            '<div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;'
+            'color:#0467FC;margin-bottom:2px">Fortalezas</div>'
+            + "".join(_sig_row(s, "#0467FC") for s in _strengths)
+            # gap
+            + '<div style="height:18px"></div>'
+            # Riesgos block
+            '<div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;'
+            'color:#E53E3E;margin-bottom:2px">Riesgos</div>'
+            + "".join(_sig_row(r, "#E53E3E") for r in _risks)
+        )
+
+        _col_snap, _col_sig = st.columns([1, 1])
+        with _col_snap:
+            section_header("Social Listening · Snapshot", dot_color="blue")
+            st.markdown(_social_snap_html, unsafe_allow_html=True)
+        with _col_sig:
+            section_header("Se&#241;ales Estrat&#233;gicas", dot_color="blue")
+            st.markdown(_senales_html, unsafe_allow_html=True)
 
     # ════════════════════════════════════════
     # TAB 1 — BRAND HEALTH
