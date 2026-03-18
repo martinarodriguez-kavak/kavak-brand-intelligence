@@ -1691,23 +1691,31 @@ def main():
                             st.write(f"• **{t['tema']}**: {t['count']} ({t['pct']}%)")
 
             with col_sources:
-                section_header("Por fuente", dot_color="blue")
+                section_header("Fuentes populares", dot_color="blue")
                 by_source = social.get("by_source", {})
                 if by_source:
-                    rows_html = "".join(
-                        f'<div style="display:flex;justify-content:space-between;align-items:center;'
-                        f'padding:9px 0;border-bottom:1px solid var(--border);">'
-                        f'<span style="font-size:13px;color:var(--text);">{source}</span>'
-                        f'<span style="font-size:13px;font-weight:700;color:var(--kavak-blue);">{count}'
-                        f'<span style="font-weight:400;color:var(--text-muted);font-size:11px;"> &nbsp;{round(count/total_mentions*100,0):.0f}%</span></span>'
-                        f'</div>'
-                        for source, count in list(by_source.items())[:8]
+                    import plotly.graph_objects as go
+                    _src_items = list(by_source.items())[:6]
+                    _src_labels = [s[0] for s in _src_items]
+                    _src_vals   = [s[1] for s in _src_items]
+                    _src_colors = ["#0467FC","#E53E3E","#38A169","#D69E2E","#718096","#9F7AEA"]
+                    _fig_src = go.Figure(go.Pie(
+                        labels=_src_labels, values=_src_vals, hole=0.52,
+                        marker=dict(colors=_src_colors[:len(_src_labels)]),
+                        textinfo="percent", textfont=dict(size=11),
+                    ))
+                    _fig_src.update_layout(
+                        showlegend=True,
+                        legend=dict(orientation="v", x=0.75, y=0.5, font=dict(size=11)),
+                        margin=dict(l=0, r=0, t=4, b=4),
+                        height=260, paper_bgcolor="white",
+                        font=dict(family="Helvetica Neue"),
                     )
-                    st.markdown(f'<div style="margin-top:4px;">{rows_html}</div>', unsafe_allow_html=True)
+                    st.plotly_chart(_fig_src, use_container_width=True)
 
-            # ── Tendencia de sentimiento en el tiempo ──────────────
+            # ── Distribución menciones por período / sentimiento ───
             st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
-            section_header("Tendencia de Sentimiento", dot_color="blue")
+            section_header("Distribución de menciones por sentimiento", dot_color="blue")
             _QUARTER_ORDER = ["2025-Q1","2025-Q2","2025-Q3","2025-Q4","2026-Q1","2026-Q2"]
             _QUARTER_LABEL = {"2025-Q1":"Q1 '25","2025-Q2":"Q2 '25","2025-Q3":"Q3 '25",
                                "2025-Q4":"Q4 '25","2026-Q1":"Q1 '26","2026-Q2":"Q2 '26"}
@@ -1720,55 +1728,82 @@ def main():
                     _trend_buckets[_fa][_s] = _trend_buckets[_fa].get(_s,0) + 1
                     _trend_buckets[_fa]["total"] += 1
             _trend_periods = [q for q in _QUARTER_ORDER if q in _trend_buckets]
-            if len(_trend_periods) >= 2:
+            if len(_trend_periods) >= 1:
                 try:
                     import plotly.graph_objects as go
                     _xlabels = [_QUARTER_LABEL.get(p, p) for p in _trend_periods]
-                    def _pct_series(snt):
-                        return [
-                            round(_trend_buckets[p][snt] / _trend_buckets[p]["total"] * 100, 1)
-                            if _trend_buckets[p]["total"] else 0
-                            for p in _trend_periods
-                        ]
-                    _fig_trend = go.Figure()
-                    _fig_trend.add_trace(go.Scatter(x=_xlabels, y=_pct_series("negativo"),
-                        name="Negativo", line=dict(color="#E53E3E", width=3), mode="lines+markers",
-                        marker=dict(size=8)))
-                    _fig_trend.add_trace(go.Scatter(x=_xlabels, y=_pct_series("positivo"),
-                        name="Positivo", line=dict(color="#38A169", width=3), mode="lines+markers",
-                        marker=dict(size=8)))
-                    _fig_trend.add_trace(go.Scatter(x=_xlabels, y=_pct_series("mixto"),
-                        name="Mixto", line=dict(color="#D69E2E", width=2, dash="dot"), mode="lines+markers",
-                        marker=dict(size=6)))
-                    _fig_trend.update_layout(
+                    _neu_vals = [_trend_buckets[p].get("neutro",0) + _trend_buckets[p].get("mixto",0) for p in _trend_periods]
+                    _neg_vals = [_trend_buckets[p].get("negativo",0) for p in _trend_periods]
+                    _pos_vals = [_trend_buckets[p].get("positivo",0) for p in _trend_periods]
+                    _fig_stack = go.Figure()
+                    _fig_stack.add_trace(go.Bar(name="Neutral", x=_xlabels, y=_neu_vals,
+                        marker_color="#718096", text=_neu_vals, textposition="inside",
+                        textfont=dict(color="white", size=11)))
+                    _fig_stack.add_trace(go.Bar(name="Negativo", x=_xlabels, y=_neg_vals,
+                        marker_color="#E53E3E", text=_neg_vals, textposition="inside",
+                        textfont=dict(color="white", size=11)))
+                    _fig_stack.add_trace(go.Bar(name="Positivo", x=_xlabels, y=_pos_vals,
+                        marker_color="#38A169", text=_pos_vals, textposition="inside",
+                        textfont=dict(color="white", size=11)))
+                    _fig_stack.update_layout(
+                        barmode="stack",
                         plot_bgcolor="white", paper_bgcolor="white",
                         font=dict(family="Helvetica Neue", size=12),
                         margin=dict(l=0, r=20, t=10, b=0),
                         xaxis=dict(showgrid=False),
-                        yaxis=dict(showgrid=True, gridcolor="#F0F4F8", ticksuffix="%", range=[0, 100]),
-                        legend=dict(orientation="h", y=1.12, x=0),
-                        height=240,
-                    )
-                    st.plotly_chart(_fig_trend, use_container_width=True)
-                    # Volume bars below
-                    _vols = [_trend_buckets[p]["total"] for p in _trend_periods]
-                    _fig_vol = go.Figure(go.Bar(x=_xlabels, y=_vols,
-                        marker_color="#93B4FF", name="Menciones"))
-                    _fig_vol.update_layout(
-                        plot_bgcolor="white", paper_bgcolor="white",
-                        font=dict(family="Helvetica Neue", size=11),
-                        margin=dict(l=0, r=20, t=4, b=0),
-                        xaxis=dict(showgrid=False),
                         yaxis=dict(showgrid=True, gridcolor="#F0F4F8", title="menciones"),
-                        height=120,
+                        legend=dict(orientation="h", y=1.08, x=0),
+                        height=300,
                     )
-                    st.plotly_chart(_fig_vol, use_container_width=True)
+                    st.plotly_chart(_fig_stack, use_container_width=True)
                 except ImportError:
                     for _p in _trend_periods:
                         _b = _trend_buckets[_p]
-                        st.write(f"**{_QUARTER_LABEL.get(_p,_p)}** — neg {round(_b['negativo']/_b['total']*100)}% | pos {round(_b['positivo']/_b['total']*100)}%")
+                        st.write(f"**{_QUARTER_LABEL.get(_p,_p)}** — neg {_b['negativo']} | pos {_b['positivo']} | neutro {_b['neutro']}")
             else:
-                st.caption("Seleccioná un rango más amplio para ver la tendencia temporal.")
+                st.caption("Sin datos suficientes para mostrar tendencia temporal.")
+
+            # ── Palabras que dominan (word cloud CSS) ─────────────
+            st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
+            section_header("Palabras que dominan", dot_color="blue")
+            import re as _re
+            from collections import Counter as _Counter
+            _STOP = set([
+                "de","la","el","en","que","y","a","los","se","las","por","con","para",
+                "un","una","es","son","lo","no","me","mi","su","sus","más","pero",
+                "también","fue","como","si","ha","he","ya","era","muy","te","nos",
+                "al","del","tu","le","puede","porque","están","está","han","tiene",
+                "hacer","hay","sobre","cuando","este","esta","estos","estas","todo",
+                "toda","todos","todas","bien","así","vez","sin","ni","o","e","u",
+                "les","kavak","que","les","nos","os","le","me","nos","les","si",
+                "the","and","for","are","this","that","with","from","they","have",
+                "was","pero","más","había","tiene","para","sobre","desde","hasta",
+                "ser","estar","ir","ver","dar","aunque","solo","mismo","cada",
+                "otro","otra","otros","otras","aquí","allí","donde","cómo","quién",
+            ])
+            _all_words = []
+            for _m in filtered_mentions:
+                _txt = _m.get("texto","").lower()
+                _words = _re.findall(r'\b[a-záéíóúüñ]{4,}\b', _txt)
+                _all_words.extend([w for w in _words if w not in _STOP])
+            _word_counts = _Counter(_all_words).most_common(45)
+            if _word_counts:
+                _max_c = _word_counts[0][1]
+                _min_c = _word_counts[-1][1]
+                _wc_colors = ["#0467FC","#0352C9","#E53E3E","#38A169","#D69E2E","#718096","#9F7AEA","#DD6B20"]
+                _cloud_html = '<div style="padding:20px 10px;line-height:3;text-align:center">'
+                for _i, (_word, _cnt) in enumerate(_word_counts):
+                    _sz = 13 + int((_cnt - _min_c) / max(_max_c - _min_c, 1) * 22)
+                    _fw = "800" if _sz > 26 else "600" if _sz > 18 else "400"
+                    _col = _wc_colors[_i % len(_wc_colors)]
+                    _cloud_html += (
+                        f'<span style="font-size:{_sz}px;font-weight:{_fw};color:{_col};'
+                        f'margin:0 10px;display:inline-block">{_word}</span>'
+                    )
+                _cloud_html += '</div>'
+                st.markdown(_cloud_html, unsafe_allow_html=True)
+            else:
+                st.caption("Sin suficientes menciones para generar el word cloud.")
 
             # ── Crisis Radar ────────────────────────────────────
             _crisis = [m for m in filtered_mentions if m.get("intensidad", 0) >= 4 and m.get("sentimiento") == "negativo"]
