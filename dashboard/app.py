@@ -963,82 +963,80 @@ def main():
         _pct_neu_r = round(_sd_ov.get("neutro", 0))
         _tt        = _soc_ov.get("top_themes", [])[:5]
 
+        def _sent_row(label, pct, color):
+            bar_w = min(pct, 100)
+            return (
+                '<tr>'
+                '<td style="padding:12px 16px 12px 0;width:26%;vertical-align:middle">'
+                '<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#718096">'
+                + label + '</div></td>'
+                '<td style="padding:12px 12px;width:16%;vertical-align:middle;text-align:right">'
+                '<div style="font-size:24px;font-weight:800;color:' + color + ';line-height:1">' + str(pct) + '%</div></td>'
+                '<td style="padding:12px 0;vertical-align:middle">'
+                '<div style="background:#F0F0F0;border-radius:4px;height:7px">'
+                '<div style="background:' + color + ';width:' + str(bar_w) + '%;height:7px;border-radius:4px"></div>'
+                '</div></td>'
+                '</tr>'
+            )
+
+        _pills = " &nbsp; ".join(
+            '<span style="background:#EBF4FF;color:#0467FC;border-radius:20px;'
+            'padding:4px 12px;font-size:11px;font-weight:600">'
+            + t["tema"] + " &middot; " + str(t["count"]) + "</span>"
+            for t in _tt
+        )
+        _rep_html = (
+            '<table style="width:100%;border-collapse:collapse;border-bottom:1px solid #F0F0F0">'
+            + _sent_row("Positivas", _pct_pos_r, "#38A169")
+            + _sent_row("Negativas", _pct_neg_r, "#E53E3E")
+            + _sent_row("Mixtas",    _pct_mix_r, "#D69E2E")
+            + _sent_row("Neutrales", _pct_neu_r, "#A0AEC0")
+            + '</table>'
+            '<div style="margin-top:14px;line-height:2.4">' + _pills + '</div>'
+            '<div style="font-size:11px;color:#A0AEC0;margin-top:10px;font-style:italic;line-height:1.6">'
+            + str(_tot_men) + ' menciones &middot; Ver detalle en Social Listening.</div>'
+        )
+
         with _col_soc:
             section_header("Reputación Digital", dot_color="blue")
-            import plotly.graph_objects as go
-            _donut_labels = ["Positivas", "Negativas", "Mixtas", "Neutrales"]
-            _donut_vals   = [_pct_pos_r, _pct_neg_r, _pct_mix_r, _pct_neu_r]
-            _donut_colors = ["#38A169", "#E53E3E", "#D69E2E", "#CBD5E0"]
-            _fig_donut = go.Figure(go.Pie(
-                labels=_donut_labels, values=_donut_vals, hole=0.58,
-                marker=dict(colors=_donut_colors),
-                textinfo="label+percent",
-                textfont=dict(size=12),
-                insidetextorientation="radial",
-            ))
-            _fig_donut.update_layout(
-                showlegend=False,
-                margin=dict(l=20, r=20, t=20, b=10),
-                height=300,
-                paper_bgcolor="white",
-                font=dict(family="Helvetica Neue"),
-                annotations=[dict(
-                    text=f"<b>{_tot_men}</b><br><span style='font-size:10px'>menciones</span>",
-                    x=0.5, y=0.5, showarrow=False,
-                    font=dict(size=18, family="Helvetica Neue"),
-                )]
-            )
-            st.plotly_chart(_fig_donut, use_container_width=True)
-
-            _pills = " &nbsp; ".join(
-                '<span style="background:#EBF4FF;color:#0467FC;border-radius:20px;'
-                'padding:4px 12px;font-size:11px;font-weight:600">'
-                + t["tema"] + " &middot; " + str(t["count"]) + "</span>"
-                for t in _tt
-            )
-            st.markdown(
-                '<div style="line-height:2.6">' + _pills + '</div>'
-                '<div style="font-size:11px;color:#A0AEC0;margin-top:12px;font-style:italic">'
-                'Para más detalle, ingresá a la tab de Social Listening.</div>',
-                unsafe_allow_html=True)
-
+            st.markdown(_rep_html, unsafe_allow_html=True)
 
         # ── Señales ──────────────────────────────────────────────
         _pos_clusters = _soc_ov.get("positive_clusters", [])[:2]
         _neg_clusters = _soc_ov.get("negative_clusters", [])[:3]
         _strengths = (
-            ([f"Top of Mind {round(_tom)}% — liderazgo absoluto en categoría"] if _tom else []) +
-            ["Serie F $300M liderada por a16z · Primera rentabilidad global dic 2025"] +
-            [f"Percepción positiva consolidada en: {c['tema']}" for c in _pos_clusters]
-        )
+            ([f"Top of Mind {round(_tom)}% — liderazgo en categoría"] if _tom else []) +
+            ["Serie F $300M a16z · Primera rentabilidad global dic 2025"] +
+            [f"Percepción positiva en {c['tema']}" for c in _pos_clusters]
+        )[:3]
         _risks = (
-            [f"{round(_pct_neg or 0)}% de menciones son negativas — tema crítico: {_top_neg}"] +
-            [f"Quejas recurrentes en {c['tema']} ({c['count']} menciones)"
+            [f"{round(_pct_neg or 0)}% menciones negativas — tema crítico: {_top_neg}"] +
+            [f"Quejas en {c['tema']} ({c['count']} menciones)"
              for c in _neg_clusters if c.get("tema") != _top_neg]
-        )
-        _str_rows = "".join(
-            '<div style="padding:14px 18px;background:#F0FFF4;border-radius:8px;'
-            'margin-bottom:10px;font-size:14px;color:#1A202C;line-height:1.8">'
-            '<span style="color:#38A169;font-weight:700;margin-right:8px">&#10003;</span>'
-            + s + '</div>'
-            for s in _strengths[:3]
-        )
-        _risk_rows = "".join(
-            '<div style="padding:14px 18px;background:#FFF5F5;border-radius:8px;'
-            'margin-bottom:10px;font-size:14px;color:#1A202C;line-height:1.8">'
-            '<span style="color:#E53E3E;font-weight:700;margin-right:8px">&#9650;</span>'
-            + r + '</div>'
-            for r in _risks[:3]
-        )
+        )[:3]
+
+        def _signal_row(text, color, bg):
+            return (
+                '<tr>'
+                '<td style="padding:10px 0;vertical-align:top;width:20px">'
+                '<div style="width:8px;height:8px;border-radius:50%;background:' + color + ';margin-top:5px"></div>'
+                '</td>'
+                '<td style="padding:10px 0 10px 10px;font-size:13px;color:#2D3748;line-height:1.6;'
+                'border-bottom:1px solid #F7F7F7">' + text + '</td>'
+                '</tr>'
+            )
+
         _sig_html = (
-            '<div style="background:#F0FFF4;border-radius:10px;padding:16px 18px 8px;margin-bottom:16px">'
-            '<div style="font-size:15px;font-weight:700;color:#276749;margin-bottom:14px;letter-spacing:0.3px">'
-            '&#10003;&nbsp; Fortalezas</div>'
-            + _str_rows + '</div>'
-            '<div style="background:#FFF5F5;border-radius:10px;padding:16px 18px 8px">'
-            '<div style="font-size:15px;font-weight:700;color:#C53030;margin-bottom:14px;letter-spacing:0.3px">'
-            '&#9650;&nbsp; Riesgos</div>'
-            + _risk_rows + '</div>'
+            '<div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
+            'color:#276749;margin-bottom:6px">Fortalezas</div>'
+            '<table style="width:100%;border-collapse:collapse;margin-bottom:20px">'
+            + "".join(_signal_row(s, "#38A169", "#F0FFF4") for s in _strengths)
+            + '</table>'
+            '<div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;'
+            'color:#C53030;margin-bottom:6px">Riesgos</div>'
+            '<table style="width:100%;border-collapse:collapse">'
+            + "".join(_signal_row(r, "#E53E3E", "#FFF5F5") for r in _risks)
+            + '</table>'
         )
 
         with _col_sig:
