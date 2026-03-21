@@ -1669,6 +1669,87 @@ def main():
                 unsafe_allow_html=True
             )
 
+            # ── Barreras ──
+            _bar_path = Path(__file__).parent.parent / "data" / "bht_barriers.csv"
+            _rev_path = Path(__file__).parent.parent / "data" / "bht_bad_reviews.csv"
+            if _bar_path.exists():
+                import plotly.graph_objects as go
+                section_header("Kavak's Barriers — Por qué no consideran la marca", dot_color="red")
+                _bar_df = pd.read_csv(_bar_path)
+                _bar_col1, _bar_col2 = st.columns(2)
+                _seg_labels = {
+                    "past_buyers":      "Compradores/vendedores pasados que NO considerarían Kavak",
+                    "future_intenders": "Intenders futuros que NO consideran Kavak",
+                }
+                for _sci, (_seg, _seg_label) in enumerate(_seg_labels.items()):
+                    _sdf = _bar_df[_bar_df["segmento"] == _seg]
+                    _olas_b = sorted(_sdf["ola"].unique())
+                    _latest_b = _olas_b[-1]
+                    _prev_b   = _olas_b[-2] if len(_olas_b) >= 2 else None
+                    _sdf_lat  = _sdf[_sdf["ola"] == _latest_b].sort_values("valor", ascending=True)
+                    _fig_bar = go.Figure()
+                    _fig_bar.add_trace(go.Bar(
+                        y=_sdf_lat["barrera"], x=_sdf_lat["valor"],
+                        orientation="h", name=_latest_b,
+                        marker_color="#0467FC",
+                        text=_sdf_lat["valor"].apply(lambda x: f"{x:.0f}"),
+                        textposition="outside",
+                    ))
+                    if _prev_b:
+                        _sdf_prev = _sdf[_sdf["ola"] == _prev_b].set_index("barrera")["valor"]
+                        _prev_vals = [_sdf_prev.get(b, None) for b in _sdf_lat["barrera"]]
+                        _fig_bar.add_trace(go.Scatter(
+                            y=_sdf_lat["barrera"], x=_prev_vals,
+                            mode="markers", name=_prev_b,
+                            marker=dict(color="#C8D0DC", size=7, symbol="circle"),
+                        ))
+                    _fig_bar.update_layout(
+                        title=dict(text=f'<span style="font-size:12px;color:#718096">{_seg_label}</span>', x=0),
+                        height=380, plot_bgcolor="white", paper_bgcolor="white",
+                        margin=dict(l=0, r=60, t=36, b=0),
+                        xaxis=dict(showgrid=True, gridcolor="#F0F4F8", range=[0, max(_sdf_lat["valor"])*1.3]),
+                        yaxis=dict(showgrid=False, tickfont=dict(size=11)),
+                        legend=dict(orientation="h", y=1.12, x=0),
+                        barmode="overlay",
+                        font=dict(family="Helvetica Neue", size=11),
+                    )
+                    with [_bar_col1, _bar_col2][_sci]:
+                        st.plotly_chart(_fig_bar, use_container_width=True)
+
+                # Bad reviews sources
+                if _rev_path.exists():
+                    _rev_df = pd.read_csv(_rev_path)
+                    _olas_r = sorted(_rev_df["ola"].unique())
+                    _lat_r  = _olas_r[-1]
+                    _prev_r = _olas_r[-2] if len(_olas_r) >= 2 else None
+                    _rev_lat  = _rev_df[_rev_df["ola"] == _lat_r].sort_values("valor", ascending=True)
+                    section_header("Fuentes de Malas Reseñas — ¿Dónde las escuchan?", dot_color="red")
+                    _fig_rev = go.Figure()
+                    _fig_rev.add_trace(go.Bar(
+                        y=_rev_lat["fuente"], x=_rev_lat["valor"],
+                        orientation="h", name=_lat_r,
+                        marker_color="#E53E3E",
+                        text=_rev_lat["valor"].apply(lambda x: f"{x:.0f}"),
+                        textposition="outside",
+                    ))
+                    if _prev_r:
+                        _rev_prev = _rev_df[_rev_df["ola"] == _prev_r].set_index("fuente")["valor"]
+                        _prev_rev_vals = [_rev_prev.get(f, None) for f in _rev_lat["fuente"]]
+                        _fig_rev.add_trace(go.Scatter(
+                            y=_rev_lat["fuente"], x=_prev_rev_vals,
+                            mode="markers", name=_prev_r,
+                            marker=dict(color="#C8D0DC", size=7, symbol="circle"),
+                        ))
+                    _fig_rev.update_layout(
+                        height=340, plot_bgcolor="white", paper_bgcolor="white",
+                        margin=dict(l=0, r=60, t=16, b=0),
+                        xaxis=dict(showgrid=True, gridcolor="#F0F4F8", range=[0, max(_rev_lat["valor"])*1.3]),
+                        yaxis=dict(showgrid=False, tickfont=dict(size=11)),
+                        legend=dict(orientation="h", y=1.08, x=0),
+                        font=dict(family="Helvetica Neue", size=11),
+                    )
+                    st.plotly_chart(_fig_rev, use_container_width=True)
+
             # ── Atributos Percibidos ──
             _ATTR_LABELS = {
                 "Attr_Reliable_Option":      "Opción confiable",
@@ -1859,112 +1940,6 @@ def main():
                         hovermode="x unified",
                     )
                     st.plotly_chart(_fig_comp, use_container_width=True)
-
-            # ── Barreras ──
-            _bar_path = Path(__file__).parent.parent / "data" / "bht_barriers.csv"
-            _rev_path = Path(__file__).parent.parent / "data" / "bht_bad_reviews.csv"
-            if _bar_path.exists():
-                section_header("Kavak's Barriers — Por qué no consideran la marca", dot_color="red")
-                _bar_df = pd.read_csv(_bar_path)
-                _bar_col1, _bar_col2 = st.columns(2)
-                _seg_configs = [
-                    ("past_buyers",      "Compradores / Vendedores Pasados", _bar_col1),
-                    ("future_intenders", "Intenders Futuros",                _bar_col2),
-                ]
-                for _seg, _seg_label, _col_obj in _seg_configs:
-                    _sdf = _bar_df[_bar_df["segmento"] == _seg]
-                    _olas_b  = sorted(_sdf["ola"].unique())
-                    _latest_b = _olas_b[-1]
-                    _prev_b   = _olas_b[-2] if len(_olas_b) >= 2 else None
-                    _lat_vals  = _sdf[_sdf["ola"] == _latest_b].set_index("barrera")["valor"]
-                    _prev_vals = _sdf[_sdf["ola"] == _prev_b].set_index("barrera")["valor"] if _prev_b else None
-                    _sorted_barriers = _lat_vals.sort_values(ascending=False)
-
-                    _header_row = (
-                        '<div style="display:flex;align-items:center;padding:0 0 6px 0;'
-                        'border-bottom:2px solid #E2E8F0;margin-bottom:4px">'
-                        '<span style="flex:1;font-size:10px;font-weight:700;text-transform:uppercase;'
-                        'letter-spacing:.6px;color:#A0AEC0">Barrera</span>'
-                        f'<span style="font-size:10px;font-weight:700;text-transform:uppercase;'
-                        f'letter-spacing:.6px;color:#A0AEC0;margin-right:8px">{_latest_b}</span>'
-                        f'<span style="font-size:10px;color:#A0AEC0;width:52px;text-align:right">'
-                        f'vs {_prev_b}</span></div>'
-                    ) if _prev_b else (
-                        '<div style="display:flex;padding:0 0 6px 0;border-bottom:2px solid #E2E8F0;margin-bottom:4px">'
-                        '<span style="flex:1;font-size:10px;font-weight:700;text-transform:uppercase;'
-                        'letter-spacing:.6px;color:#A0AEC0">Barrera</span>'
-                        f'<span style="font-size:10px;font-weight:700;color:#A0AEC0">{_latest_b}</span></div>'
-                    )
-
-                    _rows_html = ""
-                    for _i, (_barrera, _val) in enumerate(_sorted_barriers.items()):
-                        _prev_v = _prev_vals.get(_barrera) if _prev_vals is not None else None
-                        if _prev_v is not None:
-                            _d = _val - _prev_v
-                            if _d > 1:
-                                _trend = f'<span style="color:#E53E3E;font-size:11px;font-weight:700">▲ +{_d:.0f}</span>'
-                            elif _d < -1:
-                                _trend = f'<span style="color:#38A169;font-size:11px;font-weight:700">▼ {abs(_d):.0f}</span>'
-                            else:
-                                _trend = '<span style="color:#CBD5E0;font-size:11px">→</span>'
-                        else:
-                            _trend = ""
-                        _row_bg = "#F7FAFF" if _i % 2 == 0 else "white"
-                        _rows_html += (
-                            f'<div style="display:flex;align-items:center;padding:7px 6px;'
-                            f'background:{_row_bg};border-radius:4px">'
-                            f'  <span style="flex:1;font-size:12px;color:#2D3748;line-height:1.3">{_barrera}</span>'
-                            f'  <span style="font-size:13px;font-weight:700;color:#1A202C;'
-                            f'min-width:28px;text-align:right;margin-right:8px">{_val:.0f}</span>'
-                            f'  <span style="width:52px;text-align:right">{_trend}</span>'
-                            f'</div>'
-                        )
-
-                    with _col_obj:
-                        st.markdown(
-                            f'<div style="background:white;border:1px solid #E2E8F0;border-radius:12px;'
-                            f'padding:16px 18px">'
-                            f'  <div style="font-size:11px;font-weight:800;text-transform:uppercase;'
-                            f'  letter-spacing:.8px;color:#E53E3E;margin-bottom:14px">{_seg_label}</div>'
-                            f'  {_header_row}'
-                            f'  {_rows_html}'
-                            f'</div>',
-                            unsafe_allow_html=True
-                        )
-
-                # Bad reviews sources
-                if _rev_path.exists():
-                    _rev_df = pd.read_csv(_rev_path)
-                    _olas_r = sorted(_rev_df["ola"].unique())
-                    _lat_r  = _olas_r[-1]
-                    _prev_r = _olas_r[-2] if len(_olas_r) >= 2 else None
-                    _rev_lat  = _rev_df[_rev_df["ola"] == _lat_r].sort_values("valor", ascending=True)
-                    section_header("Fuentes de Malas Reseñas — ¿Dónde las escuchan?", dot_color="red")
-                    _fig_rev = go.Figure()
-                    _fig_rev.add_trace(go.Bar(
-                        y=_rev_lat["fuente"], x=_rev_lat["valor"],
-                        orientation="h", name=_lat_r,
-                        marker_color="#E53E3E",
-                        text=_rev_lat["valor"].apply(lambda x: f"{x:.0f}"),
-                        textposition="outside",
-                    ))
-                    if _prev_r:
-                        _rev_prev = _rev_df[_rev_df["ola"] == _prev_r].set_index("fuente")["valor"]
-                        _prev_rev_vals = [_rev_prev.get(f, None) for f in _rev_lat["fuente"]]
-                        _fig_rev.add_trace(go.Scatter(
-                            y=_rev_lat["fuente"], x=_prev_rev_vals,
-                            mode="markers", name=_prev_r,
-                            marker=dict(color="#C8D0DC", size=7, symbol="circle"),
-                        ))
-                    _fig_rev.update_layout(
-                        height=340, plot_bgcolor="white", paper_bgcolor="white",
-                        margin=dict(l=0, r=60, t=16, b=0),
-                        xaxis=dict(showgrid=True, gridcolor="#F0F4F8", range=[0, max(_rev_lat["valor"])*1.3]),
-                        yaxis=dict(showgrid=False, tickfont=dict(size=11)),
-                        legend=dict(orientation="h", y=1.08, x=0),
-                        font=dict(family="Helvetica Neue", size=11),
-                    )
-                    st.plotly_chart(_fig_rev, use_container_width=True)
 
             # ── Insights BHT (si hay análisis IA) ──
             insights_bht = analysis.get("brand_health_insights", [])
