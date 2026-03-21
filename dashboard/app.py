@@ -1709,18 +1709,24 @@ def main():
                             mode="markers", name=f"Ola anterior ({_prev_b})",
                             marker=dict(color="#C8D0DC", size=7, symbol="circle"),
                         ))
+                    _prev_note = (
+                        f'<span style="font-size:11px;color:#718096;font-weight:400">'
+                        f' · <span style="color:#0467FC">■</span> {_latest_b}'
+                        f'&nbsp;&nbsp;<span style="color:#C8D0DC">●</span> {_prev_b} (ola anterior)</span>'
+                    ) if _prev_b else f'<span style="font-size:11px;color:#718096"> · {_latest_b}</span>'
                     _fig_bar.update_layout(
                         height=380, plot_bgcolor="white", paper_bgcolor="white",
-                        margin=dict(l=0, r=60, t=36, b=0),
+                        margin=dict(l=0, r=60, t=8, b=0),
                         xaxis=dict(showgrid=True, gridcolor="#F0F4F8", range=[0, max(_sdf_lat["valor"])*1.3]),
                         yaxis=dict(showgrid=False, tickfont=dict(size=11)),
-                        legend=dict(orientation="h", y=1.08, x=0, font=dict(size=11)),
+                        showlegend=False,
                         barmode="overlay",
                         font=dict(family="Helvetica Neue", size=11),
                     )
                     with [_bar_col1, _bar_col2][_sci]:
                         st.markdown(
-                            f'<div style="font-size:13px;font-weight:700;color:#1A202C;margin-bottom:4px">{_seg_label}</div>',
+                            f'<div style="font-size:13px;font-weight:700;color:#1A202C;margin-bottom:6px">'
+                            f'{_seg_label}{_prev_note}</div>',
                             unsafe_allow_html=True
                         )
                         st.plotly_chart(_fig_bar, use_container_width=True)
