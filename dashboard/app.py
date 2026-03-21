@@ -1709,14 +1709,16 @@ def main():
                             mode="markers", name=f"Ola anterior ({_prev_b})",
                             marker=dict(color="#C8D0DC", size=7, symbol="circle"),
                         ))
-                    _prev_note = (
-                        f'<span style="font-size:11px;color:#718096;font-weight:400">'
-                        f' · <span style="color:#0467FC">■</span> {_latest_b}'
-                        f'&nbsp;&nbsp;<span style="color:#C8D0DC">●</span> {_prev_b} (ola anterior)</span>'
-                    ) if _prev_b else f'<span style="font-size:11px;color:#718096"> · {_latest_b}</span>'
+                    _prev_label = f"  ●  {_prev_b} (ola anterior)" if _prev_b else ""
                     _fig_bar.update_layout(
-                        height=380, plot_bgcolor="white", paper_bgcolor="white",
-                        margin=dict(l=0, r=60, t=8, b=0),
+                        title=dict(
+                            text=(f'<b style="font-size:13px;color:#1A202C">{_seg_label}</b>'
+                                  f'<span style="font-size:11px;color:#718096">'
+                                  f'  ■  {_latest_b}{_prev_label}</span>'),
+                            x=0, xanchor="left", y=0.98, yanchor="top",
+                        ),
+                        height=400, plot_bgcolor="white", paper_bgcolor="white",
+                        margin=dict(l=0, r=60, t=52, b=0),
                         xaxis=dict(showgrid=True, gridcolor="#F0F4F8", range=[0, max(_sdf_lat["valor"])*1.3]),
                         yaxis=dict(showgrid=False, tickfont=dict(size=11)),
                         showlegend=False,
@@ -1724,11 +1726,6 @@ def main():
                         font=dict(family="Helvetica Neue", size=11),
                     )
                     with [_bar_col1, _bar_col2][_sci]:
-                        st.markdown(
-                            f'<div style="font-size:13px;font-weight:700;color:#1A202C;margin-bottom:6px">'
-                            f'{_seg_label}{_prev_note}</div>',
-                            unsafe_allow_html=True
-                        )
                         st.plotly_chart(_fig_bar, use_container_width=True)
 
                 # Bad reviews sources
@@ -1742,8 +1739,8 @@ def main():
                     _fig_rev = go.Figure()
                     _fig_rev.add_trace(go.Bar(
                         y=_rev_lat["fuente"], x=_rev_lat["valor"],
-                        orientation="h", name=_lat_r,
-                        marker_color="#E53E3E",
+                        orientation="h",
+                        marker_color="#0467FC",
                         text=_rev_lat["valor"].apply(lambda x: f"{x:.0f}"),
                         textposition="outside",
                     ))
@@ -1752,15 +1749,21 @@ def main():
                         _prev_rev_vals = [_rev_prev.get(f, None) for f in _rev_lat["fuente"]]
                         _fig_rev.add_trace(go.Scatter(
                             y=_rev_lat["fuente"], x=_prev_rev_vals,
-                            mode="markers", name=_prev_r,
+                            mode="markers",
                             marker=dict(color="#C8D0DC", size=7, symbol="circle"),
                         ))
+                    _rev_prev_label = f"  ●  {_prev_r} (ola anterior)" if _prev_r else ""
                     _fig_rev.update_layout(
+                        title=dict(
+                            text=(f'<span style="font-size:11px;color:#718096">'
+                                  f'■  {_lat_r}{_rev_prev_label}</span>'),
+                            x=0, xanchor="left", y=0.98, yanchor="top",
+                        ),
                         height=340, plot_bgcolor="white", paper_bgcolor="white",
-                        margin=dict(l=0, r=60, t=16, b=0),
+                        margin=dict(l=0, r=60, t=36, b=0),
                         xaxis=dict(showgrid=True, gridcolor="#F0F4F8", range=[0, max(_rev_lat["valor"])*1.3]),
                         yaxis=dict(showgrid=False, tickfont=dict(size=11)),
-                        legend=dict(orientation="h", y=1.08, x=0),
+                        showlegend=False,
                         font=dict(family="Helvetica Neue", size=11),
                     )
                     st.plotly_chart(_fig_rev, use_container_width=True)
