@@ -1,0 +1,57 @@
+region,marca,ola,valor
+Mexico City,KAVAK,Jun 25,82
+Mexico City,KAVAK,Dec 25,84
+Mexico City,Agencias (Seminuevos),Jun 25,79
+Mexico City,Agencias (Seminuevos),Dec 25,79
+Mexico City,SemiNuevos,Jun 25,76
+Mexico City,SemiNuevos,Dec 25,78
+Mexico City,Mercado Libre,Jun 25,76
+Mexico City,Mercado Libre,Dec 25,77
+Mexico City,Trato Directo,Jun 25,72
+Mexico City,Trato Directo,Dec 25,74
+Mexico City,Vivanuncios,Jun 25,69
+Mexico City,Vivanuncios,Dec 25,70
+Mexico City,Lotes,Jun 25,63
+Mexico City,Lotes,Dec 25,67
+Mexico City,Facebook Marketplace,Jun 25,65
+Mexico City,Facebook Marketplace,Dec 25,63
+Mexico City,Mercado/Tianguis,Jun 25,60
+Mexico City,Mercado/Tianguis,Dec 25,63
+Guadalajara,KAVAK,Jun 25,84
+Guadalajara,KAVAK,Dec 25,83
+Guadalajara,Agencias (Seminuevos),Jun 25,81
+Guadalajara,Agencias (Seminuevos),Dec 25,80
+Guadalajara,SemiNuevos,Jun 25,78
+Guadalajara,SemiNuevos,Dec 25,78
+Guadalajara,Mercado Libre,Jun 25,75
+Guadalajara,Mercado Libre,Dec 25,76
+Guadalajara,Trato Directo,Jun 25,75
+Guadalajara,Trato Directo,Dec 25,73
+Guadalajara,Vivanuncios,Jun 25,73
+Guadalajara,Vivanuncios,Dec 25,71
+Guadalajara,Facebook Marketplace,Jun 25,69
+Guadalajara,Facebook Marketplace,Dec 25,70
+Guadalajara,Mercado/Tianguis,Jun 25,66
+Guadalajara,Mercado/Tianguis,Dec 25,65
+Guadalajara,Lotes,Jun 25,68
+Guadalajara,Lotes,Dec 25,65
+Monterrey,KAVAK,Dec 24,80
+Monterrey,KAVAK,Jun 25,84
+Monterrey,Car One,Dec 24,78
+Monterrey,Car One,Jun 25,81
+Monterrey,Agencias (Seminuevos),Dec 24,81
+Monterrey,Agencias (Seminuevos),Jun 25,80
+Monterrey,SemiNuevos,Dec 24,75
+Monterrey,SemiNuevos,Jun 25,77
+Monterrey,Trato Directo,Dec 24,75
+Monterrey,Trato Directo,Jun 25,76
+Monterrey,Mercado Libre,Dec 24,73
+Monterrey,Mercado Libre,Jun 25,74
+Monterrey,Vivanuncios,Dec 24,69
+Monterrey,Vivanuncios,Jun 25,73
+Monterrey,Facebook Marketplace,Dec 24,69
+Monterrey,Facebook Marketplace,Jun 25,67
+Monterrey,Lotes,Dec 24,65
+Monterrey,Lotes,Jun 25,66
+Monterrey,Mercado/Tianguis,Dec 24,64
+Monterrey,Mercado/Tianguis,Jun 25,64

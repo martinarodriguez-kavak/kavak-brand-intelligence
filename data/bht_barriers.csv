@@ -1,0 +1,41 @@
+segmento,barrera,ola,valor
+past_buyers,Not a brand I trust,Jun 25,9
+past_buyers,Not a brand I trust,Dec 25,27
+past_buyers,Poor customer service,Jun 25,11
+past_buyers,Poor customer service,Dec 25,23
+past_buyers,No stores near where I live,Jun 25,22
+past_buyers,No stores near where I live,Dec 25,22
+past_buyers,Don't know much about the brand,Jun 25,32
+past_buyers,Don't know much about the brand,Dec 25,20
+past_buyers,Does not offer guarantees,Jun 25,22
+past_buyers,Does not offer guarantees,Dec 25,19
+past_buyers,Not a specialty brand,Jun 25,5
+past_buyers,Not a specialty brand,Dec 25,19
+past_buyers,Does not provide clear information,Jun 25,19
+past_buyers,Does not provide clear information,Dec 25,18
+past_buyers,Don't have the model I'm looking for,Jun 25,11
+past_buyers,Don't have the model I'm looking for,Dec 25,18
+past_buyers,Not a professional brand,Jun 25,13
+past_buyers,Not a professional brand,Dec 25,17
+past_buyers,Cars not in my price range,Jun 25,11
+past_buyers,Cars not in my price range,Dec 25,16
+future_intenders,Don't know much about the brand,Jun 25,26
+future_intenders,Don't know much about the brand,Dec 25,35
+future_intenders,Read or heard bad comments/reviews,Jun 25,19
+future_intenders,Read or heard bad comments/reviews,Dec 25,29
+future_intenders,No stores near where I live,Jun 25,39
+future_intenders,No stores near where I live,Dec 25,25
+future_intenders,Very new brand,Jun 25,18
+future_intenders,Very new brand,Dec 25,23
+future_intenders,Processes seem very complicated,Jun 25,20
+future_intenders,Processes seem very complicated,Dec 25,18
+future_intenders,Don't give the best offer for my car,Jun 25,21
+future_intenders,Don't give the best offer for my car,Dec 25,16
+future_intenders,Cars not in my price range,Jun 25,19
+future_intenders,Cars not in my price range,Dec 25,16
+future_intenders,Does not provide clear information,Jun 25,14
+future_intenders,Does not provide clear information,Dec 25,16
+future_intenders,Not a brand I trust,Jun 25,12
+future_intenders,Not a brand I trust,Dec 25,15
+future_intenders,Won't let me drive before buying,Jun 25,10
+future_intenders,Won't let me drive before buying,Dec 25,13

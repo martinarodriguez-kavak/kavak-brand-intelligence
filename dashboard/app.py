@@ -1650,6 +1650,195 @@ def main():
             display_df = display_df.round(1).T
             st.dataframe(display_df, use_container_width=True)
 
+            # ── Análisis Regional — Brand Equity Index ──
+            _reg_path = Path(__file__).parent.parent / "data" / "bht_regional_bei.csv"
+            if _reg_path.exists():
+                import plotly.graph_objects as go
+                _reg_df = pd.read_csv(_reg_path)
+                section_header("Brand Equity Index · Análisis Regional", dot_color="blue")
+                _reg_cols = st.columns(3)
+                for _ci, _region in enumerate(["Mexico City", "Guadalajara", "Monterrey"]):
+                    _rdf = _reg_df[_reg_df["region"] == _region].copy()
+                    _latest_ola = _rdf["ola"].iloc[-1] if not _rdf.empty else None
+                    _olas = sorted(_rdf["ola"].unique())
+                    _prev_ola = _olas[-2] if len(_olas) >= 2 else None
+                    _latest_ola = _olas[-1]
+                    _lat = _rdf[_rdf["ola"] == _latest_ola].sort_values("valor", ascending=False)
+                    _prev = _rdf[_rdf["ola"] == _prev_ola].set_index("marca")["valor"] if _prev_ola else None
+                    with _reg_cols[_ci]:
+                        st.markdown(
+                            f'<div style="font-size:13px;font-weight:800;letter-spacing:1px;'
+                            f'text-transform:uppercase;color:#0467FC;margin-bottom:12px">{_region}</div>',
+                            unsafe_allow_html=True
+                        )
+                        for _rank, (_, _row) in enumerate(_lat.iterrows(), 1):
+                            _m = _row["marca"]
+                            _v = _row["valor"]
+                            _is_kav = _m == "KAVAK"
+                            _prev_v = _prev.get(_m) if _prev is not None else None
+                            _delta = ""
+                            if _prev_v is not None:
+                                _d = _v - _prev_v
+                                if _d > 0: _delta = f'<span style="color:#38A169;font-size:10px"> ▲{_d:.0f}</span>'
+                                elif _d < 0: _delta = f'<span style="color:#E53E3E;font-size:10px"> ▼{abs(_d):.0f}</span>'
+                            _bg = "#EBF4FF" if _is_kav else "transparent"
+                            _fw = "800" if _is_kav else "500"
+                            _col = "#0467FC" if _is_kav else "#2D3748"
+                            st.markdown(
+                                f'<div style="display:flex;align-items:center;padding:5px 8px;'
+                                f'background:{_bg};border-radius:6px;margin-bottom:3px">'
+                                f'<span style="font-size:10px;color:#A0AEC0;width:20px">{_rank}.</span>'
+                                f'<span style="font-size:12px;font-weight:{_fw};color:{_col};flex:1">{_m}</span>'
+                                f'<span style="font-size:13px;font-weight:700;color:{_col}">{_v:.0f}</span>'
+                                f'{_delta}</div>',
+                                unsafe_allow_html=True
+                            )
+
+            # ── Competidores — Funnel comparativo ──
+            _comp_df = bht_df[bht_df["es_kavak"] == False].copy() if "es_kavak" in bht_df.columns else pd.DataFrame()
+            _kav_df  = bht_df[bht_df["es_kavak"] == True].copy()  if "es_kavak" in bht_df.columns else bht_df.copy()
+            if not _comp_df.empty:
+                import plotly.graph_objects as go
+                section_header("Análisis Competitivo — Funnel de Marca", dot_color="blue")
+                _comp_metrics = ["Top_of_Mind", "Awareness_Asistida", "Consideracion", "Intencion_Compra_Total"]
+                _comp_labels  = ["Top of Mind", "Awareness Asistida", "Consideración", "Intención Compra"]
+                _ola_order_c  = [o for o in OLA_ORDER if o in bht_df["ola"].unique()]
+                _latest_ola_c = _ola_order_c[-1] if _ola_order_c else None
+                if _latest_ola_c:
+                    _comp_latest = _comp_df[_comp_df["ola"] == _latest_ola_c]
+                    _kav_latest  = _kav_df[_kav_df["ola"] == _latest_ola_c]
+                    # Top competitors by awareness
+                    _top_comp_brands = (
+                        _comp_latest[_comp_latest["metrica"] == "Awareness_Asistida"]
+                        .groupby("marca")["valor"].mean()
+                        .nlargest(6).index.tolist()
+                    )
+                    _sel_metric = st.selectbox(
+                        "Métrica:", _comp_metrics,
+                        format_func=lambda x: _comp_labels[_comp_metrics.index(x)],
+                        key="comp_metric_sel"
+                    )
+                    _fig_comp = go.Figure()
+                    # Kavak line
+                    _kav_evol = []
+                    for _o in _ola_order_c:
+                        _v = _kav_df[(_kav_df["ola"] == _o) & (_kav_df["metrica"] == _sel_metric)]["valor"].mean()
+                        _kav_evol.append(_v if not pd.isna(_v) else None)
+                    _x_labels = [OLA_LABELS.get(o, o) for o in _ola_order_c]
+                    _fig_comp.add_trace(go.Scatter(
+                        x=_x_labels, y=_kav_evol, name="KAVAK",
+                        mode="lines+markers",
+                        line=dict(color="#0467FC", width=3),
+                        marker=dict(size=8, color="#0467FC", line=dict(color="white", width=1.5)),
+                        connectgaps=True,
+                    ))
+                    # Competitor lines
+                    _comp_colors = ["#E53E3E","#38A169","#D69E2E","#805AD5","#DD6B20","#319795"]
+                    for _bi, _brand in enumerate(_top_comp_brands):
+                        _b_evol = []
+                        for _o in _ola_order_c:
+                            _v = _comp_df[(_comp_df["ola"] == _o) & (_comp_df["marca"] == _brand) & (_comp_df["metrica"] == _sel_metric)]["valor"].mean()
+                            _b_evol.append(_v if not pd.isna(_v) else None)
+                        _fig_comp.add_trace(go.Scatter(
+                            x=_x_labels, y=_b_evol, name=_brand,
+                            mode="lines+markers",
+                            line=dict(color=_comp_colors[_bi % len(_comp_colors)], width=1.5, dash="dot"),
+                            marker=dict(size=5),
+                            connectgaps=True,
+                            opacity=0.75,
+                        ))
+                    _fig_comp.update_layout(
+                        height=380, plot_bgcolor="white", paper_bgcolor="white",
+                        font=dict(family="Helvetica Neue", size=12),
+                        legend=dict(orientation="h", y=1.08, x=0, font=dict(size=11)),
+                        margin=dict(l=0, r=0, t=40, b=0),
+                        xaxis=dict(showgrid=False, tickangle=-30),
+                        yaxis=dict(showgrid=True, gridcolor="#F0F4F8", zeroline=False, ticksuffix="%"),
+                        hovermode="x unified",
+                    )
+                    st.plotly_chart(_fig_comp, use_container_width=True)
+
+            # ── Barreras ──
+            _bar_path = Path(__file__).parent.parent / "data" / "bht_barriers.csv"
+            _rev_path = Path(__file__).parent.parent / "data" / "bht_bad_reviews.csv"
+            if _bar_path.exists():
+                import plotly.graph_objects as go
+                section_header("Kavak's Barriers — Por qué no consideran la marca", dot_color="red")
+                _bar_df = pd.read_csv(_bar_path)
+                _bar_col1, _bar_col2 = st.columns(2)
+                _seg_labels = {
+                    "past_buyers":      "Compradores/vendedores pasados que NO considerarían Kavak",
+                    "future_intenders": "Intenders futuros que NO consideran Kavak",
+                }
+                for _sci, (_seg, _seg_label) in enumerate(_seg_labels.items()):
+                    _sdf = _bar_df[_bar_df["segmento"] == _seg]
+                    _olas_b = sorted(_sdf["ola"].unique())
+                    _latest_b = _olas_b[-1]
+                    _prev_b   = _olas_b[-2] if len(_olas_b) >= 2 else None
+                    _sdf_lat  = _sdf[_sdf["ola"] == _latest_b].sort_values("valor", ascending=True)
+                    _fig_bar = go.Figure()
+                    _fig_bar.add_trace(go.Bar(
+                        y=_sdf_lat["barrera"], x=_sdf_lat["valor"],
+                        orientation="h", name=_latest_b,
+                        marker_color="#0467FC",
+                        text=_sdf_lat["valor"].apply(lambda x: f"{x:.0f}"),
+                        textposition="outside",
+                    ))
+                    if _prev_b:
+                        _sdf_prev = _sdf[_sdf["ola"] == _prev_b].set_index("barrera")["valor"]
+                        _prev_vals = [_sdf_prev.get(b, None) for b in _sdf_lat["barrera"]]
+                        _fig_bar.add_trace(go.Scatter(
+                            y=_sdf_lat["barrera"], x=_prev_vals,
+                            mode="markers", name=_prev_b,
+                            marker=dict(color="#C8D0DC", size=7, symbol="circle"),
+                        ))
+                    _fig_bar.update_layout(
+                        title=dict(text=f'<span style="font-size:12px;color:#718096">{_seg_label}</span>', x=0),
+                        height=380, plot_bgcolor="white", paper_bgcolor="white",
+                        margin=dict(l=0, r=60, t=36, b=0),
+                        xaxis=dict(showgrid=True, gridcolor="#F0F4F8", range=[0, max(_sdf_lat["valor"])*1.3]),
+                        yaxis=dict(showgrid=False, tickfont=dict(size=11)),
+                        legend=dict(orientation="h", y=1.12, x=0),
+                        barmode="overlay",
+                        font=dict(family="Helvetica Neue", size=11),
+                    )
+                    with [_bar_col1, _bar_col2][_sci]:
+                        st.plotly_chart(_fig_bar, use_container_width=True)
+
+                # Bad reviews sources
+                if _rev_path.exists():
+                    _rev_df = pd.read_csv(_rev_path)
+                    _olas_r = sorted(_rev_df["ola"].unique())
+                    _lat_r  = _olas_r[-1]
+                    _prev_r = _olas_r[-2] if len(_olas_r) >= 2 else None
+                    _rev_lat  = _rev_df[_rev_df["ola"] == _lat_r].sort_values("valor", ascending=True)
+                    section_header("Fuentes de Malas Reseñas — ¿Dónde las escuchan?", dot_color="red")
+                    _fig_rev = go.Figure()
+                    _fig_rev.add_trace(go.Bar(
+                        y=_rev_lat["fuente"], x=_rev_lat["valor"],
+                        orientation="h", name=_lat_r,
+                        marker_color="#E53E3E",
+                        text=_rev_lat["valor"].apply(lambda x: f"{x:.0f}"),
+                        textposition="outside",
+                    ))
+                    if _prev_r:
+                        _rev_prev = _rev_df[_rev_df["ola"] == _prev_r].set_index("fuente")["valor"]
+                        _prev_rev_vals = [_rev_prev.get(f, None) for f in _rev_lat["fuente"]]
+                        _fig_rev.add_trace(go.Scatter(
+                            y=_rev_lat["fuente"], x=_prev_rev_vals,
+                            mode="markers", name=_prev_r,
+                            marker=dict(color="#C8D0DC", size=7, symbol="circle"),
+                        ))
+                    _fig_rev.update_layout(
+                        height=340, plot_bgcolor="white", paper_bgcolor="white",
+                        margin=dict(l=0, r=60, t=16, b=0),
+                        xaxis=dict(showgrid=True, gridcolor="#F0F4F8", range=[0, max(_rev_lat["valor"])*1.3]),
+                        yaxis=dict(showgrid=False, tickfont=dict(size=11)),
+                        legend=dict(orientation="h", y=1.08, x=0),
+                        font=dict(family="Helvetica Neue", size=11),
+                    )
+                    st.plotly_chart(_fig_rev, use_container_width=True)
+
             # ── Insights BHT (si hay análisis IA) ──
             insights_bht = analysis.get("brand_health_insights", [])
             if insights_bht:
