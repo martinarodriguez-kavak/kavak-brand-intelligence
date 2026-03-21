@@ -1674,7 +1674,7 @@ def main():
             _rev_path = Path(__file__).parent.parent / "data" / "bht_bad_reviews.csv"
             if _bar_path.exists():
                 import plotly.graph_objects as go
-                section_header("Kavak's Barriers — Por qué no consideran la marca", dot_color="red")
+                section_header("Kavak's Barriers — Por qué no consideran la marca", dot_color="blue")
                 _bar_df = pd.read_csv(_bar_path)
                 _bar_col1, _bar_col2 = st.columns(2)
                 _seg_labels = {
@@ -1704,19 +1704,20 @@ def main():
                             marker=dict(color="#C8D0DC", size=7, symbol="circle"),
                         ))
                     _fig_bar.update_layout(
-                        title=dict(
-                            text=f'<b style="font-size:13px;color:#1A202C">{_seg_label}</b>'
-                                 f'<span style="font-size:11px;color:#718096"> · % que NO consideraría Kavak</span>',
-                            x=0),
                         height=380, plot_bgcolor="white", paper_bgcolor="white",
-                        margin=dict(l=0, r=60, t=48, b=0),
+                        margin=dict(l=0, r=60, t=36, b=0),
                         xaxis=dict(showgrid=True, gridcolor="#F0F4F8", range=[0, max(_sdf_lat["valor"])*1.3]),
                         yaxis=dict(showgrid=False, tickfont=dict(size=11)),
-                        legend=dict(orientation="h", y=1.18, x=0, font=dict(size=11)),
+                        legend=dict(orientation="h", y=1.08, x=0, font=dict(size=11)),
                         barmode="overlay",
                         font=dict(family="Helvetica Neue", size=11),
                     )
                     with [_bar_col1, _bar_col2][_sci]:
+                        st.markdown(
+                            f'<div style="font-size:13px;font-weight:700;color:#1A202C;margin-bottom:2px">{_seg_label}</div>'
+                            f'<div style="font-size:11px;color:#718096;margin-bottom:4px">% que NO consideraría Kavak</div>',
+                            unsafe_allow_html=True
+                        )
                         st.plotly_chart(_fig_bar, use_container_width=True)
 
                 # Bad reviews sources
@@ -1726,7 +1727,7 @@ def main():
                     _lat_r  = _olas_r[-1]
                     _prev_r = _olas_r[-2] if len(_olas_r) >= 2 else None
                     _rev_lat  = _rev_df[_rev_df["ola"] == _lat_r].sort_values("valor", ascending=True)
-                    section_header("Fuentes de Malas Reseñas — ¿Dónde las escuchan?", dot_color="red")
+                    section_header("Fuentes de Malas Reseñas — ¿Dónde las escuchan?", dot_color="blue")
                     _fig_rev = go.Figure()
                     _fig_rev.add_trace(go.Bar(
                         y=_rev_lat["fuente"], x=_rev_lat["valor"],
