@@ -1677,13 +1677,19 @@ def main():
                 section_header("Kavak's Barriers — Por qué no consideran la marca", dot_color="blue")
                 _bar_df = pd.read_csv(_bar_path)
                 _bar_col1, _bar_col2 = st.columns(2)
+                _MES_ORD = {"Jan":1,"Feb":2,"Mar":3,"Apr":4,"May":5,"Jun":6,
+                            "Jul":7,"Aug":8,"Sep":9,"Oct":10,"Nov":11,"Dec":12}
+                def _ola_key(ola):
+                    parts = ola.split()
+                    return (int(parts[1]) if len(parts) > 1 else 0,
+                            _MES_ORD.get(parts[0], 0))
                 _seg_labels = {
                     "past_buyers":      "Compradores / Vendedores Pasados",
                     "future_intenders": "Intenders Futuros",
                 }
                 for _sci, (_seg, _seg_label) in enumerate(_seg_labels.items()):
                     _sdf = _bar_df[_bar_df["segmento"] == _seg]
-                    _olas_b = sorted(_sdf["ola"].unique())
+                    _olas_b = sorted(_sdf["ola"].unique(), key=_ola_key)
                     _latest_b = _olas_b[-1]
                     _prev_b   = _olas_b[-2] if len(_olas_b) >= 2 else None
                     _sdf_lat  = _sdf[_sdf["ola"] == _latest_b].sort_values("valor", ascending=True)
@@ -1714,8 +1720,7 @@ def main():
                     )
                     with [_bar_col1, _bar_col2][_sci]:
                         st.markdown(
-                            f'<div style="font-size:13px;font-weight:700;color:#1A202C;margin-bottom:2px">{_seg_label}</div>'
-                            f'<div style="font-size:11px;color:#718096;margin-bottom:4px">% que NO consideraría Kavak</div>',
+                            f'<div style="font-size:13px;font-weight:700;color:#1A202C;margin-bottom:4px">{_seg_label}</div>',
                             unsafe_allow_html=True
                         )
                         st.plotly_chart(_fig_bar, use_container_width=True)
@@ -1723,7 +1728,7 @@ def main():
                 # Bad reviews sources
                 if _rev_path.exists():
                     _rev_df = pd.read_csv(_rev_path)
-                    _olas_r = sorted(_rev_df["ola"].unique())
+                    _olas_r = sorted(_rev_df["ola"].unique(), key=_ola_key)
                     _lat_r  = _olas_r[-1]
                     _prev_r = _olas_r[-2] if len(_olas_r) >= 2 else None
                     _rev_lat  = _rev_df[_rev_df["ola"] == _lat_r].sort_values("valor", ascending=True)
@@ -1846,8 +1851,11 @@ def main():
                 _reg_cols = st.columns(3)
                 for _ci, _region in enumerate(["Mexico City", "Guadalajara", "Monterrey"]):
                     _rdf = _reg_df[_reg_df["region"] == _region].copy()
-                    _latest_ola = _rdf["ola"].iloc[-1] if not _rdf.empty else None
-                    _olas = sorted(_rdf["ola"].unique())
+                    _MES_ORD2 = {"Jan":1,"Feb":2,"Mar":3,"Apr":4,"May":5,"Jun":6,
+                                 "Jul":7,"Aug":8,"Sep":9,"Oct":10,"Nov":11,"Dec":12}
+                    def _ola_key2(o):
+                        p = o.split(); return (int(p[1]) if len(p)>1 else 0, _MES_ORD2.get(p[0],0))
+                    _olas = sorted(_rdf["ola"].unique(), key=_ola_key2)
                     _prev_ola = _olas[-2] if len(_olas) >= 2 else None
                     _latest_ola = _olas[-1]
                     _lat = _rdf[_rdf["ola"] == _latest_ola].sort_values("valor", ascending=False)
