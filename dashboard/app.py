@@ -1880,23 +1880,34 @@ def main():
                             _v = _row["valor"]
                             _is_kav = _m == "KAVAK"
                             _prev_v = _prev.get(_m) if _prev is not None else None
-                            _delta = ""
+                            _delta_badge = ""
                             if _prev_v is not None:
                                 _d = _v - _prev_v
                                 if _d > 0:
-                                    _delta = f'<span style="color:#38A169;font-size:11px;margin-left:6px">▲ {_d:.0f}</span>'
+                                    _delta_badge = (
+                                        f'<span style="display:inline-block;background:#F0FFF4;color:#276749;'
+                                        f'font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;'
+                                        f'margin-left:8px">▲ {_d:.0f}</span>'
+                                    )
                                 elif _d < 0:
-                                    _delta = f'<span style="color:#E53E3E;font-size:11px;margin-left:6px">▼ {abs(_d):.0f}</span>'
-                            _bg = "#EBF4FF" if _is_kav else "transparent"
-                            _fw = "800" if _is_kav else "500"
+                                    _delta_badge = (
+                                        f'<span style="display:inline-block;background:#FFF5F5;color:#C53030;'
+                                        f'font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;'
+                                        f'margin-left:8px">▼ {abs(_d):.0f}</span>'
+                                    )
+                            _bg  = "#EBF4FF" if _is_kav else "transparent"
+                            _fw  = "800"     if _is_kav else "500"
                             _col = "#0467FC" if _is_kav else "#2D3748"
                             st.markdown(
-                                f'<div style="display:flex;align-items:center;padding:6px 10px;'
-                                f'background:{_bg};border-radius:6px;margin-bottom:3px">'
-                                f'<span style="font-size:11px;color:#A0AEC0;min-width:22px">{_rank}.</span>'
-                                f'<span style="font-size:13px;font-weight:{_fw};color:{_col};flex:1">{_m}</span>'
-                                f'<span style="font-size:14px;font-weight:700;color:{_col}">{_v:.0f}</span>'
-                                f'{_delta}</div>',
+                                f'<div style="display:flex;align-items:center;padding:7px 10px;'
+                                f'background:{_bg};border-radius:6px;margin-bottom:4px">'
+                                f'  <span style="font-size:11px;color:#A0AEC0;min-width:24px">{_rank}.</span>'
+                                f'  <span style="font-size:13px;font-weight:{_fw};color:{_col};flex:1;'
+                                f'  line-height:1.2">{_m}</span>'
+                                f'  <span style="font-size:15px;font-weight:800;color:{_col};'
+                                f'  min-width:28px;text-align:right">{_v:.0f}</span>'
+                                f'  {_delta_badge}'
+                                f'</div>',
                                 unsafe_allow_html=True
                             )
 
