@@ -1575,104 +1575,10 @@ def main():
                             unsafe_allow_html=True
                         )
 
-            # ── Atributos Percibidos ──
-            import plotly.graph_objects as go
-            # 1) Attr_* from main CSV (W10-W12)
-            _ATTR_LABELS = {
-                "Attr_Reliable_Option":      "Opción confiable",
-                "Attr_Car_Warranty":         "Garantía incluida",
-                "Attr_Inspected_Certified":  "Autos inspeccionados / certificados",
-                "Attr_Cars_Good_Condition":  "Autos en buen estado",
-                "Attr_Security_Transaction": "Transacción segura",
-                "Attr_Clear_Complete_Info":  "Info clara y completa",
-                "Attr_Fair_Value_Car":       "Valor justo por el auto",
-                "Attr_Wide_Catalog":         "Catálogo amplio",
-                "Attr_Online_Credit_Sim":    "Simulador de crédito online",
-                "Attr_Online_Offers":        "Ofertas online",
-                "Attr_Premium_Option":       "Opción premium",
-                "Attr_Cars_Good_Standing":   "Autos en regla",
-            }
-            _attr_rows = bht_df[bht_df["metrica"].str.startswith("Attr_", na=False) & (bht_df["es_kavak"] == True)].copy() if "es_kavak" in bht_df.columns else bht_df[bht_df["metrica"].str.startswith("Attr_", na=False)].copy()
-            # 2) Perceived attributes from ola files (Confianza, Garantía, Precio Justo, Facilidad)
-            _ola_attr_paths = sorted((Path(__file__).parent.parent / "data").glob("bht_ola*.csv"))
-            _ola_attrs = []
-            for _p in _ola_attr_paths:
-                try:
-                    _d = pd.read_csv(_p)
-                    if "metrica" in _d.columns and "valor" in _d.columns and "ola" in _d.columns:
-                        _ola_attrs.append(_d)
-                except Exception:
-                    pass
-            _ola_attr_df = pd.concat(_ola_attrs, ignore_index=True) if _ola_attrs else pd.DataFrame()
-            _PERC_LABELS = {"Confianza": "Confianza", "Garantía": "Garantía",
-                            "Precio Justo": "Precio Justo", "Facilidad de Proceso": "Facilidad de Proceso",
-                            "Preferencia": "Preferencia"}
-
-            if not _attr_rows.empty or not _ola_attr_df.empty:
-                section_header("Atributos Percibidos de Marca", dot_color="blue")
-                _a_col1, _a_col2 = st.columns(2)
-
-                # Panel 1 — Attr_* radar/bar (latest wave)
-                if not _attr_rows.empty:
-                    _attr_olas = [o for o in OLA_ORDER if o in _attr_rows["ola"].unique()]
-                    _latest_a = _attr_olas[-1] if _attr_olas else None
-                    if _latest_a:
-                        _adf_lat = _attr_rows[_attr_rows["ola"] == _latest_a].groupby("metrica")["valor"].mean().reset_index()
-                        _adf_lat["label"] = _adf_lat["metrica"].map(_ATTR_LABELS).fillna(_adf_lat["metrica"])
-                        _adf_lat = _adf_lat.sort_values("valor", ascending=True)
-                        _fig_attr = go.Figure(go.Bar(
-                            y=_adf_lat["label"], x=_adf_lat["valor"],
-                            orientation="h",
-                            marker=dict(color=[
-                                "#0467FC" if v >= _adf_lat["valor"].median() else "#94BBFE"
-                                for v in _adf_lat["valor"]
-                            ]),
-                            text=_adf_lat["valor"].apply(lambda x: f"{x:.0f}%"),
-                            textposition="outside",
-                        ))
-                        _fig_attr.update_layout(
-                            title=dict(text=f'<span style="font-size:12px;color:#718096">Atributos de producto · {OLA_LABELS.get(_latest_a, _latest_a)}</span>', x=0),
-                            height=360, plot_bgcolor="white", paper_bgcolor="white",
-                            margin=dict(l=0, r=60, t=32, b=0),
-                            xaxis=dict(showgrid=True, gridcolor="#F0F4F8", range=[0, 100], ticksuffix="%"),
-                            yaxis=dict(showgrid=False, tickfont=dict(size=11)),
-                            font=dict(family="Helvetica Neue", size=11),
-                            showlegend=False,
-                        )
-                        with _a_col1:
-                            st.plotly_chart(_fig_attr, use_container_width=True)
-
-                # Panel 2 — Perceived attributes from ola files (evolution)
-                if not _ola_attr_df.empty:
-                    _perc_available = [m for m in _PERC_LABELS if m in _ola_attr_df["metrica"].unique()]
-                    if _perc_available:
-                        _fig_perc = go.Figure()
-                        _perc_colors = ["#0467FC","#38A169","#E53E3E","#D69E2E","#805AD5"]
-                        for _pi, _m in enumerate(_perc_available):
-                            _mdf = _ola_attr_df[_ola_attr_df["metrica"] == _m].sort_values("ola")
-                            _fig_perc.add_trace(go.Scatter(
-                                x=_mdf["ola"], y=_mdf["valor"],
-                                name=_PERC_LABELS[_m],
-                                mode="lines+markers",
-                                line=dict(color=_perc_colors[_pi % len(_perc_colors)], width=2.5),
-                                marker=dict(size=8, line=dict(color="white", width=1.5)),
-                            ))
-                        _fig_perc.update_layout(
-                            title=dict(text='<span style="font-size:12px;color:#718096">Percepción de atributos · evolución por ola</span>', x=0),
-                            height=360, plot_bgcolor="white", paper_bgcolor="white",
-                            margin=dict(l=0, r=0, t=32, b=0),
-                            xaxis=dict(showgrid=False, tickangle=-20),
-                            yaxis=dict(showgrid=True, gridcolor="#F0F4F8", zeroline=False, ticksuffix="%"),
-                            legend=dict(orientation="h", y=1.12, x=0, font=dict(size=11)),
-                            font=dict(family="Helvetica Neue", size=11),
-                        )
-                        with _a_col2:
-                            st.plotly_chart(_fig_perc, use_container_width=True)
-
             # ── Gráfico de evolución ──
+            import plotly.graph_objects as go
             section_header("Evolución Brand Health — W0 a W12 (2020–2025)", dot_color="blue")
             try:
-                import plotly.graph_objects as go
 
                 EVOL_METRICS = {
                     "Top_of_Mind":            ("Top of Mind",        "#0467FC", "solid"),
@@ -1721,6 +1627,89 @@ def main():
                     st.plotly_chart(fig, use_container_width=True)
             except ImportError:
                 st.info("Instalá `plotly`: `pip install plotly`")
+
+            # ── Atributos Percibidos ──
+            _ATTR_LABELS = {
+                "Attr_Reliable_Option":      "Opción confiable",
+                "Attr_Car_Warranty":         "Garantía incluida",
+                "Attr_Inspected_Certified":  "Autos inspeccionados / certificados",
+                "Attr_Cars_Good_Condition":  "Autos en buen estado",
+                "Attr_Security_Transaction": "Transacción segura",
+                "Attr_Clear_Complete_Info":  "Info clara y completa",
+                "Attr_Fair_Value_Car":       "Valor justo por el auto",
+                "Attr_Wide_Catalog":         "Catálogo amplio",
+                "Attr_Online_Credit_Sim":    "Simulador de crédito online",
+                "Attr_Online_Offers":        "Ofertas online",
+                "Attr_Premium_Option":       "Opción premium",
+                "Attr_Cars_Good_Standing":   "Autos en regla",
+            }
+            _attr_rows = bht_df[bht_df["metrica"].str.startswith("Attr_", na=False) & (bht_df["es_kavak"] == True)].copy() if "es_kavak" in bht_df.columns else bht_df[bht_df["metrica"].str.startswith("Attr_", na=False)].copy()
+            _ola_attr_paths = sorted((Path(__file__).parent.parent / "data").glob("bht_ola*.csv"))
+            _ola_attrs = []
+            for _p in _ola_attr_paths:
+                try:
+                    _d = pd.read_csv(_p)
+                    if "metrica" in _d.columns and "valor" in _d.columns and "ola" in _d.columns:
+                        _ola_attrs.append(_d)
+                except Exception:
+                    pass
+            _ola_attr_df = pd.concat(_ola_attrs, ignore_index=True) if _ola_attrs else pd.DataFrame()
+            _PERC_LABELS = {"Confianza": "Confianza", "Garantía": "Garantía",
+                            "Precio Justo": "Precio Justo", "Facilidad de Proceso": "Facilidad de Proceso",
+                            "Preferencia": "Preferencia"}
+
+            if not _attr_rows.empty or not _ola_attr_df.empty:
+                section_header("Atributos Percibidos de Marca", dot_color="blue")
+                _a_col1, _a_col2 = st.columns(2)
+                if not _attr_rows.empty:
+                    _attr_olas = [o for o in OLA_ORDER if o in _attr_rows["ola"].unique()]
+                    _latest_a = _attr_olas[-1] if _attr_olas else None
+                    if _latest_a:
+                        _adf_lat = _attr_rows[_attr_rows["ola"] == _latest_a].groupby("metrica")["valor"].mean().reset_index()
+                        _adf_lat["label"] = _adf_lat["metrica"].map(_ATTR_LABELS).fillna(_adf_lat["metrica"])
+                        _adf_lat = _adf_lat.sort_values("valor", ascending=True)
+                        _fig_attr = go.Figure(go.Bar(
+                            y=_adf_lat["label"], x=_adf_lat["valor"],
+                            orientation="h",
+                            marker=dict(color=["#0467FC" if v >= _adf_lat["valor"].median() else "#94BBFE" for v in _adf_lat["valor"]]),
+                            text=_adf_lat["valor"].apply(lambda x: f"{x:.0f}%"),
+                            textposition="outside",
+                        ))
+                        _fig_attr.update_layout(
+                            title=dict(text=f'<span style="font-size:12px;color:#718096">Atributos de producto · {OLA_LABELS.get(_latest_a, _latest_a)}</span>', x=0),
+                            height=360, plot_bgcolor="white", paper_bgcolor="white",
+                            margin=dict(l=0, r=60, t=32, b=0),
+                            xaxis=dict(showgrid=True, gridcolor="#F0F4F8", range=[0, 100], ticksuffix="%"),
+                            yaxis=dict(showgrid=False, tickfont=dict(size=11)),
+                            font=dict(family="Helvetica Neue", size=11),
+                            showlegend=False,
+                        )
+                        with _a_col1:
+                            st.plotly_chart(_fig_attr, use_container_width=True)
+                if not _ola_attr_df.empty:
+                    _perc_available = [m for m in _PERC_LABELS if m in _ola_attr_df["metrica"].unique()]
+                    if _perc_available:
+                        _fig_perc = go.Figure()
+                        _perc_colors = ["#0467FC","#38A169","#E53E3E","#D69E2E","#805AD5"]
+                        for _pi, _m in enumerate(_perc_available):
+                            _mdf = _ola_attr_df[_ola_attr_df["metrica"] == _m].sort_values("ola")
+                            _fig_perc.add_trace(go.Scatter(
+                                x=_mdf["ola"], y=_mdf["valor"], name=_PERC_LABELS[_m],
+                                mode="lines+markers",
+                                line=dict(color=_perc_colors[_pi % len(_perc_colors)], width=2.5),
+                                marker=dict(size=8, line=dict(color="white", width=1.5)),
+                            ))
+                        _fig_perc.update_layout(
+                            title=dict(text='<span style="font-size:12px;color:#718096">Percepción de atributos · evolución por ola</span>', x=0),
+                            height=360, plot_bgcolor="white", paper_bgcolor="white",
+                            margin=dict(l=0, r=0, t=32, b=0),
+                            xaxis=dict(showgrid=False, tickangle=-20),
+                            yaxis=dict(showgrid=True, gridcolor="#F0F4F8", zeroline=False, ticksuffix="%"),
+                            legend=dict(orientation="h", y=1.12, x=0, font=dict(size=11)),
+                            font=dict(family="Helvetica Neue", size=11),
+                        )
+                        with _a_col2:
+                            st.plotly_chart(_fig_perc, use_container_width=True)
 
             # ── Tabla completa de datos ──
             section_header("Datos completos por ola", dot_color="blue")
