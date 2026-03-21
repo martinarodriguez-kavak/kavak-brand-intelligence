@@ -90,7 +90,8 @@ st.markdown("""
     [data-key="nav_bht"], [data-key="nav_social"]
   ) { display: none; } /* fallback hidden; override below */
   div[data-testid="stButton"]:has(button[data-key="nav_bht"]) > button,
-  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button {
+  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button,
+  div[data-testid="stButton"]:has(button[data-key="btn_data_table"]) > button {
     background: transparent !important;
     border: none !important;
     color: #0467FC !important;
@@ -103,7 +104,8 @@ st.markdown("""
     cursor: pointer;
   }
   div[data-testid="stButton"]:has(button[data-key="nav_bht"]) > button:hover,
-  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button:hover {
+  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button:hover,
+  div[data-testid="stButton"]:has(button[data-key="btn_data_table"]) > button:hover {
     color: #0352C9 !important;
   }
 
@@ -1711,9 +1713,8 @@ def main():
                         with _a_col2:
                             st.plotly_chart(_fig_perc, use_container_width=True)
 
-            # ── Tabla completa de datos ──
-            section_header("Datos completos por ola", dot_color="blue")
-            METRIC_LABELS = {
+            # ── Tabla completa de datos — en dialog ──
+            _METRIC_LABELS_DLG = {
                 "Top_of_Mind": "Top of Mind (%)",
                 "Awareness_Espontanea": "Awareness Espontánea (%)",
                 "Awareness_Asistida": "Awareness Asistida (%)",
@@ -1728,10 +1729,16 @@ def main():
                 "Experiencia_Compra_Pasada": "Exp. Compra (%)",
                 "Experiencia_Venta_Pasada": "Exp. Venta (%)",
             }
-            display_df = pivot[[c for c in METRIC_LABELS if c in pivot.columns]].copy()
-            display_df.columns = [METRIC_LABELS[c] for c in display_df.columns]
-            display_df = display_df.round(1).T
-            st.dataframe(display_df, use_container_width=True)
+
+            @st.dialog("Datos completos por ola", width="large")
+            def _show_data_table():
+                _ddf = pivot[[c for c in _METRIC_LABELS_DLG if c in pivot.columns]].copy()
+                _ddf.columns = [_METRIC_LABELS_DLG[c] for c in _ddf.columns]
+                _ddf = _ddf.round(1).T
+                st.dataframe(_ddf, use_container_width=True)
+
+            if st.button("📊 Ver datos completos por ola →", key="btn_data_table"):
+                _show_data_table()
 
             # ── Análisis Regional — Brand Equity Index ──
             _reg_path = Path(__file__).parent.parent / "data" / "bht_regional_bei.csv"
