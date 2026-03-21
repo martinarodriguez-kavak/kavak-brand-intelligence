@@ -1577,7 +1577,39 @@ def main():
 
             # ── Gráfico de evolución ──
             import plotly.graph_objects as go
-            section_header("Evolución Brand Health — W0 a W12 (2020–2025)", dot_color="blue")
+
+            # Dialog + botón definidos ANTES del chart para que sean visibles
+            _METRIC_LABELS_DLG = {
+                "Top_of_Mind": "Top of Mind (%)",
+                "Awareness_Espontanea": "Awareness Espontánea (%)",
+                "Awareness_Asistida": "Awareness Asistida (%)",
+                "Consideracion": "Consideración (%)",
+                "Intencion_Compra_1a": "Intención Compra 1ra (%)",
+                "Intencion_Compra_Total": "Intención Compra Total (%)",
+                "NPS_Score": "NPS Score",
+                "NPS_Promotores_pct": "Promotores (%)",
+                "NPS_Detractores_pct": "Detractores (%)",
+                "Brand_Satisfaction_Top2box": "Satisfacción Top2Box (%)",
+                "Brand_Affinity_Top2box": "Afinidad Top2Box (%)",
+                "Experiencia_Compra_Pasada": "Exp. Compra (%)",
+                "Experiencia_Venta_Pasada": "Exp. Venta (%)",
+            }
+
+            @st.dialog("Datos completos por ola", width="large")
+            def _show_data_table():
+                _ddf = pivot[[c for c in _METRIC_LABELS_DLG if c in pivot.columns]].copy()
+                _ddf.columns = [_METRIC_LABELS_DLG[c] for c in _ddf.columns]
+                _ddf = _ddf.round(1).T
+                st.dataframe(_ddf, use_container_width=True)
+
+            _evol_hdr_col, _evol_btn_col = st.columns([4, 1])
+            with _evol_hdr_col:
+                section_header("Evolución Brand Health — W0 a W12 (2020–2025)", dot_color="blue")
+            with _evol_btn_col:
+                st.markdown('<div style="height:4px"></div>', unsafe_allow_html=True)
+                if st.button("📊 Ver datos por ola", key="btn_data_table", type="primary"):
+                    _show_data_table()
+
             try:
 
                 EVOL_METRICS = {
@@ -1627,35 +1659,6 @@ def main():
                     st.plotly_chart(fig, use_container_width=True)
             except ImportError:
                 st.info("Instalá `plotly`: `pip install plotly`")
-
-            # ── Botón tabla completa — visible justo debajo del chart ──
-            _METRIC_LABELS_DLG = {
-                "Top_of_Mind": "Top of Mind (%)",
-                "Awareness_Espontanea": "Awareness Espontánea (%)",
-                "Awareness_Asistida": "Awareness Asistida (%)",
-                "Consideracion": "Consideración (%)",
-                "Intencion_Compra_1a": "Intención Compra 1ra (%)",
-                "Intencion_Compra_Total": "Intención Compra Total (%)",
-                "NPS_Score": "NPS Score",
-                "NPS_Promotores_pct": "Promotores (%)",
-                "NPS_Detractores_pct": "Detractores (%)",
-                "Brand_Satisfaction_Top2box": "Satisfacción Top2Box (%)",
-                "Brand_Affinity_Top2box": "Afinidad Top2Box (%)",
-                "Experiencia_Compra_Pasada": "Exp. Compra (%)",
-                "Experiencia_Venta_Pasada": "Exp. Venta (%)",
-            }
-
-            @st.dialog("Datos completos por ola", width="large")
-            def _show_data_table():
-                _ddf = pivot[[c for c in _METRIC_LABELS_DLG if c in pivot.columns]].copy()
-                _ddf.columns = [_METRIC_LABELS_DLG[c] for c in _ddf.columns]
-                _ddf = _ddf.round(1).T
-                st.dataframe(_ddf, use_container_width=True)
-
-            _btn_col, _ = st.columns([1, 3])
-            with _btn_col:
-                if st.button("📊 Ver datos completos por ola", key="btn_data_table"):
-                    _show_data_table()
 
             # ── Atributos Percibidos ──
             _ATTR_LABELS = {
