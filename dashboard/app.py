@@ -90,8 +90,7 @@ st.markdown("""
     [data-key="nav_bht"], [data-key="nav_social"]
   ) { display: none; } /* fallback hidden; override below */
   div[data-testid="stButton"]:has(button[data-key="nav_bht"]) > button,
-  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button,
-  div[data-testid="stButton"]:has(button[data-key="btn_data_table"]) > button {
+  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button {
     background: transparent !important;
     border: none !important;
     color: #0467FC !important;
@@ -104,8 +103,7 @@ st.markdown("""
     cursor: pointer;
   }
   div[data-testid="stButton"]:has(button[data-key="nav_bht"]) > button:hover,
-  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button:hover,
-  div[data-testid="stButton"]:has(button[data-key="btn_data_table"]) > button:hover {
+  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button:hover {
     color: #0352C9 !important;
   }
 
@@ -1580,7 +1578,7 @@ def main():
             # ── Gráfico de evolución ──
             import plotly.graph_objects as go
 
-            # Dialog + botón definidos ANTES del chart para que sean visibles
+            # ── Dialog datos por ola — abierto via query param ──
             _METRIC_LABELS_DLG = {
                 "Top_of_Mind": "Top of Mind (%)",
                 "Awareness_Espontanea": "Awareness Espontánea (%)",
@@ -1604,13 +1602,14 @@ def main():
                 _ddf = _ddf.round(1).T
                 st.dataframe(_ddf, use_container_width=True)
 
-            _evol_hdr_col, _evol_btn_col = st.columns([4, 1])
-            with _evol_hdr_col:
-                section_header("Evolución Brand Health — W0 a W12 (2020–2025)", dot_color="blue")
-            with _evol_btn_col:
-                st.markdown('<div style="height:4px"></div>', unsafe_allow_html=True)
-                if st.button("📊 Ver datos por ola →", key="btn_data_table"):
-                    _show_data_table()
+            if st.query_params.get("bht_table") == "1":
+                try:
+                    st.query_params.pop("bht_table")
+                except Exception:
+                    pass
+                _show_data_table()
+
+            section_header("Evolución Brand Health — W0 a W12 (2020–2025)", dot_color="blue")
 
             try:
 
@@ -1661,6 +1660,14 @@ def main():
                     st.plotly_chart(fig, use_container_width=True)
             except ImportError:
                 st.info("Instalá `plotly`: `pip install plotly`")
+
+            st.markdown(
+                '<div style="margin-top:6px">'
+                '<a href="?bht_table=1" target="_self" '
+                'style="font-size:12px;font-weight:600;color:#0467FC;text-decoration:none;letter-spacing:0.3px">'
+                '📊 Ver datos completos por ola →</a></div>',
+                unsafe_allow_html=True
+            )
 
             # ── Atributos Percibidos ──
             _ATTR_LABELS = {
