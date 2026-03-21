@@ -90,8 +90,7 @@ st.markdown("""
     [data-key="nav_bht"], [data-key="nav_social"]
   ) { display: none; } /* fallback hidden; override below */
   div[data-testid="stButton"]:has(button[data-key="nav_bht"]) > button,
-  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button,
-  div[data-testid="stButton"]:has(button[data-key="btn_data_table"]) > button {
+  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button {
     background: transparent !important;
     border: none !important;
     color: #0467FC !important;
@@ -104,9 +103,25 @@ st.markdown("""
     cursor: pointer;
   }
   div[data-testid="stButton"]:has(button[data-key="nav_bht"]) > button:hover,
-  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button:hover,
-  div[data-testid="stButton"]:has(button[data-key="btn_data_table"]) > button:hover {
+  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button:hover {
     color: #0352C9 !important;
+  }
+  /* ─── "Ver datos completos" — visible pill button ─── */
+  div[data-testid="stButton"]:has(button[data-key="btn_data_table"]) > button {
+    background: #EBF2FF !important;
+    border: 1.5px solid #0467FC !important;
+    color: #0467FC !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 6px 16px !important;
+    border-radius: 20px !important;
+    box-shadow: none !important;
+    cursor: pointer;
+  }
+  div[data-testid="stButton"]:has(button[data-key="btn_data_table"]) > button:hover {
+    background: #D6E8FF !important;
+    color: #0352C9 !important;
+    border-color: #0352C9 !important;
   }
 
   /* Hide Streamlit chrome */
@@ -1714,6 +1729,7 @@ def main():
                             st.plotly_chart(_fig_perc, use_container_width=True)
 
             # ── Tabla completa de datos — en dialog ──
+            st.markdown('<div style="height:8px"></div>', unsafe_allow_html=True)
             _METRIC_LABELS_DLG = {
                 "Top_of_Mind": "Top of Mind (%)",
                 "Awareness_Espontanea": "Awareness Espontánea (%)",
