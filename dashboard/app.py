@@ -106,23 +106,6 @@ st.markdown("""
   div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button:hover {
     color: #0352C9 !important;
   }
-  /* ─── "Ver datos completos" — visible pill button ─── */
-  div[data-testid="stButton"]:has(button[data-key="btn_data_table"]) > button {
-    background: #EBF2FF !important;
-    border: 1.5px solid #0467FC !important;
-    color: #0467FC !important;
-    font-size: 13px !important;
-    font-weight: 600 !important;
-    padding: 6px 16px !important;
-    border-radius: 20px !important;
-    box-shadow: none !important;
-    cursor: pointer;
-  }
-  div[data-testid="stButton"]:has(button[data-key="btn_data_table"]) > button:hover {
-    background: #D6E8FF !important;
-    color: #0352C9 !important;
-    border-color: #0352C9 !important;
-  }
 
   /* Hide Streamlit chrome */
   header[data-testid="stHeader"] { display: none !important; }
@@ -1645,6 +1628,35 @@ def main():
             except ImportError:
                 st.info("Instalá `plotly`: `pip install plotly`")
 
+            # ── Botón tabla completa — visible justo debajo del chart ──
+            _METRIC_LABELS_DLG = {
+                "Top_of_Mind": "Top of Mind (%)",
+                "Awareness_Espontanea": "Awareness Espontánea (%)",
+                "Awareness_Asistida": "Awareness Asistida (%)",
+                "Consideracion": "Consideración (%)",
+                "Intencion_Compra_1a": "Intención Compra 1ra (%)",
+                "Intencion_Compra_Total": "Intención Compra Total (%)",
+                "NPS_Score": "NPS Score",
+                "NPS_Promotores_pct": "Promotores (%)",
+                "NPS_Detractores_pct": "Detractores (%)",
+                "Brand_Satisfaction_Top2box": "Satisfacción Top2Box (%)",
+                "Brand_Affinity_Top2box": "Afinidad Top2Box (%)",
+                "Experiencia_Compra_Pasada": "Exp. Compra (%)",
+                "Experiencia_Venta_Pasada": "Exp. Venta (%)",
+            }
+
+            @st.dialog("Datos completos por ola", width="large")
+            def _show_data_table():
+                _ddf = pivot[[c for c in _METRIC_LABELS_DLG if c in pivot.columns]].copy()
+                _ddf.columns = [_METRIC_LABELS_DLG[c] for c in _ddf.columns]
+                _ddf = _ddf.round(1).T
+                st.dataframe(_ddf, use_container_width=True)
+
+            _btn_col, _ = st.columns([1, 3])
+            with _btn_col:
+                if st.button("📊 Ver datos completos por ola", key="btn_data_table"):
+                    _show_data_table()
+
             # ── Atributos Percibidos ──
             _ATTR_LABELS = {
                 "Attr_Reliable_Option":      "Opción confiable",
@@ -1727,34 +1739,6 @@ def main():
                         )
                         with _a_col2:
                             st.plotly_chart(_fig_perc, use_container_width=True)
-
-            # ── Tabla completa de datos — en dialog ──
-            st.markdown('<div style="height:8px"></div>', unsafe_allow_html=True)
-            _METRIC_LABELS_DLG = {
-                "Top_of_Mind": "Top of Mind (%)",
-                "Awareness_Espontanea": "Awareness Espontánea (%)",
-                "Awareness_Asistida": "Awareness Asistida (%)",
-                "Consideracion": "Consideración (%)",
-                "Intencion_Compra_1a": "Intención Compra 1ra (%)",
-                "Intencion_Compra_Total": "Intención Compra Total (%)",
-                "NPS_Score": "NPS Score",
-                "NPS_Promotores_pct": "Promotores (%)",
-                "NPS_Detractores_pct": "Detractores (%)",
-                "Brand_Satisfaction_Top2box": "Satisfacción Top2Box (%)",
-                "Brand_Affinity_Top2box": "Afinidad Top2Box (%)",
-                "Experiencia_Compra_Pasada": "Exp. Compra (%)",
-                "Experiencia_Venta_Pasada": "Exp. Venta (%)",
-            }
-
-            @st.dialog("Datos completos por ola", width="large")
-            def _show_data_table():
-                _ddf = pivot[[c for c in _METRIC_LABELS_DLG if c in pivot.columns]].copy()
-                _ddf.columns = [_METRIC_LABELS_DLG[c] for c in _ddf.columns]
-                _ddf = _ddf.round(1).T
-                st.dataframe(_ddf, use_container_width=True)
-
-            if st.button("📊 Ver datos completos por ola →", key="btn_data_table"):
-                _show_data_table()
 
             # ── Análisis Regional — Brand Equity Index ──
             _reg_path = Path(__file__).parent.parent / "data" / "bht_regional_bei.csv"
