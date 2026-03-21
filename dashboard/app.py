@@ -1883,17 +1883,19 @@ def main():
                             _delta = ""
                             if _prev_v is not None:
                                 _d = _v - _prev_v
-                                if _d > 0: _delta = f'<span style="color:#38A169;font-size:10px"> ▲{_d:.0f}</span>'
-                                elif _d < 0: _delta = f'<span style="color:#E53E3E;font-size:10px"> ▼{abs(_d):.0f}</span>'
+                                if _d > 0:
+                                    _delta = f'<span style="color:#38A169;font-size:11px;margin-left:6px">▲ {_d:.0f}</span>'
+                                elif _d < 0:
+                                    _delta = f'<span style="color:#E53E3E;font-size:11px;margin-left:6px">▼ {abs(_d):.0f}</span>'
                             _bg = "#EBF4FF" if _is_kav else "transparent"
                             _fw = "800" if _is_kav else "500"
                             _col = "#0467FC" if _is_kav else "#2D3748"
                             st.markdown(
-                                f'<div style="display:flex;align-items:center;padding:5px 8px;'
+                                f'<div style="display:flex;align-items:center;padding:6px 10px;'
                                 f'background:{_bg};border-radius:6px;margin-bottom:3px">'
-                                f'<span style="font-size:10px;color:#A0AEC0;width:20px">{_rank}.</span>'
-                                f'<span style="font-size:12px;font-weight:{_fw};color:{_col};flex:1">{_m}</span>'
-                                f'<span style="font-size:13px;font-weight:700;color:{_col}">{_v:.0f}</span>'
+                                f'<span style="font-size:11px;color:#A0AEC0;min-width:22px">{_rank}.</span>'
+                                f'<span style="font-size:13px;font-weight:{_fw};color:{_col};flex:1">{_m}</span>'
+                                f'<span style="font-size:14px;font-weight:700;color:{_col}">{_v:.0f}</span>'
                                 f'{_delta}</div>',
                                 unsafe_allow_html=True
                             )
