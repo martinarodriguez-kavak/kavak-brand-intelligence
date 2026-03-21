@@ -1678,8 +1678,8 @@ def main():
                 _bar_df = pd.read_csv(_bar_path)
                 _bar_col1, _bar_col2 = st.columns(2)
                 _seg_labels = {
-                    "past_buyers":      "Compradores/vendedores pasados que NO considerarían Kavak",
-                    "future_intenders": "Intenders futuros que NO consideran Kavak",
+                    "past_buyers":      "Compradores / Vendedores Pasados",
+                    "future_intenders": "Intenders Futuros",
                 }
                 for _sci, (_seg, _seg_label) in enumerate(_seg_labels.items()):
                     _sdf = _bar_df[_bar_df["segmento"] == _seg]
@@ -1690,7 +1690,7 @@ def main():
                     _fig_bar = go.Figure()
                     _fig_bar.add_trace(go.Bar(
                         y=_sdf_lat["barrera"], x=_sdf_lat["valor"],
-                        orientation="h", name=_latest_b,
+                        orientation="h", name=f"Última ola ({_latest_b})",
                         marker_color="#0467FC",
                         text=_sdf_lat["valor"].apply(lambda x: f"{x:.0f}"),
                         textposition="outside",
@@ -1700,16 +1700,19 @@ def main():
                         _prev_vals = [_sdf_prev.get(b, None) for b in _sdf_lat["barrera"]]
                         _fig_bar.add_trace(go.Scatter(
                             y=_sdf_lat["barrera"], x=_prev_vals,
-                            mode="markers", name=_prev_b,
+                            mode="markers", name=f"Ola anterior ({_prev_b})",
                             marker=dict(color="#C8D0DC", size=7, symbol="circle"),
                         ))
                     _fig_bar.update_layout(
-                        title=dict(text=f'<span style="font-size:12px;color:#718096">{_seg_label}</span>', x=0),
+                        title=dict(
+                            text=f'<b style="font-size:13px;color:#1A202C">{_seg_label}</b>'
+                                 f'<span style="font-size:11px;color:#718096"> · % que NO consideraría Kavak</span>',
+                            x=0),
                         height=380, plot_bgcolor="white", paper_bgcolor="white",
-                        margin=dict(l=0, r=60, t=36, b=0),
+                        margin=dict(l=0, r=60, t=48, b=0),
                         xaxis=dict(showgrid=True, gridcolor="#F0F4F8", range=[0, max(_sdf_lat["valor"])*1.3]),
                         yaxis=dict(showgrid=False, tickfont=dict(size=11)),
-                        legend=dict(orientation="h", y=1.12, x=0),
+                        legend=dict(orientation="h", y=1.18, x=0, font=dict(size=11)),
                         barmode="overlay",
                         font=dict(family="Helvetica Neue", size=11),
                     )
