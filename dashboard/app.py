@@ -90,7 +90,8 @@ st.markdown("""
     [data-key="nav_bht"], [data-key="nav_social"]
   ) { display: none; } /* fallback hidden; override below */
   div[data-testid="stButton"]:has(button[data-key="nav_bht"]) > button,
-  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button {
+  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button,
+  div[data-testid="stButton"]:has(button[data-key="btn_data_table"]) > button {
     background: transparent !important;
     border: none !important;
     color: #0467FC !important;
@@ -103,7 +104,8 @@ st.markdown("""
     cursor: pointer;
   }
   div[data-testid="stButton"]:has(button[data-key="nav_bht"]) > button:hover,
-  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button:hover {
+  div[data-testid="stButton"]:has(button[data-key="nav_social"]) > button:hover,
+  div[data-testid="stButton"]:has(button[data-key="btn_data_table"]) > button:hover {
     color: #0352C9 !important;
   }
 
@@ -1607,7 +1609,7 @@ def main():
                 section_header("Evolución Brand Health — W0 a W12 (2020–2025)", dot_color="blue")
             with _evol_btn_col:
                 st.markdown('<div style="height:4px"></div>', unsafe_allow_html=True)
-                if st.button("📊 Ver datos por ola", key="btn_data_table", type="primary"):
+                if st.button("📊 Ver datos por ola →", key="btn_data_table"):
                     _show_data_table()
 
             try:
