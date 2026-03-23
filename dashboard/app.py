@@ -1880,33 +1880,33 @@ def main():
                             _v = _row["valor"]
                             _is_kav = _m == "KAVAK"
                             _prev_v = _prev.get(_m) if _prev is not None else None
-                            _delta_badge = ""
                             if _prev_v is not None:
                                 _d = _v - _prev_v
                                 if _d > 0:
-                                    _delta_badge = (
-                                        f'<span style="display:inline-block;background:#F0FFF4;color:#276749;'
-                                        f'font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;'
-                                        f'margin-left:8px">▲ {_d:.0f}</span>'
-                                    )
+                                    _badge = (f'<span style="display:inline-flex;align-items:center;justify-content:center;'
+                                              f'background:#F0FFF4;color:#276749;font-size:11px;font-weight:700;'
+                                              f'padding:2px 7px;border-radius:5px;white-space:nowrap">▲ {_d:.0f}</span>')
                                 elif _d < 0:
-                                    _delta_badge = (
-                                        f'<span style="display:inline-block;background:#FFF5F5;color:#C53030;'
-                                        f'font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;'
-                                        f'margin-left:8px">▼ {abs(_d):.0f}</span>'
-                                    )
+                                    _badge = (f'<span style="display:inline-flex;align-items:center;justify-content:center;'
+                                              f'background:#FFF5F5;color:#C53030;font-size:11px;font-weight:700;'
+                                              f'padding:2px 7px;border-radius:5px;white-space:nowrap">▼ {abs(_d):.0f}</span>')
+                                else:
+                                    _badge = (f'<span style="display:inline-flex;align-items:center;justify-content:center;'
+                                              f'background:#F7FAFC;color:#A0AEC0;font-size:11px;font-weight:600;'
+                                              f'padding:2px 7px;border-radius:5px;white-space:nowrap">= 0</span>')
+                            else:
+                                _badge = ""
                             _bg  = "#EBF4FF" if _is_kav else "transparent"
-                            _fw  = "800"     if _is_kav else "500"
+                            _fw  = "800"     if _is_kav else "600"
                             _col = "#0467FC" if _is_kav else "#2D3748"
                             st.markdown(
-                                f'<div style="display:flex;align-items:center;padding:7px 10px;'
-                                f'background:{_bg};border-radius:6px;margin-bottom:4px">'
-                                f'  <span style="font-size:11px;color:#A0AEC0;min-width:24px">{_rank}.</span>'
-                                f'  <span style="font-size:13px;font-weight:{_fw};color:{_col};flex:1;'
-                                f'  line-height:1.2">{_m}</span>'
-                                f'  <span style="font-size:15px;font-weight:800;color:{_col};'
-                                f'  min-width:28px;text-align:right">{_v:.0f}</span>'
-                                f'  {_delta_badge}'
+                                f'<div style="display:flex;align-items:center;padding:10px 12px;'
+                                f'background:{_bg};border-radius:8px;margin-bottom:6px">'
+                                f'  <span style="font-size:12px;color:#A0AEC0;min-width:28px">{_rank}.</span>'
+                                f'  <span style="font-size:14px;font-weight:{_fw};color:{_col};flex:1">{_m}</span>'
+                                f'  <span style="font-size:16px;font-weight:800;color:{_col};'
+                                f'  min-width:32px;text-align:right;margin-right:10px">{_v:.0f}</span>'
+                                f'  <span style="min-width:56px;text-align:right">{_badge}</span>'
                                 f'</div>',
                                 unsafe_allow_html=True
                             )
